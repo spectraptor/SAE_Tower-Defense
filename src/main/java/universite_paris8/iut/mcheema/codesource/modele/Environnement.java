@@ -22,7 +22,9 @@ public class Environnement {
         return this.terrainDeJeu;
     }
 
-
+    public ArrayList<Ennemi> getEnnemis() {
+        return this.ennemis;
+    }
 
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);

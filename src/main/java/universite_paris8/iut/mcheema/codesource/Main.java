@@ -1,16 +1,23 @@
 package universite_paris8.iut.mcheema.codesource;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 480);
+        Parent root = fxmlLoader.load();
+        // Obtenir le controleur
+        Controleur controleur = fxmlLoader.getController();
+        Scene scene = new Scene(root, 900, 480);
+        scene.setOnKeyPressed(controleur::deplace);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
