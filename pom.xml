@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                universite_paris8.iut.mcheema.codesource/universite_paris8.iut.mcheema.codesource.Application
+                                universite_paris8.iut.mcheema.codesource/universite_paris8.iut.mcheema.codesource.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

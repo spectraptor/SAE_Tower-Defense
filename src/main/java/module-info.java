@@ -6,4 +6,6 @@ module universite_paris8.iut.mcheema.codesource {
 
     opens universite_paris8.iut.mcheema.codesource to javafx.fxml;
     exports universite_paris8.iut.mcheema.codesource;
+    exports universite_paris8.iut.mcheema.codesource.controleur;
+    opens universite_paris8.iut.mcheema.codesource.controleur to javafx.fxml;
 }
