@@ -2,7 +2,6 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public abstract class Ennemi {
@@ -17,16 +16,19 @@ public abstract class Ennemi {
     private double argentDonne;
     private Environnement environnement;
 
-    public Ennemi(int x,int y,double pv, int vitesse,double argentDonne, Environnement environnement) {
+    public Ennemi(int x, int y, double pv, int vitesse, double argentDonne, Environnement env) {
         idCpt++;
-        this.id = "E"+ idCpt;
+        this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
+        this.dx = 0;
+        this.dy = 0;
         this.pv = pv;
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
-        this.environnement = environnement;
+        this.environnement = env;
     }
+
 
     public String getId() {
         return this.id;

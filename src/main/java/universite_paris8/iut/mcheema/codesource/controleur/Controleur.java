@@ -2,11 +2,7 @@ package universite_paris8.iut.mcheema.codesource.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -35,24 +31,25 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.PIXEL_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.PIXEL_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
         terrainVue.initialiseTerrainJeu();
-        Ennemi bug = new Bug(this.environnement);
+        Ennemi bug = new Bug(400, 100, this.environnement);
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
     }
 
     public void deplacerEnnemi(KeyEvent keyEvent) {
         for (Ennemi ennemi : this.environnement.getEnnemis()) {
-            ennemi.seDeplace(keyEvent);
+            ennemi.seDeplace(keyEvent); //
             System.out.println(ennemi);
         }
     }
 
     public void creerSpriteEnnemi(Ennemi e) {
         Circle sprite = new Circle(10, Color.DARKMAGENTA);
-        sprite.setId("#" + e.getId());
+        sprite.setId(e.getId());
         sprite.translateXProperty().bind(e.xProperty());
         sprite.translateYProperty().bind(e.yProperty());
-        tilePane.getChildren().add(sprite); // ou peut-être panePrincipal ??? pas sûr
+        this.panePrincipal.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
     }
+
 
 }
