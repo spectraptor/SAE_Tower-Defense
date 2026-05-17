@@ -29,7 +29,4 @@ public class Environnement {
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
-
-
-
 }

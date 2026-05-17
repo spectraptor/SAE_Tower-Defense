@@ -28,6 +28,10 @@ public abstract class Ennemi {
         this.environnement = environnement;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     public final int getX() {
         return this.xProperty.getValue();
     }
@@ -60,33 +64,29 @@ public abstract class Ennemi {
         this.pv = 0;
     }
 
-    public void seDeplacer(KeyEvent e) {
-        int nPosX, nPosY;
-        switch (e.getCode()) {
-            case D:
-                this.dx = 1;
-                nPosX = this.getX() + (this.vitesse * this.dx);
-                this.setX(nPosX);
-                break;
-            case Q:
-                this.dx = -1;
-                nPosX = this.getX() + (this.vitesse * this.dx);
-                this.setX(nPosX);
-                break;
-            case Z:
+
+    public void seDeplace(KeyEvent keyEvent) {
+        this.dx = 0;
+        this.dy = 0;
+
+        switch (keyEvent.getCode()) {
+            case W:
                 this.dy = -1;
-                nPosY = this.getY() + (this.vitesse * this.dy);
-                this.setY(nPosY);
                 break;
             case S:
                 this.dy = 1;
-                nPosY = this.getY() + (this.vitesse * this.dy);
-                this.setY(nPosY);
+                break;
+            case A:
+                this.dx = -1;
+                break;
+            case D:
+                this.dx = 1;
                 break;
         }
 
+        this.setX(this.getX() + (this.dx * this.vitesse));
+        this.setY(this.getY() + (this.dy * this.vitesse));
     }
-    
 
     public abstract void effectueAction();
 
