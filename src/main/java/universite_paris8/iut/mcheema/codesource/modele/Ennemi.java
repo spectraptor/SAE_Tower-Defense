@@ -67,27 +67,20 @@ public abstract class Ennemi {
     }
 
 
-    public void seDeplace(KeyEvent keyEvent) {
-        this.dx = 0;
-        this.dy = 0;
-
-        switch (keyEvent.getCode()) {
-            case W:
-                this.dy = -1;
-                break;
-            case S:
-                this.dy = 1;
-                break;
-            case A:
-                this.dx = -1;
-                break;
-            case D:
-                this.dx = 1;
-                break;
+    public void seDeplace() {
+        if(this.environnement.estDedans(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
+            this.setX(this.getX() + (this.dx * this.vitesse));
+            this.setY(this.getY() + (this.dy * this.vitesse));
         }
+    }
 
-        this.setX(this.getX() + (this.dx * this.vitesse));
-        this.setY(this.getY() + (this.dy * this.vitesse));
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
     }
 
     public abstract void effectueAction();

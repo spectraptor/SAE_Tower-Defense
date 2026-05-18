@@ -26,6 +26,10 @@ public class Environnement {
         return this.ennemis;
     }
 
+    public boolean estDedans(int x,int y) {
+        return x>=0 && x < this.width && y >= 0 && y < this.height;
+    }
+
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
