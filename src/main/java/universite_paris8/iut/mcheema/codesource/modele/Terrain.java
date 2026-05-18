@@ -2,11 +2,11 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 public class Terrain {
     public final static int PIXEL_TUILLE = 32;
-    private int levelTerrain;
+    private int niveauTerrain;
     private char[][] terrainDeJeu;
 
     public Terrain(int levelTerrain) {
-        this.levelTerrain = levelTerrain;
+        this.niveauTerrain = levelTerrain;
         this.initialiseTerrain();
     }
 
@@ -16,7 +16,7 @@ public class Terrain {
         t = terre
         e = eau
          */
-        switch (this.levelTerrain) {
+        switch (this.niveauTerrain) {
             case 1:
                 this.terrainDeJeu = new char[][]{{'e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'},
                                                  {'e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'},
