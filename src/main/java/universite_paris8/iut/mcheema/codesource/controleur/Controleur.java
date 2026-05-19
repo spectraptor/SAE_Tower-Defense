@@ -69,7 +69,7 @@ public class Controleur implements Initializable {
         sprite.setId(e.getId());
         sprite.translateXProperty().bind(e.xProperty());
         sprite.translateYProperty().bind(e.yProperty());
-        this.panePrincipal.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
+        this.borderPanePrincipal.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
     }
 
 
