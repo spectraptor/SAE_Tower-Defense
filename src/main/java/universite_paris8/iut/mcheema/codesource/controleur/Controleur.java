@@ -100,7 +100,7 @@ public class Controleur implements Initializable {
                     else if (temps % 5 == 0) {
                         int nPosX = premierE.getX() + (premierE.getVitesse() * premierE.getDx());
                         int nPosY = premierE.getY() + (premierE.getVitesse() * premierE.getDy());
-
+                        
                         if (!this.environnement.tuileEstAccessibleCoords(nPosX, nPosY))  {
                             premierE.attribuerDirectionAleatoire();
                         }
