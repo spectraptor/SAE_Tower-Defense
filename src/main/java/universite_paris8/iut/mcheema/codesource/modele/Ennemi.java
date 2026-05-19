@@ -57,6 +57,10 @@ public abstract class Ennemi {
     public void meurt() {
         this.pv = 0;
     }
+
+    public void seDeplacer() {
+
+    }
     
 
     public abstract void effectueAction();
