@@ -1,7 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
+import java.awt.image.FilteredImageSource;
+
 public class Terrain {
-    public final static int PIXEL_TUILLE = 32;
+    public final static int TAILLE_TUILLE = 32;
     private int niveauTerrain;
     private char[][] terrainDeJeu;
 
@@ -84,4 +86,6 @@ public class Terrain {
     public char avoirCodeTuile(int i, int j) {
         return this.terrainDeJeu[i][j];
     }
+
+
 }
