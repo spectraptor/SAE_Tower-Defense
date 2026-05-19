@@ -30,6 +30,9 @@ public class Controleur implements Initializable {
     @FXML
     private BorderPane borderPanePrincipal;
 
+    @FXML
+    private Pane paneJeu;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.environnement = new Environnement(1,640,480);
@@ -69,7 +72,7 @@ public class Controleur implements Initializable {
         sprite.setId(e.getId());
         sprite.translateXProperty().bind(e.xProperty());
         sprite.translateYProperty().bind(e.yProperty());
-        this.borderPanePrincipal.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
+        this.paneJeu.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
     }
 
 

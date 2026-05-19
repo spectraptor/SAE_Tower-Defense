@@ -102,7 +102,7 @@
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneJeu" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" />
          </children>
