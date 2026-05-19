@@ -58,6 +58,18 @@ public abstract class Ennemi {
         return this.yProperty;
     }
 
+    public int getDx() {
+        return this.dx;
+    }
+
+    public int getDy() {
+        return this.dy;
+    }
+
+    public int getVitesse() {
+        return this.vitesse;
+    }
+
     public boolean estVivant() {
         return this.pv>0;
     }
@@ -69,8 +81,10 @@ public abstract class Ennemi {
 
     public void seDeplace() {
         if(this.environnement.estDedans(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
-            this.setX(this.getX() + (this.dx * this.vitesse));
-            this.setY(this.getY() + (this.dy * this.vitesse));
+            if(this.environnement.estAccessible(this)) {
+                this.setX(this.getX() + (this.dx * this.vitesse));
+                this.setY(this.getY() + (this.dy * this.vitesse));
+            }
         }
     }
 

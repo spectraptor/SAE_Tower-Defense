@@ -47,6 +47,8 @@ public class Controleur implements Initializable {
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
         terrainVue.afficheTerrainJeu();
+        this.initAnimation();
+        this.gameLoop.play();
 
     }
 
@@ -55,6 +57,7 @@ public class Controleur implements Initializable {
            case Z:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(-1);
+               System.out.println(this.environnement.getEnnemis().get(0).getX()/32+";"+this.environnement.getEnnemis().get(0).getY()/32);
                break;
            case S:
                this.environnement.getEnnemis().get(0).setDx(0);
@@ -70,9 +73,6 @@ public class Controleur implements Initializable {
                break;
        }
        this.environnement.getEnnemis().get(0).seDeplace();
-      
-        this.initAnimation();
-        this.gameLoop.play();
     }
 
     private void initAnimation() {
