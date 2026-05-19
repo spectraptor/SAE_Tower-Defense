@@ -47,13 +47,12 @@ public class Controleur implements Initializable {
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
         terrainVue.afficheTerrainJeu();
-        this.initAnimation();
-        this.gameLoop.play();
 
     }
 
     public void deplacerEnnemi(KeyEvent keyEvent) {
        switch (keyEvent.getCode()) {
+
            case Z:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(-1);
@@ -76,7 +75,8 @@ public class Controleur implements Initializable {
                break;
        }
 
-
+        this.initAnimation();
+        this.gameLoop.play();
     }
 
     private void initAnimation() {
