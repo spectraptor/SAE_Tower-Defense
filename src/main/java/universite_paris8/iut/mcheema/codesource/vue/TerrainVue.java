@@ -14,7 +14,7 @@ public class TerrainVue {
         this.tilePane = tilePane;
     }
 
-    public void initialiseTerrainJeu() {
+    public void afficheTerrainJeu() {
         Image imgHerbe = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/herbe.png").toExternalForm());
         Image imgTerre = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/terre.png").toExternalForm());
         Image imgEau = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/eau.png").toExternalForm());

@@ -10,12 +10,12 @@ public class Environnement {
     private Terrain terrainDeJeu;
 
 
-    public Environnement(int width,int height) {
+    public Environnement(int niveau,int width,int height) {
         this.width = width;
         this.height = height;
         this.ennemis = new ArrayList<>();
         this.nbreVague = 0;
-        this.terrainDeJeu = new Terrain();
+        this.terrainDeJeu = new Terrain(niveau);
     }
 
     public Terrain getTerrainDeJeu() {
