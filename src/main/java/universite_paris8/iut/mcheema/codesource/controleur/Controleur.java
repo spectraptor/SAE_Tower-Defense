@@ -1,5 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
+import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
@@ -22,13 +25,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
+  
+    private Timeline gameLoop;
+    private int temps;
+
     private Environnement environnement;
 
     @FXML
     private TilePane tilePane;
 
-    @FXML
-    private BorderPane borderPanePrincipal;
 
     @FXML
     private Pane paneJeu;
@@ -65,6 +70,34 @@ public class Controleur implements Initializable {
                break;
        }
        this.environnement.getEnnemis().get(0).seDeplace();
+      
+        this.initAnimation();
+        this.gameLoop.play();
+    }
+
+    private void initAnimation() {
+        gameLoop = new Timeline();
+        temps=0;
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame kf = new KeyFrame(
+                // on définit le FPS (nbre de frame par seconde)
+                Duration.seconds(0.017),
+                // on définit ce qui se passe à chaque frame
+                // c'est un eventHandler d'ou le lambda
+                (ev ->{
+                    if(temps==100){
+                        System.out.println("fini");
+                        gameLoop.stop();
+                    }
+                    else if (temps%5==0){
+                        System.out.println("un tour");
+
+                    }
+                    temps++;
+                })
+        );
+        gameLoop.getKeyFrames().add(kf);
     }
 
     public void creerSpriteEnnemi(Ennemi e) {
@@ -72,8 +105,7 @@ public class Controleur implements Initializable {
         sprite.setId(e.getId());
         sprite.translateXProperty().bind(e.xProperty());
         sprite.translateYProperty().bind(e.yProperty());
-        this.paneJeu.getChildren().add(sprite); // meilleur de mettre le panePrincipal au lieu du tilePane, sinon les coordonnées ne marchent pas
+        this.paneJeu.getChildren().add(sprite); // meilleur de mettre le pane au lieu du tilePane, sinon les coordonnées ne marchent pas
     }
-
 
 }
