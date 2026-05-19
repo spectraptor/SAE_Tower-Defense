@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
@@ -22,13 +23,13 @@ public class Controleur implements Initializable {
     private TilePane tilePane;
 
     @FXML
-    private Pane panePrincipal;
+    private BorderPane borderPanePrincipal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.environnement = new Environnement(640,480);
+        this.environnement = new Environnement(1,640,480);
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.PIXEL_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.PIXEL_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
-        terrainVue.initialiseTerrainJeu();
+        terrainVue.afficheTerrainJeu();
     }
 }
