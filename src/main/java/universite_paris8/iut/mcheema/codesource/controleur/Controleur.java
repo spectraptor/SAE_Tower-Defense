@@ -57,22 +57,24 @@ public class Controleur implements Initializable {
            case Z:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(-1);
-               System.out.println(this.environnement.getEnnemis().get(0).getX()/32+";"+this.environnement.getEnnemis().get(0).getY()/32);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case S:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(1);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case Q:
                this.environnement.getEnnemis().get(0).setDx(-1);
                this.environnement.getEnnemis().get(0).setDy(0);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case D:
                this.environnement.getEnnemis().get(0).setDx(1);
                this.environnement.getEnnemis().get(0).setDy(0);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
        }
-       this.environnement.getEnnemis().get(0).seDeplace();
     }
 
     private void initAnimation() {
