@@ -4,6 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyEvent;
 
+import java.util.Random;
+
 public abstract class Ennemi {
     private String id;
     private static int idCpt = 0;
@@ -64,6 +66,19 @@ public abstract class Ennemi {
 
     public int getDy() {
         return this.dy;
+    }
+
+    public void attribuerDirectionAleatoire() {
+        Random rand = new Random();
+        int nDX = rand.nextInt(3) - 1;
+        int nDY = rand.nextInt(3) - 1;
+        while (nDY == 0 && nDX == 0) {
+            nDX = rand.nextInt(3) - 1;
+            nDY = rand.nextInt(3) - 1;
+        }
+
+        this.dx = nDX;
+        this.dy = nDY;
     }
 
     public int getVitesse() {

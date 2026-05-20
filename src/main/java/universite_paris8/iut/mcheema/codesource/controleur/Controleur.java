@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -43,15 +44,16 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(1,640,480);
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
-        Ennemi bug = new Bogue(400, 100, this.environnement);
+        Ennemi bug = new Bogue(400, 100, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
         terrainVue.afficheTerrainJeu();
-        //this.initAnimation();
-        //this.gameLoop.play();
+        this.initAnimation();
+        this.gameLoop.play();
 
     }
 
+    /*
     public void deplacerEnnemi(KeyEvent keyEvent) {
        switch (keyEvent.getCode()) {
            case Z:
@@ -76,25 +78,34 @@ public class Controleur implements Initializable {
                break;
        }
     }
+     */
 
     private void initAnimation() {
+        Ennemi premierE = this.environnement.getEnnemis().get(0);
+        premierE.attribuerDirectionAleatoire();
+
         gameLoop = new Timeline();
-        temps=0;
+        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
+                // 60 FPS (1 / 60)
                 Duration.seconds(0.017),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if(temps==100){
-                        System.out.println("fini");
+                    if (premierE.getX() + (premierE.getVitesse() * premierE.getDx()) >= this.paneJeu.getPrefWidth()) {
+                        System.out.println("Fin");
                         gameLoop.stop();
                     }
-                    else if (temps%5==0){
-                        System.out.println("un tour");
+                    // Le mouvement s'effectue toutes les 5 frames
+                    else if (temps % 5 == 0) {
+                        int nPosX = premierE.getX() + (premierE.getVitesse() * premierE.getDx());
+                        int nPosY = premierE.getY() + (premierE.getVitesse() * premierE.getDy());
 
+                        if (!this.environnement.tuileEstAccessibleCoords(nPosX, nPosY))  {
+                            premierE.attribuerDirectionAleatoire();
+                        }
+                        premierE.seDeplace();
+                        System.out.println(premierE);
                     }
                     temps++;
                 })

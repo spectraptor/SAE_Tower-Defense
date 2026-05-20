@@ -44,4 +44,11 @@ public class Environnement {
         int colonne = xNouv / TAILLE_TUILLE;
         return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
     }
+
+
+    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
+        int ligne = nouveauY / TAILLE_TUILLE;
+        int colonne = nouveauX / TAILLE_TUILLE;
+        return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
+    }
 }

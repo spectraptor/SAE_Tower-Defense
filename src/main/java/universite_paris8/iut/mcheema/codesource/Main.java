@@ -20,7 +20,7 @@ public class Main extends javafx.application.Application {
         Scene scene = new Scene(root, 900, 480);
 
         // Indique d'appeler la méthode deplacerEnnemi du controleur
-        scene.setOnKeyPressed(controleur::deplacerEnnemi);
+        // scene.setOnKeyPressed(controleur::deplacerEnnemi);
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
