@@ -2,6 +2,8 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
+import static universite_paris8.iut.mcheema.codesource.modele.Terrain.TAILLE_TUILLE;
+
 public class Environnement {
     private int width;
     private int height;
@@ -32,5 +34,14 @@ public class Environnement {
 
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
+    }
+
+
+    public boolean tuileEstAccessible(Ennemi ennemi) {
+        int xNouv = ennemi.getX() + (ennemi.getDx() * ennemi.getVitesse());
+        int yNouv = ennemi.getY() + (ennemi.getDy() * ennemi.getVitesse());
+        int ligne = yNouv / TAILLE_TUILLE;
+        int colonne = xNouv / TAILLE_TUILLE;
+        return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
     }
 }

@@ -41,12 +41,14 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.environnement = new Environnement(1,640,480);
-        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.PIXEL_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.PIXEL_TUILLE);
+        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
         Ennemi bug = new Bogue(400, 100, this.environnement);
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
         terrainVue.afficheTerrainJeu();
+        //this.initAnimation();
+        //this.gameLoop.play();
 
     }
 
@@ -55,24 +57,24 @@ public class Controleur implements Initializable {
            case Z:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(-1);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case S:
                this.environnement.getEnnemis().get(0).setDx(0);
                this.environnement.getEnnemis().get(0).setDy(1);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case Q:
                this.environnement.getEnnemis().get(0).setDx(-1);
                this.environnement.getEnnemis().get(0).setDy(0);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
            case D:
                this.environnement.getEnnemis().get(0).setDx(1);
                this.environnement.getEnnemis().get(0).setDy(0);
+               this.environnement.getEnnemis().get(0).seDeplace();
                break;
        }
-       this.environnement.getEnnemis().get(0).seDeplace();
-      
-        this.initAnimation();
-        this.gameLoop.play();
     }
 
     private void initAnimation() {
