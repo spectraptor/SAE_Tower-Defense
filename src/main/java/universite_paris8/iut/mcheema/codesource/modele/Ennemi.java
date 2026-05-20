@@ -81,7 +81,7 @@ public abstract class Ennemi {
 
     public void seDeplace() {
         if(this.environnement.estDedans(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
-            if(this.environnement.estAccessible(this)) {
+            if(this.environnement.tuileEstAccessible(this)) {
                 this.setX(this.getX() + (this.dx * this.vitesse));
                 this.setY(this.getY() + (this.dy * this.vitesse));
             }

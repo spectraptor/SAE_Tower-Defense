@@ -47,8 +47,8 @@ public class Controleur implements Initializable {
         this.environnement.ajouterEnnemi(bug);
         creerSpriteEnnemi(bug);
         terrainVue.afficheTerrainJeu();
-        this.initAnimation();
-        this.gameLoop.play();
+        //this.initAnimation();
+        //this.gameLoop.play();
 
     }
 
