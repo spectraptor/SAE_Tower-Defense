@@ -37,14 +37,11 @@ public class Environnement {
     }
 
 
-    public boolean estAccessible(Ennemi ennemi) {
+    public boolean tuileEstAccessible(Ennemi ennemi) {
         int xNouv = ennemi.getX() + (ennemi.getDx() * ennemi.getVitesse());
         int yNouv = ennemi.getY() + (ennemi.getDy() * ennemi.getVitesse());
         int ligne = yNouv / TAILLE_TUILLE;
         int colonne = xNouv / TAILLE_TUILLE;
-        if(this.terrainDeJeu.avoirCodeTuile(ligne,colonne) == 't') {
-            return true;
-        }
-        return false;
+        return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
     }
 }
