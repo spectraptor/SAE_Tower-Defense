@@ -72,11 +72,4 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
-    public void creerSpriteEnnemi(Ennemi e) {
-        Circle sprite = new Circle(3, Color.RED);
-        sprite.setId(e.getId());
-        sprite.translateXProperty().bind(e.xProperty());
-        sprite.translateYProperty().bind(e.yProperty());
-        this.paneJeu.getChildren().add(sprite); // meilleur de mettre le pane au lieu du tilePane, sinon les coordonnées ne marchent pas
-    }
 }
