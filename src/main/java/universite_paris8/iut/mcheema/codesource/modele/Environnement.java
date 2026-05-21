@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import static universite_paris8.iut.mcheema.codesource.modele.Terrain.TAILLE_TUILLE;
 
 public class Environnement {
-    private int largeur;
+    private int largeur; //TODO supprimer car c'est dans Terrain
     private int hauteur;
     private ArrayList<Ennemi> ennemis;
     private int nbreVague;
@@ -29,8 +29,9 @@ public class Environnement {
     }
 
     public boolean estDedans(int x,int y) {
-        return x>=0 && x < this.largeur && y >= 0 && y < this.hauteur;
-    }
+        //return x>=0 && x < this.largeur && y >= 0 && y < this.hauteur;
+        return this.terrainDeJeu.estDansTerrain(x,y);
+    } // TODO déplacée dans Terrain
 
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);

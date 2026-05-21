@@ -1,5 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
+/*
+
+ */
+
 public class Terrain {
     public final static int TAILLE_TUILLE = 32;
     private int niveauTerrain;
@@ -93,6 +97,10 @@ public class Terrain {
 
     public char avoirCodeTuile(int i, int j) {
         return this.terrainDeJeu[i][j];
+    }
+
+    public boolean estDansTerrain(int x, int y) {
+        return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
     }
 
 

@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
   
     private Timeline gameLoop;
-    private int temps;
+    private int temps; //TODO c'est le nb de tours, qui devrait être dans Environnement
 
     private Environnement environnement;
 
@@ -58,6 +58,7 @@ public class Controleur implements Initializable {
                 // 60 FPS (1 / 60)
                 Duration.seconds(0.017),
                 (ev ->{
+                    // TODO remplacer tout ça par environnement.unTour();
                     if (premierE.getX() + (premierE.getVitesse() * premierE.getDx()) >= this.paneJeu.getPrefWidth()) {
                         System.out.println("Fin");
                         gameLoop.stop();
