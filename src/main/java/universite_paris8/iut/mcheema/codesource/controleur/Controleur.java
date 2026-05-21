@@ -4,13 +4,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -53,33 +46,6 @@ public class Controleur implements Initializable {
 
     }
 
-    /*
-    public void deplacerEnnemi(KeyEvent keyEvent) {
-       switch (keyEvent.getCode()) {
-           case Z:
-               this.environnement.getEnnemis().get(0).setDx(0);
-               this.environnement.getEnnemis().get(0).setDy(-1);
-               this.environnement.getEnnemis().get(0).seDeplace();
-               break;
-           case S:
-               this.environnement.getEnnemis().get(0).setDx(0);
-               this.environnement.getEnnemis().get(0).setDy(1);
-               this.environnement.getEnnemis().get(0).seDeplace();
-               break;
-           case Q:
-               this.environnement.getEnnemis().get(0).setDx(-1);
-               this.environnement.getEnnemis().get(0).setDy(0);
-               this.environnement.getEnnemis().get(0).seDeplace();
-               break;
-           case D:
-               this.environnement.getEnnemis().get(0).setDx(1);
-               this.environnement.getEnnemis().get(0).setDy(0);
-               this.environnement.getEnnemis().get(0).seDeplace();
-               break;
-       }
-    }
-     */
-
     private void initAnimation() {
         Ennemi premierE = this.environnement.getEnnemis().get(0);
         premierE.attribuerDirectionAleatoire();
@@ -120,5 +86,4 @@ public class Controleur implements Initializable {
         sprite.translateYProperty().bind(e.yProperty());
         this.paneJeu.getChildren().add(sprite); // meilleur de mettre le pane au lieu du tilePane, sinon les coordonnées ne marchent pas
     }
-
 }

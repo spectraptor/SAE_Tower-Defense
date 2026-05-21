@@ -5,8 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
-
-import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends javafx.application.Application {
@@ -15,12 +13,7 @@ public class Main extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
         Parent root = fxmlLoader.load();
 
-        // Obtenir le controleur : on en a besoin pour avoir les touches du clavier
-        Controleur controleur = fxmlLoader.getController();
         Scene scene = new Scene(root, 900, 480);
-
-        // Indique d'appeler la méthode deplacerEnnemi du controleur
-        // scene.setOnKeyPressed(controleur::deplacerEnnemi);
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
