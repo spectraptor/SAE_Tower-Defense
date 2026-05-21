@@ -37,15 +37,6 @@ public class Environnement {
     }
 
 
-    public boolean tuileEstAccessible(Ennemi ennemi) {
-        int xNouv = ennemi.getX() + (ennemi.getDx() * ennemi.getVitesse());
-        int yNouv = ennemi.getY() + (ennemi.getDy() * ennemi.getVitesse());
-        int ligne = yNouv / TAILLE_TUILLE;
-        int colonne = xNouv / TAILLE_TUILLE;
-        return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
-    }
-
-
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
