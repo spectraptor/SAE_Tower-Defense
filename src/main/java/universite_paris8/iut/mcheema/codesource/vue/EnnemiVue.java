@@ -5,6 +5,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
 
+/**
+ * La class à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.
+ * Elle s'occupe d'un ennemi qu'elle reçoit.
+ */
 public class EnnemiVue {
     private Ennemi ennemi;
     private Pane paneJeu;

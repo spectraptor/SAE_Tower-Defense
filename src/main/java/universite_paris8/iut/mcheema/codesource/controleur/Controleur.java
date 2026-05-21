@@ -39,10 +39,12 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 
-        Ennemi bug = new Bogue(400, 100, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
-        EnnemiVue bugVue =  new EnnemiVue(bug, paneJeu);
-
+        Ennemi bug = new Bogue(560, 140, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
         this.environnement.ajouterEnnemi(bug);
+
+        EnnemiVue bugVue =  new EnnemiVue(bug, paneJeu);
+        bugVue.creerSpriteEnnemi();
+
         terrainVue.afficheTerrainJeu();
 
         this.initAnimation();
