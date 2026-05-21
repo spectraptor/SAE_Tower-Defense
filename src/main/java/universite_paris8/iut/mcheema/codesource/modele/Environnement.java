@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import static universite_paris8.iut.mcheema.codesource.modele.Terrain.TAILLE_TUILLE;
 
 public class Environnement {
-    private int width;
-    private int height;
+    private int largeur;
+    private int hauteur;
     private ArrayList<Ennemi> ennemis;
     private int nbreVague;
     private Terrain terrainDeJeu;
 
 
-    public Environnement(int niveau,int width,int height) {
-        this.width = width;
-        this.height = height;
+    public Environnement(int niveau, int largeur, int hauteur) {
+        this.largeur = largeur;
+        this.hauteur = hauteur;
         this.ennemis = new ArrayList<>();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
@@ -29,7 +29,7 @@ public class Environnement {
     }
 
     public boolean estDedans(int x,int y) {
-        return x>=0 && x < this.width && y >= 0 && y < this.height;
+        return x>=0 && x < this.largeur && y >= 0 && y < this.hauteur;
     }
 
     public void ajouterEnnemi(Ennemi ennemi) {
