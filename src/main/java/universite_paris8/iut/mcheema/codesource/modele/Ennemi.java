@@ -2,7 +2,6 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.input.KeyEvent;
 
 public abstract class Ennemi {
     private String id;
