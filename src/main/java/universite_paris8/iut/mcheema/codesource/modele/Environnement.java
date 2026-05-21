@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import static universite_paris8.iut.mcheema.codesource.modele.Terrain.TAILLE_TUILLE;
 
+/*
+
+ */
+
 public class Environnement {
     private ArrayList<Ennemi> ennemis;
     private int nbreVague;
@@ -15,6 +19,7 @@ public class Environnement {
         this.ennemis = new ArrayList<>();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
+        this.nbTours = 0;
     }
 
     public Terrain getTerrainDeJeu() {
@@ -32,9 +37,10 @@ public class Environnement {
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
+
     public void unTour() {
         for (Ennemi ennemi : this.ennemis) {
-            ennemi.seDeplace();
+            ennemi.effectueAction();
         }
     }
 
@@ -43,5 +49,13 @@ public class Environnement {
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
         return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
+    }
+
+    public int getNbTours() {
+        return this.nbTours;
+    }
+
+    public void setNbTours(int nbTours) {
+        this.nbTours = nbTours;
     }
 }

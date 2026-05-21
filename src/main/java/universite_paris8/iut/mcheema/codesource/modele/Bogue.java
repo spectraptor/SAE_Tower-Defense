@@ -1,5 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
+/*
+
+ */
+
 public class Bogue extends Ennemi{
     public Bogue(int x, int y, Environnement env) {
 
@@ -8,6 +12,6 @@ public class Bogue extends Ennemi{
 
     @Override
     public void effectueAction() {
-
+        seDeplace();
     }
 }

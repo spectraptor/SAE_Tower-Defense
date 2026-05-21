@@ -14,14 +14,16 @@ import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/*
+
+ */
 
 public class Controleur implements Initializable {
   
     private Timeline gameLoop;
-    private int temps; //TODO c'est le nb de tours, qui devrait être dans Environnement
 
     private Environnement environnement;
 
@@ -51,7 +53,6 @@ public class Controleur implements Initializable {
         premierE.attribuerDirectionAleatoire();
 
         gameLoop = new Timeline();
-        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
@@ -64,7 +65,7 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                     }
                     // Le mouvement s'effectue toutes les 5 frames
-                    else if (temps % 5 == 0) {
+                    else if (this.environnement.getNbTours() % 5 == 0) {
                         int nPosX = premierE.getX() + (premierE.getVitesse() * premierE.getDx());
                         int nPosY = premierE.getY() + (premierE.getVitesse() * premierE.getDy());
 
@@ -73,7 +74,7 @@ public class Controleur implements Initializable {
                         }
                         premierE.seDeplace();
                     }
-                    temps++;
+                    this.environnement.setNbTours(this.environnement.getNbTours() + 1);
                 })
         );
         gameLoop.getKeyFrames().add(kf);

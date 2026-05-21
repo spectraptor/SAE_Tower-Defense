@@ -5,6 +5,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
+/*
+
+ */
+
 public class TerrainVue {
     private Terrain terrainDeJeu;
     private TilePane tilePane;

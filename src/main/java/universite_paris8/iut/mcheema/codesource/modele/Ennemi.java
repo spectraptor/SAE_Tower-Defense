@@ -4,6 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Random;
 
+/*
+
+ */
+
 public abstract class Ennemi {
     private String id;
     private static int idCpt = 0;
