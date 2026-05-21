@@ -71,7 +71,6 @@ public class Controleur implements Initializable {
                             premierE.attribuerDirectionAleatoire();
                         }
                         premierE.seDeplace();
-                        System.out.println(premierE);
                     }
                     temps++;
                 })
