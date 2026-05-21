@@ -15,6 +15,6 @@ public class Base {
 
     public final int getPv() {return this.pvProperty.getValue();}
 
-    public final IntegerProperty getPvProperty() {return this.pvProperty;}
+    public final IntegerProperty getPvProperty() { return this.pvProperty;}
 }
 
