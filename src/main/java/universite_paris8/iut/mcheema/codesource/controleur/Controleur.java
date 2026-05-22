@@ -49,6 +49,7 @@ public class Controleur implements Initializable {
     }
 
     private void initAnimation() {
+
         Ennemi premierE = this.environnement.getEnnemis().get(0);
         premierE.attribuerDirectionAleatoire();
 
@@ -56,27 +57,18 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // 60 FPS (1 / 60)
                 Duration.seconds(0.017),
-                (ev ->{
-                    // TODO remplacer tout ça par environnement.unTour();
-                    if (premierE.getX() + (premierE.getVitesse() * premierE.getDx()) >= this.paneJeu.getPrefWidth()) {
-                        System.out.println("Fin");
+                ev -> {
+                    environnement.unTour();
+                    /*
+                    if (environnement.ennemiSort()) {
                         gameLoop.stop();
                     }
-                    // Le mouvement s'effectue toutes les 5 frames
-                    else if (this.environnement.getNbTours() % 5 == 0) {
-                        int nPosX = premierE.getX() + (premierE.getVitesse() * premierE.getDx());
-                        int nPosY = premierE.getY() + (premierE.getVitesse() * premierE.getDy());
+                    */
 
-                        if (!this.environnement.tuileEstAccessibleCoords(nPosX, nPosY))  {
-                            premierE.attribuerDirectionAleatoire();
-                        }
-                        premierE.seDeplace();
-                    }
-                    this.environnement.setNbTours(this.environnement.getNbTours() + 1);
-                })
+                }
         );
+
         gameLoop.getKeyFrames().add(kf);
     }
 

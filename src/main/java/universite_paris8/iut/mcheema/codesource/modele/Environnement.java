@@ -39,9 +39,22 @@ public class Environnement {
     }
 
     public void unTour() {
+
         for (Ennemi ennemi : this.ennemis) {
-            ennemi.effectueAction();
+            if (this.nbTours % 5 == 0) {
+
+                int nPosX = ennemi.getX() + (ennemi.getVitesse() * ennemi.getDx());
+                int nPosY = ennemi.getY() + (ennemi.getVitesse() * ennemi.getDy());
+
+                if (!tuileEstAccessibleCoords(nPosX, nPosY)) {
+                    ennemi.attribuerDirectionAleatoire();
+                }
+                else {
+                    ennemi.seDeplace();
+                }
+            }
         }
+        this.nbTours++;
     }
 
 
