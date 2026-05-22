@@ -16,5 +16,13 @@ public class Base {
     public final int getPv() {return this.pvProperty.getValue();}
 
     public final IntegerProperty getPvProperty() { return this.pvProperty;}
+
+    public void subirDegats(int degats) {
+        setPv(getPv() - degats);
+    }
+
+    public boolean estVivant() {
+        return getPv() > 0;
+    }
 }
 
