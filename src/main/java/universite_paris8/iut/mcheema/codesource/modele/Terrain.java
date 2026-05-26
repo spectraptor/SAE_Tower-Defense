@@ -104,9 +104,12 @@ public class Terrain {
     }
 
     public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
+        if(!this.estDansTerrain(nouveauX,nouveauY)) {
+            return false;
+        }
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
-        return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
+        return this.avoirCodeTuile(ligne,colonne) >= '0' && this.avoirCodeTuile(ligne,colonne) <= '9';
     }
 
 

@@ -12,6 +12,9 @@ public class Bogue extends Ennemi{
 
     @Override
     public void effectueAction() {
-        seDeplace();
+        this.seDeplace();
+        if(Math.abs(this.getX()-this.getEnvironnement().getBase().getX())<=10 && Math.abs(this.getY()-this.getEnvironnement().getBase().getY())<=10) {
+            this.getEnvironnement().getBase().subirDegats(this.getPv());
+        }
     }
 }

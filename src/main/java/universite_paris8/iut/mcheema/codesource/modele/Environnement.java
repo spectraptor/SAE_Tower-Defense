@@ -13,13 +13,15 @@ public class Environnement {
     private int nbreVague;
     private Terrain terrainDeJeu;
     private int nbTours;
+    private Base base;
 
 
-    public Environnement(int niveau) {
+    public Environnement(int niveau,Base base) {
         this.ennemis = new ArrayList<>();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
+        this.base = base;
     }
 
     public Terrain getTerrainDeJeu() {
@@ -49,11 +51,15 @@ public class Environnement {
                     ennemi.attribuerDirectionAleatoire();
                 }
                 else {
-                    ennemi.seDeplace();
+                    ennemi.effectueAction();
                 }
             }
         }
         this.nbTours++;
+    }
+
+    public Base getBase() {
+        return this.base;
     }
 
 
