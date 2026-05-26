@@ -4,6 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Random;
 
+/*
+
+ */
+
 public abstract class Ennemi {
     private String id;
     private static int idCpt = 0;
@@ -93,8 +97,8 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        if(this.environnement.estDedans(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
-            if(this.environnement.tuileEstAccessibleCoords(this.getX() + (this.vitesse * this.dx),this.getY() + (this.vitesse * this.dy))) {
+        if(this.environnement.estDansTerrain(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
+            if(this.environnement.tuileEstAccessible(this.getX() + (this.vitesse * this.dx),this.getY() + (this.vitesse * this.dy))) {
                 this.setX(this.getX() + (this.dx * this.vitesse));
                 this.setY(this.getY() + (this.dy * this.vitesse));
             }

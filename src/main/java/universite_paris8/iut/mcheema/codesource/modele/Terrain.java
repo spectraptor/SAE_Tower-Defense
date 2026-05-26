@@ -103,5 +103,11 @@ public class Terrain {
         return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
     }
 
+    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
+        int ligne = nouveauY / TAILLE_TUILLE;
+        int colonne = nouveauX / TAILLE_TUILLE;
+        return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
+    }
+
 
 }
