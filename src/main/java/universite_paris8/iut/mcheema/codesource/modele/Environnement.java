@@ -2,7 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
-import static universite_paris8.iut.mcheema.codesource.modele.Terrain.TAILLE_TUILLE;
+import  universite_paris8.iut.mcheema.codesource.modele.*;
 
 /*
 
@@ -39,14 +39,13 @@ public class Environnement {
     }
 
     public void unTour() {
-
         for (Ennemi ennemi : this.ennemis) {
             if (this.nbTours % 5 == 0) {
 
                 int nPosX = ennemi.getX() + (ennemi.getVitesse() * ennemi.getDx());
                 int nPosY = ennemi.getY() + (ennemi.getVitesse() * ennemi.getDy());
 
-                if (!tuileEstAccessibleCoords(nPosX, nPosY)) {
+                if (!tuileEstAccessible(nPosX, nPosY)) {
                     ennemi.attribuerDirectionAleatoire();
                 }
                 else {
@@ -58,10 +57,8 @@ public class Environnement {
     }
 
 
-    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
-        int ligne = nouveauY / TAILLE_TUILLE;
-        int colonne = nouveauX / TAILLE_TUILLE;
-        return this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'e' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 'h' && this.terrainDeJeu.avoirCodeTuile(ligne,colonne) != 't';
+    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
+        return this.terrainDeJeu.tuileEstAccessible(nouveauX,nouveauY);
     }
 
     public int getNbTours() {

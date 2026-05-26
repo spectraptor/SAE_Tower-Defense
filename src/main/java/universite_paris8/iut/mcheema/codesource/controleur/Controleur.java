@@ -12,7 +12,7 @@ import universite_paris8.iut.mcheema.codesource.modele.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.*;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ResourceBundle;

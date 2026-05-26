@@ -3,7 +3,7 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.*;
 
 /*
 
