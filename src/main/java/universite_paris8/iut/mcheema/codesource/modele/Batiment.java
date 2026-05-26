@@ -11,19 +11,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 public abstract class Batiment {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
-    private int prix;
-    private int niveau;
-    private int nbreAmeliorations;
+    private int portee;
     private int degat;
     private int vitesseAttaque;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int prix, int ameliorations, int degat, int vAttaque,Environnement env) {
+    public Batiment(int x, int y, int portee, int degat, int vAttaque, Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.prix = prix;
-        this.niveau = 1;
-        this.nbreAmeliorations = ameliorations;
+        this.portee = portee;
         this.degat = degat;
         this.vitesseAttaque = vAttaque;
         this.environnement = env;
@@ -53,14 +49,6 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
-    public int prixAmelioration() {
-        return (int)(this.prix * 0.3 * this.niveau);
-    }
-
-    public int prixDeplace() {
-        return (int)(this.prix * 0.4 * this.niveau);
-    }
-
     public int getDegat() {
         return this.degat;
     }
@@ -71,6 +59,10 @@ public abstract class Batiment {
 
     public int getVitesseAttaque() {
         return this.vitesseAttaque;
+    }
+
+    public int getPortee() {
+        return this.portee;
     }
 
     public abstract void effectueAction(Ennemi ennemi);

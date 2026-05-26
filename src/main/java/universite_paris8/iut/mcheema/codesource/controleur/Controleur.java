@@ -37,7 +37,7 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 
-        Batiment batiment = new Tour1(560,140,environnement);
+        Batiment batiment = new Tour1(560, 120, environnement);
         this.environnement.ajouterBatiment(batiment);
 
         BatimentVue batimentVue = new BatimentVue(batiment,this.paneJeu);

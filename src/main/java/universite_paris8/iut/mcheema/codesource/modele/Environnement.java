@@ -67,6 +67,18 @@ public class Environnement {
         this.nbTours++;
     }
 
+    /**
+     * Regarde si un ennemi se trouve dans le rayon d'un batiment
+     * @param batiment le batiment qui sert de défense
+     * @param ennemi l'ennemi qui peut être attaqué
+     * @return vrai si l'ennemi se trouve dans le rayon, faux sinon
+     */
+    public boolean estDansRayonTour(Batiment batiment, Ennemi ennemi) {
+        int distanceHorz = Math.abs(batiment.getX() - ennemi.getX());
+        int distanceVert = Math.abs(batiment.getY() - ennemi.getY());
+        return (distanceHorz <= batiment.getPortee()) && (distanceVert <= batiment.getPortee());
+    }
+
 
     public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
         return this.terrainDeJeu.tuileEstAccessible(nouveauX,nouveauY);

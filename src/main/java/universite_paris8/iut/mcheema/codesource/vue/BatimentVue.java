@@ -1,5 +1,6 @@
 package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.Batiment;
 
@@ -16,9 +17,23 @@ public class BatimentVue {
     }
 
     public void creerSpriteBatiment() {
-        Circle spriteB = new Circle(4);
+        Circle spriteB = new Circle(4, Color.DODGERBLUE);
+
         spriteB.translateXProperty().bind(this.batiment.xProperty());
         spriteB.translateYProperty().bind(this.batiment.yProperty());
+
+        Circle rayonB = new Circle(this.batiment.getPortee());
+
+        rayonB.setFill(Color.TRANSPARENT);
+        rayonB.setStroke(Color.BLACK);
+        rayonB.setStrokeWidth(2);
+
+        /* Au moment ou le sprite est crée, translateX et translateY sont nuls. */
+        /* On est donc obligé de faire un bind, autrement ça ne marche pas. */
+        rayonB.centerXProperty().bind(spriteB.translateXProperty());
+        rayonB.centerYProperty().bind(spriteB.translateYProperty());
+
         this.paneJeu.getChildren().add(spriteB);
+        this.paneJeu.getChildren().add(rayonB);
     }
 }

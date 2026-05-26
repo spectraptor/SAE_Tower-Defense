@@ -87,10 +87,6 @@ public abstract class Ennemi {
         return this.pv;
     }
 
-    public void setPv(double pv) {
-        this.pv = pv;
-    }
-
     public int getVitesse() {
         return this.vitesse;
     }
@@ -103,8 +99,11 @@ public abstract class Ennemi {
         this.pv = 0;
     }
 
-    public void subirDegat(int degat) {
-
+    public void faireDegat(int degat) {
+        if (this.pv - degat < 0)
+            this.meurt();
+        else
+            this.pv -= degat;
     }
 
 
