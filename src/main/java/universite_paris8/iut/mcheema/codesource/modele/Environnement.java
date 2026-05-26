@@ -62,7 +62,7 @@ public class Environnement {
             for (Batiment batiment : this.batiments) {
                 batiment.effectueAction(ennemi);
             }
-            // System.out.println(ennemi);
+            System.out.println(ennemi);
         }
         this.nbTours++;
     }
