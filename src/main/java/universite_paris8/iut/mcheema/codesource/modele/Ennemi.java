@@ -83,6 +83,14 @@ public abstract class Ennemi {
         this.dy = nDY;
     }
 
+    public double getPv() {
+        return this.pv;
+    }
+
+    public void setPv(double pv) {
+        this.pv = pv;
+    }
+
     public int getVitesse() {
         return this.vitesse;
     }
@@ -93,6 +101,10 @@ public abstract class Ennemi {
 
     public void meurt() {
         this.pv = 0;
+    }
+
+    public void subirDegat(int degat) {
+
     }
 
 

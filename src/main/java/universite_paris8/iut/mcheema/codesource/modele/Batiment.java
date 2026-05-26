@@ -16,8 +16,9 @@ public abstract class Batiment {
     private int nbreAmeliorations;
     private int degat;
     private int vitesseAttaque;
+    private Environnement environnement;
 
-    public Batiment(int x, int y, int prix, int ameliorations, int degat, int vAttaque) {
+    public Batiment(int x, int y, int prix, int ameliorations, int degat, int vAttaque,Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.prix = prix;
@@ -25,6 +26,7 @@ public abstract class Batiment {
         this.nbreAmeliorations = ameliorations;
         this.degat = degat;
         this.vitesseAttaque = vAttaque;
+        this.environnement = env;
     }
 
     public final IntegerProperty xProperty() {
@@ -59,6 +61,19 @@ public abstract class Batiment {
         return (int)(this.prix * 0.4 * this.niveau);
     }
 
-    public abstract void effectueAction();
+    public int getDegat() {
+        return this.degat;
+    }
+
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }
+
+    public int getVitesseAttaque() {
+        return this.vitesseAttaque;
+    }
+
+    public abstract void effectueAction(Ennemi ennemi);
+
 
 }

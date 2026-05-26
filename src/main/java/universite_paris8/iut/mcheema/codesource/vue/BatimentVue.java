@@ -17,5 +17,8 @@ public class BatimentVue {
 
     public void creerSpriteBatiment() {
         Circle spriteB = new Circle(4);
+        spriteB.translateXProperty().bind(this.batiment.xProperty());
+        spriteB.translateYProperty().bind(this.batiment.yProperty());
+        this.paneJeu.getChildren().add(spriteB);
     }
 }

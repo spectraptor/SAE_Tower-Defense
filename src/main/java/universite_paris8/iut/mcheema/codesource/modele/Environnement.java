@@ -10,13 +10,16 @@ import  universite_paris8.iut.mcheema.codesource.modele.*;
 
 public class Environnement {
     private ArrayList<Ennemi> ennemis;
+    private ArrayList<Batiment> batiments;
     private int nbreVague;
     private Terrain terrainDeJeu;
     private int nbTours;
 
 
+
     public Environnement(int niveau) {
         this.ennemis = new ArrayList<>();
+        this.batiments = new ArrayList<>();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
@@ -38,6 +41,10 @@ public class Environnement {
         this.ennemis.add(ennemi);
     }
 
+    public void ajouterBatiment(Batiment batiment) {
+        this.batiments.add(batiment);
+    }
+
     public void unTour() {
         for (Ennemi ennemi : this.ennemis) {
             if (this.nbTours % 5 == 0) {
@@ -52,6 +59,10 @@ public class Environnement {
                     ennemi.seDeplace();
                 }
             }
+            for (Batiment batiment : this.batiments) {
+                batiment.effectueAction(ennemi);
+            }
+            System.out.println(ennemi);
         }
         this.nbTours++;
     }

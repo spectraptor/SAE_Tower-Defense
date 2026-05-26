@@ -6,11 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.modele.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
@@ -39,7 +37,13 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 
-        Ennemi bug = new Bogue(400, 100, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+        Batiment batiment = new Tour1(560,140,environnement);
+        this.environnement.ajouterBatiment(batiment);
+
+        BatimentVue batimentVue = new BatimentVue(batiment,this.paneJeu);
+        batimentVue.creerSpriteBatiment();
+
+        Ennemi bug = new Bogue(560, 170, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
         this.environnement.ajouterEnnemi(bug);
 
         EnnemiVue bugVue =  new EnnemiVue(bug, paneJeu);
