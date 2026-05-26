@@ -96,6 +96,10 @@ public class Environnement {
         for (Batiment bat : batiments) {
             distanceX = Math.abs(bat.getX() - x);
             distanceY = Math.abs(bat.getY() - y);
+            /* Le "&&" est préférable au "||" -> si on fait juste un ou,
+            cela voudrait dire que même si on peut placer un bâtiment horizontalement, puisque verticalement on ne peut pas,
+            la tour est implaçable.
+            */
             if (distanceX < rayonDistanceAutorisee && distanceY < rayonDistanceAutorisee)
                 return true;
         }
