@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
+<BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
    <left>
       <VBox prefHeight="480.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+
          <children>
             <ImageView fitHeight="40.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
             <HBox prefHeight="55.0" prefWidth="260.0">
@@ -101,9 +97,28 @@
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneJeu" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" />
+            <HBox fx:id="hboxTuile" prefHeight="40.0" prefWidth="640.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="45.0" text="VIE">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="ARGENT">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="VAGUE">
+                     <HBox.margin>
+                        <Insets left="445.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </Pane>
    </center>
