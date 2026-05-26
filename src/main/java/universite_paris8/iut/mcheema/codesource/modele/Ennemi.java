@@ -2,7 +2,11 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.input.KeyEvent;
+import java.util.Random;
+
+/*
+
+ */
 
 public abstract class Ennemi {
     private String id;
@@ -66,6 +70,19 @@ public abstract class Ennemi {
         return this.dy;
     }
 
+    public void attribuerDirectionAleatoire() {
+        Random rand = new Random();
+        int nDX = rand.nextInt(3) - 1;
+        int nDY = rand.nextInt(3) - 1;
+        while (nDY == 0 && nDX == 0) {
+            nDX = rand.nextInt(3) - 1;
+            nDY = rand.nextInt(3) - 1;
+        }
+
+        this.dx = nDX;
+        this.dy = nDY;
+    }
+
     public int getVitesse() {
         return this.vitesse;
     }
@@ -80,8 +97,8 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        if(this.environnement.estDedans(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
-            if(this.environnement.tuileEstAccessible(this)) {
+        if(this.environnement.estDansTerrain(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
+            if(this.environnement.tuileEstAccessible(this.getX() + (this.vitesse * this.dx),this.getY() + (this.vitesse * this.dy))) {
                 this.setX(this.getX() + (this.dx * this.vitesse));
                 this.setY(this.getY() + (this.dy * this.vitesse));
             }

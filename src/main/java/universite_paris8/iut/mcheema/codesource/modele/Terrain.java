@@ -1,6 +1,8 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-import java.awt.image.FilteredImageSource;
+/*
+
+ */
 
 public class Terrain {
     public final static int TAILLE_TUILLE = 32;
@@ -95,6 +97,16 @@ public class Terrain {
 
     public char avoirCodeTuile(int i, int j) {
         return this.terrainDeJeu[i][j];
+    }
+
+    public boolean estDansTerrain(int x, int y) {
+        return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
+    }
+
+    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
+        int ligne = nouveauY / TAILLE_TUILLE;
+        int colonne = nouveauX / TAILLE_TUILLE;
+        return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
     }
 
 
