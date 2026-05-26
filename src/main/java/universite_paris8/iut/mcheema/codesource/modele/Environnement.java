@@ -2,6 +2,8 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import  universite_paris8.iut.mcheema.codesource.modele.*;
 
 /*
@@ -9,27 +11,32 @@ import  universite_paris8.iut.mcheema.codesource.modele.*;
  */
 
 public class Environnement {
-    private ArrayList<Ennemi> ennemis;
+
     private ArrayList<Batiment> batiments;
+    private ObservableList<Ennemi> ennemis;
     private int nbreVague;
     private Terrain terrainDeJeu;
     private int nbTours;
-
-
+    private Base base;
 
     public Environnement(int niveau) {
-        this.ennemis = new ArrayList<>();
         this.batiments = new ArrayList<>();
+        this.ennemis = FXCollections.observableArrayList();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
+        this.base = base;
     }
 
     public Terrain getTerrainDeJeu() {
         return this.terrainDeJeu;
     }
 
-    public ArrayList<Ennemi> getEnnemis() {
+    public void setBase() {
+
+    }
+
+    public ObservableList<Ennemi> getEnnemis() {
         return this.ennemis;
     }
 
@@ -46,6 +53,7 @@ public class Environnement {
     }
 
     public void unTour() {
+        ArrayList<Ennemi> ennemisMort = new ArrayList<>();
         for (Ennemi ennemi : this.ennemis) {
             if (this.nbTours % 5 == 0) {
 
@@ -56,13 +64,22 @@ public class Environnement {
                     ennemi.attribuerDirectionAleatoire();
                 }
                 else {
-                    ennemi.seDeplace();
+                    if(ennemi.estVivant()) {
+                        ennemi.effectueAction();
+                    }
+                    else {
+                        ennemisMort.add(ennemi);
+                    }
                 }
             }
             for (Batiment batiment : this.batiments) {
                 batiment.effectueAction(ennemi);
             }
             System.out.println(ennemi);
+        }
+        for(Ennemi ennemi : ennemisMort) {
+            ennemi.meurt();
+            this.getEnnemis().remove(ennemi);
         }
         this.nbTours++;
     }
@@ -77,6 +94,9 @@ public class Environnement {
         int distanceHorz = Math.abs(batiment.getX() - ennemi.getX());
         int distanceVert = Math.abs(batiment.getY() - ennemi.getY());
         return (distanceHorz <= batiment.getPortee()) && (distanceVert <= batiment.getPortee());
+
+    public Base getBase() {
+        return this.base;
     }
 
 
