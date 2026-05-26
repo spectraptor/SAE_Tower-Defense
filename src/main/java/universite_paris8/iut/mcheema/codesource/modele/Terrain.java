@@ -108,12 +108,14 @@ public class Terrain {
          * On regarde avant si les déplacements sortent de la tuile
          * Autrement, l'appel à avoirCodeTuile accèdera à des indices hors limites.
          */
-        if(!this.estDansTerrain(nouveauX,nouveauY)) {
+        if (!estDansTerrain(nouveauX, nouveauY))
             return false;
-        }
+
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
-        return this.avoirCodeTuile(ligne,colonne) >= '0' && this.avoirCodeTuile(ligne,colonne) <= '9';
+
+        return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
     }
+
 
 }

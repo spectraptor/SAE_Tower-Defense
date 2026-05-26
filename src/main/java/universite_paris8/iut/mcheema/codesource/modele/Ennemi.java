@@ -15,12 +15,12 @@ public abstract class Ennemi {
     private IntegerProperty yProperty;
     private int dx; //Direction de l'ennemi 1 signifie vers la droite -1 vers la gauche
     private int dy;
-    private int pv;
+    private double pv;
     private int vitesse;
     private double argentDonne;
     private Environnement environnement;
 
-    public Ennemi(int x, int y, int pv, int vitesse, double argentDonne, Environnement env) {
+    public Ennemi(int x, int y, double pv, int vitesse, double argentDonne, Environnement env) {
         idCpt++;
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(x);
@@ -108,22 +108,12 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        int nouvX = this.getX() + (this.dx * this.vitesse);
-        int nouvY = this.getY() + (this.dy * this.vitesse);
-        if(this.environnement.estDansTerrain(nouvX,nouvY)) {
-            if(this.environnement.tuileEstAccessible(nouvX,nouvY)) {
-                this.setX(nouvX);
-                this.setY(nouvY);
+        if(this.environnement.estDansTerrain(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
+            if(this.environnement.tuileEstAccessible(this.getX() + (this.vitesse * this.dx),this.getY() + (this.vitesse * this.dy))) {
+                this.setX(this.getX() + (this.dx * this.vitesse));
+                this.setY(this.getY() + (this.dy * this.vitesse));
             }
         }
-    }
-
-    public Environnement getEnvironnement() {
-        return this.environnement;
-    }
-
-    public int getPv() {
-        return this.pv;
     }
 
 
