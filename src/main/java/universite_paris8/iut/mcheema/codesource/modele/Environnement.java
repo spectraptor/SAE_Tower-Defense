@@ -2,6 +2,8 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import  universite_paris8.iut.mcheema.codesource.modele.*;
 
 /*
@@ -9,7 +11,7 @@ import  universite_paris8.iut.mcheema.codesource.modele.*;
  */
 
 public class Environnement {
-    private ArrayList<Ennemi> ennemis;
+    private ObservableList<Ennemi> ennemis;
     private int nbreVague;
     private Terrain terrainDeJeu;
     private int nbTours;
@@ -17,7 +19,7 @@ public class Environnement {
 
 
     public Environnement(int niveau,Base base) {
-        this.ennemis = new ArrayList<>();
+        this.ennemis = FXCollections.observableArrayList();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
@@ -28,7 +30,11 @@ public class Environnement {
         return this.terrainDeJeu;
     }
 
-    public ArrayList<Ennemi> getEnnemis() {
+    public void setBase() {
+
+    }
+
+    public ObservableList<Ennemi> getEnnemis() {
         return this.ennemis;
     }
 
@@ -41,6 +47,7 @@ public class Environnement {
     }
 
     public void unTour() {
+        ArrayList<Ennemi> ennemisMort = new ArrayList<>();
         for (Ennemi ennemi : this.ennemis) {
             if (this.nbTours % 5 == 0) {
 
@@ -51,9 +58,18 @@ public class Environnement {
                     ennemi.attribuerDirectionAleatoire();
                 }
                 else {
-                    ennemi.effectueAction();
+                    if(ennemi.estVivant()) {
+                        ennemi.effectueAction();
+                    }
+                    else {
+                        ennemisMort.add(ennemi);
+                    }
                 }
             }
+        }
+        for(Ennemi ennemi : ennemisMort) {
+            ennemi.meurt();
+            this.getEnnemis().remove(ennemi);
         }
         this.nbTours++;
     }

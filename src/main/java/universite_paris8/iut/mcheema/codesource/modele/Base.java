@@ -7,13 +7,11 @@ public class Base {
     private IntegerProperty pvProperty;
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
-    private Environnement environnement;
 
-    public Base (int x, int y, Environnement env) {
+    public Base (int x, int y) {
         this.pvProperty = new SimpleIntegerProperty(100);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.environnement = env;
     }
 
     public final void setPv(int pv) {this.pvProperty.setValue(pv);}
