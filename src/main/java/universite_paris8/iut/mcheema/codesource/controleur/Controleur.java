@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
@@ -22,7 +23,7 @@ import java.util.concurrent.Callable;
  */
 
 public class Controleur implements Initializable {
-  
+
     private Timeline gameLoop;
 
     private Environnement environnement;
@@ -56,7 +57,6 @@ public class Controleur implements Initializable {
             EnnemiVue bugVue =  new EnnemiVue(bug, paneJeu);
             bugVue.creerSpriteEnnemi();
         }
-
 
         terrainVue.afficheTerrainJeu();
 
@@ -92,11 +92,28 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
+
+    @FXML
+    public void ajouterTour(MouseEvent mouseEvent) {
+        int coordsSourisX = (int)mouseEvent.getX();
+        int coordsSourisY = (int)mouseEvent.getY();
+        // On ne peut pas placer des bâtiments sur le chemin -> obstrue l'ennemi.
+        if (!this.environnement.tuileEstAccessible(coordsSourisX, coordsSourisY) &&
+                !this.environnement.estAdjacentATour(coordsSourisX, coordsSourisY)) {
+
+            Batiment batiment = new Tour1(coordsSourisX, coordsSourisY, this.environnement);
+            this.environnement.ajouterBatiment(batiment);
+
+            System.out.println(batiment);
+
+            BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
+            batimentVue.creerSpriteBatiment();
+
+        }
+        System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+
     public Pane getPaneJeu() {
         return this.paneJeu;
     }
 
-    public void test(MouseEvent mouseEvent) {
-        System.out.println(mouseEvent.getX()+";"+mouseEvent.getY());
-    }
 }
