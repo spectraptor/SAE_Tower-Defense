@@ -67,5 +67,7 @@ public abstract class Batiment {
 
     public abstract void effectueAction(Ennemi ennemi);
 
-
+    public String toString() {
+        return "Position du bâtiment : " + this.getX() + ";" + this.getY();
+    }
 }

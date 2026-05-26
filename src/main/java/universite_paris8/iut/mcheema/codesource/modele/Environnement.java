@@ -62,7 +62,7 @@ public class Environnement {
             for (Batiment batiment : this.batiments) {
                 batiment.effectueAction(ennemi);
             }
-            System.out.println(ennemi);
+            // System.out.println(ennemi);
         }
         this.nbTours++;
     }
@@ -82,6 +82,25 @@ public class Environnement {
 
     public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
         return this.terrainDeJeu.tuileEstAccessible(nouveauX,nouveauY);
+    }
+
+    /**
+     * Regarde si une tour est à proximité de coordonnées du clic de la souris.
+     * @param x l'abscisse du clic de la souris
+     * @param y l'ordonnée du clic de la souris.
+     * @return vrai si la distance entre le click et une tour est < à rayonDistanceAutorisee, faux autrement.
+     */
+    public boolean estAdjacentATour(int x, int y) {
+        final int rayonDistanceAutorisee = 30; // distance minimale entre les batiments (pixels)
+        int distanceX, distanceY;
+        for (Batiment bat : batiments) {
+            distanceX = Math.abs(bat.getX() - x);
+            distanceY = Math.abs(bat.getY() - y);
+            if (distanceX < rayonDistanceAutorisee && distanceY < rayonDistanceAutorisee)
+                return true;
+        }
+
+        return false;
     }
 
     public int getNbTours() {

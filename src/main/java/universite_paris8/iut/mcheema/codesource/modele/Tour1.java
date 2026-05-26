@@ -2,7 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 public class Tour1 extends Batiment{
     public Tour1(int x, int y, Environnement env) {
-        super(x, y, 10, 5, 10, env);
+        super(x, y, 30, 5, 10, env);
     }
 
     @Override

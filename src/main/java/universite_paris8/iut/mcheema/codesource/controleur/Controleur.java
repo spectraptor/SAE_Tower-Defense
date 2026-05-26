@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
  */
 
 public class Controleur implements Initializable {
-  
+
     private Timeline gameLoop;
 
     private Environnement environnement;
@@ -34,19 +35,13 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.environnement = new Environnement(1);
-        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
-        TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
-
-        Batiment batiment = new Tour1(560, 120, environnement);
-        this.environnement.ajouterBatiment(batiment);
-
-        BatimentVue batimentVue = new BatimentVue(batiment,this.paneJeu);
-        batimentVue.creerSpriteBatiment();
+        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
+        TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         Ennemi bug = new Bogue(560, 170, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
         this.environnement.ajouterEnnemi(bug);
 
-        EnnemiVue bugVue =  new EnnemiVue(bug, paneJeu);
+        EnnemiVue bugVue = new EnnemiVue(bug, paneJeu);
         bugVue.creerSpriteEnnemi();
 
         terrainVue.afficheTerrainJeu();
@@ -80,4 +75,24 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
+
+    @FXML
+    public void ajouterTour(MouseEvent mouseEvent) {
+        int coordsSourisX = (int)mouseEvent.getX();
+        int coordsSourisY = (int)mouseEvent.getY();
+        // On ne peut pas placer des bâtiments sur le chemin -> obstrue l'ennemi.
+        if (!this.environnement.tuileEstAccessible(coordsSourisX, coordsSourisY) &&
+                !this.environnement.estAdjacentATour(coordsSourisX, coordsSourisY)) {
+
+            Batiment batiment = new Tour1(coordsSourisX, coordsSourisY, this.environnement);
+            this.environnement.ajouterBatiment(batiment);
+
+            System.out.println(batiment);
+
+            BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
+            batimentVue.creerSpriteBatiment();
+
+        }
+        System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+    }
 }
