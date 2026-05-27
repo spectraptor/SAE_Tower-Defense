@@ -38,15 +38,14 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(1);
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
-        Ennemi bug = new Bogue(400, 100, this.environnement);
 
-        Sommet base = new Sommet(12, 0);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
+        Sommet entree = new Sommet(12, 0);
+        Sommet base = new Sommet(4, 19);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Sommet> chemin = bfs.cheminVersSource(base);
+        Ennemi bug = new Bogue(0, 0, this.environnement);
+        bug.setChemin(chemin);
 
-        Sommet depart = new Sommet(4, 19);
-
-        ArrayList<Sommet> chemin = bfs.cheminVersSource(depart);
-        System.out.println("Chemin BFS:");
         for (Sommet s : chemin) {
             System.out.println(
                     "Ligne: " + s.getLigne() + " Colonne: " + s.getColonne()
@@ -77,12 +76,6 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.017),
                 ev -> {
                     environnement.unTour();
-                    /*
-                    if (environnement.ennemiSort()) {
-                        gameLoop.stop();
-                    }
-                    */
-
                 }
         );
 

@@ -3,6 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Random;
+import java.util.ArrayList;
 
 /*
 
@@ -19,6 +20,8 @@ public abstract class Ennemi {
     private int vitesse;
     private double argentDonne;
     private Environnement environnement;
+    private ArrayList<Sommet> chemin;
+    private int indiceChemin;
 
     public Ennemi(int x, int y, double pv, int vitesse, double argentDonne, Environnement env) {
         idCpt++;
@@ -31,6 +34,8 @@ public abstract class Ennemi {
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.environnement = env;
+        this.chemin = null;
+        this.indiceChemin = 0;
     }
 
 
@@ -97,12 +102,40 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        if(this.environnement.estDansTerrain(this.getX() + (this.dx * this.vitesse),this.getY() + (this.dy * this.vitesse))) {
-            if(this.environnement.tuileEstAccessible(this.getX() + (this.vitesse * this.dx),this.getY() + (this.vitesse * this.dy))) {
-                this.setX(this.getX() + (this.dx * this.vitesse));
-                this.setY(this.getY() + (this.dy * this.vitesse));
-            }
+        if (aAtteintDestination()) return;
+
+        Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
+        int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE;
+        int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE;
+
+        int diffX = cibleX - this.getX();
+        int diffY = cibleY - this.getY();
+        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+        if (distance <= this.vitesse) {
+            // Assez proche on se pose sur la tuile et on passe à la suivante
+            this.setX(cibleX);
+            this.setY(cibleY);
+            this.indiceChemin++;
+        } else {
+            // On avance vers la tuile suivante
+            this.setX(this.getX() + (int)(diffX / distance * this.vitesse));
+            this.setY(this.getY() + (int)(diffY / distance * this.vitesse));
         }
+    }
+
+    public void setChemin(ArrayList<Sommet> chemin) {
+        this.chemin = chemin;
+        this.indiceChemin = 0;
+        if (chemin != null && !chemin.isEmpty()) {
+            Sommet depart = chemin.get(0);
+            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE);
+            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE);
+        }
+    }
+
+    public boolean aAtteintDestination() {
+        return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
 
 
