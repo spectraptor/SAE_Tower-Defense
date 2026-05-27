@@ -2,6 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
  * La classe Batiment s'occupe de la gestion de tours et de leur logique.
@@ -51,6 +52,10 @@ public abstract class Batiment {
 
     public int getDegat() {
         return this.degat;
+    }
+
+    public void setVitesseAttaque(int vitesseAttaque) {
+        this.vitesseAttaque = vitesseAttaque;
     }
 
     public Environnement getEnvironnement() {
