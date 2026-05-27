@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
@@ -48,12 +49,19 @@ public class Controleur implements Initializable {
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this));
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
-        for(int i = 0;i<200;i++) {
-            Ennemi bug = new Bogue(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
-            this.environnement.ajouterEnnemi(bug);
+        for(int i = 0;i<251;i++) {
+            Ennemi ennemi = new Ping(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+            if(i==1) {
+                ennemi = new Bogue(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+            }
+            else if (i<100) {
+                ennemi = new ChevalDeTroie(372,209,this.environnement);
+            }
+            else if (i<250) {
+                ennemi = new ErreurExecution(372,209,this.environnement);
+            }
+            this.environnement.ajouterEnnemi(ennemi);
 
-            EnnemiVue bugVue = new EnnemiVue(bug, paneJeu);
-            bugVue.creerSpriteEnnemi();
         }
 
         terrainVue.afficheTerrainJeu();
@@ -75,6 +83,7 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.017),
                 ev -> {
                     environnement.unTour();
+                    /*
                     if(this.environnement.getEnnemis().isEmpty()) {
                         this.gameLoop.stop();
                         System.out.println("Vous avez gagné");
@@ -83,6 +92,8 @@ public class Controleur implements Initializable {
                         this.gameLoop.stop();
                         System.out.println("Vous avez perdu");
                     }
+
+                     */
                 }
         );
 
@@ -96,21 +107,23 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        int coordsSourisX = (int)mouseEvent.getX();
-        int coordsSourisY = (int)mouseEvent.getY();
-        // On ne peut pas placer des bâtiments sur le chemin -> obstrue l'ennemi.
-        if (!this.environnement.tuileEstAccessible(coordsSourisX, coordsSourisY) &&
-                !this.environnement.estAdjacentATour(coordsSourisX, coordsSourisY)) {
+        if (!this.environnement.partieEstFinie()) {
+            int coordsSourisX = (int) mouseEvent.getX();
+            int coordsSourisY = (int) mouseEvent.getY();
+            // On ne peut pas placer des bâtiments sur le chemin -> obstrue l'ennemi.
+            if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
+                    !this.environnement.estAdjacentATour(coordsSourisX, coordsSourisY)) {
 
-            Batiment batiment = new Tour1(coordsSourisX, coordsSourisY, this.environnement);
-            this.environnement.ajouterBatiment(batiment);
+                Batiment batiment = new Tour1(coordsSourisX, coordsSourisY, this.environnement);
+                this.environnement.ajouterBatiment(batiment);
 
-            System.out.println(batiment);
+                System.out.println(batiment);
 
-            BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
-            batimentVue.creerSpriteBatiment();
+                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
+                batimentVue.creerSpriteBatiment();
 
+            }
+            System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
         }
-        System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
     }
 }
