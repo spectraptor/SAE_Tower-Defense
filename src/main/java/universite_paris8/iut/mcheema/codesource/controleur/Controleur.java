@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
@@ -39,8 +37,8 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 
-        Sommet entree = new Sommet(12, 0);
-        Sommet base = new Sommet(4, 19);
+        Sommet base = new Sommet(12, 0);
+        Sommet entree = new Sommet(4, 19);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Sommet> chemin = bfs.cheminVersSource(base);
         Ennemi bug = new Bogue(0, 0, this.environnement);
@@ -66,8 +64,6 @@ public class Controleur implements Initializable {
 
     private void initAnimation() {
 
-        Ennemi premierE = this.environnement.getEnnemis().get(0);
-        premierE.attribuerDirectionAleatoire();
 
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);

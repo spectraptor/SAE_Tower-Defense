@@ -48,10 +48,6 @@ public class Environnement {
     }
 
 
-    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
-        return this.terrainDeJeu.tuileEstAccessible(nouveauX,nouveauY);
-    }
-
     public int getNbTours() {
         return this.nbTours;
     }

@@ -75,18 +75,6 @@ public abstract class Ennemi {
         return this.dy;
     }
 
-    public void attribuerDirectionAleatoire() {
-        Random rand = new Random();
-        int nDX = rand.nextInt(3) - 1;
-        int nDY = rand.nextInt(3) - 1;
-        while (nDY == 0 && nDX == 0) {
-            nDX = rand.nextInt(3) - 1;
-            nDY = rand.nextInt(3) - 1;
-        }
-
-        this.dx = nDX;
-        this.dy = nDY;
-    }
 
     public int getVitesse() {
         return this.vitesse;
