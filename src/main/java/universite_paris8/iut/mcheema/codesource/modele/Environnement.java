@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import  universite_paris8.iut.mcheema.codesource.modele.*;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /*
 
@@ -37,6 +38,10 @@ public class Environnement {
         return this.ennemis;
     }
 
+    public ArrayList<Batiment> getBatiments() {
+        return this.batiments;
+    }
+
     public boolean estDansTerrain(int x, int y) {
         return this.terrainDeJeu.estDansTerrain(x,y);
     }
@@ -55,33 +60,33 @@ public class Environnement {
 
     public void unTour() {
         ArrayList<Ennemi> ennemisMort = new ArrayList<>();
-        for (Ennemi ennemi : this.ennemis) {
-            if (this.nbTours % 5 == 0) {
+        if(!this.partieEstFinie()) {
+            for (Ennemi ennemi : this.ennemis) {
+                if (this.nbTours % 5 == 0) {
 
-                int nPosX = ennemi.getX() + (ennemi.getVitesse() * ennemi.getDx());
-                int nPosY = ennemi.getY() + (ennemi.getVitesse() * ennemi.getDy());
+                    int nPosX = ennemi.getX() + (ennemi.getVitesse() * ennemi.getDx());
+                    int nPosY = ennemi.getY() + (ennemi.getVitesse() * ennemi.getDy());
 
-                if (!tuileEstAccessible(nPosX, nPosY)) {
-                    ennemi.attribuerDirectionAleatoire();
-                }
-                else {
-                    if(ennemi.estVivant()) {
-                        ennemi.effectueAction();
+                    if (!tuileEstAccessibleCoords(nPosX, nPosY)) {
+                        ennemi.attribuerDirectionAleatoire();
+                    } else {
+                        if (ennemi.estVivant()) {
+                            ennemi.effectueAction();
+                        } else {
+                            ennemisMort.add(ennemi);
+                        }
                     }
-                    else {
-                        ennemisMort.add(ennemi);
+                    for (Batiment batiment : this.batiments) {
+                        batiment.effectueAction(ennemi);
                     }
                 }
             }
-            for (Batiment batiment : this.batiments) {
-                batiment.effectueAction(ennemi);
+            for (Ennemi ennemi : ennemisMort) {
+                ennemi.meurt();
+                this.getEnnemis().remove(ennemi);
             }
+            this.nbTours++;
         }
-        for(Ennemi ennemi : ennemisMort) {
-            ennemi.meurt();
-            this.getEnnemis().remove(ennemi);
-        }
-        this.nbTours++;
     }
 
     /**
@@ -97,8 +102,8 @@ public class Environnement {
     }
 
 
-    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
-        return this.terrainDeJeu.tuileEstAccessible(nouveauX,nouveauY);
+    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
+        return this.terrainDeJeu.tuileEstAccessibleCoords(nouveauX,nouveauY);
     }
 
     /**
@@ -122,6 +127,10 @@ public class Environnement {
         }
 
         return false;
+    }
+
+    public boolean partieEstFinie() {
+        return this.getEnnemis().isEmpty() || this.getBase().estDetruite();
     }
 
     public int getNbTours() {
