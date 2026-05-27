@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
