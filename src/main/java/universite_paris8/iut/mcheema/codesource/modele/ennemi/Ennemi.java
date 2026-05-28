@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 
 public abstract class Ennemi {
-    public final static int PORTEE_ATTAQUE = 10; // Définit la portée de l'attaque sur la base pour chaque ennemi elle sera similaire
     private String id;
     private static int idCpt = 0;
     private IntegerProperty xProperty;
@@ -26,6 +25,21 @@ public abstract class Ennemi {
     private Environnement environnement;
     private ArrayList<Sommet> chemin;
     private int indiceChemin;
+
+    public Ennemi(int pv, int vitesse, int argentDonne, Environnement env) {
+        idCpt++;
+        this.id = "E" + idCpt;
+        this.xProperty = new SimpleIntegerProperty(0);
+        this.yProperty = new SimpleIntegerProperty(0);
+        this.dx = 0;
+        this.dy = 0;
+        this.pv = pv;
+        this.vitesse = vitesse;
+        this.argentDonne = argentDonne;
+        this.environnement = env;
+        this.chemin = null;
+        this.indiceChemin = 0;
+    }
 
     public Ennemi(int x, int y, int pv, int vitesse, int argentDonne, Environnement env) {
         idCpt++;
@@ -107,9 +121,7 @@ public abstract class Ennemi {
             this.pv -= degat;
     }
 
-    public boolean estDansLaPortee() {
-        return Math.abs(this.getX()-this.getEnvironnement().getBase().getX())<=PORTEE_ATTAQUE && Math.abs(this.getY()-this.getEnvironnement().getBase().getY())<=PORTEE_ATTAQUE;
-    }
+
 
 
     /**
@@ -137,7 +149,6 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        if (!aAtteintDestination()) {
             Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
             int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
             int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
@@ -156,7 +167,6 @@ public abstract class Ennemi {
                 this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
                 this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
             }
-        }
     }
 
     public void setChemin(ArrayList<Sommet> chemin) {
@@ -187,8 +197,9 @@ public abstract class Ennemi {
      * Elle sera réécrite pour chaque ennemi possédant des actions supplémentaires.
      */
     public void effectueAction() {
-        this.seDeplace();
-        if(this.estDansLaPortee()) {
+        if (!aAtteintDestination())
+            this.seDeplace();
+        else {
             this.getEnvironnement().getBase().subirDegats(this.getPv());
             this.meurt();
         }
@@ -199,4 +210,5 @@ public abstract class Ennemi {
                 "\nPV de l'ennemi : " + this.pv +
                 "\nPosition de l'ennemi : " + this.getX() + ";" + this.getY();
     }
+
 }
