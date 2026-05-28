@@ -8,6 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
@@ -33,7 +35,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.environnement = new Environnement(2);
+        this.environnement = new Environnement(1);
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 

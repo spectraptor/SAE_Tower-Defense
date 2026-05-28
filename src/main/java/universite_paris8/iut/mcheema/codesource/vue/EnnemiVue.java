@@ -3,7 +3,7 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
  * La class à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.

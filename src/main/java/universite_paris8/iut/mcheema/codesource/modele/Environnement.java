@@ -2,7 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
-import  universite_paris8.iut.mcheema.codesource.modele.*;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /*
 

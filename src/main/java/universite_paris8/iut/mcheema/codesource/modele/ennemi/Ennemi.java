@@ -1,7 +1,11 @@
-package universite_paris8.iut.mcheema.codesource.modele;
+package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Sommet;
+import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+
 import java.util.ArrayList;
 
 /*
@@ -135,7 +139,9 @@ public abstract class Ennemi {
         this.dy = dy;
     }
 
-    public abstract void effectueAction();
+    public void effectueAction() {
+        this.seDeplace();
+    }
 
     public String toString() {
         return "ID de l'ennemi : " + this.id +
