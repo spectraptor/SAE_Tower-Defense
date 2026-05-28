@@ -15,15 +15,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import universite_paris8.iut.mcheema.codesource.modele.*;
-import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.*;
-import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
+
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,7 +44,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Base base = new Base(630,145);
+        Base base = new Base(12,400);
         BaseVue baseVue = new BaseVue(this.paneJeu,base);
         baseVue.creeSpriteBase();
         this.labelVieBase.textProperty().bind(base.pvProperty().asString());
@@ -61,6 +53,14 @@ public class Controleur implements Initializable {
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this));
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
+
+        Sommet base2 = new Sommet(12, 0);
+        Sommet entree = new Sommet(4, 19);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Sommet> chemin = bfs.cheminVersSource(base2);
+        Ennemi bug = new Bogue(0, 0, this.environnement);
+        bug.setChemin(chemin);
+
         for(int i = 0;i<251;i++) {
             Ennemi ennemi = new Ping(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             if(i==1) {
@@ -72,15 +72,11 @@ public class Controleur implements Initializable {
             else if (i<250) {
                 ennemi = new ErreurExecution(372,209,this.environnement);
             }
+            ennemi.setChemin(chemin);
             this.environnement.ajouterEnnemi(ennemi);
         }
 
-        Sommet base = new Sommet(12, 0);
-        Sommet entree = new Sommet(4, 19);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Sommet> chemin = bfs.cheminVersSource(base);
-        Ennemi bug = new Bogue(0, 0, this.environnement);
-        bug.setChemin(chemin);
+
 
         terrainVue.afficheTerrainJeu();
 
@@ -141,4 +137,5 @@ public class Controleur implements Initializable {
             System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
         }
     }
+
 }

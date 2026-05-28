@@ -132,7 +132,7 @@ public class Terrain {
         for (int[] direction : directions) {
             int nLigne = t.getLigne() + direction[0];
             int nCol   = t.getColonne() + direction[1];
-            if (estDansTerrain(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE) && tuileEstAccessible(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
+            if (estDansTerrain(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
                 // trop de constante TAILLE_TUILLE faut changer
                 voisins.add(new Sommet(nLigne, nCol));
             }

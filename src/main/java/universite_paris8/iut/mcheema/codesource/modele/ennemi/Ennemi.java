@@ -152,12 +152,10 @@ public abstract class Ennemi {
                 this.setX(cibleX);
                 this.setY(cibleY);
                 this.indiceChemin++;
-                System.out.println("changement de tuile");
             } else {
                 // On avance vers la tuile suivante
                 this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
                 this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
-                System.out.println(getX() + " " + getY());
             }
         }
     }

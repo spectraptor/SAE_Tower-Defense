@@ -1,15 +1,10 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
-/*
-
- */
+import java.util.ArrayList;
 
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
@@ -20,8 +15,7 @@ public class Environnement {
     private Base base;
 
 
-
-    public Environnement(int niveau,Base base) {
+    public Environnement(int niveau, Base base) {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = new ArrayList<>();
         this.nbreVague = 0;
@@ -43,7 +37,7 @@ public class Environnement {
     }
 
     public boolean estDansTerrain(int x, int y) {
-        return this.terrainDeJeu.estDansTerrain(x,y);
+        return this.terrainDeJeu.estDansTerrain(x, y);
     }
 
     public void ajouterEnnemi(Ennemi ennemi) {
@@ -61,29 +55,27 @@ public class Environnement {
 
     public void unTour() {
         ArrayList<Ennemi> ennemisMort = new ArrayList<>();
-        if(!this.partieEstFinie()) {
+        if (!this.partieEstFinie()) {
             for (Ennemi ennemi : this.ennemis) {
                 if (this.nbTours % 5 == 0) {
-                  
+
                     if (ennemi.estVivant()) {
-                      
+
                         ennemi.effectueAction();
-                    } 
-                    else {
+                    } else {
                         ennemisMort.add(ennemi);
-                    }   
+                    }
                 }
                 for (Batiment batiment : this.batiments) {
                     batiment.effectueAction(ennemi);
                 }
             }
-            }
-            for (Ennemi ennemi : ennemisMort) {
-                ennemi.meurt();
-                this.getEnnemis().remove(ennemi);
-            }
-            this.nbTours++;
         }
+        for (Ennemi ennemi : ennemisMort) {
+            ennemi.meurt();
+            this.getEnnemis().remove(ennemi);
+        }
+        this.nbTours++;
     }
 
     /**
@@ -138,3 +130,4 @@ public class Environnement {
         this.nbTours = nbTours;
     }
 }
+
