@@ -70,7 +70,7 @@ public class BFS {
         }
         Sommet courant = cible;
         while (courant != null) {
-            chemin.add(courant);
+            chemin.add(0, courant);
             courant = predecesseurs.get(courant);
         }
 

@@ -50,6 +50,7 @@ public class Environnement {
         this.ennemis.add(ennemi);
     }
 
+
     public void ajouterBatiment(Batiment batiment) {
         this.batiments.add(batiment);
     }
@@ -63,23 +64,19 @@ public class Environnement {
         if(!this.partieEstFinie()) {
             for (Ennemi ennemi : this.ennemis) {
                 if (this.nbTours % 5 == 0) {
-
-                    int nPosX = ennemi.getX() + (ennemi.getVitesse() * ennemi.getDx());
-                    int nPosY = ennemi.getY() + (ennemi.getVitesse() * ennemi.getDy());
-
-                    if (!tuileEstAccessibleCoords(nPosX, nPosY)) {
-                        ennemi.attribuerDirectionAleatoire();
-                    } else {
-                        if (ennemi.estVivant()) {
-                            ennemi.effectueAction();
-                        } else {
-                            ennemisMort.add(ennemi);
-                        }
-                    }
-                    for (Batiment batiment : this.batiments) {
-                        batiment.effectueAction(ennemi);
-                    }
+                  
+                    if (ennemi.estVivant()) {
+                      
+                        ennemi.effectueAction();
+                    } 
+                    else {
+                        ennemisMort.add(ennemi);
+                    }   
                 }
+                for (Batiment batiment : this.batiments) {
+                    batiment.effectueAction(ennemi);
+                }
+            }
             }
             for (Ennemi ennemi : ennemisMort) {
                 ennemi.meurt();

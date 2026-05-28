@@ -7,6 +7,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
  * La class à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.

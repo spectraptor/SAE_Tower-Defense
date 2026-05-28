@@ -3,8 +3,11 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-
 import java.util.Random;
+import universite_paris8.iut.mcheema.codesource.modele.Sommet;
+import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+
+import java.util.ArrayList;
 
 /*
 
@@ -22,6 +25,8 @@ public abstract class Ennemi {
     private int vitesse;
     private int argentDonne;
     private Environnement environnement;
+    private ArrayList<Sommet> chemin;
+    private int indiceChemin;
 
     public Ennemi(int x, int y, int pv, int vitesse, int argentDonne, Environnement env) {
         idCpt++;
@@ -34,6 +39,8 @@ public abstract class Ennemi {
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.environnement = env;
+        this.chemin = null;
+        this.indiceChemin = 0;
     }
 
 
@@ -77,19 +84,6 @@ public abstract class Ennemi {
         return false;
     }
 
-    public void attribuerDirectionAleatoire() {
-        Random rand = new Random();
-        int nDX = rand.nextInt(3) - 1;
-        int nDY = rand.nextInt(3) - 1;
-        while (nDY == 0 && nDX == 0) {
-            nDX = rand.nextInt(3) - 1;
-            nDY = rand.nextInt(3) - 1;
-        }
-
-        this.dx = nDX;
-        this.dy = nDY;
-    }
-
     public int getPv() {
         return this.pv;
     }
@@ -105,6 +99,7 @@ public abstract class Ennemi {
     public void meurt() {
         this.pv = 0;
     }
+
 
     public void faireDegat(int degat) {
         if (this.pv - degat < 0)
@@ -122,7 +117,7 @@ public abstract class Ennemi {
      * Cette méthode permet le déplacement d'un ennemi,
      * elle calcule le prochain mouvement et l'effectue uniquement si le prochain
      * mouvement est dans le terrain va ensuite vérifier si le déplacement suivant est sur le chemin
-     */
+     *
     public void seDeplace() {
         int nouvX = this.getX() + (this.dx * this.vitesse);
         int nouvY = this.getY() + (this.dy * this.vitesse);
@@ -135,9 +130,49 @@ public abstract class Ennemi {
             }
         }
     }
+    */
 
     public Environnement getEnvironnement() {
         return this.environnement;
+    }  
+
+
+    public void seDeplace() {
+        if (!aAtteintDestination()) {
+            Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
+            int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
+            int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
+
+            int diffX = cibleX - this.getX();
+            int diffY = cibleY - this.getY();
+            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+            if (distance <= this.vitesse) {
+                // Assez proche on se pose sur la tuile et on passe à la suivante
+                this.setX(cibleX);
+                this.setY(cibleY);
+                this.indiceChemin++;
+                System.out.println("changement de tuile");
+            } else {
+                // On avance vers la tuile suivante
+                this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
+                this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
+                System.out.println(getX() + " " + getY());
+            }
+        }
+    }
+
+    public void setChemin(ArrayList<Sommet> chemin) {
+        this.chemin = chemin;
+        if (chemin != null && !chemin.isEmpty()) {
+            Sommet depart = chemin.get(0);
+            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
+            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
+        }
+    }
+
+    public boolean aAtteintDestination() {
+        return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
 
 

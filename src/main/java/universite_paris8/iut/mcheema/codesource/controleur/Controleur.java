@@ -19,6 +19,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.*;
+import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
@@ -47,6 +51,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Base base = new Base(630,145);
         BaseVue baseVue = new BaseVue(this.paneJeu,base);
         baseVue.creeSpriteBase();
@@ -68,13 +73,14 @@ public class Controleur implements Initializable {
                 ennemi = new ErreurExecution(372,209,this.environnement);
             }
             this.environnement.ajouterEnnemi(ennemi);
-          
-          Sommet base = new Sommet(12, 0);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
+        }
 
-        Sommet depart = new Sommet(4, 19);
-
-        ArrayList<Sommet> chemin = bfs.cheminVersSource(depart);
+        Sommet base = new Sommet(12, 0);
+        Sommet entree = new Sommet(4, 19);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Sommet> chemin = bfs.cheminVersSource(base);
+        Ennemi bug = new Bogue(0, 0, this.environnement);
+        bug.setChemin(chemin);
 
         terrainVue.afficheTerrainJeu();
 
@@ -84,9 +90,6 @@ public class Controleur implements Initializable {
     }
 
     private void initAnimation() {
-        for(Ennemi ennemi : this.environnement.getEnnemis()) {
-            ennemi.attribuerDirectionAleatoire();
-        }
 
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
