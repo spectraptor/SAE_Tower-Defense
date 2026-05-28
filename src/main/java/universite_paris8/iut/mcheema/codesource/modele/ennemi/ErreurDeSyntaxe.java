@@ -1,0 +1,10 @@
+package universite_paris8.iut.mcheema.codesource.modele.ennemi;
+
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+
+public class ErreurDeSyntaxe extends Ennemi {
+    public ErreurDeSyntaxe(int x, int y, Environnement env) {
+        super(x, y, 3,1 ,4 , env);
+    }
+
+}

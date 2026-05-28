@@ -97,12 +97,12 @@
       </VBox>
    </left>
    <center>
-      <Pane fx:id="paneJeu" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneJeu" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER" onMouseClicked="#ajouterTour">
          <children>
             <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" />
             <HBox fx:id="hboxTuile" prefHeight="40.0" prefWidth="640.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="45.0" text="VIE">
+                  <Label fx:id="labelVieBase" alignment="CENTER" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="45.0" text="VIE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>

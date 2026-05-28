@@ -94,7 +94,7 @@ public class Terrain {
     }
 
     public int obtenirLargeur() {
-        return this.terrainDeJeu[1].length;
+        return this.terrainDeJeu[0].length;
     }
 
     public char avoirCodeTuile(int i, int j) {
@@ -105,6 +105,26 @@ public class Terrain {
         return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
     }
 
+
+    /**
+     * Regarde si la tuile est une tuile accessible pour les déplacements ennemi
+     * @param nouveauX l'abscisse en pixels
+     * @param nouveauY l'ordonnée en pixels
+     * @return vrai si la tuile est accessible, faux sinon
+     */
+    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
+        /*
+         * On regarde avant si les déplacements sortent de la tuile
+         * Autrement, l'appel à avoirCodeTuile accèdera à des indices hors limites.
+         */
+        if (!estDansTerrain(nouveauX, nouveauY))
+            return false;
+
+        int ligne = nouveauY / TAILLE_TUILLE;
+        int colonne = nouveauX / TAILLE_TUILLE;
+
+        return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
+    }
     public ArrayList<Sommet> adjacents(Sommet t) {
         ArrayList<Sommet> voisins = new ArrayList<>();
         int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
@@ -117,11 +137,5 @@ public class Terrain {
             }
         }
         return voisins;
-    }
-
-    public boolean tuileEstAccessible(int nouveauX, int nouveauY) {
-        int ligne = nouveauY / TAILLE_TUILLE;
-        int colonne = nouveauX / TAILLE_TUILLE;
-        return avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9' ;
     }
 }
