@@ -4,6 +4,8 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
  */
 
+import java.util.ArrayList;
+
 public class Terrain {
     public final static int TAILLE_TUILLE = 32;
     private int niveauTerrain;
@@ -103,6 +105,7 @@ public class Terrain {
         return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
     }
 
+
     /**
      * Regarde si la tuile est une tuile accessible pour les déplacements ennemi
      * @param nouveauX l'abscisse en pixels
@@ -122,6 +125,17 @@ public class Terrain {
 
         return this.avoirCodeTuile(ligne,colonne) != 'e' && this.avoirCodeTuile(ligne,colonne) != 'h' && this.avoirCodeTuile(ligne,colonne) != 't';
     }
-
-
+    public ArrayList<Sommet> adjacents(Sommet t) {
+        ArrayList<Sommet> voisins = new ArrayList<>();
+        int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for (int[] direction : directions) {
+            int nLigne = t.getLigne() + direction[0];
+            int nCol   = t.getColonne() + direction[1];
+            if (estDansTerrain(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE) && tuileEstAccessible(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
+                // trop de constante TAILLE_TUILLE faut changer
+                voisins.add(new Sommet(nLigne, nCol));
+            }
+        }
+        return voisins;
+    }
 }

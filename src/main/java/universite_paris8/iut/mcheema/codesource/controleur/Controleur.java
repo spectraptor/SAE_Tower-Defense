@@ -15,9 +15,14 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import universite_paris8.iut.mcheema.codesource.modele.*;
+import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /*
@@ -63,8 +68,13 @@ public class Controleur implements Initializable {
                 ennemi = new ErreurExecution(372,209,this.environnement);
             }
             this.environnement.ajouterEnnemi(ennemi);
+          
+          Sommet base = new Sommet(12, 0);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
 
-        }
+        Sommet depart = new Sommet(4, 19);
+
+        ArrayList<Sommet> chemin = bfs.cheminVersSource(depart);
 
         terrainVue.afficheTerrainJeu();
 
