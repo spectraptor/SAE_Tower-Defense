@@ -3,6 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import java.util.Random;
 import universite_paris8.iut.mcheema.codesource.modele.Sommet;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
@@ -13,20 +14,21 @@ import java.util.ArrayList;
  */
 
 public abstract class Ennemi {
+    public final static int PORTEE_ATTAQUE = 10; // Définit la portée de l'attaque sur la base pour chaque ennemi elle sera similaire
     private String id;
     private static int idCpt = 0;
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private int dx; //Direction de l'ennemi 1 signifie vers la droite -1 vers la gauche
     private int dy;
-    private double pv;
+    private int pv;
     private int vitesse;
-    private double argentDonne;
+    private int argentDonne;
     private Environnement environnement;
     private ArrayList<Sommet> chemin;
     private int indiceChemin;
 
-    public Ennemi(int x, int y, double pv, int vitesse, double argentDonne, Environnement env) {
+    public Ennemi(int x, int y, int pv, int vitesse, int argentDonne, Environnement env) {
         idCpt++;
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(x);
@@ -78,6 +80,13 @@ public abstract class Ennemi {
         return this.dy;
     }
 
+    public boolean estCamoufle() {
+        return false;
+    }
+
+    public int getPv() {
+        return this.pv;
+    }
 
     public int getVitesse() {
         return this.vitesse;
@@ -90,6 +99,42 @@ public abstract class Ennemi {
     public void meurt() {
         this.pv = 0;
     }
+
+
+    public void faireDegat(int degat) {
+        if (this.pv - degat < 0)
+            this.meurt();
+        else
+            this.pv -= degat;
+    }
+
+    public boolean estDansLaPortee() {
+        return Math.abs(this.getX()-this.getEnvironnement().getBase().getX())<=PORTEE_ATTAQUE && Math.abs(this.getY()-this.getEnvironnement().getBase().getY())<=PORTEE_ATTAQUE;
+    }
+
+
+    /**
+     * Cette méthode permet le déplacement d'un ennemi,
+     * elle calcule le prochain mouvement et l'effectue uniquement si le prochain
+     * mouvement est dans le terrain va ensuite vérifier si le déplacement suivant est sur le chemin
+     *
+    public void seDeplace() {
+        int nouvX = this.getX() + (this.dx * this.vitesse);
+        int nouvY = this.getY() + (this.dy * this.vitesse);
+        // Vérifie si la prochaine position est dans le terrain (TilePane)
+        if(this.environnement.getTerrainDeJeu().estDansTerrain(nouvX,nouvY)) {
+            // Vérifie si la prochaine position est sur le chemin
+            if(this.environnement.tuileEstAccessibleCoords(nouvX,nouvY)) {
+                this.setX(nouvX);
+                this.setY(nouvY);
+            }
+        }
+    }
+    */
+
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }  
 
 
     public void seDeplace() {
@@ -139,8 +184,17 @@ public abstract class Ennemi {
         this.dy = dy;
     }
 
+    /**
+     * Cette méthode va effectuer l'action de base d'un ennemi qui est de se déplacer
+     * et de vérifier s'il peut attaquer la base.
+     * Elle sera réécrite pour chaque ennemi possédant des actions supplémentaires.
+     */
     public void effectueAction() {
         this.seDeplace();
+        if(this.estDansLaPortee()) {
+            this.getEnvironnement().getBase().subirDegats(this.getPv());
+            this.meurt();
+        }
     }
 
     public String toString() {

@@ -2,6 +2,9 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /*
@@ -9,25 +12,34 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
  */
 
 public class Environnement {
-    private ArrayList<Ennemi> ennemis;
+    private ObservableList<Ennemi> ennemis;
+    private ArrayList<Batiment> batiments;
     private int nbreVague;
     private Terrain terrainDeJeu;
     private int nbTours;
+    private Base base;
 
 
-    public Environnement(int niveau) {
-        this.ennemis = new ArrayList<>();
+
+    public Environnement(int niveau,Base base) {
+        this.ennemis = FXCollections.observableArrayList();
+        this.batiments = new ArrayList<>();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
+        this.base = base;
     }
 
     public Terrain getTerrainDeJeu() {
         return this.terrainDeJeu;
     }
 
-    public ArrayList<Ennemi> getEnnemis() {
+    public ObservableList<Ennemi> getEnnemis() {
         return this.ennemis;
+    }
+
+    public ArrayList<Batiment> getBatiments() {
+        return this.batiments;
     }
 
     public boolean estDansTerrain(int x, int y) {
@@ -38,15 +50,85 @@ public class Environnement {
         this.ennemis.add(ennemi);
     }
 
-    public void unTour() {
-        for (Ennemi ennemi : this.ennemis) {
-            if (this.nbTours % 5 == 0) {
-                ennemi.seDeplace();
-            }
-        }
-        this.nbTours++;
+
+    public void ajouterBatiment(Batiment batiment) {
+        this.batiments.add(batiment);
     }
 
+    public Base getBase() {
+        return this.base;
+    }
+
+    public void unTour() {
+        ArrayList<Ennemi> ennemisMort = new ArrayList<>();
+        if(!this.partieEstFinie()) {
+            for (Ennemi ennemi : this.ennemis) {
+                if (this.nbTours % 5 == 0) {
+                  
+                    if (ennemi.estVivant()) {
+                      
+                        ennemi.effectueAction();
+                    } 
+                    else {
+                        ennemisMort.add(ennemi);
+                    }   
+                }
+                for (Batiment batiment : this.batiments) {
+                    batiment.effectueAction(ennemi);
+                }
+            }
+            }
+            for (Ennemi ennemi : ennemisMort) {
+                ennemi.meurt();
+                this.getEnnemis().remove(ennemi);
+            }
+            this.nbTours++;
+        }
+    }
+
+    /**
+     * Regarde si un ennemi se trouve dans le rayon d'un batiment
+     * @param batiment le batiment qui sert de défense
+     * @param ennemi l'ennemi qui peut être attaqué
+     * @return vrai si l'ennemi se trouve dans le rayon, faux sinon
+     */
+    public boolean estDansRayonTour(Batiment batiment, Ennemi ennemi) {
+        int distanceHorz = Math.abs(batiment.getX() - ennemi.getX());
+        int distanceVert = Math.abs(batiment.getY() - ennemi.getY());
+        return (distanceHorz <= batiment.getPortee()) && (distanceVert <= batiment.getPortee());
+    }
+
+
+    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
+        return this.terrainDeJeu.tuileEstAccessibleCoords(nouveauX,nouveauY);
+    }
+
+    /**
+     * Regarde si une tour est à proximité de coordonnées du clic de la souris.
+     * @param x l'abscisse du clic de la souris
+     * @param y l'ordonnée du clic de la souris.
+     * @return vrai si la distance entre le click et une tour est < à rayonDistanceAutorisee, faux autrement.
+     */
+    public boolean estAdjacentATour(int x, int y) {
+        final int rayonDistanceAutorisee = 30; // distance minimale entre les batiments (pixels)
+        int distanceX, distanceY;
+        for (Batiment bat : batiments) {
+            distanceX = Math.abs(bat.getX() - x);
+            distanceY = Math.abs(bat.getY() - y);
+            /* Le "&&" est préférable au "||" -> si on fait juste un ou,
+            cela voudrait dire que même si on peut placer un bâtiment horizontalement, puisque verticalement on ne peut pas,
+            la tour est implaçable.
+            */
+            if (distanceX < rayonDistanceAutorisee && distanceY < rayonDistanceAutorisee)
+                return true;
+        }
+
+        return false;
+    }
+
+    public boolean partieEstFinie() {
+        return this.getEnnemis().isEmpty() || this.getBase().estDetruite();
+    }
 
     public int getNbTours() {
         return this.nbTours;
