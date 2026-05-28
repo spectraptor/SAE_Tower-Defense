@@ -90,25 +90,25 @@ public abstract class Ennemi {
 
 
     public void seDeplace() {
-        if (aAtteintDestination()) return;
+        if (!aAtteintDestination()) {
+            Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
+            int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE;
+            int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE;
 
-        Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
-        int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE;
-        int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE;
+            int diffX = cibleX - this.getX();
+            int diffY = cibleY - this.getY();
+            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
-        int diffX = cibleX - this.getX();
-        int diffY = cibleY - this.getY();
-        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-
-        if (distance <= this.vitesse) {
-            // Assez proche on se pose sur la tuile et on passe à la suivante
-            this.setX(cibleX);
-            this.setY(cibleY);
-            this.indiceChemin++;
-        } else {
-            // On avance vers la tuile suivante
-            this.setX(this.getX() + (int)(diffX / distance * this.vitesse));
-            this.setY(this.getY() + (int)(diffY / distance * this.vitesse));
+            if (distance <= this.vitesse) {
+                // Assez proche on se pose sur la tuile et on passe à la suivante
+                this.setX(cibleX);
+                this.setY(cibleY);
+                this.indiceChemin++;
+            } else {
+                // On avance vers la tuile suivante
+                this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
+                this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
+            }
         }
     }
 
