@@ -11,6 +11,8 @@ import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
