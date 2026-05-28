@@ -3,7 +3,6 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import java.util.Random;
 import universite_paris8.iut.mcheema.codesource.modele.Sommet;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 

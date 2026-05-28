@@ -101,8 +101,8 @@ public class Terrain {
         return this.terrainDeJeu[i][j];
     }
 
-    public boolean estDansTerrain(int x, int y) {
-        return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
+    public boolean estDansTerrain(int nCol, int nLigne) {
+        return nCol >= 0 && nCol < obtenirLargeur() && nLigne >= 0 && nLigne < obtenirHauteur();
     }
 
 
@@ -132,7 +132,7 @@ public class Terrain {
         for (int[] direction : directions) {
             int nLigne = t.getLigne() + direction[0];
             int nCol   = t.getColonne() + direction[1];
-            if (estDansTerrain(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
+            if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
                 // trop de constante TAILLE_TUILLE faut changer
                 voisins.add(new Sommet(nLigne, nCol));
             }

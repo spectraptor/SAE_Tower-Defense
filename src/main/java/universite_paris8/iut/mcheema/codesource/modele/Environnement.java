@@ -36,10 +36,6 @@ public class Environnement {
         return this.batiments;
     }
 
-    public boolean estDansTerrain(int x, int y) {
-        return this.terrainDeJeu.estDansTerrain(x, y);
-    }
-
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
