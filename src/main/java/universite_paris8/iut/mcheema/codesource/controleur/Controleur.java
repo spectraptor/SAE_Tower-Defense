@@ -33,7 +33,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.environnement = new Environnement(1);
+        this.environnement = new Environnement(2);
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
 
@@ -44,11 +44,6 @@ public class Controleur implements Initializable {
         Ennemi bug = new Bogue(0, 0, this.environnement);
         bug.setChemin(chemin);
 
-        for (Sommet s : chemin) {
-            System.out.println(
-                    "Ligne: " + s.getLigne() + " Colonne: " + s.getColonne()
-            );
-        }
 
         this.environnement.ajouterEnnemi(bug);
 

@@ -2,7 +2,6 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import java.util.Random;
 import java.util.ArrayList;
 
 /*
@@ -92,8 +91,8 @@ public abstract class Ennemi {
     public void seDeplace() {
         if (!aAtteintDestination()) {
             Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
-            int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE;
-            int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE;
+            int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
+            int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
 
             int diffX = cibleX - this.getX();
             int diffY = cibleY - this.getY();
@@ -104,21 +103,22 @@ public abstract class Ennemi {
                 this.setX(cibleX);
                 this.setY(cibleY);
                 this.indiceChemin++;
+                System.out.println("changement de tuile");
             } else {
                 // On avance vers la tuile suivante
                 this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
                 this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
+                System.out.println(getX() + " " + getY());
             }
         }
     }
 
     public void setChemin(ArrayList<Sommet> chemin) {
         this.chemin = chemin;
-        this.indiceChemin = 0;
         if (chemin != null && !chemin.isEmpty()) {
             Sommet depart = chemin.get(0);
-            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE);
-            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE);
+            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
+            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
         }
     }
 
