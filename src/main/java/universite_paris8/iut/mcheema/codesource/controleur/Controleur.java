@@ -15,9 +15,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.vue.BaseVue;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
-
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
@@ -46,9 +44,8 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Base base = new Base(12,400);
-        BaseVue baseVue = new BaseVue(this.paneJeu,base);
-        baseVue.creeSpriteBase();
+        Base base = new Base();
+
         this.labelVieBase.textProperty().bind(base.pvProperty().asString());
         this.environnement = new Environnement(1,base);
 
@@ -64,15 +61,15 @@ public class Controleur implements Initializable {
         bug.setChemin(chemin);
 
         for(int i = 0;i<251;i++) {
-            Ennemi ennemi = new Ping(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+            Ennemi ennemi = new Ping(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             if(i==1) {
-                ennemi = new Bogue(372, 209, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+                ennemi = new Bogue(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             }
             else if (i<100) {
-                ennemi = new ChevalDeTroie(372,209,this.environnement);
+                ennemi = new ChevalDeTroie(this.environnement);
             }
             else if (i<250) {
-                ennemi = new ErreurExecution(372,209,this.environnement);
+                ennemi = new ErreurExecution(this.environnement);
             }
             ennemi.setChemin(chemin);
             this.environnement.ajouterEnnemi(ennemi);
