@@ -22,7 +22,7 @@ public class Ralentisseur extends Ennemi {
         super.effectueAction();
         for(Batiment batiment : this.getEnvironnement().getBatiments()) {
             if (Math.abs(this.getX() - batiment.getX()) <= 10 && Math.abs(this.getY() - batiment.getY()) <= 10) {
-                batiment.setVitesseAttaque(this.ralentissement);
+                batiment.setCadenceTir(this.ralentissement);
             }
         }
     }

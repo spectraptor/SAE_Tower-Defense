@@ -96,20 +96,16 @@ public class Environnement {
      * @return vrai si la distance entre le click et une tour est < à rayonDistanceAutorisee, faux autrement.
      */
     public boolean estAdjacentATour(int x, int y) {
-        final int rayonDistanceAutorisee = 30; // distance minimale entre les batiments (pixels)
-        int distanceX, distanceY;
-        for (Batiment bat : batiments) {
-            distanceX = Math.abs(bat.getX() - x);
-            distanceY = Math.abs(bat.getY() - y);
-            /* Le "&&" est préférable au "||" -> si on fait juste un ou,
-            cela voudrait dire que même si on peut placer un bâtiment horizontalement, puisque verticalement on ne peut pas,
-            la tour est implaçable.
-            */
-            if (distanceX < rayonDistanceAutorisee && distanceY < rayonDistanceAutorisee)
-                return true;
+        boolean sortieBoucle = false;
+        int i = 0;
+        while (i < this.batiments.size() && !sortieBoucle) {
+            if(x == batiments.get(i).getX() && y == batiments.get(i).getY()) {
+                sortieBoucle = true;
+            }
+            i++;
         }
 
-        return false;
+        return sortieBoucle;
     }
 
     public boolean partieEstFinie() {
