@@ -31,6 +31,7 @@ public class Terrain {
         8 = ch_droite_bas_gauche
         9 = ch_bas_gauche_haut
         0 = ch_gauche_haut_droite
+        b = base
          */
         switch (this.niveauTerrain) {
             case 1:
@@ -113,14 +114,6 @@ public class Terrain {
      * @return vrai si la tuile est accessible, faux sinon
      */
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
-        /*
-         * On regarde avant si les déplacements sortent de la tuile
-         * Autrement, l'appel à avoirCodeTuile accèdera à des indices hors limites.
-         */
-  /*
-        if (!estDansTerrain(nouveauX, nouveauY))
-            return false;
-  */
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
         return (avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9') || avoirCodeTuile(ligne,colonne) == 'b';
@@ -133,7 +126,6 @@ public class Terrain {
             int nLigne = t.getLigne() + direction[0];
             int nCol   = t.getColonne() + direction[1];
             if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
-                // trop de constante TAILLE_TUILLE faut changer
                 voisins.add(new Tuile(nLigne, nCol));
             }
         }

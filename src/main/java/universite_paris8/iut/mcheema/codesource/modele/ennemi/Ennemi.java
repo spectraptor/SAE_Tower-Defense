@@ -17,8 +17,6 @@ public abstract class Ennemi {
     private static int idCpt = 0;
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
-    private int dx; //Direction de l'ennemi 1 signifie vers la droite -1 vers la gauche
-    private int dy;
     private int pv;
     private int vitesse;
     private int argentDonne;
@@ -31,8 +29,6 @@ public abstract class Ennemi {
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(0);
         this.yProperty = new SimpleIntegerProperty(0);
-        this.dx = 0;
-        this.dy = 0;
         this.pv = pv;
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
@@ -46,8 +42,6 @@ public abstract class Ennemi {
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.dx = 0;
-        this.dy = 0;
         this.pv = pv;
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
@@ -85,18 +79,6 @@ public abstract class Ennemi {
         return this.yProperty;
     }
 
-    public int getDx() {
-        return this.dx;
-    }
-
-    public int getDy() {
-        return this.dy;
-    }
-
-    public boolean estCamoufle() {
-        return false;
-    }
-
     public int getPv() {
         return this.pv;
     }
@@ -113,8 +95,12 @@ public abstract class Ennemi {
         this.pv = 0;
     }
 
+    public boolean estCamoufle() {
+        return false;
+    }
 
-    public void faireDegat(int degat) {
+
+    public void subirDegats(int degat) {
         if (this.pv - degat < 0)
             this.meurt();
         else
@@ -161,14 +147,6 @@ public abstract class Ennemi {
         return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
 
-
-    public void setDx(int dx) {
-        this.dx = dx;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
-    }
 
     /**
      * Cette méthode va effectuer l'action de base d'un ennemi qui est de se déplacer

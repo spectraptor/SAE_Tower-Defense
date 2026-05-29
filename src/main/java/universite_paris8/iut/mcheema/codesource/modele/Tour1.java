@@ -4,7 +4,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 public class Tour1 extends Batiment{
     public Tour1(int x, int y, Environnement env) {
-        super(x, y, 30, 5, 10, env);
+        super(x, y, 30, 1, 10, env);
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Tour1 extends Batiment{
         if(!ennemi.estCamoufle())
             if (this.getEnvironnement().estDansRayonTour(this, ennemi))
              if (this.getEnvironnement().getNbTours() % this.getVitesseAttaque() == 0)
-                 ennemi.faireDegat(this.getDegat());
+                 ennemi.subirDegats(this.getDegat());
     }
 
 }

@@ -12,14 +12,13 @@ public class Base {
 
     public final void setPv(int pv) {this.pvProperty.setValue(pv);}
 
-
     public final int getPv() {return this.pvProperty.getValue();}
 
     public final IntegerProperty pvProperty() { return this.pvProperty;}
 
 
     public void subirDegats(int degats) {
-        if(this.getPv()-degats < 0) {
+        if (this.getPv()-degats < 0) {
             this.setPv(0);
         }
         else {

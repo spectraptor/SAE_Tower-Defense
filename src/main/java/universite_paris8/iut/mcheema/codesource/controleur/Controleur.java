@@ -34,7 +34,6 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane tilePane;
 
-
     @FXML
     private Pane paneJeu;
 
@@ -45,40 +44,39 @@ public class Controleur implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Base base = new Base();
-
         this.labelVieBase.textProperty().bind(base.pvProperty().asString());
         this.environnement = new Environnement(1,base);
 
-        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this));
+        // Listener sur l'Observable Liste d'ennemis
+        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
+
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
-        Tuile base2 = new Tuile(12, 0);
+        // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
+        Tuile baseTuile = new Tuile(12, 0);
         Tuile entree = new Tuile(4, 19);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(base2);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
         Ennemi bug = new Bogue(0, 0, this.environnement);
         bug.setChemin(chemin);
 
-        for(int i = 0;i<251;i++) {
+        for(int i = 0;i<10;i++) {
             Ennemi ennemi = new Ping(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             if(i==1) {
                 ennemi = new Bogue(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             }
-            else if (i<100) {
+            else if (i<5) {
                 ennemi = new ChevalDeTroie(this.environnement);
             }
-            else if (i<250) {
+            else {
                 ennemi = new ErreurExecution(this.environnement);
             }
             ennemi.setChemin(chemin);
             this.environnement.ajouterEnnemi(ennemi);
         }
 
-
-
         terrainVue.afficheTerrainJeu();
-
         this.initAnimation();
         this.gameLoop.play();
 
@@ -109,11 +107,6 @@ public class Controleur implements Initializable {
 
         gameLoop.getKeyFrames().add(kf);
     }
-
-    public Pane getPaneJeu() {
-        return this.paneJeu;
-    }
-
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {

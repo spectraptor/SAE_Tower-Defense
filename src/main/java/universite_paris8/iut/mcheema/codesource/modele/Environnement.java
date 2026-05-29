@@ -54,9 +54,7 @@ public class Environnement {
         if (!this.partieEstFinie()) {
             for (Ennemi ennemi : this.ennemis) {
                 if (this.nbTours % 5 == 0) {
-
                     if (ennemi.estVivant()) {
-
                         ennemi.effectueAction();
                     } else {
                         ennemisMort.add(ennemi);
