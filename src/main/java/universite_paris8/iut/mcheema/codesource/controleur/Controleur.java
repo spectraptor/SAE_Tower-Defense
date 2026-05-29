@@ -19,6 +19,7 @@ import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /*
@@ -113,11 +114,16 @@ public class Controleur implements Initializable {
         if (!this.environnement.partieEstFinie()) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
-            // On ne peut pas placer des bâtiments sur le chemin -> obstrue l'ennemi.
+
+            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
+
+            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.estAdjacentATour(coordsSourisX, coordsSourisY)) {
 
-                Batiment batiment = new Tour1(coordsSourisX, coordsSourisY, this.environnement);
+                Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
                 this.environnement.ajouterBatiment(batiment);
 
                 System.out.println(batiment);
@@ -125,8 +131,9 @@ public class Controleur implements Initializable {
                 BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
                 batimentVue.creerSpriteBatiment();
 
+                System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+
             }
-            System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
         }
     }
 
