@@ -126,15 +126,15 @@ public class Terrain {
         return (avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9') || avoirCodeTuile(ligne,colonne) == 'b';
     }
 
-    public ArrayList<Sommet> adjacents(Sommet t) {
-        ArrayList<Sommet> voisins = new ArrayList<>();
+    public ArrayList<Tuile> adjacents(Tuile t) {
+        ArrayList<Tuile> voisins = new ArrayList<>();
         int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int[] direction : directions) {
             int nLigne = t.getLigne() + direction[0];
             int nCol   = t.getColonne() + direction[1];
             if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
                 // trop de constante TAILLE_TUILLE faut changer
-                voisins.add(new Sommet(nLigne, nCol));
+                voisins.add(new Tuile(nLigne, nCol));
             }
         }
         return voisins;

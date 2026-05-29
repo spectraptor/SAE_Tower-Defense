@@ -3,7 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Sommet;
+import universite_paris8.iut.mcheema.codesource.modele.Tuile;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public abstract class Ennemi {
     private int vitesse;
     private int argentDonne;
     private Environnement environnement;
-    private ArrayList<Sommet> chemin;
+    private ArrayList<Tuile> chemin;
     private int indiceChemin;
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env) {
@@ -122,34 +122,13 @@ public abstract class Ennemi {
     }
 
 
-
-
-    /**
-     * Cette méthode permet le déplacement d'un ennemi,
-     * elle calcule le prochain mouvement et l'effectue uniquement si le prochain
-     * mouvement est dans le terrain va ensuite vérifier si le déplacement suivant est sur le chemin
-     *
-    public void seDeplace() {
-        int nouvX = this.getX() + (this.dx * this.vitesse);
-        int nouvY = this.getY() + (this.dy * this.vitesse);
-        // Vérifie si la prochaine position est dans le terrain (TilePane)
-        if(this.environnement.getTerrainDeJeu().estDansTerrain(nouvX,nouvY)) {
-            // Vérifie si la prochaine position est sur le chemin
-            if(this.environnement.tuileEstAccessibleCoords(nouvX,nouvY)) {
-                this.setX(nouvX);
-                this.setY(nouvY);
-            }
-        }
-    }
-    */
-
     public Environnement getEnvironnement() {
         return this.environnement;
     }  
 
 
     public void seDeplace() {
-            Sommet prochaine = this.chemin.get(this.indiceChemin + 1);
+            Tuile prochaine = this.chemin.get(this.indiceChemin + 1);
             int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
             int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
 
@@ -169,10 +148,10 @@ public abstract class Ennemi {
             }
     }
 
-    public void setChemin(ArrayList<Sommet> chemin) {
+    public void setChemin(ArrayList<Tuile> chemin) {
         this.chemin = chemin;
         if (chemin != null && !chemin.isEmpty()) {
-            Sommet depart = chemin.get(0);
+            Tuile depart = chemin.get(0);
             this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
             this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
         }

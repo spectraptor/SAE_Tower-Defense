@@ -53,10 +53,10 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
-        Sommet base2 = new Sommet(12, 0);
-        Sommet entree = new Sommet(4, 19);
+        Tuile base2 = new Tuile(12, 0);
+        Tuile entree = new Tuile(4, 19);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Sommet> chemin = bfs.cheminVersSource(base2);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(base2);
         Ennemi bug = new Bogue(0, 0, this.environnement);
         bug.setChemin(chemin);
 
