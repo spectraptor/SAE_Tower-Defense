@@ -31,6 +31,7 @@ public class Terrain {
         8 = ch_droite_bas_gauche
         9 = ch_bas_gauche_haut
         0 = ch_gauche_haut_droite
+        b = base
          */
         switch (this.niveauTerrain) {
             case 1:
@@ -46,7 +47,7 @@ public class Terrain {
                                                  {'h','2','h','2','h','h','2','h','e','2','h','6','1','1','1','1','1','4','e','e'},
                                                  {'h','6','1','5','h','h','2','h','h','2','h','h','h','h','h','h','h','2','h','e'},
                                                  {'h','h','h','h','h','h','2','h','h','2','h','h','h','h','h','h','h','2','h','e'},
-                                                 {'1','1','1','1','1','1','5','h','h','6','1','1','1','1','1','1','1','5','h','e'},
+                                                 {'b','1','1','1','1','1','5','h','h','6','1','1','1','1','1','1','1','5','h','e'},
                                                  {'h','h','h','h','h','h','h','e','e','h','h','h','h','e','e','e','h','h','h','e'},
                                                  {'e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'}
                 };
@@ -59,11 +60,11 @@ public class Terrain {
                                                  {'h','2','h','h','h','h','h','3','1','1','1','1','1','5','h','h','h','h','2','h'},
                                                  {'h','2','h','3','1','4','h','2','e','h','h','h','h','h','h','h','h','h','2','h'},
                                                  {'h','2','h','2','h','2','h','2','e','h','h','3','1','1','1','1','1','1','5','h'},
-                                                 {'1','5','h','2','h','2','h','6','1','4','h','2','h','h','h','h','h','h','h','h'},
+                                                 {'b','5','h','2','h','2','h','6','1','4','h','2','h','h','h','h','h','h','h','h'},
                                                  {'h','h','h','2','h','6','4','e','e','6','1','5','h','3','1','1','1','1','4','e'},
                                                  {'h','h','h','2','h','h','2','e','e','h','h','h','h','2','h','h','h','h','2','e'},
                                                  {'h','h','h','2','h','h','6','1','1','1','1','1','1','5','h','3','1','1','5','e'},
-                                                 {'1','1','1','5','h','h','h','e','e','h','h','h','h','h','h','2','h','e','e','e'},
+                                                 {'b','1','1','5','h','h','h','e','e','h','h','h','h','h','h','2','h','e','e','e'},
                                                  {'h','h','h','h','h','h','h','e','e','e','e','h','h','3','1','5','e','e','e','e'},
                                                  {'h','h','h','h','h','h','e','e','e','e','e','e','h','2','h','h','e','e','e','e'},
                                                  {'h','h','h','e','e','e','e','e','e','e','e','e','e','2','e','e','e','e','e','e'}
@@ -77,7 +78,7 @@ public class Terrain {
                                                  {'e','e','h','h','3','1','1','1','1','1','4','h','h','e','e','e','e','e','e','e'},
                                                  {'e','e','h','3','5','h','h','h','h','h','6','4','h','h','h','e','e','e','e','e'},
                                                  {'e','e','h','2','h','h','h','h','h','h','h','6','4','h','h','h','h','h','e','e'},
-                                                 {'e','e','h','7','1','1','1','1','1','1','h','h','7','1','1','1','1','1','1','1'},
+                                                 {'e','e','h','7','1','1','1','1','1','b','h','h','7','1','1','1','1','1','1','1'},
                                                  {'e','e','h','2','h','h','h','h','h','h','h','3','5','h','h','h','h','h','e','e'},
                                                  {'e','e','h','6','4','h','h','h','h','h','3','5','h','h','h','e','e','e','e','e'},
                                                  {'e','e','h','h','6','1','1','1','1','1','5','h','h','e','e','e','e','e','e','e'},
@@ -101,8 +102,26 @@ public class Terrain {
         return this.terrainDeJeu[i][j];
     }
 
-    public boolean estDansTerrain(int x, int y) {
-        return x >= 0 && x < obtenirLargeur()*TAILLE_TUILLE && y >= 0 && y < obtenirHauteur()*TAILLE_TUILLE;
+    /**
+     * Convertis les coordoonnées x et y en numéro de ligne et colonne de la tuile.
+     * @param x les coordonnéees x
+     * @param y les coordonnées y
+     * @return un tableau contenant le numéro de ligne et colonne de la tuile.
+     */
+    public int[] convertirCoordsTuile(int x, int y)  {
+        int[] tuile = new int[2];
+
+        int ligne = y / TAILLE_TUILLE;
+        int colonne = x / TAILLE_TUILLE;
+
+        tuile[0] = ligne;
+        tuile[1] = colonne;
+
+        return tuile;
+    }
+
+    public boolean estDansTerrain(int nCol, int nLigne) {
+        return nCol >= 0 && nCol < obtenirLargeur() && nLigne >= 0 && nLigne < obtenirHauteur();
     }
 
 
@@ -123,18 +142,19 @@ public class Terrain {
   */
         int ligne = nouveauY / TAILLE_TUILLE;
         int colonne = nouveauX / TAILLE_TUILLE;
-        return avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9' ;
+        return (avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9') || avoirCodeTuile(ligne,colonne) == 'b';
     }
 
-    public ArrayList<Sommet> adjacents(Sommet t) {
-        ArrayList<Sommet> voisins = new ArrayList<>();
+
+    public ArrayList<Tuile> adjacents(Tuile t) {
+        ArrayList<Tuile> voisins = new ArrayList<>();
         int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int[] direction : directions) {
             int nLigne = t.getLigne() + direction[0];
             int nCol   = t.getColonne() + direction[1];
-            if (estDansTerrain(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE) && tuileEstAccessible(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
+            if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
                 // trop de constante TAILLE_TUILLE faut changer
-                voisins.add(new Sommet(nLigne, nCol));
+                voisins.add(new Tuile(nLigne, nCol));
             }
         }
         return voisins;

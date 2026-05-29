@@ -14,15 +14,15 @@ public abstract class Batiment {
     private IntegerProperty yProperty;
     private int portee;
     private int degat;
-    private int vitesseAttaque;
+    private int cadenceTir;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int portee, int degat, int vAttaque, Environnement env) {
+    public Batiment(int x, int y, int portee, int degat, int cTir, Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.portee = portee;
         this.degat = degat;
-        this.vitesseAttaque = vAttaque;
+        this.cadenceTir = cTir;
         this.environnement = env;
     }
 
@@ -54,16 +54,16 @@ public abstract class Batiment {
         return this.degat;
     }
 
-    public void setVitesseAttaque(int vitesseAttaque) {
-        this.vitesseAttaque = vitesseAttaque;
+    public void setCadenceTir(int cadenceTir) {
+        this.cadenceTir = cadenceTir;
     }
 
     public Environnement getEnvironnement() {
         return this.environnement;
     }
 
-    public int getVitesseAttaque() {
-        return this.vitesseAttaque;
+    public int getCadenceTir() {
+        return this.cadenceTir;
     }
 
     public int getPortee() {

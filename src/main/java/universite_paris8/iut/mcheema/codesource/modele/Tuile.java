@@ -1,10 +1,10 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-public class Sommet {
+public class Tuile {
     private int ligne;
     private int colonne;
 
-    public Sommet(int ligne, int colonne) {
+    public Tuile(int ligne, int colonne) {
         this.ligne = ligne;
         this.colonne = colonne;
     }
@@ -18,7 +18,7 @@ public class Sommet {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Sommet other = (Sommet) obj;
+        Tuile other = (Tuile) obj;
         return this.ligne == other.ligne && this.colonne == other.colonne;
     }
 

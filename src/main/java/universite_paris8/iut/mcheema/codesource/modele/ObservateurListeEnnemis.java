@@ -1,28 +1,29 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 
 public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
-    private Controleur controleur;
+    private Pane paneJeu;
 
-    public ObservateurListeEnnemis(Controleur controleur) {
-        this.controleur = controleur;
+    public ObservateurListeEnnemis(Pane paneJeu) {
+        this.paneJeu = paneJeu;
     }
     @Override
     public void onChanged(Change<?extends Ennemi> change) {
         while (change.next()) {
             for(Ennemi ennemi : change.getAddedSubList()) {
-                EnnemiVue ennemiVue = new EnnemiVue(ennemi,this.controleur.getPaneJeu());
+                EnnemiVue ennemiVue = new EnnemiVue(ennemi,this.paneJeu);
                 ennemiVue.creerSpriteEnnemi();
             }
 
             for (Ennemi ennemi : change.getRemoved()) {
-                this.controleur.getPaneJeu().lookup("#"+ennemi.getId()).translateXProperty().unbind();
-                this.controleur.getPaneJeu().lookup("#"+ennemi.getId()).translateYProperty().unbind();
-                this.controleur.getPaneJeu().getChildren().remove(this.controleur.getPaneJeu().lookup("#"+ennemi.getId()));
+                this.paneJeu.lookup("#"+ennemi.getId()).translateXProperty().unbind();
+                this.paneJeu.lookup("#"+ennemi.getId()).translateYProperty().unbind();
+                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+ennemi.getId()));
             }
         }
     }

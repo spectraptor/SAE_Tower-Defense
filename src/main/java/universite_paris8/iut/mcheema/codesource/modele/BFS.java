@@ -14,21 +14,21 @@ public class BFS {
     /**
      * Le sommet source de l'algo
      */
-    private Sommet source;
+    private Tuile source;
     /**
      * Liste des sommets de la composante connexe de g obtenue par un parcours en largeur depuis le sommet source
      */
-    private ArrayList<Sommet> parcours;
+    private ArrayList<Tuile> parcours;
     /**
      * Chaque sommet (clé) est associé à son prédécesseur (valeur) du parcours en largeur
      */
-    private Map<Sommet, Sommet> predecesseurs;
+    private Map<Tuile, Tuile> predecesseurs;
 
-    public BFS(Terrain terrain, Sommet source) {
+    public BFS(Terrain terrain, Tuile source) {
         this.terrain = terrain;
         this.source = source;
         parcours = new ArrayList<>();
-        predecesseurs = new HashMap<Sommet, Sommet>();
+        predecesseurs = new HashMap<Tuile, Tuile>();
         algoBFS();
     }
 
@@ -39,13 +39,13 @@ public class BFS {
      */
 
     private void algoBFS() {
-        LinkedList<Sommet> fifo = new LinkedList<>();
+        LinkedList<Tuile> fifo = new LinkedList<>();
         parcours.add(source);
         predecesseurs.put(source, null);
         fifo.add(source);
         while (!fifo.isEmpty()) {
-            Sommet s = fifo.poll();
-            for (Sommet t : terrain.adjacents(s)) {
+            Tuile s = fifo.poll();
+            for (Tuile t : terrain.adjacents(s)) {
                 if (!parcours.contains(t)) {
                     parcours.add(t);
                     predecesseurs.put(t, s);
@@ -62,13 +62,13 @@ public class BFS {
      * @return le chemin sous forme de liste de sommets
      */
 
-    public ArrayList<Sommet> cheminVersSource(Sommet cible) {
-        ArrayList<Sommet> chemin = new ArrayList<>();
+    public ArrayList<Tuile> cheminVersSource(Tuile cible) {
+        ArrayList<Tuile> chemin = new ArrayList<>();
 
         if (!predecesseurs.containsKey(cible)) {
             return chemin;
         }
-        Sommet courant = cible;
+        Tuile courant = cible;
         while (courant != null) {
             chemin.add(0, courant);
             courant = predecesseurs.get(courant);
@@ -81,11 +81,11 @@ public class BFS {
      **** Pas de modifications à faire ci-dessous ****
      *************************************************/
 
-    public ArrayList<Sommet> getParcours() {
+    public ArrayList<Tuile> getParcours() {
         return parcours;
     }
 
-    public Map<Sommet, Sommet> getPredecesseurs() {
+    public Map<Tuile, Tuile> getPredecesseurs() {
         return predecesseurs;
     }
 
@@ -95,7 +95,7 @@ public class BFS {
      * @param source
      *            le nouveau sommet source
      */
-    public void setSource(Sommet source) {
+    public void setSource(Tuile source) {
         this.source = source;
         clear();
         algoBFS();

@@ -1,15 +1,10 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
-/*
-
- */
+import java.util.ArrayList;
 
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
@@ -20,8 +15,7 @@ public class Environnement {
     private Base base;
 
 
-
-    public Environnement(int niveau,Base base) {
+    public Environnement(int niveau, Base base) {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = new ArrayList<>();
         this.nbreVague = 0;
@@ -42,10 +36,6 @@ public class Environnement {
         return this.batiments;
     }
 
-    public boolean estDansTerrain(int x, int y) {
-        return this.terrainDeJeu.estDansTerrain(x,y);
-    }
-
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
@@ -61,29 +51,25 @@ public class Environnement {
 
     public void unTour() {
         ArrayList<Ennemi> ennemisMort = new ArrayList<>();
-        if(!this.partieEstFinie()) {
+        if (!this.partieEstFinie()) {
             for (Ennemi ennemi : this.ennemis) {
                 if (this.nbTours % 5 == 0) {
-                  
                     if (ennemi.estVivant()) {
-                      
                         ennemi.effectueAction();
-                    } 
-                    else {
+                    } else {
                         ennemisMort.add(ennemi);
-                    }   
+                    }
                 }
                 for (Batiment batiment : this.batiments) {
                     batiment.effectueAction(ennemi);
                 }
             }
-            }
-            for (Ennemi ennemi : ennemisMort) {
-                ennemi.meurt();
-                this.getEnnemis().remove(ennemi);
-            }
-            this.nbTours++;
         }
+        for (Ennemi ennemi : ennemisMort) {
+            ennemi.meurt();
+            this.getEnnemis().remove(ennemi);
+        }
+        this.nbTours++;
     }
 
     /**
@@ -110,20 +96,16 @@ public class Environnement {
      * @return vrai si la distance entre le click et une tour est < à rayonDistanceAutorisee, faux autrement.
      */
     public boolean estAdjacentATour(int x, int y) {
-        final int rayonDistanceAutorisee = 30; // distance minimale entre les batiments (pixels)
-        int distanceX, distanceY;
-        for (Batiment bat : batiments) {
-            distanceX = Math.abs(bat.getX() - x);
-            distanceY = Math.abs(bat.getY() - y);
-            /* Le "&&" est préférable au "||" -> si on fait juste un ou,
-            cela voudrait dire que même si on peut placer un bâtiment horizontalement, puisque verticalement on ne peut pas,
-            la tour est implaçable.
-            */
-            if (distanceX < rayonDistanceAutorisee && distanceY < rayonDistanceAutorisee)
-                return true;
+        boolean sortieBoucle = false;
+        int i = 0;
+        while (i < this.batiments.size() && !sortieBoucle) {
+            if(x == batiments.get(i).getX() && y == batiments.get(i).getY()) {
+                sortieBoucle = true;
+            }
+            i++;
         }
 
-        return false;
+        return sortieBoucle;
     }
 
     public boolean partieEstFinie() {
@@ -138,3 +120,4 @@ public class Environnement {
         this.nbTours = nbTours;
     }
 }
+

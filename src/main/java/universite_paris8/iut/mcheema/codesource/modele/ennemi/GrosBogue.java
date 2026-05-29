@@ -3,6 +3,9 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 
 public class GrosBogue extends Ennemi {
+    public GrosBogue(Environnement env) {
+        super(4, 3, 4, env);
+    }
     public GrosBogue(int x, int y, Environnement env) {
         super(x, y, 4, 3, 4, env);
     }
