@@ -60,16 +60,17 @@ public class Environnement {
                         ennemisMort.add(ennemi);
                     }
                 }
-                for (Batiment batiment : this.batiments) {
-                    batiment.effectueAction(ennemi);
-                }
             }
+            for (Batiment batiment : this.batiments) {
+                batiment.effectueAction();
+            }
+
+            for (Ennemi ennemi : ennemisMort) {
+                ennemi.meurt();
+                this.getEnnemis().remove(ennemi);
+            }
+            this.nbTours++;
         }
-        for (Ennemi ennemi : ennemisMort) {
-            ennemi.meurt();
-            this.getEnnemis().remove(ennemi);
-        }
-        this.nbTours++;
     }
 
     /**
@@ -79,9 +80,8 @@ public class Environnement {
      * @return vrai si l'ennemi se trouve dans le rayon, faux sinon
      */
     public boolean estDansRayonTour(Batiment batiment, Ennemi ennemi) {
-        int distanceHorz = Math.abs(batiment.getX() - ennemi.getX());
-        int distanceVert = Math.abs(batiment.getY() - ennemi.getY());
-        return (distanceHorz <= batiment.getPortee()) && (distanceVert <= batiment.getPortee());
+        double distance = Math.sqrt((batiment.getX()- ennemi.getX()) * (batiment.getX()- ennemi.getX()) + (batiment.getY()- ennemi.getY()) * (batiment.getY()- ennemi.getY()));
+        return distance <= batiment.getPortee();
     }
 
 
@@ -99,7 +99,7 @@ public class Environnement {
         boolean sortieBoucle = false;
         int i = 0;
         while (i < this.batiments.size() && !sortieBoucle) {
-            if(x == batiments.get(i).getX() && y == batiments.get(i).getY()) {
+            if(x == this.batiments.get(i).getX() && y == this.batiments.get(i).getY()) {
                 sortieBoucle = true;
             }
             i++;
