@@ -19,7 +19,7 @@ public class Tour1 extends Batiment {
     public Ennemi ennemiDansPortee() {
         Ennemi ennemiRetourne = null;
         for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
-            if (this.getEnvironnement().estDansRayonTour(this, ennemi)) {
+            if (this.calculDistance(ennemi) <= this.getPortee()) {
                 if (!ennemi.estCamoufle()) {
                     if (ennemiRetourne == null) {
                         ennemiRetourne = ennemi;

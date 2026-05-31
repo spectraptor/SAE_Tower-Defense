@@ -79,10 +79,12 @@ public class Environnement {
      * @param ennemi l'ennemi qui peut être attaqué
      * @return vrai si l'ennemi se trouve dans le rayon, faux sinon
      */
+    /*
     public boolean estDansRayonTour(Batiment batiment, Ennemi ennemi) {
         double distance = Math.sqrt((batiment.getX()- ennemi.getX()) * (batiment.getX()- ennemi.getX()) + (batiment.getY()- ennemi.getY()) * (batiment.getY()- ennemi.getY()));
         return distance <= batiment.getPortee();
     }
+     */
 
 
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
