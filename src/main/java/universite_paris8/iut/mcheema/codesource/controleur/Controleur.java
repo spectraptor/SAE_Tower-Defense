@@ -19,7 +19,6 @@ import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /*
@@ -59,11 +58,8 @@ public class Controleur implements Initializable {
         Tuile entree = new Tuile(4, 19);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
-        Ennemi bug = new Bogue(0, 0, this.environnement);
-        bug.setChemin(chemin);
-
+        Ennemi ennemi;
         for(int i = 0;i<10;i++) {
-            Ennemi ennemi = new Ping(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             if(i==1) {
                 ennemi = new Bogue(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
             }
@@ -80,7 +76,6 @@ public class Controleur implements Initializable {
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
         this.gameLoop.play();
-
     }
 
     private void initAnimation() {
@@ -105,7 +100,6 @@ public class Controleur implements Initializable {
                      */
                 }
         );
-
         gameLoop.getKeyFrames().add(kf);
     }
 
