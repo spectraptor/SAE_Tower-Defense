@@ -8,9 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
@@ -49,6 +50,7 @@ public class Controleur implements Initializable {
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
+        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
 
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);

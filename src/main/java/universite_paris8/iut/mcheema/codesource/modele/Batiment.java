@@ -13,15 +13,13 @@ public abstract class Batiment {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private int portee;
-    private int degat;
     private int cadenceTir;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int portee, int degat, int cTir, Environnement env) {
+    public Batiment(int x, int y, int portee, int cTir, Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.portee = portee;
-        this.degat = degat;
         this.cadenceTir = cTir;
         this.environnement = env;
     }
@@ -50,10 +48,6 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
-    public int getDegat() {
-        return this.degat;
-    }
-
     public void setCadenceTir(int cadenceTir) {
         this.cadenceTir = cadenceTir;
     }
@@ -77,7 +71,7 @@ public abstract class Batiment {
     /**
      * Calcul la distance entre un batiment et un ennemi
      * @param ennemi l'ennemi dont on suhaite connaitre la distance par rapport au batiment
-     * @return la distance entre le batiment et l'ennemi
+     * @return la distance euclidienne entre le batiment et l'ennemi
      */
     public double calculDistance(Ennemi ennemi) {
         return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));

@@ -1,8 +1,7 @@
-package universite_paris8.iut.mcheema.codesource.modele;
+package universite_paris8.iut.mcheema.codesource.controleur.listeners;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
 
