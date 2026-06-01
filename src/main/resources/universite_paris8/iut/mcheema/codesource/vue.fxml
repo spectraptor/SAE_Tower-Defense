@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
+<BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
    <left>
-      <VBox prefHeight="480.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="interfaceGauche" prefHeight="480.0" prefWidth="260.0" BorderPane.alignment="CENTER">
 
          <children>
-            <ImageView fitHeight="40.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="40.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/project.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="7.5" />
+               </VBox.margin></ImageView>
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" />
@@ -23,9 +33,12 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="50.0" prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" top="5.0" />
@@ -33,9 +46,12 @@
             </HBox>
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" top="5.0" />
@@ -43,9 +59,12 @@
             </HBox>
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" top="5.0" />
@@ -53,9 +72,12 @@
             </HBox>
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" top="5.0" />
@@ -63,9 +85,12 @@
             </HBox>
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="198.0" text="Label" />
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="140.0" text="Label" />
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="165.0" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="65.0" text="Button">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets right="5.0" top="5.0" />
@@ -97,24 +122,24 @@
       </VBox>
    </left>
    <center>
-      <Pane fx:id="paneJeu" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneJeu" onMouseClicked="#ajouterTour" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" />
+            <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #1e1f22;" />
             <HBox fx:id="hboxTuile" prefHeight="40.0" prefWidth="640.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="45.0" text="VIE">
+                  <Label fx:id="labelVieBase" alignment="CENTER" contentDisplay="RIGHT" prefHeight="49.0" prefWidth="93.0" text="VIE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="ARGENT">
+                  <Label fx:id="labelArgent" alignment="CENTER" prefHeight="67.0" prefWidth="110.0" text="ARGENT">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="VAGUE">
+                  <Label fx:id="labelVague" alignment="CENTER" prefHeight="53.0" prefWidth="119.0" text="VAGUE" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="445.0" />
+                        <Insets left="280.0" />
                      </HBox.margin>
                   </Label>
                </children>

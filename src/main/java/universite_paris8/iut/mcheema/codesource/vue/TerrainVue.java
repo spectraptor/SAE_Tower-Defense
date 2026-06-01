@@ -3,7 +3,12 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.*;
+
+/**
+ * La classe à pour tâche de s'occuper de l'affichage du terrain et de la création de leur tuiles.
+ *
+ */
 
 public class TerrainVue {
     private Terrain terrainDeJeu;
@@ -28,6 +33,7 @@ public class TerrainVue {
         Image ch_droite_bas_gauche = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin8.png").toExternalForm());
         Image ch_bas_gauche_haut = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin9.png").toExternalForm());
         Image ch_gauche_haut_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin10.png").toExternalForm());
+        Image base = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/base.png").toExternalForm());
         for (int i = 0; i < this.terrainDeJeu.obtenirHauteur(); i++) {
             for (int j = 0; j < this.terrainDeJeu.obtenirLargeur(); j++) {
                 switch (this.terrainDeJeu.avoirCodeTuile(i,j)) {
@@ -60,6 +66,9 @@ public class TerrainVue {
                         break;
                     case '0':
                         this.tilePane.getChildren().add(new ImageView(ch_gauche_haut_droite));
+                        break;
+                    case 'b':
+                        this.tilePane.getChildren().add(new ImageView(base));
                         break;
                     case 'h':
                         this.tilePane.getChildren().add(new ImageView(imgHerbe));

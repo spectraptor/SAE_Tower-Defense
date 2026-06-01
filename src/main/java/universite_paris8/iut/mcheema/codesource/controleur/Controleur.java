@@ -4,86 +4,138 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import universite_paris8.iut.mcheema.codesource.modele.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.Ennemi;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
+import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
-
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Le controleur fait la gestion entre le modèle et la vue.
+ * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
+ */
+
 public class Controleur implements Initializable {
-  
+
     private Timeline gameLoop;
-    private int temps; //TODO c'est le nb de tours, qui devrait être dans Environnement
 
     private Environnement environnement;
 
     @FXML
     private TilePane tilePane;
 
-
     @FXML
     private Pane paneJeu;
 
+    @FXML
+    private Label labelVieBase;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.environnement = new Environnement(1,640,480);
-        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur()* Terrain.TAILLE_TUILLE,this.environnement.getTerrainDeJeu().obtenirHauteur()*Terrain.TAILLE_TUILLE);
-        TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(),this.tilePane);
-        Ennemi bug = new Bogue(400, 100, this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
-        this.environnement.ajouterEnnemi(bug);
-        creerSpriteEnnemi(bug);
+
+        Base base = new Base();
+        this.labelVieBase.textProperty().bind(base.pvProperty().asString());
+        this.environnement = new Environnement(2,base);
+
+        // Listener sur l'Observable Liste d'ennemis
+        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
+        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
+
+        this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
+        TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
+
+        // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
+        /*
+        Tuile baseTuile = new Tuile(0, 12);
+        Tuile entree = new Tuile(19, 4);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+
+         */
+
+        // Carte 2
+        Tuile baseTuile = new Tuile(0, 7);
+        Tuile entree = new Tuile(15, 0);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+
+        Tuile baseTuile2 = new Tuile(0, 11);
+        Tuile entree2 = new Tuile(13, 14);
+        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
+        ArrayList<Tuile> chemin2 = bfs2.cheminVersSource(baseTuile2);
+
+
+        Ennemi ennemi;
+        for(int i = 0;i<2;i++) {
+            if(i==0) {
+                ennemi = new Bogue(this.environnement);
+                ennemi.setChemin(chemin);
+            }
+            else {
+                ennemi = new ErreurExecution(this.environnement);
+                ennemi.setChemin(chemin2);
+            }
+
+            this.environnement.ajouterEnnemi(ennemi);
+        }
+
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
         this.gameLoop.play();
-
     }
 
     private void initAnimation() {
-        Ennemi premierE = this.environnement.getEnnemis().get(0);
-        premierE.attribuerDirectionAleatoire();
 
         gameLoop = new Timeline();
-        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // 60 FPS (1 / 60)
                 Duration.seconds(0.017),
-                (ev ->{
-                    // TODO remplacer tout ça par environnement.unTour();
-                    if (premierE.getX() + (premierE.getVitesse() * premierE.getDx()) >= this.paneJeu.getPrefWidth()) {
-                        System.out.println("Fin");
-                        gameLoop.stop();
-                    }
-                    // Le mouvement s'effectue toutes les 5 frames
-                    else if (temps % 5 == 0) {
-                        int nPosX = premierE.getX() + (premierE.getVitesse() * premierE.getDx());
-                        int nPosY = premierE.getY() + (premierE.getVitesse() * premierE.getDy());
-
-                        if (!this.environnement.tuileEstAccessibleCoords(nPosX, nPosY))  {
-                            premierE.attribuerDirectionAleatoire();
-                        }
-                        premierE.seDeplace();
-                    }
-                    temps++;
-                })
+                ev -> {
+                    environnement.unTour();
+                }
         );
         gameLoop.getKeyFrames().add(kf);
     }
 
-    public void creerSpriteEnnemi(Ennemi e) {
-        Circle sprite = new Circle(3, Color.RED);
-        sprite.setId(e.getId());
-        sprite.translateXProperty().bind(e.xProperty());
-        sprite.translateYProperty().bind(e.yProperty());
-        this.paneJeu.getChildren().add(sprite); // meilleur de mettre le pane au lieu du tilePane, sinon les coordonnées ne marchent pas
+    @FXML
+    public void ajouterTour(MouseEvent mouseEvent) {
+        if (!this.environnement.partieEstFinie()) {
+            int coordsSourisX = (int) mouseEvent.getX();
+            int coordsSourisY = (int) mouseEvent.getY();
+
+            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
+
+            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
+            if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
+                    !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
+
+                Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
+                this.environnement.ajouterBatiment(batiment);
+
+                System.out.println(batiment);
+
+                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
+                batimentVue.creerSpriteBatiment();
+
+                System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+
+            }
+        }
     }
+
 }
