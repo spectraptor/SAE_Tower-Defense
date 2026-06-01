@@ -63,9 +63,9 @@ public class Controleur implements Initializable {
         bug.setChemin(chemin);
 
         for(int i = 0;i<10;i++) {
-            Ennemi ennemi = new Ping(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+            Ennemi ennemi = new Ping(this.environnement);
             if(i==1) {
-                ennemi = new Bogue(this.environnement); // (560, 140) si on veut essayer qu'il atteigne la fin
+                ennemi = new Bogue(this.environnement);
             }
             else if (i<5) {
                 ennemi = new ChevalDeTroie(this.environnement);
@@ -92,17 +92,6 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.017),
                 ev -> {
                     environnement.unTour();
-                    /*
-                    if(this.environnement.getEnnemis().isEmpty()) {
-                        this.gameLoop.stop();
-                        System.out.println("Vous avez gagné");
-                    }
-                    if(this.environnement.getBase().estDetruite()) {
-                        this.gameLoop.stop();
-                        System.out.println("Vous avez perdu");
-                    }
-
-                     */
                 }
         );
 
