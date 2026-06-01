@@ -13,12 +13,12 @@ public class Tour1 extends Batiment {
         Ennemi ennemi = this.ennemiDansPortee();
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0)
-                this.getEnvironnement().ajouterProjectile(new Projectile(this.getX(), this.getY(), 1, 2, ennemi, this.getEnvironnement()));
+                this.getEnvironnement().ajouterProjectile(new Projectile(this.getX(), this.getY(), 1, 2, ennemi));
         }
     }
 
     /**
-     *Recherche l'ennemi non cammouflé le plus proche de la tour parmi
+     * Recherche l'ennemi non cammouflé le plus proche de la tour parmi
      * tous les ennemis situés dans sa porté.
      * @return l'ennemi le plus proche dans la portée de la tour ou null si
      * aucun ennemi n'est dans sa portéee

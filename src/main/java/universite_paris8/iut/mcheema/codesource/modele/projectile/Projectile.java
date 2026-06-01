@@ -16,9 +16,8 @@ public class Projectile {
     private int vitesse;
     private Ennemi cible;
     private boolean estArrive;
-    private Environnement environnement;
 
-    public Projectile(double x,double y,int degat,int vitesse,Ennemi cible,Environnement environnement) {
+    public Projectile(double x,double y,int degat,int vitesse,Ennemi cible) {
         idCpt++;
         this.id = "P" + idCpt;
         this.xProperty = new SimpleDoubleProperty(x);
@@ -27,7 +26,6 @@ public class Projectile {
         this.vitesse = vitesse;
         this.cible = cible;
         this.estArrive = false;
-        this.environnement = environnement;
     }
 
     public String getId() {
@@ -44,10 +42,6 @@ public class Projectile {
 
     public final DoubleProperty xProperty() {
         return this.xProperty;
-    }
-
-    public Environnement getEnvironnement() {
-        return this.environnement;
     }
 
     public final double getY() {
@@ -80,7 +74,8 @@ public class Projectile {
                 this.setX(this.getX() + vUnitX * this.vitesse);
                 this.setY(this.getY() + vUnitY * this.vitesse);
                 if(Objects.equals(this.id, "P1")) {
-                    System.out.println("ID : " + this.getId() + "\nDistX : " + distX + "\nDistY : " + distY + "\ndistance : " + distance + "\nvUnitX : " + vUnitX + "\nvUnitY" + vUnitY);
+                    //System.out.println("ID : " + this.getId() + "\nDistX : " + distX + "\nDistY : " + distY + "\ndistance : " + distance + "\nvUnitX : " + vUnitX + "\nvUnitY" + vUnitY);
+                    //System.out.println(this.getX()+";"+this.getY());
                 }
             }
         }
