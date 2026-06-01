@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Le controlleur fait la gestion entre le modèle et la vue.
+ * Le controleur fait la gestion entre le modèle et la vue.
  * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
  */
 
@@ -62,8 +62,8 @@ public class Controleur implements Initializable {
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
         Ennemi ennemi;
-        for(int i = 0;i<10;i++) {
-            if(i==1) {
+        for(int i = 0;i<2;i++) {
+            if(i==0) {
                 ennemi = new Bogue(this.environnement);
             }
             else {
