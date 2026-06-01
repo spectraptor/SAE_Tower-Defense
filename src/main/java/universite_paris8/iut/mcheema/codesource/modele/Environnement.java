@@ -100,10 +100,10 @@ public class Environnement {
     }
 
     /**
-     * Regarde si une tour est à proximité de coordonnées du clic de la souris.
-     * @param x l'abscisse du clic de la souris
-     * @param y l'ordonnée du clic de la souris.
-     * @return vrai si la distance entre le click et une tour est < à rayonDistanceAutorisee, faux autrement.
+     * Regarde si une tour est déja présente dans une tuile
+     * @param x les coordonnées x de la tuile
+     * @param y les coordonnées y de la tuile
+     * @return true si une tuile est déjà présente, false autrement.
      */
     public boolean estAdjacentATour(int x, int y) {
         boolean sortieBoucle = false;
