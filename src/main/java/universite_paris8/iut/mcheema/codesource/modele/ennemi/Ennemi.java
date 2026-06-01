@@ -123,11 +123,9 @@ public abstract class Ennemi {
             double distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
             if (distance > this.vitesse) {
-                // On avance vers la tuile suivante
                 this.setX(this.getX() + (int) (diffX / distance * this.vitesse));
                 this.setY(this.getY() + (int) (diffY / distance * this.vitesse));
             } else {
-                // Assez proche on se pose sur la tuile et on passe à la suivante
                 this.setX(cibleX);
                 this.setY(cibleY);
                 this.indiceChemin++;

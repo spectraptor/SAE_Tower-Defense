@@ -1,0 +1,49 @@
+
+#interfaceGauche {
+    -fx-background-color: #2b2d30;
+}
+
+.label {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #f5f5f5;
+}
+
+#labelArgent, #labelVague {
+    -fx-text-fill: #000000;
+    -fx-font-size: 15pt;
+    fx-font-weight: bold;
+
+}
+
+#labelVieBase {
+    -fx-font-size: 20pt;
+    -fx-text-fill: #ff6b68;
+    -fx-font-weight: bold;
+}
+
+.button {
+
+    -fx-background-color: #272727;
+    -fx-border-color: #4d4e51;
+    -fx-border-width: 2;
+    -fx-border-radius: 6;
+    -fx-text-fill: #f5f5f5;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11pt;
+}
+
+.button:hover {
+    -fx-background-color: #20252b;
+    -fx-border-color: #5a5b5f;
+}
+
+.button:pressed {
+    -fx-background-color: #20252b;
+}
+
+.button:focused {
+    -fx-border-color: #a4c9ff;
+    -fx-border-width: 2;
+}
+
+
