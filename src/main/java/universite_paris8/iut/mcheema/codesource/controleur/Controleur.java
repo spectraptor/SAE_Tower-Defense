@@ -8,9 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
@@ -19,7 +20,6 @@ import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /*
@@ -50,6 +50,7 @@ public class Controleur implements Initializable {
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
+        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
 
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
@@ -59,11 +60,8 @@ public class Controleur implements Initializable {
         Tuile entree = new Tuile(4, 19);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
-        Ennemi bug = new Bogue(0, 0, this.environnement);
-        bug.setChemin(chemin);
-
+        Ennemi ennemi;
         for(int i = 0;i<10;i++) {
-            Ennemi ennemi = new Ping(this.environnement);
             if(i==1) {
                 ennemi = new Bogue(this.environnement);
             }
@@ -80,7 +78,6 @@ public class Controleur implements Initializable {
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
         this.gameLoop.play();
-
     }
 
     private void initAnimation() {
@@ -94,7 +91,6 @@ public class Controleur implements Initializable {
                     environnement.unTour();
                 }
         );
-
         gameLoop.getKeyFrames().add(kf);
     }
 
