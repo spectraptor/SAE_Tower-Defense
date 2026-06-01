@@ -4,9 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
-
 import java.util.ArrayList;
-
+/*
+La classe Environnement gère l'ensemble du fonctionnement du jeu. Il effectue les actions à chaque tour,
+l'apparition de tous les élements du jeu (base, terrain, liste d'ennemis, liste de batiments.
+ */
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ArrayList<Batiment> batiments;

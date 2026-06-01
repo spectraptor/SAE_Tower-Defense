@@ -1,5 +1,8 @@
 package universite_paris8.iut.mcheema.codesource.modele;
-
+/**
+ * La classe Tuile connait sa position en ligne et en colonne.
+ * Elle est utilisé pour l'algorithme.
+ */
 public class Tuile {
     private int ligne;
     private int colonne;

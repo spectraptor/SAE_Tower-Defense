@@ -70,7 +70,7 @@ public abstract class Batiment {
 
     /**
      * Calcul la distance entre un batiment et un ennemi
-     * @param ennemi l'ennemi dont on suhaite connaitre la distance par rapport au batiment
+     * @param ennemi l'ennemi dont on souhaite connaitre la distance par rapport au batiment
      * @return la distance euclidienne entre le batiment et l'ennemi
      */
     public double calculDistance(Ennemi ennemi) {

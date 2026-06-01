@@ -1,7 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-/*
-
+/**
+ * La classe Terrain connait la liste des différents terrains (les tuiles, la longueur, la largueur, la taille d'une tuile)
  */
 
 import java.util.ArrayList;

@@ -2,7 +2,9 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
-
+/**
+ * La classe Tour1 étend la classe Bâtiment, elle peut tirer un projectile si un ennemi est dans sa portée.
+ */
 public class Tour1 extends Batiment {
     public Tour1(int x, int y, Environnement env) {
         super(x, y, 35, 20, env);

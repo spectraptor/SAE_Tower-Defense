@@ -1,7 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
-/*
-
+/**
+ * Bogue qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;

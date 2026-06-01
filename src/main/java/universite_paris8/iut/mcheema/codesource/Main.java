@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 import java.io.IOException;
 
-/*
-
+/**
+ * Main gère le lancement du jeu.
  */
 
 public class Main extends javafx.application.Application {

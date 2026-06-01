@@ -8,8 +8,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
 import java.util.ArrayList;
 
-/*
-
+/**
+ * Ennemi sont les ennemis qui se déplacent vers la base, il connait son chemin, les pv sa vitesse et peut se déplacer ou/et faire une action.
  */
 
 public abstract class Ennemi {
@@ -107,11 +107,9 @@ public abstract class Ennemi {
             this.pv -= degat;
     }
 
-
     public Environnement getEnvironnement() {
         return this.environnement;
-    }  
-
+    }
 
     public void seDeplace() {
             Tuile prochaine = this.chemin.get(this.indiceChemin + 1);
@@ -144,7 +142,6 @@ public abstract class Ennemi {
     public boolean aAtteintDestination() {
         return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
-
 
     /**
      * Cette méthode va effectuer l'action de base d'un ennemi qui est de se déplacer

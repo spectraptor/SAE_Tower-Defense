@@ -22,8 +22,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
-
+/**
+ * Le controlleur fait la gestion entre le modèle et la vue.
+ * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
  */
 
 public class Controleur implements Initializable {
@@ -64,9 +65,6 @@ public class Controleur implements Initializable {
         for(int i = 0;i<10;i++) {
             if(i==1) {
                 ennemi = new Bogue(this.environnement);
-            }
-            else if (i<5) {
-                ennemi = new ChevalDeTroie(this.environnement);
             }
             else {
                 ennemi = new ErreurExecution(this.environnement);

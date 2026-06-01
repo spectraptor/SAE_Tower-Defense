@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
+/*
+Le BFS est l'algorithme qui permet de trouver et renvoyer le chemin le plus court.
+ */
 public class BFS {
     /**
      * Le graphe (ou grille) sur lequel on travaille
