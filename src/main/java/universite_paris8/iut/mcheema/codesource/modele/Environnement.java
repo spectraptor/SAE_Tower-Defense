@@ -107,7 +107,7 @@ public class Environnement {
      * @param y les coordonnées y de la tuile
      * @return true si une tuile est déjà présente, false autrement.
      */
-    public boolean estAdjacentATour(int x, int y) {
+    public boolean tuileContientUnBatiment(int x, int y) {
         boolean sortieBoucle = false;
         int i = 0;
         while (i < this.batiments.size() && !sortieBoucle) {

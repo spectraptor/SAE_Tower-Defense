@@ -122,7 +122,7 @@ public class Controleur implements Initializable {
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
 
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
-                    !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
+                    !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
                 Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
                 this.environnement.ajouterBatiment(batiment);
