@@ -15,7 +15,7 @@ public class Tour1 extends Batiment {
         Ennemi ennemi = this.ennemiDansPortee();
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0)
-                this.getEnvironnement().ajouterProjectile(new Projectile(this.getX(), this.getY(), 1, 2, ennemi));
+                this.getEnvironnement().ajouterProjectile(new Projectile(this.getX(), this.getY(), 1, 5, ennemi));
         }
     }
 

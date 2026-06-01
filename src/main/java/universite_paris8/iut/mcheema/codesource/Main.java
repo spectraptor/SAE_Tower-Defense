@@ -18,6 +18,7 @@ public class Main extends javafx.application.Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 900, 480);
         stage.setTitle("Hello!");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

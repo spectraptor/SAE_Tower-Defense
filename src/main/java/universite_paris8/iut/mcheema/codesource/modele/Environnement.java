@@ -19,14 +19,14 @@ public class Environnement {
     private Base base;
 
 
-    public Environnement(int niveau, Base base) {
+    public Environnement(int niveau) {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = new ArrayList<>();
         this.projectiles = FXCollections.observableArrayList();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
-        this.base = base;
+        this.base = new Base();
     }
 
     public Terrain getTerrainDeJeu() {
