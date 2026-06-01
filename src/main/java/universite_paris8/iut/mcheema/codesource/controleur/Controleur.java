@@ -47,7 +47,7 @@ public class Controleur implements Initializable {
 
         Base base = new Base();
         this.labelVieBase.textProperty().bind(base.pvProperty().asString());
-        this.environnement = new Environnement(1,base);
+        this.environnement = new Environnement(2,base);
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
@@ -57,19 +57,37 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
-        Tuile baseTuile = new Tuile(12, 0);
-        Tuile entree = new Tuile(4, 19);
+        /*
+        Tuile baseTuile = new Tuile(0, 12);
+        Tuile entree = new Tuile(19, 4);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+
+         */
+
+        // Carte 2
+        Tuile baseTuile = new Tuile(0, 7);
+        Tuile entree = new Tuile(15, 0);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+
+        Tuile baseTuile2 = new Tuile(0, 11);
+        Tuile entree2 = new Tuile(13, 14);
+        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
+        ArrayList<Tuile> chemin2 = bfs2.cheminVersSource(baseTuile2);
+
+
         Ennemi ennemi;
         for(int i = 0;i<2;i++) {
             if(i==0) {
                 ennemi = new Bogue(this.environnement);
+                ennemi.setChemin(chemin);
             }
             else {
                 ennemi = new ErreurExecution(this.environnement);
+                ennemi.setChemin(chemin2);
             }
-            ennemi.setChemin(chemin);
+
             this.environnement.ajouterEnnemi(ennemi);
         }
 

@@ -7,13 +7,14 @@ public class Tuile {
     private int ligne;
     private int colonne;
 
-    public Tuile(int ligne, int colonne) {
+    public Tuile(int colonne, int ligne) {
         this.ligne = ligne;
         this.colonne = colonne;
     }
 
     public int getLigne() { return this.ligne; }
-    public int getColonne() { return this.colonne; }
+    public int getColonne() { return this.colonne;}
+
 
 
     public boolean equals(Object obj) {

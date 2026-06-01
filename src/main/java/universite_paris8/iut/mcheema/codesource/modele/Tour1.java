@@ -7,7 +7,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
  */
 public class Tour1 extends Batiment {
     public Tour1(int x, int y, Environnement env) {
-        super(x, y, 35, 20, env);
+        super(x, y, 350, 20, env);
     }
 
     @Override

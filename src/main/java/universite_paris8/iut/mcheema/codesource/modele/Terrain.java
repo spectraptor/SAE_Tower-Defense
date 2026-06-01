@@ -150,7 +150,7 @@ public class Terrain {
             int nCol = t.getColonne() + direction[0];
             int nLigne = t.getLigne() + direction[1];
             if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
-                voisins.add(new Tuile(nLigne, nCol));
+                voisins.add(new Tuile(nCol, nLigne));
             }
         }
         return voisins;
