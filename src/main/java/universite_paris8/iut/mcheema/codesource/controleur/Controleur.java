@@ -85,7 +85,7 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.017),
                 ev -> {
-                    environnement.unTour2();
+                    environnement.unTour();
                 }
         );
         gameLoop.getKeyFrames().add(kf);
