@@ -6,8 +6,8 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import java.util.Objects;
 
 public class MissileTete extends MissileTeleguide {
-    public MissileTete(double x, double y, Environnement env,Ennemi cible) {
-        super(x, y, 1, 1,env, cible);
+    public MissileTete(double x, double y, Ennemi cible,Environnement env) {
+        super(x, y, 1, 1,cible,env);
     }
 
     @Override

@@ -114,7 +114,6 @@ public class Controleur implements Initializable {
                 batimentVue.creerSpriteBatiment();
 
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
-
             }
         }
     }

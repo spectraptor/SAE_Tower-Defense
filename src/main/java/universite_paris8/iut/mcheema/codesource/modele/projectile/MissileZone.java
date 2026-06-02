@@ -32,7 +32,10 @@ public class MissileZone extends Projectile {
 
     public void effectueExplosion() {
         for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
-            if(((ennemi.getX() - this.getX()) * (ennemi.getX() - this.getX())) + ((ennemi.getY() - this.getY()) * ennemi.getY() - this.getY()) <= this.portee * this.portee) {
+            double distX = ennemi.getX() - this.getX();
+            double distY = ennemi.getY() - this.getY();
+            double distance = distX * distX + distY * distY;
+            if(distance <= this.portee * this.portee) {
                 ennemi.subirDegats(this.getDegat());
                 if(!ennemi.estVivant()) {
                     System.out.println(ennemi);

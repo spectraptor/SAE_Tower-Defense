@@ -28,12 +28,11 @@ public class ProjectileVue {
             /* Style visuel */
             rayonB.setFill(Color.TRANSPARENT);
             rayonB.setStroke(Color.BLACK);
-            rayonB.setStrokeWidth(1.5);
+            rayonB.setStrokeWidth(0.5);
 
-        /* Au moment ou le sprite est crée, translateX et translateY sont nuls.
-        On est donc obligé de faire un bind, autrement ça ne marche pas. */
             rayonB.centerXProperty().bind(sprite.translateXProperty());
             rayonB.centerYProperty().bind(sprite.translateYProperty());
+            rayonB.setId(projectile.getId()+"P");
             this.paneJeu.getChildren().add(rayonB);
         }
     }
