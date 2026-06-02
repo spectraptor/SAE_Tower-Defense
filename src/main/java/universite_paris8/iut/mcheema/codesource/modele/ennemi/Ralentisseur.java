@@ -1,6 +1,6 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
-import universite_paris8.iut.mcheema.codesource.modele.Batiment;
+import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 
 public class Ralentisseur extends Ennemi {

@@ -1,7 +1,8 @@
-package universite_paris8.iut.mcheema.codesource.modele;
+package universite_paris8.iut.mcheema.codesource.batiment;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
@@ -64,18 +65,45 @@ public abstract class Batiment {
         return this.portee;
     }
 
-    public abstract Ennemi ennemiDansPortee();
-
     public abstract void effectueAction();
 
     /**
      * Calcul la distance entre un batiment et un ennemi
-     * @param ennemi l'ennemi dont on suhaite connaitre la distance par rapport au batiment
+     * @param ennemi l'ennemi dont on souhaite connaitre la distance par rapport au batiment
      * @return la distance euclidienne entre le batiment et l'ennemi
      */
     public double calculDistance(Ennemi ennemi) {
         return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));
     }
+
+
+    /**
+     * Recherche l'ennemi le plus proche de la tour parmi
+     * tous les ennemis situés dans sa porté.
+     * @return l'ennemi le plus proche dans la portée de la tour ou null si
+     * aucun ennemi n'est dans sa portéee
+     */
+    public Ennemi ennemiDansPortee() {
+        Ennemi ennemiRetourne = null;
+        for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
+            if (this.calculDistance(ennemi) <= this.getPortee()) {
+                if (!ennemi.estCamoufle()) {
+                    if (ennemiRetourne == null) {
+                        ennemiRetourne = ennemi;
+                    }
+                    else {
+                        double distActu = calculDistance(ennemiRetourne);
+                        double distNouv = calculDistance(ennemi);
+                        if (distNouv < distActu) {
+                            ennemiRetourne = ennemi;
+                        }
+                    }
+                }
+            }
+        }
+        return ennemiRetourne;
+    }
+
 
     public String toString() {
         return "Position du bâtiment : " + this.getX() + ";" + this.getY();

@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 import java.io.IOException;
 
 /*
@@ -19,6 +18,7 @@ public class Main extends javafx.application.Application {
         Scene scene = new Scene(root, 900, 480);
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
