@@ -13,11 +13,11 @@ public abstract class Projectile {
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private int degat;
-    private double vitesse;
+    private int vitesse;
     private boolean estArrive;
     private Environnement environnement;
 
-    public Projectile(double x,double y,int degat,double vitesse,Environnement env) {
+    public Projectile(double x,double y,int degat,int vitesse,Environnement env) {
         idCpt++;
         this.id = "P" + idCpt;
         this.xProperty = new SimpleDoubleProperty(x);
@@ -58,7 +58,7 @@ public abstract class Projectile {
 
     public abstract void seDeplacer();
 
-    public double getVitesse() {
+    public int getVitesse() {
         return this.vitesse;
     }
 

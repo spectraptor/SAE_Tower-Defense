@@ -10,8 +10,8 @@ public class MissileZone extends Projectile {
     private int xCible;
     private int yCible;
     public MissileZone(double x, double y, int xCible, int yCible, Environnement env) {
-        super(x, y, 4, 4,env);
-        this.portee = 10;
+        super(x, y, 1, 2,env);
+        this.portee = 35;
         this.xCible = xCible;
         this.yCible = yCible;
     }
@@ -47,5 +47,9 @@ public class MissileZone extends Projectile {
                 }
             }
         }
+    }
+
+    public int getPortee() {
+        return this.portee;
     }
 }

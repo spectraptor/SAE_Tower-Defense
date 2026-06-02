@@ -59,7 +59,7 @@ public class Controleur implements Initializable {
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
         Ennemi ennemi;
         for(int i = 0;i<10;i++) {
-            if(i==1) {
+            if(i== 1) {
                 ennemi = new GrosBogue(this.environnement);
             }
             else if (i<10) {
