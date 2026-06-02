@@ -44,9 +44,8 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Base base = new Base();
-        this.labelVieBase.textProperty().bind(base.pvProperty().asString());
-        this.environnement = new Environnement(2,base);
+        this.environnement = new Environnement(2);
+        this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
