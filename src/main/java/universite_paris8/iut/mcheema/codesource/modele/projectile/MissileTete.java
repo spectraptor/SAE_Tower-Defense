@@ -5,29 +5,27 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.Objects;
 
-public class MissileTete extends Projectile {
-    private Ennemi cible;
-    public MissileTete(double x, double y, Ennemi cible, Environnement env) {
-        super(x, y, 1, 1,env);
-        this.cible = cible;
+public class MissileTete extends MissileTeleguide {
+    public MissileTete(double x, double y, Environnement env,Ennemi cible) {
+        super(x, y, 1, 1,env, cible);
     }
 
     @Override
     public void effectueAction() {
-        double distX = this.cible.getX() - this.getX();
-        double distY = this.cible.getY() - this.getY();
+        double distX = this.getCible().getX() - this.getX();
+        double distY = this.getCible().getY() - this.getY();
         double distance = Math.sqrt(distX * distX + distY * distY);
 
         if(distance <= this.getVitesse()) {
-            this.cible.subirDegats(this.getDegat());
+            this.getCible().subirDegats(this.getDegat());
             this.setEstArrive(true);
         }
         else {
             this.deplaceMissile(distX,distY,distance);
         }
 
-        if(!this.cible.estVivant()) {
-            if(this.getX() == this.cible.getX() && this.getY() == this.cible.getY()) {
+        if(!this.getCible().estVivant()) {
+            if(this.getX() == this.getCible().getX() && this.getY() == this.getCible().getY()) {
                 this.setEstArrive(true);
             }
         }

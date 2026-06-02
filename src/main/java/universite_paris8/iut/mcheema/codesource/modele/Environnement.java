@@ -61,35 +61,27 @@ public class Environnement {
     }
 
     public void unTour() {
-        ArrayList<Ennemi> ennemisMort = new ArrayList<>();
-        ArrayList<Projectile> projectilesArrive = new ArrayList<>();
-        if (!this.partieEstFinie()) {
-            for (Ennemi ennemi : this.ennemis) {
-                if (this.nbTours % 5 == 0) {
-                    if (ennemi.estVivant()) {
-                        ennemi.effectueAction();
-                    } else {
-                        ennemisMort.add(ennemi);
+        if(!this.partieEstFinie()) {
+            for (int i = 0 ;i< this.getEnnemis().size();i++) {
+                if (this.getNbTours() % 5 == 0) {
+                    if(this.getEnnemis().get(i).estVivant()) {
+                        this.getEnnemis().get(i).effectueAction();
+                    }
+                    else {
+                        this.getEnnemis().remove(i);
                     }
                 }
             }
-            for (Batiment batiment : this.batiments) {
-                batiment.effectueAction();
+
+            for(int i = 0 ;i<this.getBatiments().size();i++) {
+                this.getBatiments().get(i).effectueAction();
             }
 
-            for(Projectile projectile : this.projectiles) {
-                projectile.effectueAction();
-                if(projectile.getEstArrive()) {
-                    projectilesArrive.add(projectile);
+            for(int i = 0 ;i< this.getProjectiles().size();i++) {
+                this.getProjectiles().get(i).effectueAction();
+                if(this.getProjectiles().get(i).getEstArrive()) {
+                    this.getProjectiles().remove(i);
                 }
-            }
-
-            for (Ennemi ennemi : ennemisMort) {
-                ennemi.meurt();
-                this.getEnnemis().remove(ennemi);
-            }
-            for(Projectile projectile : projectilesArrive) {
-                this.getProjectiles().remove(projectile);
             }
             this.nbTours++;
         }
