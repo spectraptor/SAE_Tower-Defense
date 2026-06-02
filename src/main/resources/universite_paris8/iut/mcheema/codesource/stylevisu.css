@@ -46,4 +46,16 @@
     -fx-border-width: 2;
 }
 
+#vitesse {
+    -fx-background-image: url("images/boutons/vitesse.png");
+    -fx-background-size: contain;
+}
 
+#pause {
+    -fx-background-image: url("images/boutons/pause.png");
+    -fx-background-size: contain;
+}
+#lancer {
+    -fx-background-image: url("images/boutons/lancer.png");
+    -fx-background-size: contain;
+}
