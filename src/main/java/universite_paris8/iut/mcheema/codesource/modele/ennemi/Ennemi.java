@@ -3,7 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Tuile;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public abstract class Ennemi {
     private int vitesse;
     private int argentDonne;
     private Environnement environnement;
-    private ArrayList<Tuile> chemin;
+    private ArrayList<Point> chemin;
     private int indiceChemin;
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env) {
@@ -112,7 +112,7 @@ public abstract class Ennemi {
     }
 
     public void seDeplace() {
-            Tuile prochaine = this.chemin.get(this.indiceChemin + 1);
+            Point prochaine = this.chemin.get(this.indiceChemin + 1);
             int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
             int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
 
@@ -130,10 +130,10 @@ public abstract class Ennemi {
             }
     }
 
-    public void setChemin(ArrayList<Tuile> chemin) {
+    public void setChemin(ArrayList<Point> chemin) {
         this.chemin = chemin;
         if (chemin != null && !chemin.isEmpty()) {
-            Tuile depart = chemin.get(0);
+            Point depart = chemin.get(0);
             this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
             this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
         }

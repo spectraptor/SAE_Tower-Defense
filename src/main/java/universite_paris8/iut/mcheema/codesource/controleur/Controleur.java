@@ -13,7 +13,6 @@ import universite_paris8.iut.mcheema.codesource.controleur.listeners.Observateur
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
@@ -66,15 +65,15 @@ public class Controleur implements Initializable {
          */
 
         // Carte 2
-        Tuile baseTuile = new Tuile(0, 7);
-        Tuile entree = new Tuile(15, 0);
+        Point basePoint = new Point(0, 7);
+        Point entree = new Point(15, 0);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+        ArrayList<Point> chemin = bfs.cheminDepuisSource(basePoint);
 
-        Tuile baseTuile2 = new Tuile(0, 11);
-        Tuile entree2 = new Tuile(13, 14);
+        Point basePoint2 = new Point(0, 11);
+        Point entree2 = new Point(13, 14);
         BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
-        ArrayList<Tuile> chemin2 = bfs2.cheminVersSource(baseTuile2);
+        ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(basePoint2);
 
 
         Ennemi ennemi;
