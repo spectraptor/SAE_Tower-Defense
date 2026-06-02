@@ -2,8 +2,10 @@ package universite_paris8.iut.mcheema.codesource.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -40,6 +42,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label labelVieBase;
+
+    @FXML
+    private Button tour1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,4 +141,29 @@ public class Controleur implements Initializable {
         }
     }
 
+    public void choisirBouton(ActionEvent actionEvent) {
+        Button bouton = (Button) actionEvent.getSource();
+
+        switch(bouton.getText()) {
+            case "Compilateur":
+                System.out.println("choisir tour 1");
+                break;
+            case "Cloud":
+                System.out.println("choisir tour 2");
+                break;
+            case "Debugger":
+                System.out.println("choisir tour 3");
+                break;
+            case "Bombe Logique":
+                System.out.println("choisir tour 4");
+                break;
+            case "Surcadence":
+                System.out.println("choisir tour 5");
+                break;
+            case "RAM":
+                System.out.println("choisir tour 6");
+                break;
+
+        }
+    }
 }
