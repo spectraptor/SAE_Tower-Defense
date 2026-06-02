@@ -15,9 +15,4 @@ public abstract class MissileTeleguide extends Projectile {
         return this.cible;
     }
 
-    @Override
-    public void deplaceMissile(double distX, double distY, double distance) {
-        super.deplaceMissile(distX,distY,distance);
-    }
-
 }
