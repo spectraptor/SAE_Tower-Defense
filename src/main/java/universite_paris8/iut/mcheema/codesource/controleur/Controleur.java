@@ -12,10 +12,7 @@ import universite_paris8.iut.mcheema.codesource.controleur.listeners.Observateur
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
@@ -63,9 +60,9 @@ public class Controleur implements Initializable {
         Ennemi ennemi;
         for(int i = 0;i<10;i++) {
             if(i==1) {
-                ennemi = new Bogue(this.environnement);
+                ennemi = new GrosBogue(this.environnement);
             }
-            else if (i<5) {
+            else if (i<10) {
                 ennemi = new ChevalDeTroie(this.environnement);
             }
             else {

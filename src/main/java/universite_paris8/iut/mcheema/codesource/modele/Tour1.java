@@ -1,11 +1,13 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 public class Tour1 extends Batiment {
     public Tour1(int x, int y, Environnement env) {
-        super(x, y, 35, 20, env);
+        super(x, y, 350, 100, env);
     }
 
     @Override
@@ -13,7 +15,7 @@ public class Tour1 extends Batiment {
         Ennemi ennemi = this.ennemiDansPortee();
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0)
-                this.getEnvironnement().ajouterProjectile(new Projectile(this.getX(), this.getY(), 1, 2, ennemi));
+                this.getEnvironnement().ajouterProjectile(new MissileTete(this.getX(), this.getY(), ennemi,this.getEnvironnement()));
         }
     }
 
