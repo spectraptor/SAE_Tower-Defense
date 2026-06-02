@@ -10,14 +10,14 @@ public class MissileZone extends Projectile {
     private int xCible;
     private int yCible;
     public MissileZone(double x, double y, int xCible, int yCible, Environnement env) {
-        super(x, y, 1, 2,env);
+        super(x, y, 5, 2,env);
         this.portee = 35;
         this.xCible = xCible;
         this.yCible = yCible;
     }
 
     @Override
-    public void seDeplacer() {
+    public void effectueAction() {
         double distX = xCible - this.getX();
         double distY = yCible - this.getY();
         double distance = Math.sqrt(distX * distX + distY * distY);
@@ -26,20 +26,12 @@ public class MissileZone extends Projectile {
             this.setEstArrive(true);
         }
         else {
-            double vUnitX = distX / distance;
-            double vUnitY = distY / distance;
-            this.setX(this.getX() + vUnitX * this.getVitesse());
-            this.setY(this.getY() + vUnitY * this.getVitesse());
-            if(Objects.equals(this.getId(), "P1")) {
-                //System.out.println("ID : " + this.getId() + "\nDistX : " + distX + "\nDistY : " + distY + "\ndistance : " + distance + "\nvUnitX : " + vUnitX + "\nvUnitY" + vUnitY);
-                //System.out.println(this.getX()+";"+this.getY());
-                //System.out.println(this.xCible+";"+this.yCible);
-            }
+            this.deplaceMissile(distX,distY,distance);
         }
     }
 
     public void effectueExplosion() {
-        for (Ennemi ennemi : this.getEnvrionneemnt().getEnnemis()) {
+        for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
             if(((ennemi.getX() - this.getX()) * (ennemi.getX() - this.getX())) + ((ennemi.getY() - this.getY()) * ennemi.getY() - this.getY()) <= this.portee * this.portee) {
                 ennemi.subirDegats(this.getDegat());
                 if(!ennemi.estVivant()) {

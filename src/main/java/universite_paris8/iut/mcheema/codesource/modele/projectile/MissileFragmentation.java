@@ -8,7 +8,7 @@ public class MissileFragmentation extends Projectile {
     }
 
     @Override
-    public void seDeplacer() {
+    public void effectueAction() {
 
     }
 }

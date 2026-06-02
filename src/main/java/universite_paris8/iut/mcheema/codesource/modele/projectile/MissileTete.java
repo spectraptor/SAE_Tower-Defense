@@ -13,7 +13,7 @@ public class MissileTete extends Projectile {
     }
 
     @Override
-    public void seDeplacer() {
+    public void effectueAction() {
         double distX = this.cible.getX() - this.getX();
         double distY = this.cible.getY() - this.getY();
         double distance = Math.sqrt(distX * distX + distY * distY);
@@ -23,15 +23,7 @@ public class MissileTete extends Projectile {
             this.setEstArrive(true);
         }
         else {
-            double vUnitX = distX / distance;
-            double vUnitY = distY / distance;
-
-            this.setX(this.getX() + vUnitX * this.getVitesse());
-            this.setY(this.getY() + vUnitY * this.getVitesse());
-            if(Objects.equals(this.getId(), "P1")) {
-                //System.out.println("ID : " + this.getId() + "\nDistX : " + distX + "\nDistY : " + distY + "\ndistance : " + distance + "\nvUnitX : " + vUnitX + "\nvUnitY" + vUnitY);
-                //System.out.println(this.getX()+";"+this.getY());
-            }
+            this.deplaceMissile(distX,distY,distance);
         }
 
         if(!this.cible.estVivant()) {

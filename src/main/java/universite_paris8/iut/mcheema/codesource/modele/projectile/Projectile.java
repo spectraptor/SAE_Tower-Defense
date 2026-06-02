@@ -56,7 +56,7 @@ public abstract class Projectile {
         return this.yProperty;
     }
 
-    public abstract void seDeplacer();
+    public abstract void effectueAction();
 
     public int getVitesse() {
         return this.vitesse;
@@ -74,7 +74,14 @@ public abstract class Projectile {
         this.estArrive = estArrive;
     }
 
-    public Environnement getEnvrionneemnt() {
+    public void deplaceMissile(double distX, double distY, double distance) {
+        double vUnitX = distX / distance;
+        double vUnitY = distY / distance;
+        this.setX(this.getX() + vUnitX * this.getVitesse());
+        this.setY(this.getY() + vUnitY * this.getVitesse());
+    }
+
+    public Environnement getEnvironnement() {
         return this.environnement;
     }
 
