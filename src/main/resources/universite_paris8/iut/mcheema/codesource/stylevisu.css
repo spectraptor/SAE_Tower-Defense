@@ -46,16 +46,26 @@
     -fx-border-width: 2;
 }
 
-#BoutonAccel {
+#boutonAccel {
     -fx-background-image: url("images/boutons/vitesse.png"); /* pas la bonne image a changer */
     -fx-background-size: contain;
 }
 
-#BoutonMenu {
+#boutonMenu {
     -fx-background-image: url("images/boutons/pause.png");
     -fx-background-size: contain;
 }
-#BoutonLancerPause {
+#boutonLancerPause {
     -fx-background-image: url("images/boutons/lancer.png");
+    -fx-background-size: contain;
+}
+
+#pauseReprendre {
+    -fx-background-image: url("images/boutons/lancer.png"); /* a changer */
+    -fx-background-size: contain;
+}
+
+#pauseQuitter {
+    -fx-background-image: url("images/boutons/pause.png"); /* a changer */
     -fx-background-size: contain;
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -45,6 +46,15 @@ public class Controleur implements Initializable {
 
     @FXML
     private Button lancer;
+
+    @FXML
+    private Pane menuPause;
+
+    @FXML
+    private  Button pauseReprendre;
+
+    @FXML
+    private Button pauseQuitter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -167,13 +177,10 @@ public class Controleur implements Initializable {
     }
 
     public void afficheReglage(ActionEvent actionEvent) {
-        // met le jeu en pause
-        // this.gameLoop.play();
-        // puis ouvre une interface qui permet de quitter ou de reprendre le jeu
-        // quand appuyer sur le bouton reprendre le jeu
-        // this.gameLoop.play();
-        // this.pause = false;
-        System.out.println("Afficher menu");
+
+        pause = true;
+        gameLoop.pause();
+        menuPause.setVisible(true);
     }
 
     private boolean rapide = false;
@@ -203,5 +210,15 @@ public class Controleur implements Initializable {
             this.pause = true;
             System.out.println("Jeu mis en pause");
         }
+    }
+
+    public void reprendre(ActionEvent actionEvent) {
+        pause = false;
+        this.gameLoop.play();
+        menuPause.setVisible(false);
+    }
+
+    public void quitter(ActionEvent actionEvent) {
+        System.out.println("fait rien pour l'instant");
     }
 }
