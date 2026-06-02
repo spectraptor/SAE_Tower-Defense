@@ -44,7 +44,7 @@ public class Controleur implements Initializable {
     private Label labelVieBase;
 
     @FXML
-    private Button tour1;
+    private Button lancer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,7 +96,6 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
-        this.gameLoop.play();
     }
 
     private void initAnimation() {
@@ -164,6 +163,45 @@ public class Controleur implements Initializable {
                 System.out.println("choisir tour 6");
                 break;
 
+        }
+    }
+
+    public void afficheReglage(ActionEvent actionEvent) {
+        // met le jeu en pause
+        // this.gameLoop.play();
+        // puis ouvre une interface qui permet de quitter ou de reprendre le jeu
+        // quand appuyer sur le bouton reprendre le jeu
+        // this.gameLoop.play();
+        // this.pause = false;
+        System.out.println("Afficher menu");
+    }
+
+    private boolean rapide = false;
+    private boolean pause = true;
+
+    public void accelererOuRalentir(ActionEvent actionEvent) {
+        if (rapide) {
+            gameLoop.setRate(1);
+            rapide = false;
+            System.out.println("Jeu mis en x1");
+
+        }
+        else {
+            gameLoop.setRate(2);
+            rapide = true;
+            System.out.println("Jeu mis en x2");
+        }
+    }
+
+    public void lancer(ActionEvent actionEvent) {
+        if (this.pause) {
+            this.gameLoop.play();
+            this.pause = false;
+            System.out.println("Jeu mis en lancer");
+        } else {
+            this.gameLoop.pause();
+            this.pause = true;
+            System.out.println("Jeu mis en pause");
         }
     }
 }

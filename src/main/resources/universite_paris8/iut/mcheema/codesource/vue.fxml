@@ -122,17 +122,17 @@
             </HBox>
             <HBox prefHeight="75.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="pause" prefHeight="65.0" prefWidth="65.0">
+                  <Button fx:id="BoutonMenu" onAction="#afficheReglage" prefHeight="65.0" prefWidth="65.0">
                      <HBox.margin>
                         <Insets left="8.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="vitesse" layoutX="108.0" layoutY="15.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="65.0">
+                  <Button fx:id="BoutonAccel" onAction="#accelererOuRalentir" layoutX="108.0" layoutY="15.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="65.0">
                      <HBox.margin>
                         <Insets left="25.0" right="25.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="lancer" layoutX="153.0" layoutY="15.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="65.0">
+                  <Button fx:id="BoutonLancerPause" onAction="#lancer" layoutX="153.0" layoutY="15.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="65.0">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>

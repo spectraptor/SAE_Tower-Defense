@@ -46,16 +46,16 @@
     -fx-border-width: 2;
 }
 
-#vitesse {
-    -fx-background-image: url("images/boutons/vitesse.png");
+#BoutonAccel {
+    -fx-background-image: url("images/boutons/vitesse.png"); /* pas la bonne image a changer */
     -fx-background-size: contain;
 }
 
-#pause {
+#BoutonMenu {
     -fx-background-image: url("images/boutons/pause.png");
     -fx-background-size: contain;
 }
-#lancer {
+#BoutonLancerPause {
     -fx-background-image: url("images/boutons/lancer.png");
     -fx-background-size: contain;
 }
