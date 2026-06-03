@@ -137,14 +137,6 @@ public class Controleur implements Initializable {
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
-                Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
-                this.environnement.ajouterBatiment(batiment);
-
-                System.out.println(batiment);
-
-                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
-                batimentVue.creerSpriteBatiment();
-
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
 
             }
