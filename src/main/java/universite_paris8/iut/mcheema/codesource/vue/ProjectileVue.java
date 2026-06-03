@@ -22,6 +22,6 @@ public class ProjectileVue {
         sprite.setId(projectile.getId());
         sprite.translateXProperty().bind(projectile.xProperty());
         sprite.translateYProperty().bind(projectile.yProperty());
-        this.paneJeu.getChildren().add(sprite);
+        this.paneJeu.getChildren().add(1, sprite);
     }
 }

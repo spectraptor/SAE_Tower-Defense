@@ -106,6 +106,7 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
+
     }
 
     private void initAnimation() {
@@ -124,7 +125,7 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (!this.environnement.partieEstFinie()) {
+        if (!this.environnement.partieEstFinie() && !pause) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
 
@@ -202,8 +203,9 @@ public class Controleur implements Initializable {
 
     public void lancer(ActionEvent actionEvent) {
         if (this.pause) {
+            pause = false;
             this.gameLoop.play();
-            this.pause = false;
+            menuPause.setVisible(false);
             System.out.println("Jeu mis en lancer");
         } else {
             this.gameLoop.pause();
@@ -212,11 +214,6 @@ public class Controleur implements Initializable {
         }
     }
 
-    public void reprendre(ActionEvent actionEvent) {
-        pause = false;
-        this.gameLoop.play();
-        menuPause.setVisible(false);
-    }
 
     public void quitter(ActionEvent actionEvent) {
         System.out.println("fait rien pour l'instant");

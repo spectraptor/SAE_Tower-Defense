@@ -33,7 +33,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #20252b;
+    -fx-background-color: #858585;
     -fx-border-color: #5a5b5f;
 }
 
@@ -52,7 +52,7 @@
 }
 
 #boutonMenu {
-    -fx-background-image: url("images/boutons/pause.png");
+    -fx-background-image: url("images/boutons/param.png");
     -fx-background-size: contain;
 }
 #boutonLancerPause {
@@ -61,11 +61,11 @@
 }
 
 #pauseReprendre {
-    -fx-background-image: url("images/boutons/lancer.png"); /* a changer */
+    -fx-background-image: url("images/boutons/pause.png"); /* a changer */
     -fx-background-size: contain;
 }
 
 #pauseQuitter {
-    -fx-background-image: url("images/boutons/pause.png"); /* a changer */
+    -fx-background-image: url("images/boutons/sortie.png");
     -fx-background-size: contain;
 }

@@ -36,6 +36,6 @@ public class EnnemiVue {
         spriteE.setId(ennemi.getId());
         spriteE.translateXProperty().bind(ennemi.xProperty());
         spriteE.translateYProperty().bind(ennemi.yProperty());
-        paneJeu.getChildren().add(spriteE);
+        paneJeu.getChildren().add(1, spriteE);
     }
 }
