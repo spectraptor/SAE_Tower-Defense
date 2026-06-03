@@ -14,14 +14,12 @@ public abstract class Batiment {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private int portee;
-    private int cadenceTir;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int portee, int cTir, Environnement env) {
+    public Batiment(int x, int y, int portee, Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.portee = portee;
-        this.cadenceTir = cTir;
         this.environnement = env;
     }
 
@@ -49,16 +47,9 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
-    public void setCadenceTir(int cadenceTir) {
-        this.cadenceTir = cadenceTir;
-    }
 
     public Environnement getEnvironnement() {
         return this.environnement;
-    }
-
-    public int getCadenceTir() {
-        return this.cadenceTir;
     }
 
     public int getPortee() {
@@ -75,6 +66,11 @@ public abstract class Batiment {
     public double calculDistance(Ennemi ennemi) {
         return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));
     }
+
+    public double calculDistance(Batiment batiment) {
+        return  (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())));
+    }
+
 
 
     /**
@@ -108,4 +104,5 @@ public abstract class Batiment {
     public String toString() {
         return "Position du bâtiment : " + this.getX() + ";" + this.getY();
     }
+
 }

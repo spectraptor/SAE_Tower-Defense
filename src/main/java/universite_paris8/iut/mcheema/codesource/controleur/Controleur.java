@@ -8,10 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
-import universite_paris8.iut.mcheema.codesource.batiment.BombeLogique;
-import universite_paris8.iut.mcheema.codesource.batiment.Compilateur;
-import universite_paris8.iut.mcheema.codesource.batiment.Debugger;
+import universite_paris8.iut.mcheema.codesource.batiment.*;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -76,6 +73,12 @@ public class Controleur implements Initializable {
             this.environnement.ajouterEnnemi(ennemi);
         }
 
+        Batiment compilateur = new Compilateur(300, 300, this.environnement);
+        this.environnement.ajouterBatiment(compilateur);
+
+        BatimentVue compilateurVue = new BatimentVue(compilateur, this.paneJeu);
+        compilateurVue.creerSpriteBatiment();
+
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
         this.gameLoop.play();
@@ -109,7 +112,7 @@ public class Controleur implements Initializable {
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
 
-                Batiment batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
+                Batiment batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
                 this.environnement.ajouterBatiment(batiment);
 
                 System.out.println(batiment);
