@@ -2,6 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 import java.util.ArrayList;

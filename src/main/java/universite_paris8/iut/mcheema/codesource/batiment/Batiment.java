@@ -1,7 +1,8 @@
-package universite_paris8.iut.mcheema.codesource.modele;
+package universite_paris8.iut.mcheema.codesource.batiment;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
