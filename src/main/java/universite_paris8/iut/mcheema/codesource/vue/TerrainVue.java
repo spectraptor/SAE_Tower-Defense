@@ -20,9 +20,8 @@ public class TerrainVue {
     }
 
     public void afficheTerrainJeu() {
-        Image imgHerbe = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/herbe.png").toExternalForm());
-        Image imgTerre = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/terre.png").toExternalForm());
-        Image imgEau = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/eau.png").toExternalForm());
+        Image imgSol = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/sol.png").toExternalForm());
+        Image imgGlitch1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch1.png").toExternalForm());
         Image ch_gauche_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin1.png").toExternalForm());
         Image ch_haut_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin2.png").toExternalForm());
         Image ch_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin3.png").toExternalForm());
@@ -71,13 +70,11 @@ public class TerrainVue {
                         this.tilePane.getChildren().add(new ImageView(base));
                         break;
                     case 'h':
-                        this.tilePane.getChildren().add(new ImageView(imgHerbe));
-                        break;
-                    case 't':
-                        this.tilePane.getChildren().add(new ImageView(imgTerre));
+                        this.tilePane.getChildren().add(new ImageView(imgSol));
                         break;
                     case 'e':
-                        this.tilePane.getChildren().add(new ImageView(imgEau));
+                        this.tilePane.getChildren().add(new ImageView(imgGlitch1));
+                        break;
                 }
             }
         }
