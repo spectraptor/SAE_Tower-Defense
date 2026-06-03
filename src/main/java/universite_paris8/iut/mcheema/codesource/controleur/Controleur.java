@@ -10,13 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.batiment.*;
 import javafx.stage.Stage;
+import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.batiment.Surcadence;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
@@ -93,12 +93,11 @@ public class Controleur implements Initializable {
 
 
         Ennemi ennemi;
-        for(int i = 0 ; i<10; i++) {
-            if(i== 1) {
-                ennemi = new GrosBogue(this.environnement);
+        for(int i = 0;i<2;i++) {
+            if(i==0) {
+                ennemi = new Bogue(this.environnement);
+                ennemi.setChemin(chemin);
             }
-            else if (i<10) {
-                ennemi = new ChevalDeTroie(this.environnement);
             else {
                 ennemi = new ErreurExecution(this.environnement);
                 ennemi.setChemin(chemin2);
@@ -106,12 +105,6 @@ public class Controleur implements Initializable {
 
             this.environnement.ajouterEnnemi(ennemi);
         }
-
-        Batiment compilateur = new Compilateur(300, 300, this.environnement);
-        this.environnement.ajouterBatiment(compilateur);
-
-        BatimentVue compilateurVue = new BatimentVue(compilateur, this.paneJeu);
-        compilateurVue.creerSpriteBatiment();
 
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
@@ -145,10 +138,14 @@ public class Controleur implements Initializable {
 
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
-              
-                Batiment batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
-                this.environnement.ajouterBatiment(batiment);
-              
+
+                Batiment surcadence = new Surcadence(centreTuileX, centreTuileY, this.environnement);
+                this.environnement.ajouterBatiment(surcadence);
+
+
+                BatimentVue surcadenceVue = new BatimentVue(surcadence, paneJeu);
+                surcadenceVue.creerSpriteBatiment();
+
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
 
             }
