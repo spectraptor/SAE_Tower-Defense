@@ -7,25 +7,25 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.Objects;
 
-public class Projectile {
+public abstract class Projectile {
     private String id;
     private static int idCpt = 0;
     private DoubleProperty xProperty;
     private DoubleProperty yProperty;
     private int degat;
     private int vitesse;
-    private Ennemi cible;
     private boolean estArrive;
+    private Environnement environnement;
 
-    public Projectile(double x,double y,int degat,int vitesse,Ennemi cible) {
+    public Projectile(double x,double y,int degat,int vitesse,Environnement env) {
         idCpt++;
         this.id = "P" + idCpt;
         this.xProperty = new SimpleDoubleProperty(x);
         this.yProperty = new SimpleDoubleProperty(y);
         this.degat = degat;
         this.vitesse = vitesse;
-        this.cible = cible;
         this.estArrive = false;
+        this.environnement = env;
     }
 
     public String getId() {
@@ -56,36 +56,33 @@ public class Projectile {
         return this.yProperty;
     }
 
+    public abstract void effectueAction();
 
-    public void seDeplacer() {
-        if (this.cible.estVivant()) {
-            double distX = this.cible.getX() - this.getX();
-            double distY = this.cible.getY() - this.getY();
-            double distance = Math.sqrt(distX * distX + distY * distY);
+    public int getVitesse() {
+        return this.vitesse;
+    }
 
-            if(distance <= this.vitesse) {
-                this.cible.subirDegats(this.degat);
-                this.estArrive = true;
-            }
-            else {
-                double vUnitX = distX / distance;
-                double vUnitY = distY / distance;
-
-                this.setX(this.getX() + vUnitX * this.vitesse);
-                this.setY(this.getY() + vUnitY * this.vitesse);
-                if(Objects.equals(this.id, "P1")) {
-                    //System.out.println("ID : " + this.getId() + "\nDistX : " + distX + "\nDistY : " + distY + "\ndistance : " + distance + "\nvUnitX : " + vUnitX + "\nvUnitY" + vUnitY);
-                    //System.out.println(this.getX()+";"+this.getY());
-                }
-            }
-        }
-        else {
-            this.estArrive = true;
-        }
+    public int getDegat() {
+        return this.degat;
     }
 
     public boolean getEstArrive() {
         return this.estArrive;
+    }
+
+    public void setEstArrive(boolean estArrive) {
+        this.estArrive = estArrive;
+    }
+
+    public void deplaceMissile(double distX, double distY, double distance) {
+        double vUnitX = distX / distance;
+        double vUnitY = distY / distance;
+        this.setX(this.getX() + vUnitX * this.getVitesse());
+        this.setY(this.getY() + vUnitY * this.getVitesse());
+    }
+
+    public Environnement getEnvironnement() {
+        return this.environnement;
     }
 
 }

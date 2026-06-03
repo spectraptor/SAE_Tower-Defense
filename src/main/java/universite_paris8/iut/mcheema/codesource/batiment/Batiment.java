@@ -14,14 +14,12 @@ public abstract class Batiment {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private int portee;
-    private int cadenceTir;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int portee, int cTir, Environnement env) {
+    public Batiment(int x, int y, int portee, Environnement env) {
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.portee = portee;
-        this.cadenceTir = cTir;
         this.environnement = env;
     }
 
@@ -49,24 +47,14 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
-    public void setCadenceTir(int cadenceTir) {
-        this.cadenceTir = cadenceTir;
-    }
-
     public Environnement getEnvironnement() {
         return this.environnement;
     }
-
-    public int getCadenceTir() {
-        return this.cadenceTir;
-    }
-
+  
     public int getPortee() {
         return this.portee;
     }
-
-    public abstract Ennemi ennemiDansPortee();
-
+  
     public abstract void effectueAction();
 
     /**
@@ -77,6 +65,40 @@ public abstract class Batiment {
     public double calculDistance(Ennemi ennemi) {
         return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));
     }
+  
+    public double calculDistance(Batiment batiment) {
+        return  (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())));
+    }
+
+
+
+    /**
+     * Recherche l'ennemi le plus proche de la tour parmi
+     * tous les ennemis situés dans sa porté.
+     * @return l'ennemi le plus proche dans la portée de la tour ou null si
+     * aucun ennemi n'est dans sa portéee
+     */
+    public Ennemi ennemiDansPortee() {
+        Ennemi ennemiRetourne = null;
+        for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
+            if (this.calculDistance(ennemi) <= this.getPortee()) {
+                if (!ennemi.estCamoufle()) {
+                    if (ennemiRetourne == null) {
+                        ennemiRetourne = ennemi;
+                    }
+                    else {
+                        double distActu = calculDistance(ennemiRetourne);
+                        double distNouv = calculDistance(ennemi);
+                        if (distNouv < distActu) {
+                            ennemiRetourne = ennemi;
+                        }
+                    }
+                }
+            }
+        }
+        return ennemiRetourne;
+    }
+
 
     public String toString() {
         return "Position du bâtiment : " + this.getX() + ";" + this.getY();

@@ -81,7 +81,7 @@ public class Environnement {
             }
 
             for(Projectile projectile : this.projectiles) {
-                projectile.seDeplacer();
+                projectile.effectueAction();
                 if(projectile.getEstArrive()) {
                     projectilesArrive.add(projectile);
                 }
