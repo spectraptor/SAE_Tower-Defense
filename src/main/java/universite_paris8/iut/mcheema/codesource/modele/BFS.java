@@ -14,7 +14,7 @@ public class BFS {
     /**
      * Le sommet source de l'algo
      */
-    private Tuile source;
+    private Tuile base;
     /**
      * Liste des sommets de la composante connexe de g obtenue par un parcours en largeur depuis le sommet source
      */
@@ -24,9 +24,9 @@ public class BFS {
      */
     private Map<Tuile, Tuile> predecesseurs;
 
-    public BFS(Terrain terrain, Tuile source) {
+    public BFS(Terrain terrain, Tuile base) {
         this.terrain = terrain;
-        this.source = source;
+        this.base = base;
         parcours = new ArrayList<>();
         predecesseurs = new HashMap<Tuile, Tuile>();
         algoBFS();
@@ -40,9 +40,9 @@ public class BFS {
 
     private void algoBFS() {
         LinkedList<Tuile> fifo = new LinkedList<>();
-        parcours.add(source);
-        predecesseurs.put(source, null);
-        fifo.add(source);
+        parcours.add(base);
+        predecesseurs.put(base, null);
+        fifo.add(base);
         while (!fifo.isEmpty()) {
             Tuile s = fifo.poll();
             for (Tuile t : terrain.adjacents(s)) {
@@ -58,22 +58,21 @@ public class BFS {
     /**
      * Retourne une liste donnant la suite des sommets depuis la cible jusqu'à la source
      *
-     * @param cible
+     * @param ennemiDepart
      * @return le chemin sous forme de liste de sommets
      */
 
-    public ArrayList<Tuile> cheminVersSource(Tuile cible) {
+    public ArrayList<Tuile> cheminVersSource(Tuile ennemiDepart) {
         ArrayList<Tuile> chemin = new ArrayList<>();
 
-        if (!predecesseurs.containsKey(cible)) {
+        if (!predecesseurs.containsKey(ennemiDepart)) {
             return chemin;
         }
-        Tuile courant = cible;
+        Tuile courant = ennemiDepart;
         while (courant != null) {
-            chemin.add(0, courant);
+            chemin.add(courant);
             courant = predecesseurs.get(courant);
         }
-
         return chemin;
     }
 
@@ -96,7 +95,7 @@ public class BFS {
      *            le nouveau sommet source
      */
     public void setSource(Tuile source) {
-        this.source = source;
+        this.base = source;
         clear();
         algoBFS();
     }

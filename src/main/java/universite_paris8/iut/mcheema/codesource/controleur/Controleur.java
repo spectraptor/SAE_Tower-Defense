@@ -43,7 +43,7 @@ public class Controleur implements Initializable {
 
         Base base = new Base();
         this.labelVieBase.textProperty().bind(base.pvProperty().asString());
-        this.environnement = new Environnement(1,base);
+        this.environnement = new Environnement(3,base);
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
@@ -53,10 +53,10 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
-        Tuile baseTuile = new Tuile(12, 0);
-        Tuile entree = new Tuile(4, 19);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+        Tuile baseTuile = new Tuile(7, 9);
+        Tuile entree = new Tuile(7, 14);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), baseTuile);
+        ArrayList<Tuile> chemin = bfs.cheminVersSource(entree);
         Ennemi ennemi;
         for(int i = 0;i<10;i++) {
             if(i== 1) {
@@ -93,18 +93,16 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
+        int coordsSourisX = (int) mouseEvent.getX();
+        int coordsSourisY = (int) mouseEvent.getY();
+
+        int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
+
+        int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
         if (!this.environnement.partieEstFinie()) {
-            int coordsSourisX = (int) mouseEvent.getX();
-            int coordsSourisY = (int) mouseEvent.getY();
-
-            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
-
-            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
-
                 Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
                 this.environnement.ajouterBatiment(batiment);
 
@@ -116,6 +114,9 @@ public class Controleur implements Initializable {
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
             }
         }
+
+
+        System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
     }
 
 }

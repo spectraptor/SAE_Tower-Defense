@@ -6,7 +6,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 public class MissileFragmentation extends MissileTeleguide {
     // Va a ces coord et va ensuite se fragmenté en plusieurs missiles a tete chercheuse
     private int XSUIVRE = 320;
-    private int YSUIVRE = 30;
+    private int YSUIVRE = 6;
     private int DISTANCE_MISSILE = 8;
     public MissileFragmentation(double x, double y, Ennemi cible, Environnement env) {
         super(x, y,2, 2,cible, env);

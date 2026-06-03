@@ -16,7 +16,7 @@ public class Tour1 extends Batiment {
         Ennemi ennemi = this.ennemiDansPortee();
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0) {
-                this.getEnvironnement().ajouterProjectile(new MissileTete(this.getX(), this.getY(),ennemi, this.getEnvironnement()));
+                this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(), ennemi.getX(), ennemi.getY(), this.getEnvironnement()));
             }
         }
     }
@@ -31,7 +31,7 @@ public class Tour1 extends Batiment {
         Ennemi ennemiRetourne = null;
         for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
             if (this.calculDistance(ennemi) <= this.getPortee()) {
-                if (ennemi.estCamoufle()) {
+                //if (ennemi.estCamoufle()) {
                     if (ennemiRetourne == null) {
                         ennemiRetourne = ennemi;
                     }
@@ -42,7 +42,7 @@ public class Tour1 extends Batiment {
                             ennemiRetourne = ennemi;
                         }
                     }
-                }
+                //}
             }
         }
         return ennemiRetourne;

@@ -20,7 +20,7 @@ public class ProjectileVue {
         sprite.setId(projectile.getId());
         sprite.translateXProperty().bind(projectile.xProperty());
         sprite.translateYProperty().bind(projectile.yProperty());
-        this.paneJeu.getChildren().add(sprite);
+        this.paneJeu.getChildren().add(1,sprite);
 
         if (this.projectile instanceof MissileZone) {
             Circle rayonB = new Circle(((MissileZone) this.projectile).getPortee());
@@ -33,7 +33,7 @@ public class ProjectileVue {
             rayonB.centerXProperty().bind(sprite.translateXProperty());
             rayonB.centerYProperty().bind(sprite.translateYProperty());
             rayonB.setId(projectile.getId()+"P");
-            this.paneJeu.getChildren().add(rayonB);
+            this.paneJeu.getChildren().add(1,rayonB);
         }
     }
 }

@@ -102,6 +102,7 @@ public class Terrain {
         return this.terrainDeJeu[i][j];
     }
 
+
     /**
      * Convertis les coordoonnées x et y en numéro de ligne et colonne de la tuile.
      * @param x les coordonnéees x
