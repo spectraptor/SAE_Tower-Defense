@@ -2,12 +2,15 @@ package universite_paris8.iut.mcheema.codesource.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -40,6 +43,18 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label labelVieBase;
+
+    @FXML
+    private Button lancer;
+
+    @FXML
+    private Pane menuPause;
+
+    @FXML
+    private  Button pauseReprendre;
+
+    @FXML
+    private Button pauseQuitter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,7 +106,7 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
-        this.gameLoop.play();
+
     }
 
     private void initAnimation() {
@@ -110,7 +125,7 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (!this.environnement.partieEstFinie()) {
+        if (!this.environnement.partieEstFinie() && !pause) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
 
@@ -136,4 +151,71 @@ public class Controleur implements Initializable {
         }
     }
 
+    public void choisirBouton(ActionEvent actionEvent) {
+        Button bouton = (Button) actionEvent.getSource();
+
+        switch(bouton.getText()) {
+            case "Compilateur":
+                System.out.println("choisir tour 1");
+                break;
+            case "Cloud":
+                System.out.println("choisir tour 2");
+                break;
+            case "Debugger":
+                System.out.println("choisir tour 3");
+                break;
+            case "Bombe Logique":
+                System.out.println("choisir tour 4");
+                break;
+            case "Surcadence":
+                System.out.println("choisir tour 5");
+                break;
+            case "RAM":
+                System.out.println("choisir tour 6");
+                break;
+
+        }
+    }
+
+    public void afficheReglage(ActionEvent actionEvent) {
+
+        pause = true;
+        gameLoop.pause();
+        menuPause.setVisible(true);
+    }
+
+    private boolean rapide = false;
+    private boolean pause = true;
+
+    public void accelererOuRalentir(ActionEvent actionEvent) {
+        if (rapide) {
+            gameLoop.setRate(1);
+            rapide = false;
+            System.out.println("Jeu mis en x1");
+
+        }
+        else {
+            gameLoop.setRate(2);
+            rapide = true;
+            System.out.println("Jeu mis en x2");
+        }
+    }
+
+    public void lancer(ActionEvent actionEvent) {
+        if (this.pause) {
+            pause = false;
+            this.gameLoop.play();
+            menuPause.setVisible(false);
+            System.out.println("Jeu mis en lancer");
+        } else {
+            this.gameLoop.pause();
+            this.pause = true;
+            System.out.println("Jeu mis en pause");
+        }
+    }
+
+
+    public void quitter(ActionEvent actionEvent) {
+        System.out.println("fait rien pour l'instant");
+    }
 }

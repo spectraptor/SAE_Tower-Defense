@@ -25,16 +25,18 @@ public class BatimentVue {
         Circle rayonB = new Circle(this.batiment.getPortee()); // permet de visualiser le rayon de la tour
 
         /* Style visuel */
+        /*
         rayonB.setFill(Color.TRANSPARENT);
         rayonB.setStroke(Color.BLACK);
         rayonB.setStrokeWidth(1.5);
-
+        rayonB.setOpacity(0.1);
+        */
         /* Au moment ou le sprite est crée, translateX et translateY sont nuls.
         On est donc obligé de faire un bind, autrement ça ne marche pas. */
         rayonB.centerXProperty().bind(spriteB.translateXProperty());
         rayonB.centerYProperty().bind(spriteB.translateYProperty());
 
-        this.paneJeu.getChildren().add(spriteB);
-        this.paneJeu.getChildren().add(rayonB);
+        this.paneJeu.getChildren().add(1, spriteB);
+        // this.paneJeu.getChildren().add(rayonB);
     }
 }
