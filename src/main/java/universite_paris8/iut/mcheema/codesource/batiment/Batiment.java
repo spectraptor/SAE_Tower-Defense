@@ -47,15 +47,14 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
-
     public Environnement getEnvironnement() {
         return this.environnement;
     }
-
+  
     public int getPortee() {
         return this.portee;
     }
-
+  
     public abstract void effectueAction();
 
     /**
@@ -66,7 +65,7 @@ public abstract class Batiment {
     public double calculDistance(Ennemi ennemi) {
         return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));
     }
-
+  
     public double calculDistance(Batiment batiment) {
         return  (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())));
     }
@@ -104,5 +103,4 @@ public abstract class Batiment {
     public String toString() {
         return "Position du bâtiment : " + this.getX() + ";" + this.getY();
     }
-
 }

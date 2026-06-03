@@ -5,7 +5,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
-
+/**
+ * La classe à pour tâche de s'occuper de l'affichage des projectiles et de la création de leur sprite.
+ *
+ */
 public class ProjectileVue {
     private Pane paneJeu;
     private Projectile projectile;
@@ -36,5 +39,6 @@ public class ProjectileVue {
             rayonB.centerYProperty().bind(sprite.translateYProperty());
             this.paneJeu.getChildren().add(rayonB);
         }
+        this.paneJeu.getChildren().add(1, sprite);
     }
 }

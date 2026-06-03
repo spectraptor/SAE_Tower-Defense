@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
+/*
+Le BFS est l'algorithme qui permet de trouver et renvoyer le chemin le plus court.
+ */
 public class BFS {
     /**
      * Le graphe (ou grille) sur lequel on travaille
@@ -14,21 +16,21 @@ public class BFS {
     /**
      * Le sommet source de l'algo
      */
-    private Tuile source;
+    private Point source;
     /**
      * Liste des sommets de la composante connexe de g obtenue par un parcours en largeur depuis le sommet source
      */
-    private ArrayList<Tuile> parcours;
+    private ArrayList<Point> parcours;
     /**
      * Chaque sommet (clé) est associé à son prédécesseur (valeur) du parcours en largeur
      */
-    private Map<Tuile, Tuile> predecesseurs;
+    private Map<Point, Point> predecesseurs;
 
-    public BFS(Terrain terrain, Tuile source) {
+    public BFS(Terrain terrain, Point source) {
         this.terrain = terrain;
         this.source = source;
         parcours = new ArrayList<>();
-        predecesseurs = new HashMap<Tuile, Tuile>();
+        predecesseurs = new HashMap<Point, Point>();
         algoBFS();
     }
 
@@ -39,13 +41,13 @@ public class BFS {
      */
 
     private void algoBFS() {
-        LinkedList<Tuile> fifo = new LinkedList<>();
+        LinkedList<Point> fifo = new LinkedList<>();
         parcours.add(source);
         predecesseurs.put(source, null);
         fifo.add(source);
         while (!fifo.isEmpty()) {
-            Tuile s = fifo.poll();
-            for (Tuile t : terrain.adjacents(s)) {
+            Point s = fifo.poll();
+            for (Point t : terrain.adjacents(s)) {
                 if (!parcours.contains(t)) {
                     parcours.add(t);
                     predecesseurs.put(t, s);
@@ -62,13 +64,13 @@ public class BFS {
      * @return le chemin sous forme de liste de sommets
      */
 
-    public ArrayList<Tuile> cheminVersSource(Tuile cible) {
-        ArrayList<Tuile> chemin = new ArrayList<>();
+    public ArrayList<Point> cheminDepuisSource(Point cible) {
+        ArrayList<Point> chemin = new ArrayList<>();
 
         if (!predecesseurs.containsKey(cible)) {
             return chemin;
         }
-        Tuile courant = cible;
+        Point courant = cible;
         while (courant != null) {
             chemin.add(0, courant);
             courant = predecesseurs.get(courant);
@@ -81,11 +83,11 @@ public class BFS {
      **** Pas de modifications à faire ci-dessous ****
      *************************************************/
 
-    public ArrayList<Tuile> getParcours() {
+    public ArrayList<Point> getParcours() {
         return parcours;
     }
 
-    public Map<Tuile, Tuile> getPredecesseurs() {
+    public Map<Point, Point> getPredecesseurs() {
         return predecesseurs;
     }
 
@@ -95,7 +97,7 @@ public class BFS {
      * @param source
      *            le nouveau sommet source
      */
-    public void setSource(Tuile source) {
+    public void setSource(Point source) {
         this.source = source;
         clear();
         algoBFS();

@@ -1,7 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
-/*
-
+/**
+ * La classe Terrain connait la liste des différents terrains (les tuiles, la longueur, la largueur, la taille d'une tuile)
  */
 
 import java.util.ArrayList;
@@ -143,14 +143,14 @@ public class Terrain {
     }
 
 
-    public ArrayList<Tuile> adjacents(Tuile t) {
-        ArrayList<Tuile> voisins = new ArrayList<>();
-        int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public ArrayList<Point> adjacents(Point t) {
+        ArrayList<Point> voisins = new ArrayList<>();
+        int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}; // {colonne, ligne}
         for (int[] direction : directions) {
-            int nLigne = t.getLigne() + direction[0];
-            int nCol   = t.getColonne() + direction[1];
+            int nCol = t.getColonne() + direction[0];
+            int nLigne = t.getLigne() + direction[1];
             if (estDansTerrain(nCol, nLigne) && tuileEstAccessibleCoords(nCol * TAILLE_TUILLE, nLigne * TAILLE_TUILLE)) {
-                voisins.add(new Tuile(nLigne, nCol));
+                voisins.add(new Point(nCol, nLigne));
             }
         }
         return voisins;

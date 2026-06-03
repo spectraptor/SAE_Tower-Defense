@@ -10,7 +10,7 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
- * La class à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.
+ * La classe à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.
  * Elle s'occupe d'un ennemi qu'elle reçoit.
  */
 public class EnnemiVue {
@@ -36,6 +36,6 @@ public class EnnemiVue {
         spriteE.setId(ennemi.getId());
         spriteE.translateXProperty().bind(ennemi.xProperty());
         spriteE.translateYProperty().bind(ennemi.yProperty());
-        paneJeu.getChildren().add(spriteE);
+        paneJeu.getChildren().add(1, spriteE);
     }
 }

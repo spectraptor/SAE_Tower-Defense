@@ -2,26 +2,33 @@ package universite_paris8.iut.mcheema.codesource.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.batiment.*;
+import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/*
-
+/**
+ * Le controleur fait la gestion entre le modèle et la vue.
+ * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
  */
 
 public class Controleur implements Initializable {
@@ -39,12 +46,23 @@ public class Controleur implements Initializable {
     @FXML
     private Label labelVieBase;
 
+    @FXML
+    private Button lancer;
+
+    @FXML
+    private Pane menuPause;
+
+    @FXML
+    private  Button pauseReprendre;
+
+    @FXML
+    private Button pauseQuitter;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Base base = new Base();
-        this.labelVieBase.textProperty().bind(base.pvProperty().asString());
-        this.environnement = new Environnement(1,base);
+        this.environnement = new Environnement(2);
+        this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
@@ -54,10 +72,26 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
-        Tuile baseTuile = new Tuile(12, 0);
-        Tuile entree = new Tuile(4, 19);
+        /*
+        Tuile baseTuile = new Tuile(0, 12);
+        Tuile entree = new Tuile(19, 4);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
         ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+
+         */
+
+        // Carte 2
+        Point basePoint = new Point(0, 7);
+        Point entree = new Point(15, 0);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
+        ArrayList<Point> chemin = bfs.cheminDepuisSource(basePoint);
+
+        Point basePoint2 = new Point(0, 11);
+        Point entree2 = new Point(13, 14);
+        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
+        ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(basePoint2);
+
+
         Ennemi ennemi;
         for(int i = 0 ; i<10; i++) {
             if(i== 1) {
@@ -65,11 +99,11 @@ public class Controleur implements Initializable {
             }
             else if (i<10) {
                 ennemi = new ChevalDeTroie(this.environnement);
-            }
             else {
                 ennemi = new ErreurExecution(this.environnement);
+                ennemi.setChemin(chemin2);
             }
-            ennemi.setChemin(chemin);
+
             this.environnement.ajouterEnnemi(ennemi);
         }
 
@@ -81,7 +115,7 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
         this.initAnimation();
-        this.gameLoop.play();
+
     }
 
     private void initAnimation() {
@@ -100,7 +134,7 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (!this.environnement.partieEstFinie()) {
+        if (!this.environnement.partieEstFinie() && !pause) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
 
@@ -110,20 +144,82 @@ public class Controleur implements Initializable {
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
 
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
-                    !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
-
+                    !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
+              
                 Batiment batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
                 this.environnement.ajouterBatiment(batiment);
-
-                System.out.println(batiment);
-
-                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
-                batimentVue.creerSpriteBatiment();
-
+              
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
 
             }
         }
     }
 
+    public void choisirBouton(ActionEvent actionEvent) {
+        Button bouton = (Button) actionEvent.getSource();
+
+        switch(bouton.getText()) {
+            case "Compilateur":
+                System.out.println("choisir tour 1");
+                break;
+            case "Cloud":
+                System.out.println("choisir tour 2");
+                break;
+            case "Debugger":
+                System.out.println("choisir tour 3");
+                break;
+            case "Bombe Logique":
+                System.out.println("choisir tour 4");
+                break;
+            case "Surcadence":
+                System.out.println("choisir tour 5");
+                break;
+            case "RAM":
+                System.out.println("choisir tour 6");
+                break;
+
+        }
+    }
+
+    public void afficheReglage(ActionEvent actionEvent) {
+
+        pause = true;
+        gameLoop.pause();
+        menuPause.setVisible(true);
+    }
+
+    private boolean rapide = false;
+    private boolean pause = true;
+
+    public void accelererOuRalentir(ActionEvent actionEvent) {
+        if (rapide) {
+            gameLoop.setRate(1);
+            rapide = false;
+            System.out.println("Jeu mis en x1");
+
+        }
+        else {
+            gameLoop.setRate(2);
+            rapide = true;
+            System.out.println("Jeu mis en x2");
+        }
+    }
+
+    public void lancer(ActionEvent actionEvent) {
+        if (this.pause) {
+            pause = false;
+            this.gameLoop.play();
+            menuPause.setVisible(false);
+            System.out.println("Jeu mis en lancer");
+        } else {
+            this.gameLoop.pause();
+            this.pause = true;
+            System.out.println("Jeu mis en pause");
+        }
+    }
+
+
+    public void quitter(ActionEvent actionEvent) {
+        System.out.println("fait rien pour l'instant");
+    }
 }

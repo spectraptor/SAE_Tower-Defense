@@ -5,9 +5,11 @@ import javafx.collections.ObservableList;
 import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
-
 import java.util.ArrayList;
-
+/*
+La classe Environnement gère l'ensemble du fonctionnement du jeu. Il effectue les actions à chaque tour,
+l'apparition de tous les élements du jeu (base, terrain, liste d'ennemis, liste de batiments.
+ */
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ArrayList<Batiment> batiments;
@@ -18,14 +20,14 @@ public class Environnement {
     private Base base;
 
 
-    public Environnement(int niveau, Base base) {
+    public Environnement(int niveau) {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = new ArrayList<>();
         this.projectiles = FXCollections.observableArrayList();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
-        this.base = base;
+        this.base = new Base();
     }
 
     public Terrain getTerrainDeJeu() {
@@ -106,7 +108,7 @@ public class Environnement {
      * @param y les coordonnées y de la tuile
      * @return true si une tuile est déjà présente, false autrement.
      */
-    public boolean estAdjacentATour(int x, int y) {
+    public boolean tuileContientUnBatiment(int x, int y) {
         boolean sortieBoucle = false;
         int i = 0;
         while (i < this.batiments.size() && !sortieBoucle) {
