@@ -54,10 +54,7 @@
     -fx-background-image: url("images/boutons/param.png");
     -fx-background-size: contain;
 }
-#boutonLancerPause {
-    -fx-background-image: url("images/boutons/lancer.png");
-    -fx-background-size: contain;
-}
+
 
 #pauseReprendre {
     -fx-background-image: url("images/boutons/pause.png"); /* a changer */

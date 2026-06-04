@@ -161,6 +161,14 @@ public abstract class Ennemi {
         }
     }
 
+    public ArrayList<Point> getChemin() {
+        return this.chemin;
+    }
+
+    public int getIndCheminSuiv() {
+        return this.indiceChemin+1;
+    }
+
     public String toString() {
         return "ID de l'ennemi : " + this.id +
                 "\nPV de l'ennemi : " + this.pv +
