@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeBatiments;
 import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
@@ -83,6 +84,7 @@ public class Controleur implements Initializable {
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
+        this.environnement.getBatiments().addListener(new ObservateurListeBatiments(this.paneJeu));
         this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
 
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
@@ -175,10 +177,6 @@ public class Controleur implements Initializable {
                     this.numBatimentSelectionne = -1;
 
                     this.environnement.ajouterBatiment(batiment);
-
-                    BatimentVue batimentVue = new BatimentVue(batiment, paneJeu);
-                    batimentVue.creerSpriteBatiment();
-
                     System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                 }
             }

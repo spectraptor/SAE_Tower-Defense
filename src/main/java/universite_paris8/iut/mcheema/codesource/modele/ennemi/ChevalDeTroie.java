@@ -8,12 +8,9 @@ import java.util.ArrayList;
  * ChevalDeTroie qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 
-public class ChevalDeTroie extends Ennemi {
+public class ChevalDeTroie extends EnnemiCammoufle {
 
     public ChevalDeTroie(Environnement env, ArrayList<Point> chemin) {super(3, 1, 4, env, chemin);}
 
-    @Override
-    public boolean estCamoufle() {
-        return true;
-    }
+
 }

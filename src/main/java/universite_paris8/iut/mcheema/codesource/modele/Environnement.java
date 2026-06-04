@@ -15,7 +15,7 @@ l'apparition de tous les élements du jeu (base, terrain, liste d'ennemis, liste
  */
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
-    private ArrayList<Batiment> batiments;
+    private ObservableList<Batiment> batiments;
     private ObservableList<Projectile> projectiles;
     private int nbreVague;
     private Terrain terrainDeJeu;
@@ -26,7 +26,7 @@ public class Environnement {
 
     public Environnement(int niveau) {
         this.ennemis = FXCollections.observableArrayList();
-        this.batiments = new ArrayList<>();
+        this.batiments = FXCollections.observableArrayList();
         this.projectiles = FXCollections.observableArrayList();
         this.nbreVague = 0;
         this.terrainDeJeu = new Terrain(niveau);
@@ -43,7 +43,7 @@ public class Environnement {
         return this.ennemis;
     }
 
-    public ArrayList<Batiment> getBatiments() {
+    public ObservableList<Batiment> getBatiments() {
         return this.batiments;
     }
 

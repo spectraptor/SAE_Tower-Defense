@@ -100,6 +100,10 @@ public abstract class Ennemi {
         return false;
     }
 
+    public boolean estVolant() {
+        return false;
+    }
+
 
     public void subirDegats(int degat) {
         if (this.pv - degat < 0)
