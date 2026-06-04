@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * DroneEspion qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 
-public class DroneEspion extends Ennemi {
+public class DroneEspion extends EnnemiVolant {
     public DroneEspion(Environnement env, ArrayList<Point> chemin) {
         super(2, 3, 3, env, chemin);
     }
