@@ -14,7 +14,7 @@ public class Surcadence extends BatimentPacifiste{
     private ArrayList<Batiment> batiments;
 
     public Surcadence(int x, int y, Environnement env) {
-        super(x, y, 100, env);
+        super("Surcadence",x, y, 100, env);
         batiments = new ArrayList<>();
     }
 
@@ -23,7 +23,7 @@ public class Surcadence extends BatimentPacifiste{
         for (Batiment batiment : this.getEnvironnement().getBatiments()) {
             if (!batiments.contains(batiment)) {
                 if (batiment instanceof BatimentTir && this.calculDistance(batiment) <= this.getPortee()) {
-                    ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / 10 + 1));
+                    ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / 2));
                     batiments.add(batiment);
                 }
             }

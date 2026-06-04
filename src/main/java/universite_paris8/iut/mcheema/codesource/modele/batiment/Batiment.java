@@ -11,16 +11,30 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
  */
 
 public abstract class Batiment {
+    private static int idCpt = 0;
+    private String id;
+    private String nom;
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private int portee;
     private Environnement environnement;
 
-    public Batiment(int x, int y, int portee, Environnement env) {
+    public Batiment(String nom,int x, int y, int portee, Environnement env) {
+        idCpt++;
+        this.id = "B" + idCpt;
+        this.nom = nom;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.portee = portee;
         this.environnement = env;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public String getNom() {
+        return this.nom;
     }
 
     public final IntegerProperty xProperty() {
@@ -102,7 +116,8 @@ public abstract class Batiment {
 
 
     public String toString() {
-        return "Position du bâtiment : " + this.getX() + ";" + this.getY();
+        return  "      " + this.getNom() +  "      " +
+                "\n\nPortee : " + this.getPortee();
     }
 
 }

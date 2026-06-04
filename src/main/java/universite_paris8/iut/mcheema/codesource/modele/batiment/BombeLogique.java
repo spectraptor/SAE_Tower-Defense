@@ -6,7 +6,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 
 public class BombeLogique extends BatimentTir {
     public BombeLogique(int x, int y, Environnement env) {
-        super(x, y, 100, 100, env);
+        super("Bombe Logique",x, y, 100,5, 100, env);
     }
 
     @Override
@@ -14,7 +14,7 @@ public class BombeLogique extends BatimentTir {
         Ennemi ennemi = this.ennemiDansPortee();
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0) {
-                this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(), ennemi.getX(),ennemi.getY(), this.getEnvironnement()));
+                this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(),this.getDegat(), ennemi.getX(),ennemi.getY(), this.getEnvironnement()));
             }
         }
 
