@@ -25,24 +25,37 @@ public class BatimentVue {
     }
 
     public void creerSpriteBatiment() {
-
-
+        Image img;
+        ImageView vue =null;
         if(this.batiment instanceof Compilateur) {
-            Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());
-            lier(imgCompilateur);
+            img  = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());
+            vue = new ImageView(img);
+            vue.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
+            vue.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
+            this.paneJeu.getChildren().add(1, vue );
         }
         else if(this.batiment instanceof Debugger) {
-            Image imgDebugger = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
-            lier(imgDebugger);
+             img = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
+            vue = new ImageView(img);
+            vue.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
+            vue.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
+            this.paneJeu.getChildren().add(1, vue );
         }
         else if(this.batiment instanceof BombeLogique) {
-            Image imgBombeLogique = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());
-            lier(imgBombeLogique);
+             img = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());
+             vue = new ImageView(img);
+             vue.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
+             vue.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
+             this.paneJeu.getChildren().add(1, vue );
         }
         else if(this.batiment instanceof Surcadence) {
-            Image imgSurcadence = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/surcadence.png").toExternalForm());
-            lier(imgSurcadence);
+             img = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/surcadence.png").toExternalForm());
+             vue = new ImageView(img);
+             vue.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
+             vue.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
+             this.paneJeu.getChildren().add(1, vue );
         }
+
 
 
         // Circle spriteB = new Circle(4, Color.DODGERBLUE);
@@ -68,7 +81,7 @@ public class BatimentVue {
 
         //INFO SUR LA TOUR
 
-        spriteB.setOnMouseClicked(e -> {
+        vue.setOnMouseClicked(e -> {
             Pane paneInfo = new Pane();
             paneInfo.setId(this.batiment.getId() + "I");
             paneInfo.setPrefWidth(200);

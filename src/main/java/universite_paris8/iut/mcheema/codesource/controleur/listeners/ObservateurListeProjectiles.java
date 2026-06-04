@@ -24,9 +24,9 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
             }
 
             for (Projectile projectile : change.getRemoved()) {
-                this.paneJeu.lookup("#"+projectile.getId()).translateXProperty().unbind();
-                this.paneJeu.lookup("#"+projectile.getId()).translateYProperty().unbind();
-                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+projectile.getId()));
+                this.paneJeu.lookup("#" + projectile.getId()).translateXProperty().unbind();
+                this.paneJeu.lookup("#" + projectile.getId()).translateYProperty().unbind();
+                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
 
                 if (projectile instanceof MissileZone) {
                     this.paneJeu.lookup("#" + projectile.getId() + "P").translateXProperty().unbind();
