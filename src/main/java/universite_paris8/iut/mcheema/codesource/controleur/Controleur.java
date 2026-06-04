@@ -161,8 +161,8 @@ public class Controleur implements Initializable {
 
                     this.environnement.ajouterBatiment(batiment);
 
-                    BatimentVue surcadenceVue = new BatimentVue(batiment, paneJeu);
-                    surcadenceVue.creerSpriteBatiment();
+                    BatimentVue batimentVue = new BatimentVue(batiment, paneJeu);
+                    batimentVue.creerSpriteBatiment();
 
                     System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                 }
