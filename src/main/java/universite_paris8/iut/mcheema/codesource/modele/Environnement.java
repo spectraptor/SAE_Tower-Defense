@@ -133,5 +133,9 @@ public class Environnement {
     public final int getArgent() {return this.argentProperty.getValue();}
 
     public final IntegerProperty argentProperty() { return this.argentProperty;}
+
+    public void ajouterArgent(int argent) {
+        this.argentProperty.setValue(getArgent() + argent);
+    }
 }
 
