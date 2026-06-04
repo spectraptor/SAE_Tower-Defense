@@ -86,24 +86,22 @@ public class Controleur implements Initializable {
         // Carte 2
         Point basePoint = new Point(0, 7);
         Point entree = new Point(15, 0);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Point> chemin = bfs.cheminDepuisSource(basePoint);
+        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), basePoint);
+        ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
 
         Point basePoint2 = new Point(0, 11);
         Point entree2 = new Point(13, 14);
-        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
-        ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(basePoint2);
+        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), basePoint2);
+        ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(entree2);
 
 
         Ennemi ennemi;
         for(int i = 0;i<2;i++) {
             if(i==0) {
-                ennemi = new Bogue(this.environnement);
-                ennemi.setChemin(chemin);
+                ennemi = new Bogue(this.environnement, chemin);
             }
             else {
-                ennemi = new ErreurExecution(this.environnement);
-                ennemi.setChemin(chemin2);
+                ennemi = new ErreurExecution(this.environnement, chemin2);
             }
 
             this.environnement.ajouterEnnemi(ennemi);

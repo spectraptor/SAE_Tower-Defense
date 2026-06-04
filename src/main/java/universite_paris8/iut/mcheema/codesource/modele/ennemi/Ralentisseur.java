@@ -1,8 +1,11 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
+import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.BatimentTir;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+
+import java.util.ArrayList;
 
 /**
  * Ralentisseur qui étend la classe Ennemi, contient les mêmes attributs que Ennemi. Il ralentit la cadence d'attaque des tours autour de lui.
@@ -10,13 +13,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 public class Ralentisseur extends Ennemi {
     private int ralentissement;
 
-    public Ralentisseur(Environnement env) {
-        super(10, 4, 10, env);
-        this.ralentissement = 8;
-    }
-
-    public Ralentisseur(int x, int y, Environnement env) {
-        super(x, y, 10, 4, 10, env);
+    public Ralentisseur(Environnement env, ArrayList<Point> chemin) {
+        super(10, 4, 10, env, chemin);
         this.ralentissement = 8;
     }
 

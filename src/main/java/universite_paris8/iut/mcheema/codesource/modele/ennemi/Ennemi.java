@@ -24,7 +24,7 @@ public abstract class Ennemi {
     private ArrayList<Point> chemin;
     private int indiceChemin;
 
-    public Ennemi(int pv, int vitesse, int argentDonne, Environnement env) {
+    public Ennemi(int pv, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
         idCpt++;
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(0);
@@ -33,11 +33,11 @@ public abstract class Ennemi {
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.environnement = env;
-        this.chemin = null;
         this.indiceChemin = 0;
+        setChemin(chemin);
     }
 
-    public Ennemi(int x, int y, int pv, int vitesse, int argentDonne, Environnement env) {
+    public Ennemi(int x, int y, int pv, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
         idCpt++;
         this.id = "E" + idCpt;
         this.xProperty = new SimpleIntegerProperty(x);
@@ -46,8 +46,8 @@ public abstract class Ennemi {
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.environnement = env;
-        this.chemin = null;
         this.indiceChemin = 0;
+        setChemin(chemin);
     }
 
 
@@ -137,6 +137,10 @@ public abstract class Ennemi {
             this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
             this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
         }
+    }
+
+    public ArrayList<Point> getChemin() {
+        return this.chemin;
     }
 
     public boolean aAtteintDestination() {

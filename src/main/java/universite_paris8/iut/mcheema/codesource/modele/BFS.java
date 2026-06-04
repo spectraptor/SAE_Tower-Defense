@@ -74,7 +74,7 @@ public class BFS {
 
         Point courant = cible;
         while (courant != null) {
-            chemin.add(0,courant);
+            chemin.add(courant);
             courant = predecesseurs.get(courant);
         }
         return chemin;
