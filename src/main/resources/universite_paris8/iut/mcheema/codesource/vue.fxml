@@ -21,10 +21,13 @@
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
                   <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="100" />
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin1.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/compilateur.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Compilateur">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -37,10 +40,13 @@
             <HBox layoutX="10.0" layoutY="50.0" prefHeight="55.0" prefWidth="260.0">
                <children>
                   <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" />
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin2.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/cloud.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Cloud">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -53,10 +59,13 @@
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
                   <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" />
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin3.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/debugger.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Debugger">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -72,10 +81,13 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Label>
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin4.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/bombeLogique.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Bombe Logique">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -88,10 +100,13 @@
             <HBox prefHeight="55.0" prefWidth="260.0">
                <children>
                   <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="300" />
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin5.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/surcadence.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Surcadence">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -107,10 +122,13 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Label>
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@texture/chemins/chemin6.png" />
-                     </image></ImageView>
+                        <Image url="@texture/batiments/ram.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="12.0" right="12.0" top="12.0" />
+                     </HBox.margin></ImageView>
                   <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="RAM">
                      <HBox.margin>
                         <Insets left="5.0" right="3.0" />
@@ -153,11 +171,11 @@
                <children>
                   <HBox layoutX="7.0" layoutY="19.0" prefHeight="125.0" prefWidth="305.0">
                      <children>
-                        <Button fx:id="pauseReprendre" onAction="#lancer" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0">
+                        <Button fx:id="pauseReprendre" mnemonicParsing="false" onAction="#lancer" prefHeight="125.0" prefWidth="125.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="pauseQuitter" onAction="#quitter" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" />
+                        <Button fx:id="pauseQuitter" mnemonicParsing="false" onAction="#quitter" prefHeight="125.0" prefWidth="125.0" />
                      </children>
                   </HBox>
                </children></Pane>
