@@ -92,6 +92,7 @@ public abstract class Ennemi {
     }
 
     public void meurt() {
+        this.environnement.ajouterArgent(argentDonne);
         this.pv = 0;
     }
 

@@ -1,5 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
@@ -19,6 +21,7 @@ public class Environnement {
     private Terrain terrainDeJeu;
     private int nbTours;
     private Base base;
+    private SimpleIntegerProperty argentProperty;
 
 
     public Environnement(int niveau) {
@@ -29,6 +32,7 @@ public class Environnement {
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
         this.base = new Base();
+        this.argentProperty = new SimpleIntegerProperty(250);
     }
 
     public Terrain getTerrainDeJeu() {
@@ -123,6 +127,16 @@ public class Environnement {
 
     public void setNbTours(int nbTours) {
         this.nbTours = nbTours;
+    }
+
+    public final void setArgent(int argent) {this.argentProperty.setValue(argent);}
+
+    public final int getArgent() {return this.argentProperty.getValue();}
+
+    public final IntegerProperty argentProperty() { return this.argentProperty;}
+
+    public void ajouterArgent(int argent) {
+        this.argentProperty.setValue(getArgent() + argent);
     }
 }
 
