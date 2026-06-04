@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
@@ -62,9 +65,18 @@ public class Controleur implements Initializable {
     @FXML
     private Button pauseQuitter;
 
+    @FXML
+    private Button boutonLancerPause;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-      
+
+        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+        ImageView imgVLancer = new ImageView(imgLancer);
+        imgVLancer.setFitHeight(50);
+        imgVLancer.setFitWidth(45);
+        this.boutonLancerPause.setGraphic(imgVLancer);
+
         this.environnement = new Environnement(2);
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
@@ -221,10 +233,20 @@ public class Controleur implements Initializable {
             etatPause = false;
             this.gameLoop.play();
             menuPause.setVisible(false);
+            Image imgPause = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/pause.png").toExternalForm());
+            ImageView imgVPause = new ImageView(imgPause);
+            imgVPause.setFitHeight(50);
+            imgVPause.setFitWidth(45);
+            this.boutonLancerPause.setGraphic(imgVPause);
             System.out.println("Jeu mis en lancer");
         } else {
             this.gameLoop.pause();
             this.etatPause = true;
+            Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+            ImageView imgVLancer = new ImageView(imgLancer);
+            imgVLancer.setFitHeight(50);
+            imgVLancer.setFitWidth(45);
+            this.boutonLancerPause.setGraphic(imgVLancer);
             System.out.println("Jeu mis en pause");
         }
     }
