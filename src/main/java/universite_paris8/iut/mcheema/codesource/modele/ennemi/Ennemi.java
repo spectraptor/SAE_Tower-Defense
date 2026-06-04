@@ -140,10 +140,6 @@ public abstract class Ennemi {
         }
     }
 
-    public ArrayList<Point> getChemin() {
-        return this.chemin;
-    }
-
     public boolean aAtteintDestination() {
         return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
