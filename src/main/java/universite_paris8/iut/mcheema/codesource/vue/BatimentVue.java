@@ -1,4 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.vue;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -20,6 +25,7 @@ public class BatimentVue {
     }
 
     public void creerSpriteBatiment() {
+
 
         if(this.batiment instanceof Compilateur) {
             Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());
@@ -59,6 +65,50 @@ public class BatimentVue {
 
         // this.paneJeu.getChildren().add(1, spriteB);
         // this.paneJeu.getChildren().add(rayonB);
+
+        //INFO SUR LA TOUR
+
+        spriteB.setOnMouseClicked(e -> {
+            Pane paneInfo = new Pane();
+            paneInfo.setId(this.batiment.getId() + "I");
+            paneInfo.setPrefWidth(200);
+            paneInfo.setPrefHeight(150);
+
+            Label textInfo = new Label();
+            textInfo.setWrapText(true);
+            textInfo.setPrefWidth(200);
+            textInfo.setPrefHeight(150);
+            textInfo.setId("textInfoBatiment");
+            textInfo.setText(this.batiment.toString());
+            textInfo.setPadding(new Insets(5,0,5,15));
+            paneInfo.getChildren().add(textInfo);
+
+            Button boutonQuitter = new Button("X");
+            boutonQuitter.setTranslateX(163);
+            boutonQuitter.setTranslateY(2);
+            boutonQuitter.setPrefWidth(30);
+            boutonQuitter.setPrefHeight(5);
+            paneInfo.getChildren().add(boutonQuitter);
+            boutonQuitter.setId("boutonQuitterInfoBat");
+
+            this.paneJeu.getChildren().add(4,paneInfo);
+
+            if(this.batiment.getX() <= this.paneJeu.getPrefWidth()/2) {
+                paneInfo.setTranslateX(batiment.getX());
+            }
+            else {
+                paneInfo.setTranslateX(batiment.getX()-paneInfo.getPrefWidth());
+            }
+            if(this.batiment.getY() <= this.paneJeu.getPrefHeight()/2) {
+                paneInfo.setTranslateY(batiment.getY());
+            }
+            else {
+                paneInfo.setTranslateY(batiment.getY()-paneInfo.getPrefHeight());
+            }
+            boutonQuitter.setOnMouseClicked(event-> {
+                this.paneJeu.getChildren().remove(paneInfo);
+            });
+        });
     }
 
 

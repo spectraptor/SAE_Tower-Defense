@@ -36,6 +36,8 @@
     -fx-border-color: #5a5b5f;
 }
 
+
+
 .button:pressed {
     -fx-background-color: #20252b;
 }
@@ -64,4 +66,20 @@
 #pauseQuitter {
     -fx-background-image: url("images/boutons/sortie.png");
     -fx-background-size: contain;
+}
+
+
+#textInfoBatiment {
+    -fx-background-color: #272727;
+    -fx-border-color: #4d4e51;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-text-fill: #f5f5f5;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11pt;
+    -fx-opacity: 0.8;
+}
+
+#boutonQuitterInfoBat:hover {
+    -fx-background-color: #ad0303;
 }

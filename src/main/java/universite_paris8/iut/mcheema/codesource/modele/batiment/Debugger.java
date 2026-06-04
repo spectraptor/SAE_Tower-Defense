@@ -7,7 +7,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 public class Debugger extends BatimentTir {
 
     public Debugger(int x, int y, Environnement env) {
-        super(x, y, 150, 150, env);
+        super("Debugger",x, y, 150,5, 150, env);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class Debugger extends BatimentTir {
 
         if (ennemi != null) {
             if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0) {
-                this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(),
+                this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(),this.getDegat(),
                         ennemi.getX(), ennemi.getY(), this.getEnvironnement()));
             }
         }
