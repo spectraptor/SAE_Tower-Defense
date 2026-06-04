@@ -173,6 +173,9 @@ public class Controleur implements Initializable {
                             break;
                     }
 
+                    // réinitialisation du bouton
+                    this.numBatimentSelectionne = -1;
+
                     this.environnement.ajouterBatiment(batiment);
                     System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                 }

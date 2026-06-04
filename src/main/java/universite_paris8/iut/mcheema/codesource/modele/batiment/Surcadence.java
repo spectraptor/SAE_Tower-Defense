@@ -15,6 +15,7 @@ public class Surcadence extends BatimentPacifiste{
 
     public Surcadence(int x, int y, Environnement env) {
         super("Surcadence",x, y, 100, env);
+        super(x, y, 32, env);
         batiments = new ArrayList<>();
     }
 
@@ -23,7 +24,7 @@ public class Surcadence extends BatimentPacifiste{
         for (Batiment batiment : this.getEnvironnement().getBatiments()) {
             if (!batiments.contains(batiment)) {
                 if (batiment instanceof BatimentTir && this.calculDistance(batiment) <= this.getPortee()) {
-                    ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / 2));
+                    ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / 1.5)); // la tour ne doit pas dépasser la cadence de de 6
                     batiments.add(batiment);
                 }
             }
