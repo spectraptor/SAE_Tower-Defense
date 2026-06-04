@@ -36,6 +36,10 @@ public class Controleur implements Initializable {
 
     private Environnement environnement;
 
+    private boolean etatRapide = false;
+
+    private boolean etatPause = true;
+
     @FXML
     private TilePane tilePane;
 
@@ -126,7 +130,7 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (!this.environnement.partieEstFinie() && !pause) {
+        if (!this.environnement.partieEstFinie() && !etatPause) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
 
@@ -182,37 +186,36 @@ public class Controleur implements Initializable {
 
     public void afficheReglage(ActionEvent actionEvent) {
 
-        pause = true;
+        etatPause = true;
         gameLoop.pause();
         menuPause.setVisible(true);
     }
 
-    private boolean rapide = false;
-    private boolean pause = true;
+
 
     public void accelererOuRalentir(ActionEvent actionEvent) {
-        if (rapide) {
+        if (etatRapide) {
             gameLoop.setRate(1);
-            rapide = false;
+            etatRapide = false;
             System.out.println("Jeu mis en x1");
 
         }
         else {
             gameLoop.setRate(2);
-            rapide = true;
+            etatRapide = true;
             System.out.println("Jeu mis en x2");
         }
     }
 
     public void lancer(ActionEvent actionEvent) {
-        if (this.pause) {
-            pause = false;
+        if (this.etatPause) {
+            etatPause = false;
             this.gameLoop.play();
             menuPause.setVisible(false);
             System.out.println("Jeu mis en lancer");
         } else {
             this.gameLoop.pause();
-            this.pause = true;
+            this.etatPause = true;
             System.out.println("Jeu mis en pause");
         }
     }
