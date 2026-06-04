@@ -60,7 +60,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+      
         this.environnement = new Environnement(2);
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
 
@@ -133,9 +133,11 @@ public class Controleur implements Initializable {
 
             int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
 
-            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
 
+        int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        if (!this.environnement.partieEstFinie()) {
             if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                     !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
@@ -147,9 +149,11 @@ public class Controleur implements Initializable {
                 surcadenceVue.creerSpriteBatiment();
 
                 System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
-
             }
         }
+
+
+        System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
     }
 
     public void choisirBouton(ActionEvent actionEvent) {

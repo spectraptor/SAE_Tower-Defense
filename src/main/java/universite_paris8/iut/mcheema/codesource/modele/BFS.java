@@ -16,6 +16,7 @@ public class BFS {
     /**
      * Le sommet source de l'algo
      */
+  
     private Point source;
     /**
      * Liste des sommets de la composante connexe de g obtenue par un parcours en largeur depuis le sommet source
@@ -60,22 +61,22 @@ public class BFS {
     /**
      * Retourne une liste donnant la suite des sommets depuis la cible jusqu'à la source
      *
-     * @param cible
+     * @param ennemiDepart
      * @return le chemin sous forme de liste de sommets
      */
 
     public ArrayList<Point> cheminDepuisSource(Point cible) {
         ArrayList<Point> chemin = new ArrayList<>();
 
-        if (!predecesseurs.containsKey(cible)) {
+        if (!predecesseurs.containsKey(ennemiDepart)) {
             return chemin;
         }
+
         Point courant = cible;
         while (courant != null) {
-            chemin.add(0, courant);
+            chemin.add(courant);
             courant = predecesseurs.get(courant);
         }
-
         return chemin;
     }
 
@@ -97,6 +98,7 @@ public class BFS {
      * @param source
      *            le nouveau sommet source
      */
+  
     public void setSource(Point source) {
         this.source = source;
         clear();

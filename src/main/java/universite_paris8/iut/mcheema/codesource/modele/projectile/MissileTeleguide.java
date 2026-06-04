@@ -1,0 +1,18 @@
+package universite_paris8.iut.mcheema.codesource.modele.projectile;
+
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+
+public abstract class MissileTeleguide extends Projectile {
+    private Ennemi cible;
+
+    public MissileTeleguide(double x, double y, int degat, int vitesse, Ennemi cible, Environnement env) {
+        super(x, y, degat, vitesse,env);
+        this.cible = cible;
+    }
+
+    public Ennemi getCible() {
+        return this.cible;
+    }
+
+}
