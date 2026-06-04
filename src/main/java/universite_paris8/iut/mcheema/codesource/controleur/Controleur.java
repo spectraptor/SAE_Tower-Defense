@@ -155,7 +155,7 @@ public class Controleur implements Initializable {
             int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
             if (!this.environnement.partieEstFinie()) {
-                if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
+                if (this.environnement.tuileTourPosable(coordsSourisX,coordsSourisY) &&
                         !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
                     switch (this.numBatimentSelectionne) {

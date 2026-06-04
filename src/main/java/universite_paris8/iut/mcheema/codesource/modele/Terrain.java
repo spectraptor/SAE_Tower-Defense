@@ -143,6 +143,12 @@ public class Terrain {
         return (avoirCodeTuile(ligne,colonne) >= '0' && avoirCodeTuile(ligne,colonne) <= '9') || avoirCodeTuile(ligne,colonne) == 'b';
     }
 
+    public boolean tuileTourPosable(int x, int y) {
+        int ligne = y / TAILLE_TUILLE;
+        int colonne = x / TAILLE_TUILLE;
+        return (!tuileEstAccessibleCoords(x,y) && avoirCodeTuile(ligne,colonne) != 'e');
+    }
+
 
     public ArrayList<Point> adjacents(Point t) {
         ArrayList<Point> voisins = new ArrayList<>();
