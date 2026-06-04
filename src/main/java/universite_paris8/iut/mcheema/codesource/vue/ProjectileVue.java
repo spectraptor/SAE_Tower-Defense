@@ -38,6 +38,5 @@ public class ProjectileVue {
             rayonB.setId(projectile.getId()+"P");
             this.paneJeu.getChildren().add(1,rayonB);
         }
-        this.paneJeu.getChildren().add(1, sprite);
     }
 }

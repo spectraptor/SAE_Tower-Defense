@@ -10,8 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
-import universite_paris8.iut.mcheema.codesource.modele.batiment.Surcadence;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -39,6 +38,8 @@ public class Controleur implements Initializable {
     private boolean etatRapide = false;
 
     private boolean etatPause = true;
+
+    private int numBatimentSelectionne = -1;
 
     @FXML
     private TilePane tilePane;
@@ -128,6 +129,8 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
+        if (numBatimentSelectionne != -1) {
+        Batiment batiment = null;
         if (!this.environnement.partieEstFinie() && !etatPause) {
             int coordsSourisX = (int) mouseEvent.getX();
             int coordsSourisY = (int) mouseEvent.getY();
@@ -140,16 +143,30 @@ public class Controleur implements Initializable {
                 if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
                         !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
-                    Batiment surcadence = new Surcadence(centreTuileX, centreTuileY, this.environnement);
-                    this.environnement.ajouterBatiment(surcadence);
+                    switch (this.numBatimentSelectionne) {
+                        case 1:
+                            batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
+                            break;
+                        case 2:
+                            batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
+                            break;
+                        case 3:
+                            batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
+                            break;
+                        case 4:
+                            batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
+                            break;
+                    }
 
+                    this.environnement.ajouterBatiment(batiment);
 
-                    BatimentVue surcadenceVue = new BatimentVue(surcadence, paneJeu);
+                    BatimentVue surcadenceVue = new BatimentVue(batiment, paneJeu);
                     surcadenceVue.creerSpriteBatiment();
 
                     System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                 }
             }
+        }
 
 
             System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
@@ -160,30 +177,23 @@ public class Controleur implements Initializable {
         Button bouton = (Button) actionEvent.getSource();
 
         switch(bouton.getText()) {
-            case "Compilateur":
-                System.out.println("choisir tour 1");
-                break;
-            case "Cloud":
-                System.out.println("choisir tour 2");
+            case "Compilateur", "Cloud", "RAM":
+                this.numBatimentSelectionne = 1;
                 break;
             case "Debugger":
-                System.out.println("choisir tour 3");
+                this.numBatimentSelectionne = 2;
                 break;
             case "Bombe Logique":
-                System.out.println("choisir tour 4");
+                this.numBatimentSelectionne = 3;
                 break;
             case "Surcadence":
-                System.out.println("choisir tour 5");
-                break;
-            case "RAM":
-                System.out.println("choisir tour 6");
+                this.numBatimentSelectionne = 4;
                 break;
 
         }
     }
 
     public void afficheReglage(ActionEvent actionEvent) {
-
         etatPause = true;
         gameLoop.pause();
         menuPause.setVisible(true);

@@ -2,9 +2,10 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
+
 import java.util.ArrayList;
 /*
 La classe Environnement gère l'ensemble du fonctionnement du jeu. Il effectue les actions à chaque tour,
@@ -49,7 +50,6 @@ public class Environnement {
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
-
 
     public void ajouterBatiment(Batiment batiment) {
         this.batiments.add(batiment);
@@ -111,6 +111,7 @@ public class Environnement {
         }
         return sortieBoucle;
     }
+
 
     public boolean partieEstFinie() {
         return this.getEnnemis().isEmpty() || this.getBase().estDetruite();
