@@ -14,7 +14,7 @@ public class Surcadence extends BatimentPacifiste{
     private ArrayList<Batiment> batiments;
 
     public Surcadence(int x, int y, Environnement env) {
-        super(x, y, 100, env);
+        super(x, y, 32, env);
         batiments = new ArrayList<>();
     }
 
