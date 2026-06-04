@@ -1,16 +1,20 @@
 package universite_paris8.iut.mcheema.codesource.modele;
-
-public class Tuile {
+/**
+ * La classe Tuile connait sa position en ligne et en colonne.
+ * Elle est utilisé pour l'algorithme.
+ */
+public class Point {
     private int ligne;
     private int colonne;
 
-    public Tuile(int ligne, int colonne) {
+    public Point(int colonne, int ligne) {
         this.ligne = ligne;
         this.colonne = colonne;
     }
 
     public int getLigne() { return this.ligne; }
-    public int getColonne() { return this.colonne; }
+    public int getColonne() { return this.colonne;}
+
 
 
     public boolean equals(Object obj) {
@@ -18,7 +22,7 @@ public class Tuile {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Tuile other = (Tuile) obj;
+        Point other = (Point) obj;
         return this.ligne == other.ligne && this.colonne == other.colonne;
     }
 

@@ -3,13 +3,13 @@ package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.Tuile;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 
 import java.util.ArrayList;
 
-/*
-
+/**
+ * Ennemi sont les ennemis qui se déplacent vers la base, il connait son chemin, les pv sa vitesse et peut se déplacer ou/et faire une action.
  */
 
 public abstract class Ennemi {
@@ -21,7 +21,7 @@ public abstract class Ennemi {
     private int vitesse;
     private int argentDonne;
     private Environnement environnement;
-    private ArrayList<Tuile> chemin;
+    private ArrayList<Point> chemin;
     private int indiceChemin;
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env) {
@@ -107,14 +107,12 @@ public abstract class Ennemi {
             this.pv -= degat;
     }
 
-
     public Environnement getEnvironnement() {
         return this.environnement;
-    }  
-
+    }
 
     public void seDeplace() {
-            Tuile prochaine = this.chemin.get(this.indiceChemin + 1);
+            Point prochaine = this.chemin.get(this.indiceChemin + 1);
             int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
             int cibleY = prochaine.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
 
@@ -132,10 +130,10 @@ public abstract class Ennemi {
             }
     }
 
-    public void setChemin(ArrayList<Tuile> chemin) {
+    public void setChemin(ArrayList<Point> chemin) {
         this.chemin = chemin;
         if (chemin != null && !chemin.isEmpty()) {
-            Tuile depart = chemin.get(0);
+            Point depart = chemin.get(0);
             this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
             this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
         }
@@ -144,7 +142,6 @@ public abstract class Ennemi {
     public boolean aAtteintDestination() {
         return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
     }
-
 
     /**
      * Cette méthode va effectuer l'action de base d'un ennemi qui est de se déplacer

@@ -9,7 +9,6 @@
 }
 
 #labelArgent, #labelVague {
-    -fx-text-fill: #000000;
     -fx-font-size: 15pt;
     fx-font-weight: bold;
 
@@ -33,7 +32,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #20252b;
+    -fx-background-color: #858585;
     -fx-border-color: #5a5b5f;
 }
 
@@ -46,4 +45,26 @@
     -fx-border-width: 2;
 }
 
+#boutonAccel {
+    -fx-background-image: url("images/boutons/vitesse.png"); /* pas la bonne image a changer */
+    -fx-background-size: contain;
+}
 
+#boutonMenu {
+    -fx-background-image: url("images/boutons/param.png");
+    -fx-background-size: contain;
+}
+#boutonLancerPause {
+    -fx-background-image: url("images/boutons/lancer.png");
+    -fx-background-size: contain;
+}
+
+#pauseReprendre {
+    -fx-background-image: url("images/boutons/pause.png"); /* a changer */
+    -fx-background-size: contain;
+}
+
+#pauseQuitter {
+    -fx-background-image: url("images/boutons/sortie.png");
+    -fx-background-size: contain;
+}

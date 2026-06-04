@@ -1,6 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+/**
+ * ChevalDeTroie qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ */
 
 public class ChevalDeTroie extends Ennemi {
 
