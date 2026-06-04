@@ -1,4 +1,4 @@
-package universite_paris8.iut.mcheema.codesource.batiment;
+package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

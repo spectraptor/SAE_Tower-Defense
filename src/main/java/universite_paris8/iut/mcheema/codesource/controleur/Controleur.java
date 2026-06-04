@@ -10,9 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
-import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
-import universite_paris8.iut.mcheema.codesource.batiment.Surcadence;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.Surcadence;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
@@ -133,27 +132,26 @@ public class Controleur implements Initializable {
 
             int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
 
-        int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
+            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            if (!this.environnement.partieEstFinie()) {
+                if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
+                        !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
-        int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-        int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-        if (!this.environnement.partieEstFinie()) {
-            if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
-                    !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
-
-                Batiment surcadence = new Surcadence(centreTuileX, centreTuileY, this.environnement);
-                this.environnement.ajouterBatiment(surcadence);
+                    Batiment surcadence = new Surcadence(centreTuileX, centreTuileY, this.environnement);
+                    this.environnement.ajouterBatiment(surcadence);
 
 
-                BatimentVue surcadenceVue = new BatimentVue(surcadence, paneJeu);
-                surcadenceVue.creerSpriteBatiment();
+                    BatimentVue surcadenceVue = new BatimentVue(surcadence, paneJeu);
+                    surcadenceVue.creerSpriteBatiment();
 
-                System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+                    System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
+                }
             }
+
+
+            System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
         }
-
-
-        System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
     }
 
     public void choisirBouton(ActionEvent actionEvent) {

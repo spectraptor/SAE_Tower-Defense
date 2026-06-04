@@ -2,7 +2,7 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
 
 /**
  * La classe BatimentVue s'occupe de l'affichage des bâtiments, en affichant leurs sprites, leurs projectiles, etc.

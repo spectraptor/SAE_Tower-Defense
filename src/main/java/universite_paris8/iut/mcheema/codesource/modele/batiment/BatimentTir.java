@@ -1,4 +1,4 @@
-package universite_paris8.iut.mcheema.codesource.batiment;
+package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;

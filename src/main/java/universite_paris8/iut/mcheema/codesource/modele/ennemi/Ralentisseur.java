@@ -1,7 +1,7 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
-import universite_paris8.iut.mcheema.codesource.batiment.Batiment;
-import universite_paris8.iut.mcheema.codesource.batiment.BatimentTir;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.BatimentTir;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 
 /**
