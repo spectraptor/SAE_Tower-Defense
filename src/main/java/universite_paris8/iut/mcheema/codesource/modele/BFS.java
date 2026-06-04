@@ -61,20 +61,20 @@ public class BFS {
     /**
      * Retourne une liste donnant la suite des sommets depuis la cible jusqu'à la source
      *
-     * @param ennemiDepart
+     * @param cible
      * @return le chemin sous forme de liste de sommets
      */
 
     public ArrayList<Point> cheminDepuisSource(Point cible) {
         ArrayList<Point> chemin = new ArrayList<>();
 
-        if (!predecesseurs.containsKey(ennemiDepart)) {
+        if (!predecesseurs.containsKey(cible)) {
             return chemin;
         }
 
         Point courant = cible;
         while (courant != null) {
-            chemin.add(courant);
+            chemin.add(0,courant);
             courant = predecesseurs.get(courant);
         }
         return chemin;
