@@ -50,7 +50,7 @@ public class Controleur implements Initializable {
     private Label labelVieBase;
 
     @FXML
-    private Button lancer;
+    private  Label labelArgent;
 
     @FXML
     private Pane menuPause;
@@ -66,6 +66,7 @@ public class Controleur implements Initializable {
       
         this.environnement = new Environnement(2);
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
+        this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
