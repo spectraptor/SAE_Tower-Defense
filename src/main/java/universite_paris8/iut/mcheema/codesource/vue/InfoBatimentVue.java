@@ -3,12 +3,13 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
 
 public class InfoBatimentVue {
     private final static int LARGEUR_PANE = 200;
-    private final static int HAUTEUR_PANE = 150;
+    private final static int HAUTEUR_PANE = 200;
     private Batiment batiment;
     private Pane paneJeu;
 
@@ -39,6 +40,25 @@ public class InfoBatimentVue {
             boutonQuitter.setTranslateY(0);
             paneInfo.getChildren().add(boutonQuitter);
             boutonQuitter.setId("boutonQuitterInfoBat");
+
+            HBox boiteAction = new HBox();
+            boiteAction.setPrefWidth(LARGEUR_PANE);
+            boiteAction.setPrefHeight(HAUTEUR_PANE / 4);
+            boiteAction.setTranslateX(0);
+            boiteAction.setTranslateY(HAUTEUR_PANE-boiteAction.getPrefHeight());
+            paneInfo.getChildren().add(boiteAction);
+
+            Button boutonVendre = new Button("Vendre");
+            boutonVendre.setPrefWidth(LARGEUR_PANE /2);
+            boutonVendre.setPrefHeight(HAUTEUR_PANE / 4);
+            boiteAction.getChildren().add(boutonVendre);
+
+            Button boutonDeplacer = new Button("Deplacer");
+            boutonDeplacer.setPrefWidth(LARGEUR_PANE /2);
+            boutonDeplacer.setPrefHeight(HAUTEUR_PANE / 4);
+
+            boiteAction.getChildren().add(boutonDeplacer);
+
 
             this.paneJeu.getChildren().add(4, paneInfo);
 
