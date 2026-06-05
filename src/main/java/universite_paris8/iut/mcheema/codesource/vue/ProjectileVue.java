@@ -22,50 +22,27 @@ public class ProjectileVue {
     }
 
     public void creeSpriteProjectile() {
-
+        Image imgProjectile0 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile0.png").toExternalForm());;
+        Image imgProjectile1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile1.png").toExternalForm());
+        Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
+        ImageView imageViewprojectile;
         if (Math.random() < 0.5) {
-            Image imgProjectile0 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile0.png").toExternalForm());
-            ImageView vueProjectile0 = new ImageView(imgProjectile0);
-            vueProjectile0.translateXProperty().bind(this.projectile.xProperty().subtract(4));
-            vueProjectile0.translateYProperty().bind(this.projectile.yProperty().subtract(4));
-            this.paneJeu.getChildren().add(1, vueProjectile0);
-            vueProjectile0.setId(this.projectile.getId());
+            imageViewprojectile = new ImageView(imgProjectile0);
         } else {
-            Image imgProjectile1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile1.png").toExternalForm());
-            ImageView vueProjectile1 = new ImageView(imgProjectile1);
-            vueProjectile1.translateXProperty().bind(this.projectile.xProperty().subtract(4));
-            vueProjectile1.translateYProperty().bind(this.projectile.yProperty().subtract(4));
-            this.paneJeu.getChildren().add(1, vueProjectile1);
-            vueProjectile1.setId(this.projectile.getId());
+            imageViewprojectile = new ImageView(imgProjectile1);
         }
-        /*
-        Circle sprite = new Circle(2, Color.MAROON);
-        sprite.setId(projectile.getId());
-        sprite.translateXProperty().bind(projectile.xProperty());
-        sprite.translateYProperty().bind(projectile.yProperty());
-        this.paneJeu.getChildren().add(1,sprite);
-*/
+        imageViewprojectile.translateXProperty().bind(this.projectile.xProperty().subtract(4));
+        imageViewprojectile.translateYProperty().bind(this.projectile.yProperty().subtract(4));
+        this.paneJeu.getChildren().add(1, imageViewprojectile);
+        imageViewprojectile.setId(this.projectile.getId());
+
         if (this.projectile instanceof MissileZone) {
-            Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
             ImageView vueExplosion = new ImageView(imgExplosion);
             vueExplosion.translateXProperty().bind(this.projectile.xProperty().subtract(20)); // 40 px diametre
             vueExplosion.translateYProperty().bind(this.projectile.yProperty().subtract(20));
             this.paneJeu.getChildren().add(1, vueExplosion);
             vueExplosion.setId(this.projectile.getId() + "P");
             vueExplosion.setVisible(false);
-
-            /* Style visuel */
-        /*
-            rayonB.setFill(Color.TRANSPARENT);
-            rayonB.setStroke(Color.BLACK);
-            rayonB.setStrokeWidth(0.5);
-
-            rayonB.centerXProperty().bind(sprite.translateXProperty());
-            rayonB.centerYProperty().bind(sprite.translateYProperty());
-            rayonB.setId(projectile.getId()+"P");
-            this.paneJeu.getChildren().add(1,rayonB);
-        }
-         */
         }
     }
 }
