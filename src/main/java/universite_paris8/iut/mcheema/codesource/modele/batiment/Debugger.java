@@ -3,11 +3,12 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 public class Debugger extends BatimentTir {
 
     public Debugger(int x, int y, Environnement env) {
-        super("Debugger",x, y, 150,5, 150, env);
+        super("Debugger",x, y, 150,5, 50,150, env);
     }
 
     @Override
@@ -21,4 +22,10 @@ public class Debugger extends BatimentTir {
             }
         }
     }
+
+    @Override
+    public Projectile choisirProjectile(Ennemi cible) {
+        return null;
+    }
+
 }
