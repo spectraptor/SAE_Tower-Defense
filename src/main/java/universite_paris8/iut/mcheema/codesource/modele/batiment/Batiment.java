@@ -3,6 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
@@ -16,16 +17,18 @@ public abstract class Batiment {
     private String nom;
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
-    private int portee;
+    private int prix;
+    private int niveau;
     private Environnement environnement;
 
-    public Batiment(String nom,int x, int y, int portee, Environnement env) {
+    public Batiment(String nom,int x, int y,int prix, Environnement env) {
         idCpt++;
         this.id = "B" + idCpt;
         this.nom = nom;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.portee = portee;
+        this.prix = prix;
+        this.niveau = 1;
         this.environnement = env;
     }
 
@@ -61,16 +64,58 @@ public abstract class Batiment {
         this.yProperty.set(y);
     }
 
+    public int getPrix() {
+        return this.prix;
+    }
+
+    public int getNiveau() {
+        return this.niveau;
+    }
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
+
+    public int prixVente() {
+        return this.prix /4;
+    }
+
+    public void vendreBatiment( ) {
+        this.getEnvironnement().getBatiments().remove(this);
+        this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() + this.prixVente());
+    }
+
+    public void acheterBatiment() {
+        if(this.getEnvironnement().getArgent() >= this.getPrix()) {
+            this.getEnvironnement().ajouterBatiment(this);
+            this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.getPrix());
+        }
+    }
+
+    public void deplacerBatiment2(int nouvX,int nouvY) {
+        if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
+            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
+            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+            if(!this.environnement.partieEstFinie()) {
+                if(this.environnement.tuileTourPosable(nouvX,nouvY) && !this.environnement.tuileContientUnBatiment(centreTuileX,centreTuileY)) {
+                    this.setX(centreTuileX);
+                    this.setY(centreTuileY);
+                    this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.getPrix() /2);
+                }
+            }
+        }
+
+    }
 
     public Environnement getEnvironnement() {
         return this.environnement;
     }
 
-    public int getPortee() {
-        return this.portee;
-    }
 
     public abstract void effectueAction();
+
+    public abstract void ameliorerBatiment();
 
     /**
      * Calcul la distance entre un batiment et un ennemi
@@ -85,39 +130,15 @@ public abstract class Batiment {
         return  (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())));
     }
 
-
-
-    /**
-     * Recherche l'ennemi le plus proche de la tour parmi
-     * tous les ennemis situés dans sa porté.
-     * @return l'ennemi le plus proche dans la portée de la tour ou null si
-     * aucun ennemi n'est dans sa portéee
-     */
-    public Ennemi ennemiDansPortee() {
-        Ennemi ennemiRetourne = null;
-        for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
-            if (this.calculDistance(ennemi) <= this.getPortee()) {
-                if (!ennemi.estCamoufle()) {
-                    if (ennemiRetourne == null) {
-                        ennemiRetourne = ennemi;
-                    }
-                    else {
-                        double distActu = calculDistance(ennemiRetourne);
-                        double distNouv = calculDistance(ennemi);
-                        if (distNouv < distActu) {
-                            ennemiRetourne = ennemi;
-                        }
-                    }
-                }
-            }
-        }
-        return ennemiRetourne;
+    public int coutProchaineAmelioration() {
+        return this.getNiveau() *(this.getPrix() /4);
     }
+
 
 
     public String toString() {
-        return  "      " + this.getNom() +  "      " +
-                "\n\nPortee : " + this.getPortee();
+        return  "      " + this.getNom() +  "      ";
     }
+
 
 }

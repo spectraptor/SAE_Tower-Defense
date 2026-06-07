@@ -19,9 +19,7 @@ import universite_paris8.iut.mcheema.codesource.controleur.listeners.Observateur
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
@@ -117,7 +115,7 @@ public class Controleur implements Initializable {
                 ennemi = new Bogue(this.environnement, chemin);
             }
             else {
-                ennemi = new ErreurExecution(this.environnement, chemin2);
+                ennemi = new Ralentisseur(this.environnement, chemin2);
             }
 
             this.environnement.ajouterEnnemi(ennemi);
@@ -145,41 +143,42 @@ public class Controleur implements Initializable {
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
         if (numBatimentSelectionne != -1) {
-        Batiment batiment = null;
-        if (!this.environnement.partieEstFinie() && !etatPause) {
-            int coordsSourisX = (int) mouseEvent.getX();
-            int coordsSourisY = (int) mouseEvent.getY();
+            Batiment batiment = null;
+            if (!this.environnement.partieEstFinie() && !etatPause) {
+                int coordsSourisX = (int) mouseEvent.getX();
+                int coordsSourisY = (int) mouseEvent.getY();
 
-            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
+                int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
 
-            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            if (!this.environnement.partieEstFinie()) {
-                if (this.environnement.tuileTourPosable(coordsSourisX,coordsSourisY) &&
-                        !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
+                int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+                int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+                if (!this.environnement.partieEstFinie()) {
+                    if (this.environnement.tuileTourPosable(coordsSourisX,coordsSourisY) &&
+                            !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
 
-                    switch (this.numBatimentSelectionne) {
-                        case 1:
-                            batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
-                            break;
-                        case 2:
-                            batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
-                            break;
-                        case 3:
-                            batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
-                            break;
-                        case 4:
-                            batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
-                            break;
+                        switch (this.numBatimentSelectionne) {
+                            case 1:
+                                batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
+                                break;
+                            case 2:
+                                batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
+                                break;
+                            case 3:
+                                batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
+                                break;
+                            case 4:
+                                batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
+                                break;
+                            case 6:
+                                batiment = new RAM(centreTuileX, centreTuileY, this.environnement);
+                        }
+
+                        batiment.acheterBatiment();
+                        // réinitialisation du bouton
+                        this.numBatimentSelectionne = -1;
+                        System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                     }
-
-                    // réinitialisation du bouton
-                    this.numBatimentSelectionne = -1;
-
-                    this.environnement.ajouterBatiment(batiment);
-                    System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
                 }
-            }
         }
 
 
@@ -191,7 +190,7 @@ public class Controleur implements Initializable {
         Button bouton = (Button) actionEvent.getSource();
 
         switch(bouton.getText()) {
-            case "Compilateur", "Cloud", "RAM":
+            case "Compilateur", "Cloud":
                 this.numBatimentSelectionne = 1;
                 break;
             case "Debugger":
@@ -203,7 +202,9 @@ public class Controleur implements Initializable {
             case "Surcadence":
                 this.numBatimentSelectionne = 4;
                 break;
-
+            case "RAM":
+                this.numBatimentSelectionne = 6;
+                break;
         }
     }
 

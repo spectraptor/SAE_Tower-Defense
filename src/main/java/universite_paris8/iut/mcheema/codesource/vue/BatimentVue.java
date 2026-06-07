@@ -29,6 +29,7 @@ public class BatimentVue {
         Image imgDebugger = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
         Image imgBombeLogique = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());
         Image imgSurcadence = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/surcadence.png").toExternalForm());
+        Image imgRAM = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/ram.png").toExternalForm());
         ImageView imgVueBatiment;
         if(this.batiment instanceof Compilateur) {
             imgVueBatiment = new ImageView(imgCompilateur);
@@ -39,9 +40,14 @@ public class BatimentVue {
         else if(this.batiment instanceof BombeLogique) {
             imgVueBatiment = new ImageView(imgBombeLogique);
         }
-        else  {
+        else if (this.batiment instanceof Surcadence) {
             imgVueBatiment = new ImageView(imgSurcadence);
         }
+
+        else {
+            imgVueBatiment = new ImageView(imgRAM);
+        }
+        imgVueBatiment.setId(this.batiment.getId());
         imgVueBatiment.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
         imgVueBatiment.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
         this.paneJeu.getChildren().add(1, imgVueBatiment);

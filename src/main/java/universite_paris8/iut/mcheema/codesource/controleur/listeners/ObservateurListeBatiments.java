@@ -16,10 +16,16 @@ public class ObservateurListeBatiments implements ListChangeListener<Batiment> {
 
     @Override
     public void onChanged(Change<? extends Batiment> change) {
-        while(change.next()) {
+        while (change.next()) {
             for (Batiment batiment : change.getAddedSubList()) {
-                BatimentVue batimentVue = new BatimentVue(batiment,this.paneJeu);
+                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
                 batimentVue.creerSpriteBatiment();
+            }
+
+            for (Batiment batiment : change.getRemoved()) {
+                this.paneJeu.lookup("#" + batiment.getId()).translateXProperty().unbind();
+                this.paneJeu.lookup("#" + batiment.getId()).translateYProperty().unbind();
+                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + batiment.getId()));
             }
         }
     }

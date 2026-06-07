@@ -32,7 +32,7 @@ public class Environnement {
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
         this.base = new Base();
-        this.argentProperty = new SimpleIntegerProperty(250);
+        this.argentProperty = new SimpleIntegerProperty(2500000);
     }
 
     public Terrain getTerrainDeJeu() {
@@ -58,6 +58,7 @@ public class Environnement {
     public void ajouterBatiment(Batiment batiment) {
         this.batiments.add(batiment);
     }
+
 
     public void ajouterProjectile(Projectile projectile) {
         this.projectiles.add(projectile);
@@ -120,6 +121,7 @@ public class Environnement {
     }
 
 
+
     public boolean partieEstFinie() {
         return this.getEnnemis().isEmpty() || this.getBase().estDetruite();
     }
@@ -131,6 +133,7 @@ public class Environnement {
     public void setNbTours(int nbTours) {
         this.nbTours = nbTours;
     }
+
 
     public final void setArgent(int argent) {this.argentProperty.setValue(argent);}
 
