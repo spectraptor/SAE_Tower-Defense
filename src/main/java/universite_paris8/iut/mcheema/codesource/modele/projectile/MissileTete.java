@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class MissileTete extends MissileTeleguide {
     public MissileTete(double x, double y,int degat, Ennemi cible,Environnement env) {
-        super(x, y, degat, 1,cible,env);
+        super(x, y, degat, 3,cible,env);
     }
 
     @Override
