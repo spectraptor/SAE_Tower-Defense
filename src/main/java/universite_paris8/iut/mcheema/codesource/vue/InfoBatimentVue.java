@@ -66,6 +66,9 @@ public class InfoBatimentVue {
             boutonAmeliorer.setPrefWidth(LARGEUR_PANE);
             boutonAmeliorer.setPrefHeight(boiteBoutonAction.getPrefHeight() - boiteVenDep.getPrefHeight());
             boiteBoutonAction.getChildren().add(boutonAmeliorer);
+            if(this.batiment.getNiveau() == 2) {
+                boutonAmeliorer.setDisable(true);
+            }
 
             boutonAmeliorer.setOnAction(e -> {
                     this.batiment.ameliorerBatiment();

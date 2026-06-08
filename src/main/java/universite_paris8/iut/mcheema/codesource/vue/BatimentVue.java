@@ -26,6 +26,7 @@ public class BatimentVue {
 
     public void creerSpriteBatiment() {
         Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());;
+        Image imgCloud = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/cloud.png").toExternalForm());
         Image imgDebugger = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
         Image imgBombeLogique = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());
         Image imgSurcadence = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/surcadence.png").toExternalForm());
@@ -33,6 +34,9 @@ public class BatimentVue {
         ImageView imgVueBatiment;
         if(this.batiment instanceof Compilateur) {
             imgVueBatiment = new ImageView(imgCompilateur);
+        }
+        else if(this.batiment instanceof Cloud) {
+            imgVueBatiment = new ImageView(imgCloud);
         }
         else if(this.batiment instanceof Debugger) {
             imgVueBatiment = new ImageView(imgDebugger);
@@ -43,7 +47,6 @@ public class BatimentVue {
         else if (this.batiment instanceof Surcadence) {
             imgVueBatiment = new ImageView(imgSurcadence);
         }
-
         else {
             imgVueBatiment = new ImageView(imgRAM);
         }

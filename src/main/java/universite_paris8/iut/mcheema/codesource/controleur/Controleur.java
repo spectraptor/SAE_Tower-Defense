@@ -161,16 +161,20 @@ public class Controleur implements Initializable {
                                 batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
                                 break;
                             case 2:
-                                batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
+                                batiment = new Cloud(centreTuileX, centreTuileY, this.environnement);
                                 break;
                             case 3:
-                                batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
+                                batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
                                 break;
                             case 4:
+                                batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
+                                break;
+                            case 5:
                                 batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
                                 break;
                             case 6:
-                                batiment = new RAM(centreTuileX, centreTuileY, this.environnement);
+                                batiment = new RAM(centreTuileX,centreTuileY,this.environnement);
+                                break;
                         }
 
                         batiment.acheterBatiment();
@@ -190,17 +194,20 @@ public class Controleur implements Initializable {
         Button bouton = (Button) actionEvent.getSource();
 
         switch(bouton.getText()) {
-            case "Compilateur", "Cloud":
+            case "Compilateur":
                 this.numBatimentSelectionne = 1;
                 break;
-            case "Debugger":
+            case "Cloud":
                 this.numBatimentSelectionne = 2;
                 break;
-            case "Bombe Logique":
+            case "Debugger":
                 this.numBatimentSelectionne = 3;
                 break;
-            case "Surcadence":
+            case "Bombe Logique":
                 this.numBatimentSelectionne = 4;
+                break;
+            case "Surcadence":
+                this.numBatimentSelectionne = 5;
                 break;
             case "RAM":
                 this.numBatimentSelectionne = 6;

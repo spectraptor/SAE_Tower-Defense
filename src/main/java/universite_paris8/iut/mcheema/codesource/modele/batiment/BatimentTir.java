@@ -33,7 +33,9 @@ public abstract class BatimentTir extends BatimentAvecPortee{
 
     public void ameliorerBatiment() {
         if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
-            this.setNiveau(this.getNiveau()+1);
+            if(this.getNiveau() == 1) {
+                this.setNiveau(this.getNiveau()+1);
+            }
             if (this.getNiveau() == 2) {this.setCadenceTir(this.getCadenceTir() / 1.5);
             }
             this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.coutProchaineAmelioration());

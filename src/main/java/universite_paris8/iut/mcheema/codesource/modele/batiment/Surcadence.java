@@ -35,7 +35,7 @@ public class Surcadence extends BatimentPacifiste{
         }
         for(int i = 0;i<this.batiments.size();i++) {
             if(this.calculDistance(this.batiments.get(i)) > this.getPortee()) {
-                this.batiments.get(i).setCadenceTir(this.batiments.get(i).getCadenceTir() * 1.5);
+                this.batiments.get(i).setCadenceTir(this.batiments.get(i).getCadenceTir() * this.diviseCadence);
                 this.batiments.remove(this.batiments.get((i)));
             }
         }

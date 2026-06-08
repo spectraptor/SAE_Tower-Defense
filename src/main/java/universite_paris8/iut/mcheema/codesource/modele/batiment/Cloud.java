@@ -5,8 +5,8 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 public class Cloud extends BatimentTir {
-    public Cloud(String nom, int x, int y, int portee, int degat, int prix, double cTir, Environnement env) {
-        super(nom, x, y, portee, degat, prix, cTir, env);
+    public Cloud(int x, int y, Environnement env) {
+        super("Cloud", x, y, 50, 1, 50, 100, env);
     }
 
     @Override
