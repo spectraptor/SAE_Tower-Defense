@@ -10,8 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeBatiments;
 import universite_paris8.iut.mcheema.codesource.modele.Point;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
@@ -22,7 +24,6 @@ import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
@@ -61,13 +62,10 @@ public class Controleur implements Initializable {
     private Pane menuPause;
 
     @FXML
-    private  Button pauseReprendre;
-
-    @FXML
-    private Button pauseQuitter;
-
-    @FXML
     private Button boutonLancerPause;
+
+    @FXML
+    private BorderPane borderPanePrincipal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,8 +75,11 @@ public class Controleur implements Initializable {
         imgVLancer.setFitHeight(50);
         imgVLancer.setFitWidth(45);
         this.boutonLancerPause.setGraphic(imgVLancer);
+    }
 
-        this.environnement = new Environnement(2);
+    public void chargerNiveau(int niveau) {
+
+        this.environnement = new Environnement(niveau);
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
 
@@ -90,16 +91,8 @@ public class Controleur implements Initializable {
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
-        // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
-        /*
-        Tuile baseTuile = new Tuile(0, 12);
-        Tuile entree = new Tuile(19, 4);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
+        terrainVue.afficheTerrainJeu();
 
-         */
-
-        // Carte 2
         Point basePoint = new Point(0, 7);
         Point entree = new Point(15, 0);
         BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), basePoint);
@@ -112,20 +105,17 @@ public class Controleur implements Initializable {
 
 
         Ennemi ennemi;
-        for(int i = 0;i<2;i++) {
-            if(i==0) {
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) {
                 ennemi = new Bogue(this.environnement, chemin);
-            }
-            else {
+            } else {
                 ennemi = new ErreurExecution(this.environnement, chemin2);
             }
 
             this.environnement.ajouterEnnemi(ennemi);
         }
 
-        terrainVue.afficheTerrainJeu();
-        this.initAnimation();
-
+        initAnimation();
     }
 
     private void initAnimation() {
@@ -187,6 +177,7 @@ public class Controleur implements Initializable {
         }
     }
 
+    @FXML
     public void choisirBouton(ActionEvent actionEvent) {
         Button bouton = (Button) actionEvent.getSource();
 
@@ -207,14 +198,14 @@ public class Controleur implements Initializable {
         }
     }
 
+    @FXML
     public void afficheReglage(ActionEvent actionEvent) {
         etatPause = true;
         gameLoop.pause();
         menuPause.setVisible(true);
     }
 
-
-
+    @FXML
     public void accelererOuRalentir(ActionEvent actionEvent) {
         if (etatRapide) {
             gameLoop.setRate(1);
@@ -229,6 +220,7 @@ public class Controleur implements Initializable {
         }
     }
 
+    @FXML
     public void lancer(ActionEvent actionEvent) {
         if (this.etatPause) {
             etatPause = false;
@@ -252,8 +244,9 @@ public class Controleur implements Initializable {
         }
     }
 
-
+    @FXML
     public void quitter(ActionEvent actionEvent) {
-        System.out.println("fait rien pour l'instant");
+        Stage stage = (Stage) this.borderPanePrincipal.getScene().getWindow();
+        stage.close();
     }
 }
