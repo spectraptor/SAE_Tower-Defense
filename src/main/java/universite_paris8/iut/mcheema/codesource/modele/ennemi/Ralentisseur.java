@@ -27,9 +27,11 @@ public class Ralentisseur extends Ennemi {
         super.effectueAction();
         for(Batiment batiment : this.getEnvironnement().getBatiments()) {
             if (!batimentRalenti.contains(batiment)) {
-                if (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())) <= this.portee) {
-                    ((BatimentTir) batiment).setCadenceTir(((BatimentTir) batiment).getCadenceTir() * this.ralentissement);
-                    this.batimentRalenti.add((BatimentTir) batiment);
+                if(batiment instanceof BatimentTir) {
+                    if (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())) <= this.portee) {
+                        ((BatimentTir) batiment).setCadenceTir(((BatimentTir) batiment).getCadenceTir() * this.ralentissement);
+                        this.batimentRalenti.add((BatimentTir) batiment);
+                    }
                 }
             }
         }

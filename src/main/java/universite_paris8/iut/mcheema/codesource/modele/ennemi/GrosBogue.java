@@ -26,7 +26,7 @@ public class GrosBogue extends Ennemi {
             ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(entree2);
             this.getEnvironnement().getEnnemis().add(new Bogue(this.getX(),this.getY(),this.getEnvironnement(), chemin2));
             this.getEnvironnement().getEnnemis().add(new Bogue(this.getX(),this.getY()+5,this.getEnvironnement(), chemin2));
-
+            this.meurt();
         }
     }
 }
