@@ -28,9 +28,6 @@ public abstract class BatimentTir extends BatimentAvecPortee{
 
     public abstract void effectueAction();
 
-
-
-
     public void ameliorerBatiment() {
         if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
             if(this.getNiveau() == 1) {
@@ -41,9 +38,6 @@ public abstract class BatimentTir extends BatimentAvecPortee{
             this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.coutProchaineAmelioration());
         }
     }
-
-
-
 
 
     public abstract Projectile choisirProjectile(Ennemi cible);

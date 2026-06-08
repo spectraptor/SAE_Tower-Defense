@@ -142,51 +142,12 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (numBatimentSelectionne != -1) {
-            Batiment batiment = null;
-            if (!this.environnement.partieEstFinie() && !etatPause) {
-                int coordsSourisX = (int) mouseEvent.getX();
-                int coordsSourisY = (int) mouseEvent.getY();
+        int coordsSourisX = (int) mouseEvent.getX();
+        int coordsSourisY = (int) mouseEvent.getY();
 
-                int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
-
-                int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-                int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-                if (!this.environnement.partieEstFinie()) {
-                    if (this.environnement.tuileTourPosable(coordsSourisX,coordsSourisY) &&
-                            !this.environnement.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
-
-                        switch (this.numBatimentSelectionne) {
-                            case 1:
-                                batiment = new Compilateur(centreTuileX, centreTuileY, this.environnement);
-                                break;
-                            case 2:
-                                batiment = new Cloud(centreTuileX, centreTuileY, this.environnement);
-                                break;
-                            case 3:
-                                batiment = new Debugger(centreTuileX, centreTuileY, this.environnement);
-                                break;
-                            case 4:
-                                batiment = new BombeLogique(centreTuileX, centreTuileY, this.environnement);
-                                break;
-                            case 5:
-                                batiment = new Surcadence(centreTuileX, centreTuileY, this.environnement);
-                                break;
-                            case 6:
-                                batiment = new RAM(centreTuileX,centreTuileY,this.environnement);
-                                break;
-                        }
-
-                        batiment.acheterBatiment();
-                        // réinitialisation du bouton
-                        this.numBatimentSelectionne = -1;
-                        System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
-                    }
-                }
-        }
-
-
-            System.out.println("Colonne : " + mouseEvent.getX() / 32 + " ligne : " + mouseEvent.getY() / 32);
+        if (this.numBatimentSelectionne != -1) {
+            this.environnement.poserBatiment(coordsSourisX, coordsSourisY, this.numBatimentSelectionne);
+            this.numBatimentSelectionne = -1;
         }
     }
 

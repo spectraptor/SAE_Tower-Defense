@@ -98,8 +98,8 @@ public class Environnement {
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
         return this.terrainDeJeu.tuileEstAccessibleCoords(nouveauX,nouveauY);
     }
-    public boolean tuileTourPosable(int x, int y) {
-        return this.getTerrainDeJeu().tuileTourPosable(x,y);
+    public boolean tuileTourPosable(int ligne, int colonne) {
+        return this.getTerrainDeJeu().tuileTourPosable(ligne , colonne);
     }
 
     /**
@@ -120,6 +120,49 @@ public class Environnement {
         return sortieBoucle;
     }
 
+    /**
+     * Permet de poser un batiment au sein du jeu.
+     * @param x l'abscisse du batiment
+     * @param y l'ordonnée du batiment
+     * @param numBat le type de batiment
+     * @return le batiment à poser
+     */
+    public void poserBatiment(int x, int y, int numBat) {
+        Batiment batimentAPoser = null;
+        int[] ligneColonneTuileTab = this.terrainDeJeu.convertirCoordsTuile(x, y);
+
+        int centreTuileX = ligneColonneTuileTab[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        int centreTuileY = ligneColonneTuileTab[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
+        if (!this.partieEstFinie())
+            if (this.tuileTourPosable(x, y) &&
+                    !this.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
+
+                switch (numBat) {
+                    case 1:
+                        batimentAPoser = new Compilateur(centreTuileX, centreTuileY, this);
+                        break;
+                    case 2:
+                        batimentAPoser = new Cloud(centreTuileX, centreTuileY, this);
+                        break;
+                    case 3:
+                        batimentAPoser = new Debugger(centreTuileX, centreTuileY, this);
+                        break;
+                    case 4:
+                        batimentAPoser = new BombeLogique(centreTuileX, centreTuileY, this);
+                        break;
+                    case 5:
+                        batimentAPoser = new Surcadence(centreTuileX, centreTuileY, this);
+                        break;
+                    case 6:
+                        batimentAPoser = new RAM(centreTuileX, centreTuileY, this);
+                        break;
+                }
+
+                batimentAPoser.acheterBatiment();
+            }
+
+    }
 
 
     public boolean partieEstFinie() {
