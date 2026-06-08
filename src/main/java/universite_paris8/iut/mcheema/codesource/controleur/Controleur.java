@@ -81,6 +81,7 @@ public class Controleur implements Initializable {
     public void chargerNiveau(int niveau) {
 
         this.environnement = new Environnement(niveau);
+        Niveau niveauChoisi = new Niveau(niveau);
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
 
@@ -94,23 +95,19 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
 
-        Point basePoint = new Point(0, 7);
-        Point entree = new Point(15, 0);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), basePoint);
-        ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
+        for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
 
-        Point basePoint2 = new Point(0, 11);
-        Point entree2 = new Point(13, 14);
-        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), basePoint2);
-        ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(entree2);
+            Point base = niveauChoisi.getBases().get(i);
+            Point entree = niveauChoisi.getEntrees().get(i);
+            BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
+            ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
 
-
-        Ennemi ennemi;
-        for (int i = 0; i < 2; i++) {
+            Ennemi ennemi;
             if (i == 0) {
                 ennemi = new Bogue(this.environnement, chemin);
-            } else {
-                ennemi = new ErreurExecution(this.environnement, chemin2);
+            }
+            else {
+                ennemi = new ErreurExecution(this.environnement, chemin);
             }
 
             this.environnement.ajouterEnnemi(ennemi);
