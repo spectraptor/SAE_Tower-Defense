@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.ControleurAccueil">
+   <children>
+      <Pane fx:id="menuPrincipal" prefHeight="480.0" prefWidth="900.0">
+         <children>
+            <VBox layoutX="200.0" layoutY="40.0" prefHeight="400.0" prefWidth="500.0">
+               <children>
+                  <Label prefHeight="63.0" prefWidth="89.0" text="JEU">
+                     <font>
+                        <Font name="Chilanka Regular" size="42.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="210.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="boutonJouer" mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER">
+                     <VBox.margin>
+                        <Insets left="125.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="135.0" layoutY="35.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="PARAMETRES">
+                     <VBox.margin>
+                        <Insets left="125.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="CREDITS">
+                     <VBox.margin>
+                        <Insets left="125.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="250.0" text="QUITTER">
+                     <VBox.margin>
+                        <Insets left="125.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="menuNiveau" prefHeight="480.0" prefWidth="900.0" visible="false">
+         <children>
+            <HBox layoutY="56.0" prefHeight="300.0" prefWidth="900.0">
+               <children>
+                  <Button minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="1">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="2">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="260.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="3">
+                     <font>
+                        <Font size="42.0" />
+                     </font></Button>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+            </HBox>
+            <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
