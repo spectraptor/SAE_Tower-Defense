@@ -75,6 +75,7 @@ public class Controleur implements Initializable {
         imgVLancer.setFitHeight(50);
         imgVLancer.setFitWidth(45);
         this.boutonLancerPause.setGraphic(imgVLancer);
+        initAnimation();
     }
 
     public void chargerNiveau(int niveau) {
@@ -114,8 +115,6 @@ public class Controleur implements Initializable {
 
             this.environnement.ajouterEnnemi(ennemi);
         }
-
-        initAnimation();
     }
 
     private void initAnimation() {
