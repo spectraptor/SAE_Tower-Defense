@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Portée : faible
  * Prix : moyen
  */
-public class Surcadence extends BatimentPacifiste{
+public class Surcadence extends BatimentAvecPortee{
     private ArrayList<BatimentTir> batiments;
     private double diviseCadence;
 
