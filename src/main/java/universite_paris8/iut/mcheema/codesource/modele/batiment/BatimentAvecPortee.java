@@ -2,16 +2,22 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiCammoufle;
 
 public abstract class BatimentAvecPortee extends Batiment {
     private int portee;
-    public BatimentAvecPortee(String nom, int x, int y,int portee, int prix, Environnement env) {
-        super(nom, x, y, prix, env);
+
+    public BatimentAvecPortee(String nom, double x, double y, int portee, int prix, int nivMax, Environnement env) {
+        super(nom, x, y, prix, nivMax, env);
         this.portee = portee;
     }
 
     public int getPortee() {
         return this.portee;
+    }
+
+    public void setPortee(int portee) {
+        this.portee = portee;
     }
 
     /**
@@ -24,7 +30,7 @@ public abstract class BatimentAvecPortee extends Batiment {
         Ennemi ennemiRetourne = null;
         for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
             if (this.calculDistance(ennemi) <= this.getPortee()) {
-                if (!ennemi.estCamoufle()) {
+                if (!(ennemi instanceof EnnemiCammoufle)) {
                     if (ennemiRetourne == null) {
                         ennemiRetourne = ennemi;
                     }

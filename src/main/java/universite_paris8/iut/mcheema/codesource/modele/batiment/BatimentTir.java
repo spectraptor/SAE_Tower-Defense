@@ -8,8 +8,9 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 public abstract class BatimentTir extends BatimentAvecPortee{
     private double cadenceTir;
     private int degat;
-    public BatimentTir(String nom,int x, int y, int portee,int degat,int prix, double cTir, Environnement env) {
-        super(nom,x, y, portee,prix, env);
+
+    public BatimentTir(String nom ,double x, double y, int portee, int degat, int prix, double cTir, Environnement env) {
+        super(nom,x, y, portee, prix, 4, env);
         this.cadenceTir = cTir;
         this.degat = degat;
     }
@@ -26,19 +27,20 @@ public abstract class BatimentTir extends BatimentAvecPortee{
         return this.cadenceTir;
     }
 
-    public abstract void effectueAction();
-
     public void ameliorerBatiment() {
+        double pourcentage;
         if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
-            if(this.getNiveau() == 1) {
-                this.setNiveau(this.getNiveau()+1);
+            if (this.getNiveau() < this.getNiveauMax()) {
+                this.cadenceTir *= 1 + this.pourcentageReduction();
+                this.getEnvironnement().retirerArgent(this.coutProchaineAmelioration());
+                this.incrementerNiveau();
             }
-            if (this.getNiveau() == 2) {this.setCadenceTir(this.getCadenceTir() / 1.5);
-            }
-            this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.coutProchaineAmelioration());
         }
     }
 
+    public boolean estCapableDeTirer() {
+        return this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0;
+    }
 
     public abstract Projectile choisirProjectile(Ennemi cible);
 
