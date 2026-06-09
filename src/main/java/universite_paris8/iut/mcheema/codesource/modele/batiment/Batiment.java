@@ -47,7 +47,7 @@ public abstract class Batiment extends Entite {
     }
   
     public int avoirPrixVente() {
-        return this.prix / 4;
+        return this.niveau * this.prix / 4;
     }
 
     public void vendreBatiment( ) {
