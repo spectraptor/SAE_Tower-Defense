@@ -165,6 +165,10 @@ public class InfoBatimentVue {
                     rayonB = null;
                 }
 
+                //Désactive la vBox car si il y'a un rayon qui sort du pane et va dans la vBox cela peut faire crash
+                VBox vbox = (VBox) paneJeu.getScene().lookup("#vBoxBoutons");
+                vbox.setDisable(true);
+
                 //Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
                 paneTemp.setOnMouseClicked(e -> {
                     this.batiment.deplacerBatiment2((int)e.getX(),(int)e.getY());
@@ -172,6 +176,7 @@ public class InfoBatimentVue {
                     this.paneJeu.getChildren().remove(nouvImgVBat);
                     this.paneJeu.getChildren().remove(labelCoutDep);
                     this.paneJeu.getChildren().remove(rayonB);
+                    vbox.setDisable(false);
                 });
 
                 //Permet d'afficher la nouvelle position semi-transparente du déplacement du batiment et également le cout du déplacement
