@@ -33,7 +33,7 @@ public class Surcadence extends BatimentAvecPortee{
                 }
             }
         }
-        for(int i = 0;i<this.batiments.size();i++) {
+        for(int i = this.batiments.size() -1;i>=0;i--) {
             if(this.calculDistance(this.batiments.get(i)) > this.getPortee()) {
                 this.batiments.get(i).setCadenceTir(this.batiments.get(i).getCadenceTir() * this.diviseCadence);
                 this.batiments.remove(this.batiments.get((i)));
@@ -47,7 +47,6 @@ public class Surcadence extends BatimentAvecPortee{
             this.setNiveau(this.getNiveau()+1);
             if (this.getNiveau() == 2) {this.diviseCadence = 2;
             }
-            this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.coutProchaineAmelioration());
         }
     }
 }

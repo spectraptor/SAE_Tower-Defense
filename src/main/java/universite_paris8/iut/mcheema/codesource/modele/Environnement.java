@@ -70,7 +70,7 @@ public class Environnement {
 
     public void unTour() {
         if(!this.partieEstFinie()) {
-            for (int i = 0 ;i< this.getEnnemis().size();i++) {
+            for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
                     if(this.getEnnemis().get(i).estVivant()) {
                         this.getEnnemis().get(i).effectueAction();
@@ -81,11 +81,11 @@ public class Environnement {
                 }
             }
 
-            for(int i = 0 ;i<this.getBatiments().size();i++) {
+            for(int i = this.getBatiments().size() -1 ;i>=0;i--) {
                 this.getBatiments().get(i).effectueAction();
             }
 
-            for(int i = 0 ;i< this.getProjectiles().size();i++) {
+            for(int i = this.getProjectiles().size() -1 ;i>=0;i--) {
                 this.getProjectiles().get(i).effectueAction();
                 if(this.getProjectiles().get(i).getEstArrive()) {
                     this.getProjectiles().remove(i);

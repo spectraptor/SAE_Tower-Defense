@@ -118,6 +118,7 @@ public abstract class Ennemi {
         this.pv = pv;
     }
 
+
     public Environnement getEnvironnement() {
         return this.environnement;
     }
