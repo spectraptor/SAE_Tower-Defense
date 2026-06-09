@@ -135,4 +135,8 @@ public abstract class Ennemi extends Entite {
                 "\nPosition de l'ennemi : " + this.getX() + ";" + this.getY();
     }
 
+    public int getArgentDonne() {
+        return this.argentDonne;
+    }
+
 }
