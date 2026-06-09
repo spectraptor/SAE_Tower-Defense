@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -17,22 +18,22 @@
                <Insets bottom="50.0" left="210.0" />
             </VBox.margin>
          </Label>
-         <Button mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER">
+         <Button mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER" textFill="WHITE">
             <VBox.margin>
                <Insets left="125.0" top="6.0" />
             </VBox.margin>
          </Button>
-         <Button layoutX="135.0" layoutY="35.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="PARAMETRES">
+         <Button layoutX="135.0" layoutY="35.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="PARAMETRES" textFill="WHITE">
             <VBox.margin>
                <Insets left="125.0" top="20.0" />
             </VBox.margin>
          </Button>
-         <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#lancerCredit" prefHeight="50.0" prefWidth="250.0" text="CREDITS">
+         <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#lancerCredit" prefHeight="50.0" prefWidth="250.0" text="CREDITS" textFill="WHITE">
             <VBox.margin>
                <Insets left="125.0" top="20.0" />
             </VBox.margin>
          </Button>
-         <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="250.0" text="QUITTER">
+         <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="250.0" text="QUITTER" textFill="WHITE">
             <VBox.margin>
                <Insets left="125.0" top="20.0" />
             </VBox.margin>
@@ -44,7 +45,7 @@
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
-         <Button id="lv1" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="1">
+         <Button id="lv1" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="1" textFill="WHITE">
             <HBox.margin>
                <Insets right="50.0" />
             </HBox.margin>
@@ -52,7 +53,7 @@
                <Font size="42.0" />
             </font>
          </Button>
-         <Button id="lv2" layoutX="10.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="2">
+         <Button id="lv2" layoutX="10.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="2" textFill="WHITE">
             <HBox.margin>
                <Insets right="50.0" />
             </HBox.margin>
@@ -60,13 +61,13 @@
                <Font size="42.0" />
             </font>
          </Button>
-         <Button id="lv3" layoutX="260.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="3">
+         <Button id="lv3" layoutX="260.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="3" textFill="WHITE">
             <font>
                <Font size="42.0" />
             </font>
          </Button>
       </HBox>
-      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" />
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
    </Pane>
    <Pane fx:id="menuCredits" prefHeight="480.0" prefWidth="900.0" visible="false">
       <Label layoutX="139.0" layoutY="165.0" text="les credits sont en maintenance">
@@ -74,6 +75,6 @@
             <Font name="Chilanka Regular" size="42.0" />
          </font>
       </Label>
-      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" />
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
    </Pane>
 </AnchorPane>
