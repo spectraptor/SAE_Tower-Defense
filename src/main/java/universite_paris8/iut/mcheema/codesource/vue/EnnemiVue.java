@@ -40,7 +40,7 @@ public class EnnemiVue {
         labelArgent.translateYProperty().bind(ennemi.yProperty().subtract(30));
         paneJeu.getChildren().add(1, labelArgent);
         paneJeu.getChildren().add(1, spriteE);
-        labelArgent.setTextFill(Color.WHITE);
+        labelArgent.setTextFill(Color.DARKGOLDENROD);
         labelArgent.setId(this.ennemi.getId() + "A");
         labelArgent.setVisible(false);
     }
