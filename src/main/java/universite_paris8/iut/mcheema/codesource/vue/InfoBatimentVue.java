@@ -32,6 +32,7 @@ public class InfoBatimentVue {
             paneInfo.setId(this.batiment.getId() + "I");
             paneInfo.setPrefWidth(LARGEUR_PANE);
             paneInfo.setPrefHeight(HAUTEUR_PANE);
+            this.paneJeu.getChildren().add(paneInfo);
 
             //Label qui affiche les informations
             Label textInfo = new Label();
@@ -214,8 +215,6 @@ public class InfoBatimentVue {
 
 
             //Permet de faire en sorte que le PaneInfo ne sorte pas de la fenetre de jeu, s'adapte à la ou le batiment se situe
-            this.paneJeu.getChildren().add(paneInfo);
-
             if (this.batiment.getX() <= this.paneJeu.getPrefWidth() / 2) {
                 paneInfo.setTranslateX(batiment.getX());
             } else {
