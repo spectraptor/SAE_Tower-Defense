@@ -1,12 +1,3 @@
-
-#interfaceGauche {
-    -fx-background-color: #2b2d30;
-}
-
-#labelArgent, #labelVague #labelVieBase {
-    fx-font-weight: bold;
-}
-
 .button {
     -fx-background-color: #272727;
     -fx-background-radius: 6;
