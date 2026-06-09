@@ -62,9 +62,8 @@ public abstract class Batiment extends Entite {
         }
     }
 
-    public void deplacerBatiment2(int nouvX,int nouvY) {
+    public void deplacerBatiment(int nouvX,int nouvY) {
         if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
-          
             int[] lignesColonnesTuile = this.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
             int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
@@ -75,7 +74,6 @@ public abstract class Batiment extends Entite {
                     this.setX(centreTuileX);
                     this.setY(centreTuileY);
                     this.getEnvironnement().setArgent((int) (this.getEnvironnement().getArgent() - (this.getPrix() /10) * distanceNbTuile));
-                    System.out.println((this.getPrix() /10) * distanceNbTuile);
                 }
             }
         }
@@ -105,8 +103,8 @@ public abstract class Batiment extends Entite {
         return this.getNiveau() * REDUCTION_NIVEAU;
     }
 
-    public String toString() {
-        return  "      " + this.getNom() +  "      ";
+    public String avoirDescription() {
+        return   this.getNom() +  "      \n\n" + "Niveau actuel : " + this.getNiveau() + "/" + this.getNiveauMax() + "\n";
     }
 
 
