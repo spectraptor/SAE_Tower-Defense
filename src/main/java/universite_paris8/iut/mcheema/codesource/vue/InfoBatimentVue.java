@@ -182,7 +182,7 @@ public class InfoBatimentVue {
 
 
 
-            //Permet de faire en sorte que le PaneInfo e sorte pas de l'écran, s'adapte à la ou le batiment se situe
+            //Permet de faire en sorte que le PaneInfo ne sorte pas de la fenetre de jeu, s'adapte à la ou le batiment se situe
             this.paneJeu.getChildren().add(4, paneInfo);
 
             if (this.batiment.getX() <= this.paneJeu.getPrefWidth() / 2) {
