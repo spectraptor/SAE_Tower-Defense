@@ -1,7 +1,6 @@
 package universite_paris8.iut.mcheema.codesource.vue;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -9,9 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.BatimentAvecPortee;
 
 
 public class InfoBatimentVue {
@@ -140,8 +140,29 @@ public class InfoBatimentVue {
                 ImageView imgVBat = (ImageView) this.paneJeu.lookup("#" + this.batiment.getId());
                 ImageView nouvImgVBat = new ImageView(imgVBat.getImage());
                 nouvImgVBat.setDisable(true);
+                nouvImgVBat.setOpacity(0.5);
                 nouvImgVBat.setId(this.batiment.getId() + "DEP");
+                nouvImgVBat.setVisible(false);
                 this.paneJeu.getChildren().add(nouvImgVBat);
+
+                //Portee visible lors du déplacement du batiment pour les batiments avec une portée
+                Circle rayonB;
+                if(this.batiment instanceof BatimentAvecPortee) {
+                    rayonB = new Circle();
+                    BatimentAvecPortee bat = (BatimentAvecPortee) this.batiment;
+                    rayonB.setRadius(bat.getPortee()); // permet de visualiser le rayon de la tour
+
+                    /* Style visuel */
+                    rayonB.setFill(Color.TRANSPARENT);
+                    rayonB.setStroke(Color.BLACK);
+                    rayonB.setStrokeWidth(2.5);
+                    rayonB.setDisable(true);
+                    rayonB.setOpacity(0.5);
+                    rayonB.setVisible(false);
+                    this.paneJeu.getChildren().add(rayonB);
+                } else {
+                    rayonB = null;
+                }
 
                 //Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
                 paneTemp.setOnMouseClicked(e -> {
@@ -149,24 +170,28 @@ public class InfoBatimentVue {
                     this.paneJeu.getChildren().remove(paneTemp);
                     this.paneJeu.getChildren().remove(nouvImgVBat);
                     this.paneJeu.getChildren().remove(labelCoutDep);
+                    this.paneJeu.getChildren().remove(rayonB);
                 });
 
                 //Permet d'afficher la nouvelle position semi-transparente du déplacement du batiment et également le cout du déplacement
                 paneTemp.setOnMouseMoved(e-> {
                     //Enleve l'image si la tuile actuelle n'est pas utilisable par le batiment
                     if(this.batiment.getEnvironnement().tuileContientUnBatiment((int)e.getX(),(int)e.getY()) || !this.batiment.getEnvironnement().tuileTourPosable((int)e.getX(),(int)e.getY())) {
-                        this.paneJeu.getChildren().remove(nouvImgVBat);
-                    }
-
-                    else {
-                        //Affiche l'image si la tuile est une tuile posable pour le batiment, verifie avant l'ajout si il n'existe pas déja dans le Pane principal
-                        if(this.paneJeu.lookup("#"+this.batiment.getId()+"DEP") == null) {
-                            this.paneJeu.getChildren().add(nouvImgVBat);
+                        nouvImgVBat.setVisible(false);
+                        if(rayonB != null) {
+                            rayonB.setVisible(false);
                         }
                     }
 
-                    //Gere la semi-transparence de l'image et force le positionnement du batiment au centre de la tuile.
-                    nouvImgVBat.setOpacity(0.5);
+                    else {
+                        //Affiche l'image si la tuile est une tuile posable pour le batiment
+                        nouvImgVBat.setVisible(true);
+                        if(rayonB != null) {
+                            rayonB.setVisible(true);
+                        }
+                    }
+
+                    //force le positionnement du batiment au centre de la tuile.
                     int[] lignesColonnesTuile = this.batiment.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile((int)e.getX(), (int)e.getY());
                     int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
                     int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
@@ -176,6 +201,12 @@ public class InfoBatimentVue {
                     //Force l'affichage de l'image au centre de la tuile pour avoir un apercu conforme au placement du batiment
                     nouvImgVBat.setTranslateX((centreTuileX - Terrain.TAILLE_TUILLE/2));
                     nouvImgVBat.setTranslateY((centreTuileY - Terrain.TAILLE_TUILLE/2));
+
+                    //Le rayon suit la souris
+                    if(rayonB != null) {
+                        rayonB.setCenterX(centreTuileX);
+                        rayonB.setCenterY(centreTuileY);
+                    }
                 });
             });
 
