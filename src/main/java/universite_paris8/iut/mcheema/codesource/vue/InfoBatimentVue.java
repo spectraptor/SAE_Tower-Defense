@@ -72,11 +72,13 @@ public class InfoBatimentVue {
 
             //Bouton situé tout en bas du PaneInfo pour l'amelioration du batiment
             Button boutonAmeliorer = new Button("Ameliorer");
+            boutonAmeliorer.setId("boutonAmeliorer");
             boutonAmeliorer.setPrefWidth(LARGEUR_PANE);
             boutonAmeliorer.setPrefHeight(boiteBoutonAction.getPrefHeight() - boiteVenDep.getPrefHeight());
             boiteBoutonAction.getChildren().add(boutonAmeliorer);
+
+
             if(this.batiment.getNiveau() == this.batiment.getNiveauMax()) {
-                boutonAmeliorer.setId("boutonAmeliorer");
                 boutonAmeliorer.setDisable(true);
             }
 
@@ -95,7 +97,7 @@ public class InfoBatimentVue {
 
             //Bouton vendre
             Button boutonVendre = new Button("Vendre");
-            boutonVendre.setPrefWidth(LARGEUR_PANE /2);
+            boutonVendre.setPrefWidth(LARGEUR_PANE / 2);
             boutonVendre.setPrefHeight(HAUTEUR_PANE / 4);
             boiteVenDep.getChildren().add(boutonVendre);
             boutonVendre.setId("boutonVendre");

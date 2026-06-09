@@ -65,10 +65,10 @@ public abstract class Batiment extends Entite {
     public void deplacerBatiment2(int nouvX,int nouvY) {
         if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
           
-            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
+            int[] lignesColonnesTuile = this.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
             int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int distanceNbTuile = (Math.abs(this.getX() - centreTuileX) + Math.abs(this.getY() - centreTuileY))/Terrain.TAILLE_TUILLE;
+            double distanceNbTuile = (Math.abs(this.getX() - centreTuileX) + Math.abs(this.getY() - centreTuileY))/Terrain.TAILLE_TUILLE;
 
             if(!this.getEnvironnement().partieEstFinie()) {
                 if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(centreTuileX,centreTuileY)) {
