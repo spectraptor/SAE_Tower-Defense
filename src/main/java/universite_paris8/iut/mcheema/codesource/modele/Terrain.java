@@ -1,10 +1,10 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
+import java.util.ArrayList;
+
 /**
  * La classe Terrain connait la liste des différents terrains (les tuiles, la longueur, la largueur, la taille d'une tuile)
  */
-
-import java.util.ArrayList;
 
 public class Terrain {
     public final static int TAILLE_TUILLE = 32;
@@ -53,7 +53,7 @@ public class Terrain {
                 };
                 break;
             case 2:
-                this.terrainDeJeu = new char[][]{{'h','h','h','h','h','h','h','h','e','e','e','e','e','e','e','2','h','h','h','h'},
+                this.terrainDeJeu = new char[][]{{'e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','2','e','e','e','e'},
                                                  {'h','h','h','h','h','h','h','e','e','e','e','e','h','h','h','2','h','h','h','h'},
                                                  {'h','h','h','h','h','3','1','1','1','1','1','1','1','4','h','2','h','h','h','h'},
                                                  {'h','3','1','1','1','5','e','e','e','e','h','h','h','2','h','6','1','1','4','h'},

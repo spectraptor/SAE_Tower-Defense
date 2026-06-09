@@ -31,6 +31,9 @@ public class ControleurAccueil implements Initializable {
     @FXML
     private Pane menuNiveau;
 
+    @FXML
+    private Pane menuCredits;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -43,7 +46,14 @@ public class ControleurAccueil implements Initializable {
     }
 
     @FXML
+    public void lancerCredit(ActionEvent actionEvent) {
+        this.menuCredits.setVisible(true);
+        this.menuPrincipal.setVisible(false);
+    }
+
+    @FXML
     public void retourMenu(ActionEvent actionEvent) {
+        this.menuCredits.setVisible(false);
         this.menuNiveau.setVisible(false);
         this.menuPrincipal.setVisible(true);
     }
