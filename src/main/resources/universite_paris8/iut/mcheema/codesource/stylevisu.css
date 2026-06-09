@@ -40,7 +40,7 @@
 }
 
 
-#textInfoBatiment {
+#textInfoBatiment, #labelCoutDepBat{
     -fx-background-color: #272727;
     -fx-border-color: #4d4e51;
     -fx-border-width: 2;
@@ -72,3 +72,4 @@
     -fx-background-size: contain;
     -fx-border-radius: 0;
 }
+

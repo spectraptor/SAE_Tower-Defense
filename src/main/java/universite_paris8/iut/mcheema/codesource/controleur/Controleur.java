@@ -109,7 +109,7 @@ public class Controleur implements Initializable {
                 ennemi = new Bogue(this.environnement, chemin);
             }
             else {
-                ennemi = new Ralentisseur(this.environnement, chemin2);
+                ennemi = new Ralentisseur(this.environnement, chemin);
             }
 
             this.environnement.ajouterEnnemi(ennemi);

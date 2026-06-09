@@ -127,14 +127,14 @@ public class InfoBatimentVue {
                 this.paneJeu.getChildren().add(paneTemp);
 
                 //Label qui affiche le cout du déplacement du batiment le cout est un dixieme du prix du batiment multiplié par le nombre de tuile déplacé
-                Label label = new Label();
-                label.setPrefWidth(220);
-                label.setPrefHeight(50);
-                label.setDisable(true);
-                label.setTranslateX(this.paneJeu.getPrefWidth() - label.getPrefWidth());
-                label.setTranslateY(this.paneJeu.getPrefHeight() - label.getPrefHeight());
-                label.setId("labelCoutDepBat");
-                this.paneJeu.getChildren().add(label);
+                Label labelCoutDep = new Label();
+                labelCoutDep.setPrefWidth(220);
+                labelCoutDep.setPrefHeight(50);
+                labelCoutDep.setDisable(true);
+                labelCoutDep.setTranslateX(this.paneJeu.getPrefWidth() - labelCoutDep.getPrefWidth());
+                labelCoutDep.setTranslateY(this.paneJeu.getPrefHeight() - labelCoutDep.getPrefHeight());
+                labelCoutDep.setId("labelCoutDepBat");
+                this.paneJeu.getChildren().add(labelCoutDep);
 
                 //Crée une ImageView temporaire pour avoir un apercu du nouvelle emplacement du batiment
                 ImageView imgVBat = (ImageView) this.paneJeu.lookup("#" + this.batiment.getId());
@@ -148,7 +148,7 @@ public class InfoBatimentVue {
                     this.batiment.deplacerBatiment2((int)e.getX(),(int)e.getY());
                     this.paneJeu.getChildren().remove(paneTemp);
                     this.paneJeu.getChildren().remove(nouvImgVBat);
-                    this.paneJeu.getChildren().remove(label);
+                    this.paneJeu.getChildren().remove(labelCoutDep);
                 });
 
                 //Permet d'afficher la nouvelle position semi-transparente du déplacement du batiment et également le cout du déplacement
@@ -171,7 +171,7 @@ public class InfoBatimentVue {
                     int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
                     int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
                     int distance = (int)(Math.abs(centreTuileX - this.batiment.getX()) + Math.abs(centreTuileY - this.batiment.getY())) / Terrain.TAILLE_TUILLE;
-                    label.setText("Prix du déplacement : " + Integer.toString(this.batiment.getPrix()/10 * distance));
+                    labelCoutDep.setText("  Prix du déplacement : " + Integer.toString(this.batiment.getPrix()/10 * distance));
 
                     //Force l'affichage de l'image au centre de la tuile pour avoir un apercu conforme au placement du batiment
                     nouvImgVBat.setTranslateX((centreTuileX - Terrain.TAILLE_TUILLE/2));
