@@ -2,9 +2,7 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileFragmentation;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.*;
 
 public class BombeLogique extends BatimentTir {
     public BombeLogique(int x, int y, Environnement env) {
