@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -27,7 +29,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/compilateur.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Compilateur">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Compilateur" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
@@ -44,7 +46,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/cloud.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Cloud">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Cloud" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
@@ -61,7 +63,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/debugger.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Debugger">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Debugger" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
@@ -82,7 +84,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/bombeLogique.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Bombe Logique">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Bombe Logique" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
@@ -99,7 +101,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/surcadence.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Surcadence">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Surcadence" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
@@ -120,7 +122,7 @@
                </HBox.margin>
                <Image url="@texture/batiments/ram.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="RAM">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="RAM" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" right="3.0" />
                </HBox.margin>
