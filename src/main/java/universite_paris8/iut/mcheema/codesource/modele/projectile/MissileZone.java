@@ -8,9 +8,10 @@ import java.util.Objects;
 
 public class MissileZone extends Projectile {
     private int portee;
-    private int xCible;
-    private int yCible;
-    public MissileZone(double x, double y,int degat, int xCible, int yCible, Environnement env) {
+    private double xCible;
+    private double yCible;
+
+    public MissileZone(double x, double y, int degat, double xCible, double yCible, Environnement env) {
         super(x, y, degat, 1,env);
         this.portee = 20;
         this.xCible = xCible;
