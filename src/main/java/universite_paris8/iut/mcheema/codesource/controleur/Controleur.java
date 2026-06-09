@@ -83,7 +83,7 @@ public class Controleur implements Initializable {
     public void chargerNiveau(int niveau) {
 
         this.environnement = new Environnement(niveau);
-        Niveau niveauChoisi = new Niveau(niveau);
+
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
 
@@ -97,6 +97,7 @@ public class Controleur implements Initializable {
 
         terrainVue.afficheTerrainJeu();
 
+        /*
         for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
 
             Point base = niveauChoisi.getBases().get(i);
@@ -106,7 +107,7 @@ public class Controleur implements Initializable {
 
             Ennemi ennemi;
             if (i == 0) {
-                ennemi = new Bogue(this.environnement, chemin);
+                ennemi = new ChevalDeTroie(this.environnement, chemin);
             }
             else {
                 ennemi = new Ralentisseur(this.environnement, chemin);
@@ -114,6 +115,8 @@ public class Controleur implements Initializable {
 
             this.environnement.ajouterEnnemi(ennemi);
         }
+
+         */
     }
 
     private void initAnimation() {
