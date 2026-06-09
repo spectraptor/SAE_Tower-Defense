@@ -11,8 +11,4 @@ public abstract class EnnemiCammoufle extends Ennemi {
         super(pv, vitesse, argentDonne, env, chemin);
     }
 
-    @Override
-    public boolean estCamoufle() {
-        return true;
-    }
 }

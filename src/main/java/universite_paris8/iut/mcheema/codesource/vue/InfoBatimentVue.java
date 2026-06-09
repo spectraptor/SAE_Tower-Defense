@@ -75,10 +75,8 @@ public class InfoBatimentVue {
             boutonAmeliorer.setPrefWidth(LARGEUR_PANE);
             boutonAmeliorer.setPrefHeight(boiteBoutonAction.getPrefHeight() - boiteVenDep.getPrefHeight());
             boiteBoutonAction.getChildren().add(boutonAmeliorer);
-            boutonAmeliorer.setId("boutonAmeliorer");
-
-            //Si le batiment a atteint son niveau max le bouton devient inaccessible
-            if(this.batiment.getNiveau() == 2) {
+            if(this.batiment.getNiveau() == this.batiment.getNiveauMax()) {
+                boutonAmeliorer.setId("boutonAmeliorer");
                 boutonAmeliorer.setDisable(true);
             }
 

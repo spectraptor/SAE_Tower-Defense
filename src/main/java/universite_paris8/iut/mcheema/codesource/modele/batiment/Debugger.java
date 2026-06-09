@@ -7,7 +7,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 public class Debugger extends BatimentTir {
 
-    public Debugger(int x, int y, Environnement env) {
+    public Debugger(double x, double y, Environnement env) {
         super("Debugger",x, y, 150,5, 50,150, env);
     }
 
@@ -16,7 +16,7 @@ public class Debugger extends BatimentTir {
         Ennemi ennemi = this.ennemiDansPortee();
 
         if (ennemi != null) {
-            if (this.getEnvironnement().getNbTours() % this.getCadenceTir() == 0) {
+            if (this.estCapableDeTirer()) {
                 this.getEnvironnement().ajouterProjectile(new MissileZone(this.getX(), this.getY(),this.getDegat(),
                         ennemi.getX(), ennemi.getY(), this.getEnvironnement()));
             }
