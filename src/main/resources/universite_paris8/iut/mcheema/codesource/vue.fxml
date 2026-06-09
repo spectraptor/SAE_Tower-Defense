@@ -10,7 +10,7 @@
 
 <BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
    <left>
-      <VBox prefHeight="480.0" prefWidth="260.0" style="-fx-background-color: #2b2d30;" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxBoutons" prefHeight="480.0" prefWidth="260.0" style="-fx-background-color: #2b2d30;" BorderPane.alignment="CENTER">
 
          <ImageView fitHeight="40.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
             <VBox.margin>
