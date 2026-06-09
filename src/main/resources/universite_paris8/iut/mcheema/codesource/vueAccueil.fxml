@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.ControleurAccueil">
+   <Pane fx:id="menuPrincipal" prefHeight="480.0" prefWidth="900.0">
+      <VBox layoutX="200.0" layoutY="40.0" prefHeight="400.0" prefWidth="500.0">
+         <Label prefHeight="63.0" prefWidth="89.0" text="JEU">
+            <font>
+               <Font name="Chilanka Regular" size="42.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="50.0" left="210.0" />
+            </VBox.margin>
+         </Label>
+         <Button mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER">
+            <VBox.margin>
+               <Insets left="125.0" top="6.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="135.0" layoutY="35.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="PARAMETRES">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#lancerCredit" prefHeight="50.0" prefWidth="250.0" text="CREDITS">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="250.0" text="QUITTER">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+      </VBox>
+   </Pane>
+   <Pane fx:id="menuNiveau" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <HBox layoutY="56.0" prefHeight="300.0" prefWidth="900.0">
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+         <Button id="lv1" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="1">
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin>
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+         <Button id="lv2" layoutX="10.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="2">
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin>
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+         <Button id="lv3" layoutX="260.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="3">
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+      </HBox>
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" />
+   </Pane>
+   <Pane fx:id="menuCredits" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <Label layoutX="139.0" layoutY="165.0" text="les credits sont en maintenance">
+         <font>
+            <Font name="Chilanka Regular" size="42.0" />
+         </font>
+      </Label>
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" />
+   </Pane>
+</AnchorPane>

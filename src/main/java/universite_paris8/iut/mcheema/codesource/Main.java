@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Main extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueAccueil.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 900, 480);
         stage.setTitle("Hello!");
