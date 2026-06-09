@@ -69,7 +69,7 @@ public abstract class Ennemi extends Entite {
     public void setPv(int pv) {
         this.pv = pv;
     }
-
+  
     public void seDeplace() {
             Point prochaine = this.chemin.get(this.indiceChemin + 1);
             int cibleX = prochaine.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2;
