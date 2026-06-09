@@ -172,6 +172,7 @@ public class Controleur implements Initializable {
         etatPause = true;
         gameLoop.pause();
         menuPause.setVisible(true);
+        menuPause.toFront();
     }
 
     @FXML
