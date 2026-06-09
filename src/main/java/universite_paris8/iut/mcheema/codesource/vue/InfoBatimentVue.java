@@ -75,6 +75,7 @@ public class InfoBatimentVue {
             boutonAmeliorer.setPrefWidth(LARGEUR_PANE);
             boutonAmeliorer.setPrefHeight(boiteBoutonAction.getPrefHeight() - boiteVenDep.getPrefHeight());
             boiteBoutonAction.getChildren().add(boutonAmeliorer);
+            boutonAmeliorer.setId("boutonAmeliorer");
 
             //Si le batiment a atteint son niveau max le bouton devient inaccessible
             if(this.batiment.getNiveau() == 2) {
@@ -99,6 +100,7 @@ public class InfoBatimentVue {
             boutonVendre.setPrefWidth(LARGEUR_PANE /2);
             boutonVendre.setPrefHeight(HAUTEUR_PANE / 4);
             boiteVenDep.getChildren().add(boutonVendre);
+            boutonVendre.setId("boutonVendre");
 
             boutonVendre.setOnMouseEntered(e-> {
                 boutonVendre.setText("+"+Integer.toString(this.batiment.avoirPrixVente()));
@@ -116,6 +118,7 @@ public class InfoBatimentVue {
             boutonDeplacer.setPrefWidth(LARGEUR_PANE /2);
             boutonDeplacer.setPrefHeight(HAUTEUR_PANE / 4);
             boiteVenDep.getChildren().add(boutonDeplacer);
+            boutonDeplacer.setId("boutonDeplacer");
 
             boutonDeplacer.setOnAction(event -> {
                 //Enleve le PaneInfo lorsqu'on clique sur le bouton déplacer

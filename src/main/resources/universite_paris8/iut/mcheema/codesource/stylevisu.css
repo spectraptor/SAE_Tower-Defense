@@ -72,3 +72,7 @@
     -fx-border-radius: 0;
 }
 
+
+#boutonDeplacer, #boutonVendre, #boutonAmeliorer, #boutonQuitterInfoBat {
+    -fx-text-fill: WHITE;
+}
