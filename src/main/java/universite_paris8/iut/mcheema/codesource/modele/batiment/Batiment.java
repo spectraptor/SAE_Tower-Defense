@@ -1,67 +1,29 @@
 package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.Entite;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-
 /**
  * La classe Batiment s'occupe de la gestion de tours et de leur logique.
  * Elle s'occupe de leurs comportements, de leur déplacements, améliorations...
  */
 
-public abstract class Batiment {
+public abstract class Batiment extends Entite {
     private static int idCpt = 0;
-    private String id;
     private String nom;
-    private IntegerProperty xProperty;
-    private IntegerProperty yProperty;
     private int prix;
     private int niveau;
-    private Environnement environnement;
+    private int niveauMax;
 
-    public Batiment(String nom,int x, int y,int prix, Environnement env) {
-        idCpt++;
-        this.id = "B" + idCpt;
+    // Réduction de 10 %
+    public static final double REDUCTION_NIVEAU = 0.10;
+
+    public Batiment(String nom, double x, double y, int prix, int nivMax, Environnement env) {
+        super("B" + idCpt++, x, y, env);
         this.nom = nom;
-        this.xProperty = new SimpleIntegerProperty(x);
-        this.yProperty = new SimpleIntegerProperty(y);
         this.prix = prix;
         this.niveau = 1;
-        this.environnement = env;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getNom() {
-        return this.nom;
-    }
-
-    public final IntegerProperty xProperty() {
-        return this.xProperty;
-    }
-
-    public final IntegerProperty yProperty() {
-        return this.yProperty;
-    }
-
-    public final int getX() {
-        return this.xProperty.getValue();
-    }
-
-    public final int getY() {
-        return this.yProperty.getValue();
-    }
-
-    public final void setX(int x) {
-        this.xProperty.set(x);
-    }
-
-    public final void setY(int y) {
-        this.yProperty.set(y);
+        this.niveauMax = nivMax;
     }
 
     public int getPrix() {
@@ -72,12 +34,20 @@ public abstract class Batiment {
         return this.niveau;
     }
 
+    public String getNom() {
+        return this.nom;
+    }
+
+    public int getNiveauMax() {
+        return this.niveauMax;
+    }
+
     public void setNiveau(int niveau) {
         this.niveau = niveau;
     }
 
     public int prixVente() {
-        return this.prix /4;
+        return this.prix / 4;
     }
 
     public void vendreBatiment( ) {
@@ -94,49 +64,44 @@ public abstract class Batiment {
 
     public void deplacerBatiment2(int nouvX,int nouvY) {
         if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
-            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
+            int[] lignesColonnesTuile = this.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
 
             int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
             int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
 
-            if(!this.environnement.partieEstFinie()) {
-                if(this.environnement.tuileTourPosable(nouvX,nouvY) && !this.environnement.tuileContientUnBatiment(centreTuileX,centreTuileY)) {
+            if(!this.getEnvironnement().partieEstFinie()) {
+                if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(centreTuileX,centreTuileY)) {
                     this.setX(centreTuileX);
                     this.setY(centreTuileY);
                     this.getEnvironnement().setArgent(this.getEnvironnement().getArgent() - this.getPrix() /2);
                 }
             }
         }
-
     }
 
-    public Environnement getEnvironnement() {
-        return this.environnement;
+    public void incrementerNiveau() {
+        this.setNiveau(this.getNiveau() + 1);
     }
-
-
-    public abstract void effectueAction();
 
     public abstract void ameliorerBatiment();
 
-    /**
-     * Calcul la distance entre un batiment et un ennemi
-     * @param ennemi l'ennemi dont on souhaite connaitre la distance par rapport au batiment
-     * @return la distance euclidienne entre le batiment et l'ennemi
-     */
-    public double calculDistance(Ennemi ennemi) {
-        return  (Math.sqrt((this.getX() - ennemi.getX()) * (this.getX() - ennemi.getX()) + (this.getY() - ennemi.getY()) * (this.getY() - ennemi.getY())));
-    }
-
-    public double calculDistance(Batiment batiment) {
-        return  (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())));
-    }
-
     public int coutProchaineAmelioration() {
-        return this.getNiveau() *(this.getPrix() /4);
+        return this.getNiveau() *(this.getPrix() / 4);
     }
 
-
+    /**
+     * Permet de calculer le pourcentage d'amelioration, ou de reduction qu'il faut accorder à une caractéristique d'un bâtiment après
+     * son amélioration.
+     *  Elle dépend de REDUCTION_NIVEAU (10%, pour l'instant), qui donne le pourcentage qu'il faut appliquer à chaque niveau.
+     *  Ex :
+     *  Niv 1. 10% -> 0.1
+     *  Niv 2. 20% -> 0.2
+     *
+     * @return le pourcentage nécessaire au calcul suite à l'amélioration d'un bâtiment.
+     */
+    public double pourcentageReduction() {
+        return this.getNiveau() * REDUCTION_NIVEAU;
+    }
 
     public String toString() {
         return  "      " + this.getNom() +  "      ";
