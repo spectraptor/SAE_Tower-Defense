@@ -30,25 +30,33 @@ public abstract class BatimentAvecPortee extends Batiment {
         Ennemi ennemiRetourne = null;
         for (Ennemi ennemi : this.getEnvironnement().getEnnemis()) {
             if (this.calculDistance(ennemi) <= this.getPortee()) {
-                if (!(ennemi instanceof EnnemiCammoufle)) {
-                    if (ennemiRetourne == null) {
+                if (ennemiRetourne == null) {
+                    ennemiRetourne = ennemi;
+                }
+                else {
+                    double distActu = calculDistance(ennemiRetourne);
+                    double distNouv = calculDistance(ennemi);
+                    if (distNouv < distActu) {
                         ennemiRetourne = ennemi;
-                    }
-                    else {
-                        double distActu = calculDistance(ennemiRetourne);
-                        double distNouv = calculDistance(ennemi);
-                        if (distNouv < distActu) {
-                            ennemiRetourne = ennemi;
-                        }
                     }
                 }
             }
         }
         return ennemiRetourne;
     }
-    public String toString() {
-        return  super.toString() +
-                "\nPortee : " + this.getPortee();
+    public String avoirDescription() {
+        return  super.avoirDescription() +
+                "Portee : " + this.getPortee();
+    }
+
+    public void ameliorerBatiment() {
+        if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
+            if (this.getNiveau() < this.getNiveauMax()) {
+                this.portee = (int)(this.portee * (1 + this.pourcentageReduction()));
+                this.getEnvironnement().retirerArgent(this.coutProchaineAmelioration());
+                this.incrementerNiveau();
+            }
+        }
     }
 
 }
