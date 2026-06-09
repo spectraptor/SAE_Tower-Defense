@@ -56,6 +56,13 @@ public class BatimentVue {
         this.paneJeu.getChildren().add(1, imgVueBatiment);
 
 
+        //INFO SUR LA TOUR
+
+        imgVueBatiment.setOnMouseClicked(e -> {
+            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment,this.paneJeu);
+            infoBatimentVue.afficheInfoBatiment();
+        });
+
 
         // Circle spriteB = new Circle(4, Color.DODGERBLUE);
 
@@ -78,11 +85,6 @@ public class BatimentVue {
         // this.paneJeu.getChildren().add(1, spriteB);
         // this.paneJeu.getChildren().add(rayonB);
 
-        //INFO SUR LA TOUR
 
-        imgVueBatiment.setOnMouseClicked(e -> {
-            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment,this.paneJeu);
-            infoBatimentVue.afficheInfoBatiment();
-        });
     }
 }
