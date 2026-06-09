@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -13,211 +12,205 @@
 
          <ImageView fitHeight="40.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
             <VBox.margin>
-               <Insets bottom="7.5"/>
+               <Insets bottom="7.5" />
             </VBox.margin>
-            <Image url="@images/project.png"/>
+            <Image url="@images/project.png" />
          </ImageView>
          <HBox prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0"/>
+               <Insets right="5.0" />
             </VBox.margin>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="100" textFill="WHITE"/>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="100" textFill="WHITE" />
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/compilateur.png"/>
+               <Image url="@texture/batiments/compilateur.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0"
-                    text="Compilateur">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Compilateur">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox layoutX="10.0" layoutY="50.0" prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0" top="5.0"/>
+               <Insets right="5.0" top="5.0" />
             </VBox.margin>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" textFill="WHITE"/>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" textFill="WHITE" />
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/cloud.png"/>
+               <Image url="@texture/batiments/cloud.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0"
-                    text="Cloud">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Cloud">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0" top="5.0"/>
+               <Insets right="5.0" top="5.0" />
             </VBox.margin>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" textFill="WHITE"/>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="150" textFill="WHITE" />
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/debugger.png"/>
+               <Image url="@texture/batiments/debugger.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0"
-                    text="Debugger">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Debugger">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0" top="5.0"/>
+               <Insets right="5.0" top="5.0" />
             </VBox.margin>
             <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="500" textFill="WHITE">
                <HBox.margin>
-                  <Insets/>
+                  <Insets />
                </HBox.margin>
             </Label>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/bombeLogique.png"/>
+               <Image url="@texture/batiments/bombeLogique.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0"
-                    text="Bombe Logique">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Bombe Logique">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0" top="5.0"/>
+               <Insets right="5.0" top="5.0" />
             </VBox.margin>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="300" textFill="WHITE"/>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="300" textFill="WHITE" />
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/surcadence.png"/>
+               <Image url="@texture/batiments/surcadence.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0"
-                    text="Surcadence">
+            <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="Surcadence">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox prefHeight="55.0" prefWidth="260.0">
             <VBox.margin>
-               <Insets right="5.0" top="5.0"/>
+               <Insets right="5.0" top="5.0" />
             </VBox.margin>
             <Label alignment="CENTER" prefHeight="55.0" prefWidth="50.0" text="75" textFill="WHITE">
                <HBox.margin>
-                  <Insets/>
+                  <Insets />
                </HBox.margin>
             </Label>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" top="12.0"/>
+                  <Insets left="12.0" right="12.0" top="12.0" />
                </HBox.margin>
-               <Image url="@texture/batiments/ram.png"/>
+               <Image url="@texture/batiments/ram.png" />
             </ImageView>
             <Button mnemonicParsing="false" onAction="#choisirBouton" prefHeight="55.0" prefWidth="140.0" text="RAM">
                <HBox.margin>
-                  <Insets left="5.0" right="3.0"/>
+                  <Insets left="5.0" right="3.0" />
                </HBox.margin>
             </Button>
          </HBox>
          <HBox prefHeight="75.0" prefWidth="200.0">
             <VBox.margin>
-               <Insets top="5.0"/>
+               <Insets top="5.0" />
             </VBox.margin>
             <Button id="boutonMenu" onAction="#afficheReglage" prefHeight="65.0" prefWidth="65.0">
                <HBox.margin>
-                  <Insets left="8.0" top="5.0"/>
+                  <Insets left="8.0" top="5.0" />
                </HBox.margin>
             </Button>
-            <Button id="boutonAccel" layoutX="108.0" layoutY="15.0" mnemonicParsing="false"
-                    onAction="#accelererOuRalentir" prefHeight="65.0" prefWidth="65.0">
+            <Button id="boutonAccel" layoutX="108.0" layoutY="15.0" mnemonicParsing="false" onAction="#accelererOuRalentir" prefHeight="65.0" prefWidth="65.0">
                <HBox.margin>
-                  <Insets left="25.0" right="25.0" top="5.0"/>
+                  <Insets left="25.0" right="25.0" top="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="boutonLancerPause" layoutX="153.0" layoutY="15.0" mnemonicParsing="false"
-                    onAction="#lancer" prefHeight="65.0" prefWidth="65.0">
+            <Button fx:id="boutonLancerPause" layoutX="153.0" layoutY="15.0" mnemonicParsing="false" onAction="#lancer" prefHeight="65.0" prefWidth="65.0">
                <HBox.margin>
-                  <Insets top="5.0"/>
+                  <Insets top="5.0" />
                </HBox.margin>
             </Button>
          </HBox>
       </VBox>
    </left>
    <center>
-      <Pane fx:id="paneJeu" onMouseClicked="#ajouterTour" prefHeight="480.0" prefWidth="640.0"
-            BorderPane.alignment="CENTER">
-         <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #1e1f22;"/>
-         <Pane fx:id="menuPause" layoutX="168.0" layoutY="158.0" prefHeight="159.0" prefWidth="318.0"
-               visible="false">
+      <Pane fx:id="paneJeu" onMouseClicked="#ajouterTour" prefHeight="480.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <TilePane fx:id="tilePane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #1e1f22;" />
+         <Pane fx:id="menuPause" layoutX="168.0" layoutY="158.0" prefHeight="159.0" prefWidth="318.0" visible="false">
             <HBox layoutX="7.0" layoutY="19.0" prefHeight="125.0" prefWidth="305.0">
-               <Button id="pauseReprendre" mnemonicParsing="false" onAction="#lancer" prefHeight="125.0"
-                       prefWidth="125.0">
+               <Button id="pauseReprendre" mnemonicParsing="false" onAction="#lancer" prefHeight="125.0" prefWidth="125.0">
                   <HBox.margin>
-                     <Insets right="50.0"/>
+                     <Insets right="50.0" />
                   </HBox.margin>
                </Button>
-               <Button id="pauseQuitter" mnemonicParsing="false" onAction="#quitter" prefHeight="125.0"
-                       prefWidth="125.0"/>
+               <Button id="pauseQuitter" mnemonicParsing="false" onAction="#quitter" prefHeight="125.0" prefWidth="125.0" />
             </HBox>
          </Pane>
          <HBox prefHeight="32.0" prefWidth="640.0">
-            <Label fx:id="labelVieBase" alignment="CENTER" contentDisplay="RIGHT" prefHeight="49.0" prefWidth="93.0"
-                   text="VIE">
+            <Label fx:id="labelVieBase" alignment="CENTER" contentDisplay="RIGHT" prefHeight="49.0" prefWidth="93.0" text="VIE">
                <HBox.margin>
-                  <Insets left="5.0"/>
+                  <Insets left="5.0" />
                </HBox.margin>
                <font>
-                  <Font size="20.0"/>
+                  <Font size="20.0" />
                </font>
                <textFill>
-                  <RadialGradient centerX="0.7134831460674157" centerY="0.1298076923076923"
-                                  focusDistance="0.2142857142857144">
+                  <RadialGradient centerX="0.7134831460674157" centerY="0.1298076923076923" focusDistance="0.2142857142857144">
                      <stops>
-                        <Stop color="#e10707"/>
-                        <Stop color="#f8afaf" offset="0.03333333333333333"/>
-                        <Stop color="#fc0707" offset="1.0"/>
+                        <Stop color="#e10707" />
+                        <Stop color="#f8afaf" offset="0.03333333333333333" />
+                        <Stop color="#fc0707" offset="1.0" />
                      </stops>
                   </RadialGradient>
                </textFill>
             </Label>
             <Label fx:id="labelArgent" alignment="CENTER" prefHeight="32.0" prefWidth="110.0" text="ARGENT">
                <HBox.margin>
-                  <Insets left="5.0"/>
+                  <Insets left="5.0" />
                </HBox.margin>
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
                <textFill>
                   <LinearGradient startY="1.0">
                      <stops>
-                        <Stop color="#ffedaa"/>
-                        <Stop color="#fab602" offset="0.9962962962962963"/>
-                        <Stop color="#fab602" offset="1.0"/>
+                        <Stop color="#ffedaa" />
+                        <Stop color="#fab602" offset="0.9962962962962963" />
+                        <Stop color="#fab602" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label id="labelVague" alignment="CENTER" prefHeight="53.0" prefWidth="119.0" text="VAGUE"
-                   textAlignment="CENTER" textFill="#63bffc">
+            <Label id="labelVague" alignment="CENTER" prefHeight="53.0" prefWidth="119.0" text="VAGUE" textAlignment="CENTER">
                <HBox.margin>
-                  <Insets left="280.0"/>
+                  <Insets left="280.0" />
                </HBox.margin>
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
+               <textFill>
+                  <LinearGradient startY="1.0">
+                     <stops>
+                        <Stop color="#4fabe4" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
          </HBox>
       </Pane>
