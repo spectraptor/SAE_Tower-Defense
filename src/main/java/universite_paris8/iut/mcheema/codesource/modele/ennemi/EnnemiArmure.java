@@ -11,4 +11,15 @@ public abstract class EnnemiArmure extends Ennemi {
         super(pv, vitesse, argentDonne, env, chemin);
         this.armure = armure;
     }
+
+    @Override
+    public void subirDegats(int degat) {
+        if (this.getPv() + this.armure - degat <= 0)
+            this.meurt();
+        else {
+            if(this.armure < degat) {
+                this.setPv(this.getPv() + (this.armure - degat));
+            }
+        }
+    }
 }

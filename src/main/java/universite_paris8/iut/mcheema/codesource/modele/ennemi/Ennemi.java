@@ -92,7 +92,9 @@ public abstract class Ennemi {
     }
 
     public void meurt() {
-        this.environnement.ajouterArgent(argentDonne);
+        if(this.indiceChemin != this.chemin.size() -1) {
+            this.environnement.ajouterArgent(argentDonne);
+        }
         this.pv = 0;
     }
 
@@ -106,11 +108,16 @@ public abstract class Ennemi {
 
 
     public void subirDegats(int degat) {
-        if (this.pv - degat < 0)
+        if (this.pv - degat <= 0)
             this.meurt();
         else
             this.pv -= degat;
     }
+
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
 
     public Environnement getEnvironnement() {
         return this.environnement;
@@ -166,8 +173,12 @@ public abstract class Ennemi {
         return this.chemin;
     }
 
-    public int getIndCheminSuiv() {
-        return this.indiceChemin+1;
+    public int getIndiceChemin() {
+        return this.indiceChemin;
+    }
+
+    public void setIndiceChemin(int indice) {
+        this.indiceChemin = indice;
     }
 
     public String toString() {

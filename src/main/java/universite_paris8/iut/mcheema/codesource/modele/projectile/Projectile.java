@@ -62,6 +62,9 @@ public abstract class Projectile {
         return this.vitesse;
     }
 
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
     public int getDegat() {
         return this.degat;
     }

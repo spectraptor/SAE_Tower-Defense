@@ -3,10 +3,7 @@ package universite_paris8.iut.mcheema.codesource.vue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
@@ -24,10 +21,10 @@ public class EnnemiVue {
 
     public void creerSpriteEnnemi() {
         Circle spriteE = new Circle(3, Color.RED);
-        if(this.ennemi instanceof Ping) {
+        if(this.ennemi instanceof GrosBogue) {
             spriteE = new Circle(3, Color.BLUE);
         }
-        if(this.ennemi instanceof ChevalDeTroie) {
+        if(this.ennemi instanceof Ping) {
             spriteE = new Circle(3, Color.GREEN);
         }
         if(this.ennemi instanceof ErreurExecution) {

@@ -26,12 +26,17 @@ public class BatimentVue {
 
     public void creerSpriteBatiment() {
         Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());;
+        Image imgCloud = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/cloud.png").toExternalForm());
         Image imgDebugger = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
         Image imgBombeLogique = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());
         Image imgSurcadence = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/surcadence.png").toExternalForm());
+        Image imgRAM = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/ram.png").toExternalForm());
         ImageView imgVueBatiment;
         if(this.batiment instanceof Compilateur) {
             imgVueBatiment = new ImageView(imgCompilateur);
+        }
+        else if(this.batiment instanceof Cloud) {
+            imgVueBatiment = new ImageView(imgCloud);
         }
         else if(this.batiment instanceof Debugger) {
             imgVueBatiment = new ImageView(imgDebugger);
@@ -39,13 +44,24 @@ public class BatimentVue {
         else if(this.batiment instanceof BombeLogique) {
             imgVueBatiment = new ImageView(imgBombeLogique);
         }
-        else  {
+        else if (this.batiment instanceof Surcadence) {
             imgVueBatiment = new ImageView(imgSurcadence);
         }
+        else {
+            imgVueBatiment = new ImageView(imgRAM);
+        }
+        imgVueBatiment.setId(this.batiment.getId());
         imgVueBatiment.translateXProperty().bind(this.batiment.xProperty().subtract(Terrain.TAILLE_TUILLE/2));
         imgVueBatiment.translateYProperty().bind(this.batiment.yProperty().subtract(Terrain.TAILLE_TUILLE/2));
         this.paneJeu.getChildren().add(1, imgVueBatiment);
 
+
+        //INFO SUR LA TOUR
+
+        imgVueBatiment.setOnMouseClicked(e -> {
+            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment,this.paneJeu);
+            infoBatimentVue.afficheInfoBatiment();
+        });
 
 
         // Circle spriteB = new Circle(4, Color.DODGERBLUE);
@@ -69,11 +85,6 @@ public class BatimentVue {
         // this.paneJeu.getChildren().add(1, spriteB);
         // this.paneJeu.getChildren().add(rayonB);
 
-        //INFO SUR LA TOUR
 
-        imgVueBatiment.setOnMouseClicked(e -> {
-            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment,this.paneJeu);
-            infoBatimentVue.afficheInfoBatiment();
-        });
     }
 }

@@ -32,7 +32,7 @@ public class Environnement {
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
         this.base = new Base();
-        this.argentProperty = new SimpleIntegerProperty(250);
+        this.argentProperty = new SimpleIntegerProperty(2500000);
     }
 
     public Terrain getTerrainDeJeu() {
@@ -59,6 +59,7 @@ public class Environnement {
         this.batiments.add(batiment);
     }
 
+
     public void ajouterProjectile(Projectile projectile) {
         this.projectiles.add(projectile);
     }
@@ -69,7 +70,7 @@ public class Environnement {
 
     public void unTour() {
         if(!this.partieEstFinie()) {
-            for (int i = 0 ;i< this.getEnnemis().size();i++) {
+            for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
                     if(this.getEnnemis().get(i).estVivant()) {
                         this.getEnnemis().get(i).effectueAction();
@@ -80,11 +81,11 @@ public class Environnement {
                 }
             }
 
-            for(int i = 0 ;i<this.getBatiments().size();i++) {
+            for(int i = this.getBatiments().size() -1 ;i>=0;i--) {
                 this.getBatiments().get(i).effectueAction();
             }
 
-            for(int i = 0 ;i< this.getProjectiles().size();i++) {
+            for(int i = this.getProjectiles().size() -1 ;i>=0;i--) {
                 this.getProjectiles().get(i).effectueAction();
                 if(this.getProjectiles().get(i).getEstArrive()) {
                     this.getProjectiles().remove(i);
@@ -98,7 +99,7 @@ public class Environnement {
         return this.terrainDeJeu.tuileEstAccessibleCoords(nouveauX,nouveauY);
     }
     public boolean tuileTourPosable(int x, int y) {
-        return this.getTerrainDeJeu().tuileTourPosable(x,y);
+        return this.getTerrainDeJeu().tuileTourPosable(x , y);
     }
 
     /**
@@ -119,6 +120,50 @@ public class Environnement {
         return sortieBoucle;
     }
 
+    /**
+     * Permet de poser un batiment au sein du jeu.
+     * @param x l'abscisse du batiment
+     * @param y l'ordonnée du batiment
+     * @param numBat le type de batiment
+     * @return le batiment à poser
+     */
+    public void poserBatiment(int x, int y, int numBat) {
+        Batiment batimentAPoser = null;
+        int[] ligneColonneTuileTab = this.terrainDeJeu.convertirCoordsTuile(x, y);
+
+        int centreTuileX = ligneColonneTuileTab[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        int centreTuileY = ligneColonneTuileTab[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
+        if (!this.partieEstFinie())
+            if (this.tuileTourPosable(x, y) &&
+                    !this.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
+
+                switch (numBat) {
+                    case 1:
+                        batimentAPoser = new Compilateur(centreTuileX, centreTuileY, this);
+                        break;
+                    case 2:
+                        batimentAPoser = new Cloud(centreTuileX, centreTuileY, this);
+                        break;
+                    case 3:
+                        batimentAPoser = new Debugger(centreTuileX, centreTuileY, this);
+                        break;
+                    case 4:
+                        batimentAPoser = new BombeLogique(centreTuileX, centreTuileY, this);
+                        break;
+                    case 5:
+                        batimentAPoser = new Surcadence(centreTuileX, centreTuileY, this);
+                        break;
+                    case 6:
+                        batimentAPoser = new RAM(centreTuileX, centreTuileY, this);
+                        break;
+                }
+
+                batimentAPoser.acheterBatiment();
+            }
+
+    }
+
 
     public boolean partieEstFinie() {
         return this.getEnnemis().isEmpty() || this.getBase().estDetruite();
@@ -131,6 +176,7 @@ public class Environnement {
     public void setNbTours(int nbTours) {
         this.nbTours = nbTours;
     }
+
 
     public final void setArgent(int argent) {this.argentProperty.setValue(argent);}
 
