@@ -21,7 +21,11 @@ public class TerrainVue {
 
     public void afficheTerrainJeu() {
         Image imgSol = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/sol.png").toExternalForm());
-        Image imgGlitch1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch1.png").toExternalForm());
+        Image imgGlitch1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch1.png").toExternalForm());
+        Image imgGlitch2 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch2.png").toExternalForm());
+        Image imgGlitch3 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch3.png").toExternalForm());
+        Image imgGlitch4 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch4.png").toExternalForm());
+        Image imgGlitch5 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch5.png").toExternalForm());
         Image ch_gauche_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin1.png").toExternalForm());
         Image ch_haut_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin2.png").toExternalForm());
         Image ch_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin3.png").toExternalForm());
@@ -74,6 +78,18 @@ public class TerrainVue {
                         break;
                     case 'e':
                         this.tilePane.getChildren().add(new ImageView(imgGlitch1));
+                        break;
+                    case 'c':
+                        this.tilePane.getChildren().add(new ImageView(imgGlitch2));
+                        break;
+                    case 'd':
+                        this.tilePane.getChildren().add(new ImageView(imgGlitch3));
+                        break;
+                    case 'f':
+                        this.tilePane.getChildren().add(new ImageView(imgGlitch4));
+                        break;
+                    case 'g':
+                        this.tilePane.getChildren().add(new ImageView(imgGlitch5));
                         break;
                 }
             }
