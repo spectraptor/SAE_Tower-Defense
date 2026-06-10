@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GestionVague3 {
     private final static int TEMPS_ATTENTE = 100;
-    public final static int MAX_VAGUE = 1;
+    public final static int MAX_VAGUE = 0;
     public ArrayList<Vague> listeVague;
     private Environnement environnement;
     private int vagueCourante;
@@ -25,7 +25,7 @@ public class GestionVague3 {
 
     public void metAJour() {
         if(this.environnement.getNbTours() % TEMPS_ATTENTE == 0) {
-            if(this.vagueCourante <= this.listeVague.size()) {
+            if(this.vagueCourante < this.listeVague.size()) {
                 if (!this.listeVague.get(vagueCourante).getListeEnnemisVague().isEmpty())
                     this.environnement.getEnnemis().add(this.listeVague.get(vagueCourante).getListeEnnemisVague().remove(0));
             }
@@ -37,7 +37,9 @@ public class GestionVague3 {
     }
 
     public void incrementeVagueCourante(){
-        this.vagueCourante++;
+        if(vagueCourante < listeVague.size() - 1) {
+            this.vagueCourante++;
+        }
     }
 
     public int getVagueCourante() {

@@ -20,7 +20,7 @@ public class Vague {
 
     public void initialiseVague(int numeroNiveau) {
         switch (this.numeroVague) {
-            case 0:
+             default:
                 Niveau niveauChoisi = new Niveau(numeroNiveau);
                 for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
                     Point base = niveauChoisi.getBases().get(i);
