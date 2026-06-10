@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.Main;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class ControleurAccueil implements Initializable {
 
-
+    private final AudioClip interactionBruit = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/clique.mp3").toExternalForm());
 
     @FXML
     private AnchorPane root;
@@ -38,6 +39,8 @@ public class ControleurAccueil implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        interactionBruit.setVolume(0.5);
+        root.lookupAll(".button").forEach(node -> {node.setOnMouseEntered(e -> interactionBruit.play());});
     }
 
     @FXML

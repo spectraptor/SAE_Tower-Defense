@@ -90,7 +90,7 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         terrainVue.afficheTerrainJeu();
-        /*
+
         Niveau niveauChoisi = new Niveau(niveau);
 
         for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
@@ -113,7 +113,7 @@ public class Controleur implements Initializable {
             this.environnement.ajouterEnnemi(ennemi);
         }
 
-        */
+
 
     }
 

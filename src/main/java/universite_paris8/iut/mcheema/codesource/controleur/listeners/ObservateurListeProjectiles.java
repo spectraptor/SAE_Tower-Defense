@@ -5,6 +5,7 @@ import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
@@ -12,9 +13,12 @@ import universite_paris8.iut.mcheema.codesource.vue.ProjectileVue;
 
 public class ObservateurListeProjectiles implements ListChangeListener<Projectile> {
     private Pane paneJeu;
+    private final AudioClip explosion;
 
     public ObservateurListeProjectiles(Pane paneJeu) {
         this.paneJeu = paneJeu;
+        this.explosion = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/explosion.mp3").toExternalForm());
+        this.explosion.setVolume(0.3);
     }
 
     @Override
@@ -31,6 +35,7 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
                 this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
 
                 if (projectile instanceof MissileZone) {
+                    explosion.play();
                     this.paneJeu.lookup("#" + projectile.getId() + "P").translateXProperty().unbind();
                     this.paneJeu.lookup("#" + projectile.getId() + "P").translateYProperty().unbind();
                     this.paneJeu.lookup("#" + projectile.getId() + "P").setVisible(true);
