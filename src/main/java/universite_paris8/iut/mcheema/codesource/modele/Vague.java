@@ -15,14 +15,13 @@ public class Vague {
         this.numeroVague = vague;
         this.listeEnnemisVague = new ArrayList<>();
         this.environnement = env;
-        this.initialiseVague();
-        Niveau niveauChoisi = new Niveau(numeroNiveau);
+        this.initialiseVague(numeroNiveau);
     }
 
-    public void initialiseVague() {
+    public void initialiseVague(int numeroNiveau) {
         switch (this.numeroVague) {
             case 0:
-                Niveau niveauChoisi = new Niveau(1);
+                Niveau niveauChoisi = new Niveau(numeroNiveau);
                 for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
                     Point base = niveauChoisi.getBases().get(i);
                     Point entree = niveauChoisi.getEntrees().get(i);
@@ -35,6 +34,7 @@ public class Vague {
                 }
         }
     }
+
 
     public ArrayList<Ennemi> getListeEnnemisVague() {
         return this.listeEnnemisVague;
