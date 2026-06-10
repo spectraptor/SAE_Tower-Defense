@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.util.Duration?>
 
 <BorderPane fx:id="borderPanePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.Controleur">
    <left>
@@ -167,11 +166,9 @@
          <HBox prefHeight="32.0" prefWidth="640.0">
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="10.0" top="5.0" />
+                  <Insets left="10.0" top="5.0"/>
                </HBox.margin>
-               <image>
-                  <Image url="@texture/coeur.png" />
-               </image>
+               <Image url="@texture/coeur.png"/>
             </ImageView>
             <Label fx:id="labelVieBase" contentDisplay="CENTER" prefHeight="32.0" prefWidth="75.0" text="VIE" textAlignment="CENTER">
                <HBox.margin>
@@ -191,12 +188,10 @@
                </textFill>
             </Label>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@texture/argent.png" />
-               </image>
                <HBox.margin>
-                  <Insets top="4.0" />
+                  <Insets top="4.0"/>
                </HBox.margin>
+               <Image url="@texture/argent.png"/>
             </ImageView>
             <Label fx:id="labelArgent" prefHeight="32.0" prefWidth="125.0" text="ARGENT">
                <HBox.margin>
