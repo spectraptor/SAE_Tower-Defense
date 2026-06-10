@@ -19,8 +19,10 @@ import universite_paris8.iut.mcheema.codesource.controleur.listeners.Observateur
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -88,7 +90,6 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         terrainVue.afficheTerrainJeu();
-
         /*
         Niveau niveauChoisi = new Niveau(niveau);
 
@@ -112,8 +113,7 @@ public class Controleur implements Initializable {
             this.environnement.ajouterEnnemi(ennemi);
         }
 
-         */
-
+        */
 
     }
 
