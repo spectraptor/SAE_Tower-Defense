@@ -1,12 +1,12 @@
 package universite_paris8.iut.mcheema.codesource.vue;
 
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 /**
  * La classe à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.
@@ -22,26 +22,62 @@ public class EnnemiVue {
     }
 
     public void creerSpriteEnnemi() {
-        Circle spriteE = new Circle(3, Color.RED);
+        Image imgBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/bogue.png").
+                toExternalForm());
+        Image imgChevalTroie = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/cheval_troie.png").
+                toExternalForm());
+        Image imgDrone = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/drone.png").
+                toExternalForm());
+        Image imgFreeze = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/flocon_neige.png").
+                toExternalForm());
+        Image imgPing = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
+                toExternalForm());
+        Image imgGrosBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/gros_bogue.png").
+                toExternalForm());
+        Image imgErreurExec = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
+                toExternalForm());
+        Image imgErreurLog = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
+                toExternalForm());
+        Image imgErreurSynt = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
+                toExternalForm());
+
         Label labelArgent = new Label(Integer.toString(this.ennemi.getArgentDonne()));
-        if(this.ennemi instanceof GrosBogue) {
-            spriteE = new Circle(3, Color.BLUE);
-        }
-        if(this.ennemi instanceof Ping) {
-            spriteE = new Circle(3, Color.GREEN);
-        }
-        if(this.ennemi instanceof ErreurExecution) {
-            spriteE = new Circle(3, Color.BLACK);
-        }
-        spriteE.setId(ennemi.getId());
-        spriteE.translateXProperty().bind(ennemi.xProperty());
-        spriteE.translateYProperty().bind(ennemi.yProperty());
+
+        ImageView ennemiImgView;
+
+        if (this.ennemi instanceof Bogue)
+            ennemiImgView = new ImageView(imgBogue);
+        else if (this.ennemi instanceof ChevalDeTroie)
+            ennemiImgView = new ImageView(imgChevalTroie);
+        else if (this.ennemi instanceof DroneEspion)
+            ennemiImgView = new ImageView(imgDrone);
+        else if (this.ennemi instanceof Ralentisseur)
+            ennemiImgView = new ImageView(imgFreeze);
+        else if (this.ennemi instanceof Ping)
+            ennemiImgView = new ImageView(imgPing);
+        else if (this.ennemi instanceof GrosBogue)
+            ennemiImgView = new ImageView(imgGrosBogue);
+        else if (this.ennemi instanceof ErreurExecution)
+            ennemiImgView = new ImageView(imgErreurExec);
+        else if (this.ennemi instanceof ErreurDeLogique)
+            ennemiImgView = new ImageView(imgErreurLog);
+        else
+            ennemiImgView = new ImageView(imgErreurSynt);
+
+        ennemiImgView.setId(ennemi.getId());
+
+        ennemiImgView.translateXProperty().bind(ennemi.xProperty().subtract(Terrain.TAILLE_TUILLE / 2));
+        ennemiImgView.translateYProperty().bind(ennemi.yProperty().subtract(Terrain.TAILLE_TUILLE / 2));
+
         labelArgent.translateXProperty().bind(ennemi.xProperty().subtract(7));
         labelArgent.translateYProperty().bind(ennemi.yProperty().subtract(30));
+
+        paneJeu.getChildren().add(1, ennemiImgView);
         paneJeu.getChildren().add(1, labelArgent);
-        paneJeu.getChildren().add(1, spriteE);
+
         labelArgent.setTextFill(Color.DARKGOLDENROD);
         labelArgent.setId(this.ennemi.getId() + "A");
         labelArgent.setVisible(false);
+
     }
 }

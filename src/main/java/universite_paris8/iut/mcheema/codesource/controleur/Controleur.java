@@ -15,20 +15,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeBatiments;
-import universite_paris8.iut.mcheema.codesource.modele.Point;
-import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
-import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -98,6 +90,8 @@ public class Controleur implements Initializable {
         terrainVue.afficheTerrainJeu();
 
         /*
+        Niveau niveauChoisi = new Niveau(niveau);
+
         for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
 
             Point base = niveauChoisi.getBases().get(i);
@@ -109,6 +103,8 @@ public class Controleur implements Initializable {
             if (i == 0) {
                 ennemi = new ChevalDeTroie(this.environnement, chemin);
             }
+            else if (i == 1)
+                ennemi = new ErreurDeSyntaxe(this.environnement, chemin);
             else {
                 ennemi = new Ralentisseur(this.environnement, chemin);
             }
@@ -117,6 +113,8 @@ public class Controleur implements Initializable {
         }
 
          */
+
+
     }
 
     private void initAnimation() {

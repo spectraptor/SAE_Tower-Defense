@@ -1,7 +1,6 @@
 package universite_paris8.iut.mcheema.codesource.controleur.listeners;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
@@ -26,7 +25,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
             for (Ennemi ennemi : change.getRemoved()) {
                 this.paneJeu.lookup("#"+ennemi.getId()).translateXProperty().unbind();
                 this.paneJeu.lookup("#"+ennemi.getId()).translateYProperty().unbind();
-                this.paneJeu.lookup("#"+ennemi.getId()+"A").translateYProperty().unbind();
+                this.paneJeu.lookup("#"+ennemi.getId()+"A").translateXProperty().unbind();
                 this.paneJeu.lookup("#"+ennemi.getId()+"A").translateYProperty().unbind();
                 this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+ennemi.getId()));
 
