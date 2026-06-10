@@ -17,7 +17,7 @@ public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ObservableList<Batiment> batiments;
     private ObservableList<Projectile> projectiles;
-   // private GestionVague gestionVague;
+    private GestionVague2 gestionVague;
     private Terrain terrainDeJeu;
     private int nbTours;
     private Base base;
@@ -28,7 +28,7 @@ public class Environnement {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = FXCollections.observableArrayList();
         this.projectiles = FXCollections.observableArrayList();
-        //this.gestionVague = new GestionVague(this,niveau);
+        this.gestionVague = new GestionVague2(this);
         this.terrainDeJeu = new Terrain(niveau);
         this.nbTours = 0;
         this.base = new Base();
@@ -71,6 +71,7 @@ public class Environnement {
     public void unTour() {
 
         if(!this.partieEstFinie()) {
+            this.gestionVague.f();
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
                     if(this.getEnnemis().get(i).estVivant()) {
@@ -167,7 +168,7 @@ public class Environnement {
 
 
     public boolean partieEstFinie() {
-        return (this.getEnnemis().isEmpty() || this.getBase().estDetruite());
+        return (this.getEnnemis().isEmpty()) || this.getBase().estDetruite();
     }
 
     public int getNbTours() {

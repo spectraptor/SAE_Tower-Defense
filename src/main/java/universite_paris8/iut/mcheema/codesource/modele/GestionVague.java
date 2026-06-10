@@ -1,5 +1,4 @@
 package universite_paris8.iut.mcheema.codesource.modele;
-/*
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -15,7 +14,6 @@ public class GestionVague {
     private int nbreEnnemiApparu;
     private ArrayList<Ennemi> ennemisASpawn;
     private int niveau;
-    private boolean vagueCouranteFini;
 
     public GestionVague(Environnement environnement,int niveau) {
         this.numeroVagueProperty = new SimpleIntegerProperty(1);
@@ -75,5 +73,3 @@ public class GestionVague {
     
 
 }
-
- */
