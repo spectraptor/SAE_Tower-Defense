@@ -28,8 +28,11 @@ public class Environnement {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = FXCollections.observableArrayList();
         this.projectiles = FXCollections.observableArrayList();
-        this.gestionVague = new GestionVague2(this);
         this.terrainDeJeu = new Terrain(niveau);
+        this.gestionVague = new GestionVague2(this);
+        this.gestionVague.getlisteVague().add(new Vague(0,this,1));
+        //this.gestionVague.getlisteVague().get(0).initialiseVague();
+        this.gestionVague.f();
         this.nbTours = 0;
         this.base = new Base();
         this.argentProperty = new SimpleIntegerProperty(2500000);
@@ -69,7 +72,6 @@ public class Environnement {
     }
 
     public void unTour() {
-
         if(!this.partieEstFinie()) {
             this.gestionVague.f();
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {

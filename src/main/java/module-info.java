@@ -4,6 +4,8 @@ module universite_paris8.iut.mcheema.codesource {
 
     requires org.controlsfx.controls;
     requires java.desktop;
+    requires java.sql;
+    requires jdk.compiler;
 
     opens universite_paris8.iut.mcheema.codesource to javafx.fxml;
     exports universite_paris8.iut.mcheema.codesource;

@@ -21,7 +21,7 @@ public class Vague {
 
     public void initialiseVague() {
         switch (this.numeroVague) {
-            case 1:
+            case 0:
                 Niveau niveauChoisi = new Niveau(1);
                 for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
                     Point base = niveauChoisi.getBases().get(i);
@@ -31,6 +31,7 @@ public class Vague {
                     this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
                     this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
                     this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
+                    System.out.println("tete");;
                 }
         }
     }
