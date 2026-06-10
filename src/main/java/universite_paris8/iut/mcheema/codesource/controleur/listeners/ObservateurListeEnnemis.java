@@ -42,7 +42,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
                     TranslateTransition monterLabelArgent = new TranslateTransition(Duration.millis(2000), this.paneJeu.lookup("#" + ennemi.getId() + "A"));
                     FadeTransition disparaitreLabelArgent = new FadeTransition(Duration.millis(2000), this.paneJeu.lookup("#" + ennemi.getId() + "A"));
                     monterLabelArgent.setByY(-80);
-                    disparaitreLabelArgent.setToValue(0.0);
+                    disparaitreLabelArgent.setToValue(0);
 
                     monterLabelArgent.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + ennemi.getId() + "A")));
                     monterLabelArgent.play();
