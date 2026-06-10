@@ -39,13 +39,12 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
                     this.paneJeu.lookup("#" + projectile.getId() + "P").translateXProperty().unbind();
                     this.paneJeu.lookup("#" + projectile.getId() + "P").translateYProperty().unbind();
                     this.paneJeu.lookup("#" + projectile.getId() + "P").setVisible(true);
-                    PauseTransition pause = new PauseTransition(Duration.millis(500));
+
                     FadeTransition disparaitre = new FadeTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "P"));
                     RotateTransition tourner = new RotateTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "P"));
                     disparaitre.setToValue(0);
                     tourner.setByAngle(360);
-                    pause.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "P")));
-                    pause.play();
+                    tourner.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "P")));
                     disparaitre.play();
                     tourner.play();
                 }
