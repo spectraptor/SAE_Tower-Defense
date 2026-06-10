@@ -4,6 +4,7 @@ import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiCammoufle;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiVolant;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileFragmentation;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
@@ -16,20 +17,24 @@ public class Compilateur extends BatimentTir {
         super("Compilateur",x, y, 100,1, 200,200, env);
     }
 
-    @Override
-    public void effectueAction() {
-        Ennemi ennemi = this.ennemiDansPortee();
-        if (ennemi != null && !(ennemi instanceof EnnemiCammoufle) && !(ennemi instanceof EnnemiVolant)) {
-            if (this.estCapableDeTirer()) {
-                this.getEnvironnement().ajouterProjectile(new MissileTete(this.getX(), this.getY(),this.getDegat(), ennemi, this.getEnvironnement()));
-            }
-
-        }
-    }
 
     @Override
     public Projectile choisirProjectile(Ennemi cible) {
-        return null;
+        Projectile projectile;
+        switch (this.getNiveau()) {
+            case 1,2,3:
+                projectile = new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+                break;
+            default:
+                projectile = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+                break;
+        }
+        return projectile;
+    }
+
+    @Override
+    public boolean peutAttaquer(Ennemi cible) {
+        return (!(cible instanceof EnnemiVolant) && !(cible instanceof EnnemiCammoufle));
     }
 
 }

@@ -39,7 +39,7 @@ public class InfoBatimentVue {
             textInfo.setPrefWidth(LARGEUR_PANE);
             textInfo.setPrefHeight(HAUTEUR_PANE - HAUTEUR_PANE /4);
             textInfo.setId("textInfoBatiment");
-            textInfo.setText(this.batiment.toString());
+            textInfo.setText(this.batiment.avoirDescription());
             textInfo.setPadding(new Insets(5, 0, 5, 15));
             paneInfo.getChildren().add(textInfo);
 
@@ -174,7 +174,7 @@ public class InfoBatimentVue {
 
                 //Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
                 paneTemp.setOnMouseClicked(e -> {
-                    this.batiment.deplacerBatiment2((int)e.getX(),(int)e.getY());
+                    this.batiment.deplacerBatiment((int)e.getX(),(int)e.getY());
                     this.paneJeu.getChildren().remove(paneTemp);
                     this.paneJeu.getChildren().remove(nouvImgVBat);
                     this.paneJeu.getChildren().remove(labelCoutDep);
