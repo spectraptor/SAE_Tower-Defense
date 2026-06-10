@@ -26,7 +26,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
             for (Ennemi ennemi : change.getRemoved()) {
                 this.paneJeu.lookup("#"+ennemi.getId()).translateXProperty().unbind();
                 this.paneJeu.lookup("#"+ennemi.getId()).translateYProperty().unbind();
-                this.paneJeu.lookup("#"+ennemi.getId()+"A").translateYProperty().unbind();
+                this.paneJeu.lookup("#"+ennemi.getId()+"A").translateXProperty().unbind();
                 this.paneJeu.lookup("#"+ennemi.getId()+"A").translateYProperty().unbind();
                 this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+ennemi.getId()));
 
