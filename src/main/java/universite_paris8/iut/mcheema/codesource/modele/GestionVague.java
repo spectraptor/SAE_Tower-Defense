@@ -1,13 +1,17 @@
 package universite_paris8.iut.mcheema.codesource.modele;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class GestionVague {
     private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
 
-    private int numVagueCourante;
+    private IntegerProperty numVagueCouranteProperty;
     private Vague[] vagues;
     private Environnement environnement;
 
     public GestionVague(int numNiv, Environnement env) {
-        this.numVagueCourante = 0;
+        this.numVagueCouranteProperty = new SimpleIntegerProperty(0);
         this.vagues = new Vague[3];
         this.vagues[0] = new Vague(1, numNiv, env);
         this.vagues[1] = new Vague(2, numNiv, env);
@@ -23,24 +27,33 @@ public class GestionVague {
         return this.vagues.length;
     }
 
+    public final IntegerProperty numVagueCouranteProperty() {
+        return this.numVagueCouranteProperty;
+    }
+
+    public final int getNumVagueCourante() {
+        return this.numVagueCouranteProperty.getValue();
+    }
+
+    public final void setNumVagueCourante(int val) {
+        this.numVagueCouranteProperty.setValue(val);
+    }
+
+
     /**
      * Met à jour les ennemis de la vague au fur et à mesure.
      */
     public void mettreAJour() {
-            if (!this.vagues[this.numVagueCourante].getlisteEnnemisVague().isEmpty())
+            if (!this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague().isEmpty())
                 if (this.environnement.getNbTours() % TEMPS_ENNEMIS_VAGUE_FRM == 0) {
-                    this.environnement.ajouterEnnemi(this.vagues[this.numVagueCourante].getlisteEnnemisVague().remove(0));
+                    this.environnement.ajouterEnnemi(this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague().remove(0));
         }
-    }
-
-    public int getNumVagueCourante() {
-        return this.numVagueCourante;
     }
 
     public void incrementerVagueCourante() {
         // Ligne obligatoire : sinon, lorsque la derniere vague est finie,
         // on va à nouveau incrémenter et accéder à un indice qui n'existe pas.
-        if (this.numVagueCourante < this.getNbreVagues() - 1)
-            this.numVagueCourante++;
+        if (this.getNumVagueCourante() < this.getNbreVagues() - 1)
+            this.setNumVagueCourante(this.getNumVagueCourante() + 1);
     }
 }

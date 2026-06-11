@@ -53,6 +53,9 @@ public class Controleur implements Initializable {
     private  Label labelArgent;
 
     @FXML
+    private Label labelVague;
+
+    @FXML
     private Pane menuPause;
 
     @FXML
@@ -78,6 +81,7 @@ public class Controleur implements Initializable {
 
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
+        this.labelVague.textProperty().bind(this.environnement.getGestionVague().numVagueCouranteProperty().add(1).asString());
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
