@@ -18,7 +18,7 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
     public ObservateurListeProjectiles(Pane paneJeu) {
         this.paneJeu = paneJeu;
         this.explosion = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/explosion.mp3").toExternalForm());
-        this.explosion.setVolume(0.3);
+        this.explosion.setVolume(0.2);
     }
 
     @Override

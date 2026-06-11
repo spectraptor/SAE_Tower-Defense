@@ -39,7 +39,7 @@ public class ControleurAccueil implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        interactionBruit.setVolume(0.5);
+        interactionBruit.setVolume(0.3);
         root.lookupAll(".button").forEach(node -> {node.setOnMouseEntered(e -> interactionBruit.play());});
     }
 

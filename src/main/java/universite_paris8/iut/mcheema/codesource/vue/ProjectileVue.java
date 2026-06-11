@@ -32,8 +32,9 @@ public class ProjectileVue {
         Image imgProjectile1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile1.png").toExternalForm());
         Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
         ImageView imageViewprojectile;
-        tir1.setVolume(0.5);
-        tir2.setVolume(0.5);
+        tir1.setVolume(0.3);
+        tir2.setVolume(0.3);
+
         if (Math.random() < 0.5) {
             imageViewprojectile = new ImageView(imgProjectile0);
         } else {
