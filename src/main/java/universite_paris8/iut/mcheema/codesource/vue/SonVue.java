@@ -21,21 +21,21 @@ public class SonVue {
     private final AudioClip feu;
 
     public SonVue() {
-        this.poser = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poser.mp3").toExternalForm());
-        this.retirer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/retirer.mp3").toExternalForm());
-        this.explosion = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/explosion.mp3").toExternalForm());
-        this.mort = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/mort.mp3").toExternalForm());
-        this.apparition = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/apparition.mp3").toExternalForm());
-        this.missileTete = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir1.mp3").toExternalForm());
-        this.missileZone = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir2.mp3").toExternalForm());
-        this.missileFragmentation = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir3.mp3").toExternalForm());
-        this.clique = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/clique.mp3").toExternalForm());
-        this.deplacer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/deplacer.mp3").toExternalForm());
-        this.ameliorer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/ameliorer.mp3").toExternalForm());
-        this.poserConfirmer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poserConfirmer.mp3").toExternalForm());
-        this.boutonCliquer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/boutonCliquer.mp3").toExternalForm());
-        this.missileTeleguide = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir4.mp3").toExternalForm());
-        this.feu = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir5.mp3").toExternalForm());
+        this.poser = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/b_poser.mp3").toExternalForm());
+        this.retirer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/b_retirer.mp3").toExternalForm());
+        this.explosion = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_explosion.mp3").toExternalForm());
+        this.mort = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/e_mort.mp3").toExternalForm());
+        this.apparition = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/e_apparition.mp3").toExternalForm());
+        this.missileTete = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_tir1.mp3").toExternalForm());
+        this.missileZone = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_tir2.mp3").toExternalForm());
+        this.missileFragmentation = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_tir3.mp3").toExternalForm());
+        this.clique = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/i_clique.mp3").toExternalForm());
+        this.deplacer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/b_deplacer.mp3").toExternalForm());
+        this.ameliorer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/b_ameliorer.mp3").toExternalForm());
+        this.poserConfirmer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/b_poserConfirmer.mp3").toExternalForm());
+        this.boutonCliquer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/i_boutonCliquer.mp3").toExternalForm());
+        this.missileTeleguide = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_tir4.mp3").toExternalForm());
+        this.feu = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/p_tir5.mp3").toExternalForm());
 
 
         this.poser.setVolume(0.5);
