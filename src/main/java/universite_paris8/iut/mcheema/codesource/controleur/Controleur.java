@@ -74,7 +74,10 @@ public class Controleur implements Initializable {
         imgVLancer.setFitHeight(50);
         imgVLancer.setFitWidth(45);
         this.boutonLancerPause.setGraphic(imgVLancer);
-        this.borderPanePrincipal.lookupAll(".button").forEach(node -> {node.setOnMouseEntered(e -> sonVue.jouerClique());});
+        borderPanePrincipal.lookupAll(".button").forEach(node -> {
+            node.setOnMouseEntered(e -> sonVue.jouerClique());
+            node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
+        });
         initAnimation();
     }
 

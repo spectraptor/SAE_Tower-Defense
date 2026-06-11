@@ -16,7 +16,7 @@ public class SonVue {
     private final AudioClip deplacer;
     private final AudioClip ameliorer;
     private final AudioClip poserConfirmer;
-
+    private final AudioClip boutonCliquer;
 
     public SonVue() {
         this.poser = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poser.mp3").toExternalForm());
@@ -31,11 +31,12 @@ public class SonVue {
         this.deplacer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/deplacer.mp3").toExternalForm());
         this.ameliorer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/ameliorer.mp3").toExternalForm());
         this.poserConfirmer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poserConfirmer.mp3").toExternalForm());
+        this.boutonCliquer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/boutonCliquer.mp3").toExternalForm());
 
 
         this.poser.setVolume(0.5);
         this.retirer.setVolume(0.5);
-        this.explosion.setVolume(0.25);
+        this.explosion.setVolume(0.5);
         this.mort.setVolume(0.5);
         this.apparition.setVolume(0.3);
         this.missileTete.setVolume(0.3);
@@ -45,6 +46,7 @@ public class SonVue {
         this.deplacer.setVolume(0.8);
         this.ameliorer.setVolume(0.20);
         this.poserConfirmer.setVolume(0.4);
+        this.boutonCliquer.setVolume(0.5);
 
     }
 
@@ -94,5 +96,9 @@ public class SonVue {
 
     public void jouerPoserConfirmer() {
         this.poserConfirmer.play();
+    }
+
+    public void jouerBoutonCliquer() {
+        this.boutonCliquer.play();
     }
 }

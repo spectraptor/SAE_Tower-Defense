@@ -39,7 +39,10 @@ public class ControleurAccueil implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        root.lookupAll(".button").forEach(node -> {node.setOnMouseEntered(e -> sonVue.jouerClique());});
+        root.lookupAll(".button").forEach(node -> {
+            node.setOnMouseEntered(e -> sonVue.jouerClique());
+            node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
+        });
     }
 
     @FXML
