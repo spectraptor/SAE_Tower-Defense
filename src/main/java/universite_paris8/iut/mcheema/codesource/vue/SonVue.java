@@ -34,8 +34,8 @@ public class SonVue {
         this.ameliorer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/ameliorer.mp3").toExternalForm());
         this.poserConfirmer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poserConfirmer.mp3").toExternalForm());
         this.boutonCliquer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/boutonCliquer.mp3").toExternalForm());
-        this.missileTeleguide = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/teleguide.mp3").toExternalForm());
-        this.feu = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/feu.mp3").toExternalForm());
+        this.missileTeleguide = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir4.mp3").toExternalForm());
+        this.feu = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir5.mp3").toExternalForm());
 
 
         this.poser.setVolume(0.5);
