@@ -9,18 +9,15 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.vue.EnnemiVue;
+import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 
 public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
     private Pane paneJeu;
-    private final AudioClip mort;
-    private final AudioClip apparition;
+    private SonVue sonVue;
 
     public ObservateurListeEnnemis(Pane paneJeu) {
         this.paneJeu = paneJeu;
-        this.mort = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/mort.mp3").toExternalForm());
-        this.mort.setVolume(0.5);
-        this.apparition = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/apparition.mp3").toExternalForm());
-        this.apparition.setVolume(0.5);
+        this.sonVue = new SonVue();
     }
     @Override
     public void onChanged(Change<?extends Ennemi> change) {
@@ -29,7 +26,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
                 EnnemiVue ennemiVue = new EnnemiVue(ennemi,this.paneJeu);
                 ennemiVue.creerSpriteEnnemi();
 
-                this.apparition.play();
+                this.sonVue.jouerApparition();
             }
 
             for (Ennemi ennemi : change.getRemoved()) {
@@ -46,7 +43,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
                 tournerEnnemi.play();
                 disparaitreEnnemi.play();
 
-                this.mort.play();
+                this.sonVue.jouerMort();
 
                 if (!ennemi.aAtteintDestination()) {
                     this.paneJeu.lookup("#" + ennemi.getId() + "A").setVisible(true);

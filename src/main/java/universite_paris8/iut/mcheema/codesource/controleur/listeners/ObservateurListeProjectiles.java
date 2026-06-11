@@ -12,15 +12,15 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 import universite_paris8.iut.mcheema.codesource.vue.ProjectileVue;
+import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 
 public class ObservateurListeProjectiles implements ListChangeListener<Projectile> {
     private Pane paneJeu;
-    private final AudioClip explosion;
+    private SonVue sonVue;
 
     public ObservateurListeProjectiles(Pane paneJeu) {
         this.paneJeu = paneJeu;
-        this.explosion = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/explosion.mp3").toExternalForm());
-        this.explosion.setVolume(0.2);
+        this.sonVue = new SonVue();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
                 }
                 else if (projectile instanceof MissileZone) {
-                    explosion.play();
+                    this.sonVue.jouerExplosion();
                     // this.paneJeu.lookup("#" + projectile.getId() + "B").translateXProperty().unbind();
                     // this.paneJeu.lookup("#" + projectile.getId() + "B").translateYProperty().unbind();
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "B"));
