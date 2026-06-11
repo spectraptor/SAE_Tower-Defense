@@ -20,6 +20,7 @@ import universite_paris8.iut.mcheema.codesource.controleur.listeners.Observateur
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
+import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class Controleur implements Initializable {
     private boolean etatPause = true;
 
     private int numBatimentSelectionne = -1;
+
+    private SonVue sonVue = new SonVue();
 
     @FXML
     private TilePane tilePane;
@@ -71,6 +74,7 @@ public class Controleur implements Initializable {
         imgVLancer.setFitHeight(50);
         imgVLancer.setFitWidth(45);
         this.boutonLancerPause.setGraphic(imgVLancer);
+        this.borderPanePrincipal.lookupAll(".button").forEach(node -> {node.setOnMouseEntered(e -> sonVue.jouerClique());});
         initAnimation();
     }
 

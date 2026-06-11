@@ -18,16 +18,16 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 public class ProjectileVue {
     private Pane paneJeu;
     private Projectile projectile;
+    private SonVue sonVue;
 
     public ProjectileVue(Pane paneJeu,Projectile projectile) {
         this.paneJeu = paneJeu;
         this.projectile = projectile;
+        this.sonVue = new SonVue();
     }
 
     public void creeSpriteProjectile() {
-        AudioClip tir1 = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir1.mp3").toExternalForm()); // tete
-        AudioClip tir2 = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir2.mp3").toExternalForm()); // explosion
-        AudioClip tir3 = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir3.mp3").toExternalForm()); // fragmentation
+
         Image imgProjectile0 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile0.png").toExternalForm());;
         Image imgProjectile1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile1.png").toExternalForm());
         Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
@@ -35,10 +35,10 @@ public class ProjectileVue {
         Image imgBombe = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/bombeLogique.png").toExternalForm());
 
         ImageView imageViewprojectile;
-        tir1.setVolume(0.3);
-        tir2.setVolume(0.3);
+
+
         if (this.projectile instanceof  MissileTete) {
-            tir1.play();
+            this.sonVue.jouerMissileTete();
             if (Math.random() < 0.5) {
                 imageViewprojectile = new ImageView(imgProjectile0);
             } else {
@@ -50,7 +50,7 @@ public class ProjectileVue {
             imageViewprojectile.setId(this.projectile.getId());
         }
         else if (this.projectile instanceof MissileZone) {
-            tir2.play();
+            this.sonVue.jouerMissileZone();
             ImageView vueBombe = new ImageView(imgBombe);
             ImageView vueExplosion = new ImageView(imgExplosion);
             vueBombe.translateXProperty().bind(this.projectile.xProperty().subtract(16)); // 32 px img
@@ -66,7 +66,7 @@ public class ProjectileVue {
             vueExplosion.setVisible(false);
         }
         else if (this.projectile instanceof MissileFragmentation) {
-            tir3.play();
+            this.sonVue.jouerMissileFragmentation();
             ImageView vueFragmentation = new ImageView(imgFragmentation);
             vueFragmentation.translateXProperty().bind(this.projectile.xProperty().subtract(10)); // 20 px img
             vueFragmentation.translateYProperty().bind(this.projectile.yProperty().subtract(10));
