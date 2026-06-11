@@ -2,6 +2,8 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ping;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ralentisseur;
 
 import java.util.ArrayList;
 
@@ -10,33 +12,59 @@ public class Vague {
     private ArrayList<Ennemi> listeEnnemisVague;
     private Environnement environnement;
 
-
-    public Vague(int vague,Environnement env,int numeroNiveau) {
-        this.numeroVague = vague;
+    public Vague(int numVague, int numNiv, Environnement env) {
+        this.numeroVague = numVague;
         this.listeEnnemisVague = new ArrayList<>();
         this.environnement = env;
-        this.initialiseVague(numeroNiveau);
+        this.initialiseVague(numNiv);
     }
 
-    public void initialiseVague(int numeroNiveau) {
+    public ArrayList<Ennemi> getlisteEnnemisVague() {
+        return this.listeEnnemisVague;
+    }
+
+    public void initialiseVague(int niveau) {
+        ArrayList<Point> chemin = this.avoirEnnemisChemin(niveau);
         switch (this.numeroVague) {
-             default:
-                Niveau niveauChoisi = new Niveau(numeroNiveau);
-                for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
-                    Point base = niveauChoisi.getBases().get(i);
-                    Point entree = niveauChoisi.getEntrees().get(i);
-                    BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
-                    ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
+            case 1:
+                // Créer 3 bogues
+                for (int i = 0; i < 3; i++) {
                     this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
-                    this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
-                    this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
-                    System.out.println("tete");;
                 }
+                break;
+            case 2:
+                // Créer 3 bogues, 2 ralentisseur, 1 ping
+                for (int i = 0; i < 3; i++) {
+                    this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
+                }
+
+                this.listeEnnemisVague.add(new Ralentisseur(this.environnement, chemin));
+                this.listeEnnemisVague.add(new Ralentisseur(this.environnement, chemin));
+
+                this.listeEnnemisVague.add(new Ping(this.environnement, chemin));
+
+                break;
+
+            case 3:
+                // Créer 5 bogues
+                for (int i = 0; i < 5; i++) {
+                    this.listeEnnemisVague.add(new Bogue(this.environnement, chemin));
+                }
+                break;
         }
     }
 
+    public ArrayList<Point> avoirEnnemisChemin(int niveau) {
 
-    public ArrayList<Ennemi> getListeEnnemisVague() {
-        return this.listeEnnemisVague;
+        Niveau niveauChoisi = new Niveau(niveau);
+        ArrayList<Point> chemin = null;
+        for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
+            Point base = niveauChoisi.getBases().get(i);
+            Point entree = niveauChoisi.getEntrees().get(i);
+            BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
+            chemin = bfs.cheminDepuisSource(entree);
+        }
+
+        return chemin;
     }
 }

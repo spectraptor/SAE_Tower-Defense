@@ -5,11 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
-import java.util.ArrayList;
 /*
 La classe Environnement gère l'ensemble du fonctionnement du jeu. Il effectue les actions à chaque tour,
 l'apparition de tous les élements du jeu (base, terrain, liste d'ennemis, liste de batiments.
@@ -18,7 +16,7 @@ public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ObservableList<Batiment> batiments;
     private ObservableList<Projectile> projectiles;
-    private GestionVague3 gestionVague;
+    private GestionVague gestionVague;
     private Terrain terrainDeJeu;
     private int nbTours;
     private Base base;
@@ -30,8 +28,7 @@ public class Environnement {
         this.batiments = FXCollections.observableArrayList();
         this.projectiles = FXCollections.observableArrayList();
         this.terrainDeJeu = new Terrain(niveau);
-        this.gestionVague = new GestionVague3(this,1);
-
+        this.gestionVague = new GestionVague(niveau, this);
         this.nbTours = 0;
         this.base = new Base();
         this.argentProperty = new SimpleIntegerProperty(2500000);
@@ -53,6 +50,10 @@ public class Environnement {
         return this.projectiles;
     }
 
+    public GestionVague getGestionVague() {
+        return this.gestionVague;
+    }
+
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
@@ -72,10 +73,12 @@ public class Environnement {
 
     public void unTour() {
         if(!this.partieEstFinie()) {
-            this.gestionVague.metAJour();
-            if(this.gestionVague.getListeVague().get(this.gestionVague.getVagueCourante()).getListeEnnemisVague().isEmpty()) {
-                this.gestionVague.incrementeVagueCourante();
+            this.gestionVague.mettreAJour();
+            if(this.gestionVague.getVagues()[this.gestionVague.getNumVagueCourante()].getlisteEnnemisVague().isEmpty()
+            && this.ennemis.isEmpty()) {
+                this.gestionVague.incrementerVagueCourante();
             }
+
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
                     if(this.getEnnemis().get(i).estVivant()) {
@@ -99,7 +102,6 @@ public class Environnement {
             }
             this.nbTours++;
         }
-        System.out.println(this.gestionVague.getVagueCourante());
     }
 
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
@@ -173,7 +175,9 @@ public class Environnement {
 
 
     public boolean partieEstFinie() {
-        return this.getBase().estDetruite() || (this.gestionVague.getVagueCourante() == GestionVague3.MAX_VAGUE && this.ennemis.isEmpty() && this.gestionVague.listeVague.get(this.gestionVague.getVagueCourante()).getListeEnnemisVague().isEmpty());
+        return this.getBase().estDetruite() || (this.gestionVague.getNumVagueCourante() ==
+                this.gestionVague.getNbreVagues() - 1 && this.ennemis.isEmpty() && this.gestionVague.
+                getVagues()[this.gestionVague.getNumVagueCourante()].getlisteEnnemisVague().isEmpty());
     }
 
     public int getNbTours() {
