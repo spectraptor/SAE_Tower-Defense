@@ -4,7 +4,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import universite_paris8.iut.mcheema.codesource.Main;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeBatiments;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
@@ -22,6 +26,8 @@ import javafx.util.Duration;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -223,8 +229,13 @@ public class Controleur implements Initializable {
     }
 
     @FXML
-    public void quitter(ActionEvent actionEvent) {
-        Stage stage = (Stage) this.borderPanePrincipal.getScene().getWindow();
-        stage.close();
+    public void quitter(ActionEvent actionEvent) throws IOException {
+        this.gameLoop.stop();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueAccueil.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
