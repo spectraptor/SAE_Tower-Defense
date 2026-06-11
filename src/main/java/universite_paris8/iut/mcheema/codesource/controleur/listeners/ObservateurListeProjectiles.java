@@ -7,10 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileFragmentation;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.*;
 import universite_paris8.iut.mcheema.codesource.vue.ProjectileVue;
 import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 
@@ -33,17 +30,11 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
 
             for (Projectile projectile : change.getRemoved()) {
                 if (projectile instanceof MissileTete) {
-                    // this.paneJeu.lookup("#" + projectile.getId()).translateXProperty().unbind();
-                    // this.paneJeu.lookup("#" + projectile.getId()).translateYProperty().unbind();
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
                 }
                 else if (projectile instanceof MissileZone) {
                     this.sonVue.jouerExplosion();
-                    // this.paneJeu.lookup("#" + projectile.getId() + "B").translateXProperty().unbind();
-                    // this.paneJeu.lookup("#" + projectile.getId() + "B").translateYProperty().unbind();
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "B"));
-                    // this.paneJeu.lookup("#" + projectile.getId() + "E").translateXProperty().unbind();
-                    // this.paneJeu.lookup("#" + projectile.getId() + "E").translateYProperty().unbind();
                     this.paneJeu.lookup("#" + projectile.getId() + "E").setVisible(true);
 
                     FadeTransition disparaitre = new FadeTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "E"));
@@ -55,9 +46,13 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
                     tourner.play();
                 }
                 else if (projectile instanceof MissileFragmentation) {
-                    // this.paneJeu.lookup("#" + projectile.getId() + "F").translateXProperty().unbind();
-                    // this.paneJeu.lookup("#" + projectile.getId() + "F").translateYProperty().unbind();
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "F"));
+                }
+                else if (projectile instanceof MissileTeleguide) {
+                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "T"));
+                }
+                else if (projectile instanceof MissileBrulure) {
+                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "O"));
                 }
             }
         }
