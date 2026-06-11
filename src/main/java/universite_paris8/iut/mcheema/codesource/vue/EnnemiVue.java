@@ -22,24 +22,15 @@ public class EnnemiVue {
     }
 
     public void creerSpriteEnnemi() {
-        Image imgBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/bogue.png").
-                toExternalForm());
-        Image imgChevalTroie = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/cheval_troie.png").
-                toExternalForm());
-        Image imgDrone = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/drone.png").
-                toExternalForm());
-        Image imgFreeze = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/flocon_neige.png").
-                toExternalForm());
-        Image imgPing = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
-                toExternalForm());
-        Image imgGrosBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/gros_bogue.png").
-                toExternalForm());
-        Image imgErreurExec = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
-                toExternalForm());
-        Image imgErreurLog = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
-                toExternalForm());
-        Image imgErreurSynt = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").
-                toExternalForm());
+        Image imgBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/bogue.png").toExternalForm());
+        Image imgChevalTroie = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/cheval_troie.png").toExternalForm());
+        Image imgDrone = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/drone.png").toExternalForm());
+        Image imgFreeze = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/flocon_neige.png").toExternalForm());
+        Image imgPing = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").toExternalForm());
+        Image imgGrosBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/gros_bogue.png").toExternalForm());
+        Image imgErreurExec = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").toExternalForm());
+        Image imgErreurLog = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").toExternalForm());
+        Image imgErreurSynt = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").toExternalForm());
 
         Label labelArgent = new Label(Integer.toString(this.ennemi.getArgentDonne()));
 

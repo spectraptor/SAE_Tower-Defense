@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import universite_paris8.iut.mcheema.codesource.Main;
+import universite_paris8.iut.mcheema.codesource.vue.SonVue;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class ControleurAccueil implements Initializable {
 
-
+    private SonVue sonVue = new SonVue();
 
     @FXML
     private AnchorPane root;
@@ -37,7 +39,10 @@ public class ControleurAccueil implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        root.lookupAll(".button").forEach(node -> {
+            node.setOnMouseEntered(e -> sonVue.jouerClique());
+            node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
+        });
     }
 
     @FXML
