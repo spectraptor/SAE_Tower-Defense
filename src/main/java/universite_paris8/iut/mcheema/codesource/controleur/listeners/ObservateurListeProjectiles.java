@@ -7,6 +7,8 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileFragmentation;
+import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileZone;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 import universite_paris8.iut.mcheema.codesource.vue.ProjectileVue;
@@ -30,23 +32,32 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
             }
 
             for (Projectile projectile : change.getRemoved()) {
-                this.paneJeu.lookup("#" + projectile.getId()).translateXProperty().unbind();
-                this.paneJeu.lookup("#" + projectile.getId()).translateYProperty().unbind();
-                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
-
-                if (projectile instanceof MissileZone) {
+                if (projectile instanceof MissileTete) {
+                    // this.paneJeu.lookup("#" + projectile.getId()).translateXProperty().unbind();
+                    // this.paneJeu.lookup("#" + projectile.getId()).translateYProperty().unbind();
+                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId()));
+                }
+                else if (projectile instanceof MissileZone) {
                     explosion.play();
-                    this.paneJeu.lookup("#" + projectile.getId() + "P").translateXProperty().unbind();
-                    this.paneJeu.lookup("#" + projectile.getId() + "P").translateYProperty().unbind();
-                    this.paneJeu.lookup("#" + projectile.getId() + "P").setVisible(true);
+                    // this.paneJeu.lookup("#" + projectile.getId() + "B").translateXProperty().unbind();
+                    // this.paneJeu.lookup("#" + projectile.getId() + "B").translateYProperty().unbind();
+                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "B"));
+                    // this.paneJeu.lookup("#" + projectile.getId() + "E").translateXProperty().unbind();
+                    // this.paneJeu.lookup("#" + projectile.getId() + "E").translateYProperty().unbind();
+                    this.paneJeu.lookup("#" + projectile.getId() + "E").setVisible(true);
 
-                    FadeTransition disparaitre = new FadeTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "P"));
-                    RotateTransition tourner = new RotateTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "P"));
+                    FadeTransition disparaitre = new FadeTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "E"));
+                    RotateTransition tourner = new RotateTransition(Duration.millis(500), this.paneJeu.lookup("#" + projectile.getId() + "E"));
                     disparaitre.setToValue(0);
                     tourner.setByAngle(360);
-                    tourner.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "P")));
+                    tourner.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "E")));
                     disparaitre.play();
                     tourner.play();
+                }
+                else if (projectile instanceof MissileFragmentation) {
+                    // this.paneJeu.lookup("#" + projectile.getId() + "F").translateXProperty().unbind();
+                    // this.paneJeu.lookup("#" + projectile.getId() + "F").translateYProperty().unbind();
+                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "F"));
                 }
             }
         }
