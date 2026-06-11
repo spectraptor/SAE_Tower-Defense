@@ -19,10 +19,12 @@ public class InfoBatimentVue {
     private final static int HAUTEUR_PANE = 200;
     private Batiment batiment;
     private Pane paneJeu;
+    private SonVue sonVue;
 
     public InfoBatimentVue(Batiment batiment, Pane paneJeu) {
         this.batiment = batiment;
         this.paneJeu = paneJeu;
+        this.sonVue = new SonVue();
     }
 
     public void afficheInfoBatiment() {
@@ -53,6 +55,7 @@ public class InfoBatimentVue {
             boutonQuitter.setId("boutonQuitterInfoBat");
 
             boutonQuitter.setOnAction(event -> {
+                this.sonVue.jouerRetirer();
                 this.paneJeu.getChildren().remove(paneInfo);
             });
 
@@ -90,6 +93,7 @@ public class InfoBatimentVue {
             });
 
             boutonAmeliorer.setOnAction(e -> {
+                this.sonVue.jouerAmeliorer();
                 this.batiment.ameliorerBatiment();
                 this.paneJeu.getChildren().remove(paneInfo);
             });
@@ -109,6 +113,7 @@ public class InfoBatimentVue {
                 boutonVendre.setText("Vendre");
             });
             boutonVendre.setOnAction(event -> {
+                this.sonVue.jouerRetirer();
                 this.batiment.vendreBatiment();
                 this.paneJeu.getChildren().remove(paneInfo);
             });
@@ -121,6 +126,7 @@ public class InfoBatimentVue {
             boutonDeplacer.setId("boutonDeplacer");
 
             boutonDeplacer.setOnAction(event -> {
+                this.sonVue.jouerDeplacer();
                 //Enleve le PaneInfo lorsqu'on clique sur le bouton déplacer
                 this.paneJeu.getChildren().remove(paneInfo);
                 //Crée un Pane temporaire pour le clique du déplacement du batiment ce Pane a exactement les memes dimension que le Pane de Jeu
@@ -174,6 +180,7 @@ public class InfoBatimentVue {
 
                 //Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
                 paneTemp.setOnMouseClicked(e -> {
+                    this.sonVue.jouerPoserConfirmer();
                     this.batiment.deplacerBatiment((int)e.getX(),(int)e.getY());
                     this.paneJeu.getChildren().remove(paneTemp);
                     this.paneJeu.getChildren().remove(nouvImgVBat);

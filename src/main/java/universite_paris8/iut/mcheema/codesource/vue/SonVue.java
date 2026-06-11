@@ -13,6 +13,9 @@ public class SonVue {
     private final AudioClip missileZone;
     private final AudioClip missileFragmentation;
     private final AudioClip clique;
+    private final AudioClip deplacer;
+    private final AudioClip ameliorer;
+    private final AudioClip poserConfirmer;
 
 
     public SonVue() {
@@ -25,6 +28,9 @@ public class SonVue {
         this.missileZone = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir2.mp3").toExternalForm());
         this.missileFragmentation = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/tir3.mp3").toExternalForm());
         this.clique = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/clique.mp3").toExternalForm());
+        this.deplacer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/deplacer.mp3").toExternalForm());
+        this.ameliorer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/ameliorer.mp3").toExternalForm());
+        this.poserConfirmer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/poserConfirmer.mp3").toExternalForm());
 
 
         this.poser.setVolume(0.5);
@@ -36,6 +42,9 @@ public class SonVue {
         this.missileZone.setVolume(0.3);
         this.missileFragmentation.setVolume(0.5);
         this.clique.setVolume(0.3);
+        this.deplacer.setVolume(0.8);
+        this.ameliorer.setVolume(0.20);
+        this.poserConfirmer.setVolume(0.4);
 
     }
 
@@ -73,5 +82,17 @@ public class SonVue {
 
     public void jouerClique() {
         this.clique.play();
+    }
+
+    public void jouerDeplacer() {
+        this.deplacer.play();
+    }
+
+    public void jouerAmeliorer() {
+        this.ameliorer.play();
+    }
+
+    public void jouerPoserConfirmer() {
+        this.poserConfirmer.play();
     }
 }
