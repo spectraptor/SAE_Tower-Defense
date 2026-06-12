@@ -59,10 +59,12 @@ public class GestionVague {
         }
     }
 
-    public void incrementerVagueCourante() {
+    public void passerNouvelleVague() {
         // Ligne obligatoire : sinon, lorsque la derniere vague est finie,
         // on va à nouveau incrémenter et accéder à un indice qui n'existe pas.
-        if (this.getNumVagueCourante() < this.getNbreVagues() - 1)
+        if (this.getNumVagueCourante() < this.getNbreVagues() - 1) {
+            this.environnement.ajouterArgent(100 + this.getNumVagueCourante() * 10);
             this.setNumVagueCourante(this.getNumVagueCourante() + 1);
+        }
     }
 }

@@ -42,4 +42,8 @@ public class Niveau {
     public ArrayList<Point> getEntrees() {
         return entrees;
     }
+
+    public int getNbreEntres() {
+        return this.entrees.size();
+    }
 }

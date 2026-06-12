@@ -74,7 +74,7 @@ public class Environnement {
         if(!this.partieEstFinie()) {
             this.gestionVague.mettreAJour();
             if(this.vagueEstTerminee()) {
-                this.gestionVague.incrementerVagueCourante();
+                this.gestionVague.passerNouvelleVague();
             }
 
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
