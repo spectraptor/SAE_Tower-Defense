@@ -1,6 +1,7 @@
 module universite_paris8.iut.mcheema.codesource {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
     requires org.controlsfx.controls;
     requires java.desktop;

@@ -20,23 +20,23 @@ public class TerrainVue {
     }
 
     public void afficheTerrainJeu() {
-        Image imgSol = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/sol.png").toExternalForm());
-        Image imgGlitch1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch1.png").toExternalForm());
-        Image imgGlitch2 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch2.png").toExternalForm());
-        Image imgGlitch3 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch3.png").toExternalForm());
-        Image imgGlitch4 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch4.png").toExternalForm());
-        Image imgGlitch5 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/glitch/glitch5.png").toExternalForm());
-        Image ch_gauche_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin1.png").toExternalForm());
-        Image ch_haut_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin2.png").toExternalForm());
-        Image ch_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin3.png").toExternalForm());
-        Image ch_bas_gauche = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin4.png").toExternalForm());
-        Image ch_gauche_haut = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin5.png").toExternalForm());
-        Image ch_haut_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin6.png").toExternalForm());
-        Image ch_haut_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin7.png").toExternalForm());
-        Image ch_droite_bas_gauche = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin8.png").toExternalForm());
-        Image ch_bas_gauche_haut = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin9.png").toExternalForm());
-        Image ch_gauche_haut_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/chemins/chemin10.png").toExternalForm());
-        Image base = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/base.png").toExternalForm());
+        Image imgSol = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/posables/sol.png").toExternalForm());
+        Image imgGlitch1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/nonPosable/glitch1.png").toExternalForm());
+        Image imgGlitch2 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/nonPosable/glitch2.png").toExternalForm());
+        Image imgGlitch3 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/nonPosable/glitch3.png").toExternalForm());
+        Image imgGlitch4 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/nonPosable/glitch4.png").toExternalForm());
+        Image imgGlitch5 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/nonPosable/glitch5.png").toExternalForm());
+        Image ch_gauche_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin1.png").toExternalForm());
+        Image ch_haut_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin2.png").toExternalForm());
+        Image ch_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin3.png").toExternalForm());
+        Image ch_bas_gauche = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin4.png").toExternalForm());
+        Image ch_gauche_haut = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin5.png").toExternalForm());
+        Image ch_haut_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin6.png").toExternalForm());
+        Image ch_haut_droite_bas = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin7.png").toExternalForm());
+        Image ch_droite_bas_gauche = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin8.png").toExternalForm());
+        Image ch_bas_gauche_haut = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin9.png").toExternalForm());
+        Image ch_gauche_haut_droite = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/chemin10.png").toExternalForm());
+        Image base = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/tuiles/chemins/base.png").toExternalForm());
         for (int i = 0; i < this.terrainDeJeu.obtenirHauteur(); i++) {
             for (int j = 0; j < this.terrainDeJeu.obtenirLargeur(); j++) {
                 switch (this.terrainDeJeu.avoirCodeTuile(i,j)) {
