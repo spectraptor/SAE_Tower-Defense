@@ -2,9 +2,13 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
+
+import java.util.ArrayList;
 
 public class GestionVague {
     private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
+    private final static int MAX_VAGUES = 4;
 
     private IntegerProperty numVagueCouranteProperty;
     private Vague[] vagues;
@@ -12,10 +16,12 @@ public class GestionVague {
 
     public GestionVague(int numNiv, Environnement env) {
         this.numVagueCouranteProperty = new SimpleIntegerProperty(0);
-        this.vagues = new Vague[3];
-        this.vagues[0] = new Vague(1, numNiv, env);
-        this.vagues[1] = new Vague(2, numNiv, env);
-        this.vagues[2] = new Vague(3, numNiv, env);
+        this.vagues = new Vague[MAX_VAGUES];
+
+        for (int i = 0; i < MAX_VAGUES; i++) {
+            this.vagues[i] = new Vague(i + 1, numNiv, env);
+        }
+
         this.environnement = env;
     }
 
@@ -24,7 +30,7 @@ public class GestionVague {
     }
 
     public int getNbreVagues() {
-        return this.vagues.length;
+        return MAX_VAGUES;
     }
 
     public final IntegerProperty numVagueCouranteProperty() {
@@ -39,14 +45,23 @@ public class GestionVague {
         this.numVagueCouranteProperty.setValue(val);
     }
 
+    public ArrayList<Ennemi> listeEnnemisVagueCourante() {
+        return this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague();
+    }
 
     /**
      * Met à jour les ennemis de la vague au fur et à mesure.
      */
     public void mettreAJour() {
-            if (!this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague().isEmpty())
+            if (!this.listeEnnemisVagueCourante().isEmpty())
                 if (this.environnement.getNbTours() % TEMPS_ENNEMIS_VAGUE_FRM == 0) {
-                    this.environnement.ajouterEnnemi(this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague().remove(0));
+                    this.environnement.ajouterEnnemi(this.listeEnnemisVagueCourante().remove(0));
+        }
+    }
+
+    public void creerDifferentesVagues(int nbreVague, int numNiv) {
+        for (int i = 0; i < nbreVague; i++) {
+            this.vagues[i] = new Vague(i, numNiv, this.environnement);
         }
     }
 
