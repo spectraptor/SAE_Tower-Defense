@@ -4,6 +4,7 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
+import java.util.ArrayList;
 
 public abstract class BatimentTir extends BatimentAvecPortee{
     private int cadenceTir;
@@ -20,10 +21,17 @@ public abstract class BatimentTir extends BatimentAvecPortee{
     }
 
     public void effectueAction() {
-        Ennemi ennemi = this.ennemiDansPortee();
-        if (ennemi != null && this.peutAttaquer(ennemi)) {
-            if (this.estCapableDeTirer()) {
-                this.getEnvironnement().ajouterProjectile(this.choisirProjectile(ennemi));
+        if (this.estCapableDeTirer()) {
+            ArrayList<Ennemi> ennemis = new ArrayList<>(this.getEnvironnement().getEnnemis());
+            int i = 0;
+            boolean ennemiTrouve = false;
+            while (i < ennemis.size() && !ennemiTrouve) {
+                Ennemi ennemi = ennemis.get(i);
+                if (this.calculDistance(ennemi) <= this.getPortee() && this.peutAttaquer(ennemi)) {
+                    this.getEnvironnement().ajouterProjectile(this.choisirProjectile(ennemis.get(i)));
+                    ennemiTrouve = true;
+                }
+                i++;
             }
         }
     }
