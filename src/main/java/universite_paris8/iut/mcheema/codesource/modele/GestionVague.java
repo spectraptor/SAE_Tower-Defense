@@ -59,12 +59,6 @@ public class GestionVague {
         }
     }
 
-    public void creerDifferentesVagues(int nbreVague, int numNiv) {
-        for (int i = 0; i < nbreVague; i++) {
-            this.vagues[i] = new Vague(i, numNiv, this.environnement);
-        }
-    }
-
     public void incrementerVagueCourante() {
         // Ligne obligatoire : sinon, lorsque la derniere vague est finie,
         // on va à nouveau incrémenter et accéder à un indice qui n'existe pas.
