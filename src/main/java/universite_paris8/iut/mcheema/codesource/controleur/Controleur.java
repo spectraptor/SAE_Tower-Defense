@@ -29,7 +29,6 @@ import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -64,6 +63,9 @@ public class Controleur implements Initializable {
     private  Label labelArgent;
 
     @FXML
+    private Label labelVague;
+
+    @FXML
     private Pane menuPause;
 
     @FXML
@@ -93,6 +95,7 @@ public class Controleur implements Initializable {
 
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
         this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
+        this.labelVague.textProperty().bind(this.environnement.getGestionVague().numVagueCouranteProperty().add(1).asString());
 
         // Listener sur l'Observable Liste d'ennemis
         this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
@@ -103,31 +106,6 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
         terrainVue.afficheTerrainJeu();
-
-        Niveau niveauChoisi = new Niveau(niveau);
-
-        for (int i = 0; i < niveauChoisi.getBases().size(); i++) {
-
-            Point base = niveauChoisi.getBases().get(i);
-            Point entree = niveauChoisi.getEntrees().get(i);
-            BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
-            ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
-
-            Ennemi ennemi;
-            if (i == 0) {
-                ennemi = new ChevalDeTroie(this.environnement, chemin);
-            }
-            else if (i == 1)
-                ennemi = new ErreurDeSyntaxe(this.environnement, chemin);
-            else {
-                ennemi = new Ralentisseur(this.environnement, chemin);
-            }
-
-            this.environnement.ajouterEnnemi(ennemi);
-        }
-
-
-
     }
 
     private void initAnimation() {

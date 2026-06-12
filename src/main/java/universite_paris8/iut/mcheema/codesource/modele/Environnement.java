@@ -8,7 +8,6 @@ import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
-import java.util.ArrayList;
 /*
 La classe Environnement gère l'ensemble du fonctionnement du jeu. Il effectue les actions à chaque tour,
 l'apparition de tous les élements du jeu (base, terrain, liste d'ennemis, liste de batiments.
@@ -17,7 +16,7 @@ public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ObservableList<Batiment> batiments;
     private ObservableList<Projectile> projectiles;
-   // private GestionVague gestionVague;
+    private GestionVague gestionVague;
     private Terrain terrainDeJeu;
     private int nbTours;
     private Base base;
@@ -28,8 +27,8 @@ public class Environnement {
         this.ennemis = FXCollections.observableArrayList();
         this.batiments = FXCollections.observableArrayList();
         this.projectiles = FXCollections.observableArrayList();
-        //this.gestionVague = new GestionVague(this,niveau);
         this.terrainDeJeu = new Terrain(niveau);
+        this.gestionVague = new GestionVague(niveau, this);
         this.nbTours = 0;
         this.base = new Base();
         this.argentProperty = new SimpleIntegerProperty(2500000);
@@ -51,6 +50,10 @@ public class Environnement {
         return this.projectiles;
     }
 
+    public GestionVague getGestionVague() {
+        return this.gestionVague;
+    }
+
     public void ajouterEnnemi(Ennemi ennemi) {
         this.ennemis.add(ennemi);
     }
@@ -58,7 +61,6 @@ public class Environnement {
     public void ajouterBatiment(Batiment batiment) {
         this.batiments.add(batiment);
     }
-
 
     public void ajouterProjectile(Projectile projectile) {
         this.projectiles.add(projectile);
@@ -69,8 +71,12 @@ public class Environnement {
     }
 
     public void unTour() {
-
         if(!this.partieEstFinie()) {
+            this.gestionVague.mettreAJour();
+            if(this.vagueEstTerminee()) {
+                this.gestionVague.passerNouvelleVague();
+            }
+
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
                     if(this.getEnnemis().get(i).estVivant()) {
@@ -94,6 +100,15 @@ public class Environnement {
             }
             this.nbTours++;
         }
+    }
+
+    public boolean vagueEstTerminee() {
+        /* Les deux conditions sont obligatoires :
+            Si on regarde uniquement la première, alors une nouvelle vague commencera lorsque tous les ennemis de la précédente vague
+            ont été placées, sans regarder si les ennemis de la vague actuelle sont morts.
+            Si on regarde uniquement la deuxième, alors les vagues commenceront les unes à la suite car la liste d'ennemis sera toujours vide.
+         */
+        return this.gestionVague.listeEnnemisVagueCourante().isEmpty() && this.ennemis.isEmpty();
     }
 
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
@@ -167,7 +182,9 @@ public class Environnement {
 
 
     public boolean partieEstFinie() {
-        return (this.getEnnemis().isEmpty() || this.getBase().estDetruite());
+        return this.getBase().estDetruite() || (this.gestionVague.getNumVagueCourante() ==
+                this.gestionVague.getNbreVagues() - 1 && this.ennemis.isEmpty() && this.gestionVague.
+                getVagues()[this.gestionVague.getNumVagueCourante()].getlisteEnnemisVague().isEmpty());
     }
 
     public int getNbTours() {
@@ -191,5 +208,7 @@ public class Environnement {
     public void retirerArgent(int argent) {
         this.argentProperty.setValue(getArgent() - argent);
     }
+
+
 }
 

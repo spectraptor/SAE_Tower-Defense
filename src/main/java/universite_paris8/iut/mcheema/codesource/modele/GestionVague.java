@@ -1,79 +1,70 @@
 package universite_paris8.iut.mcheema.codesource.modele;
-/*
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.ArrayList;
 
 public class GestionVague {
-    private final static int TEMPS_ATTENTE = 200;
-    private IntegerProperty numeroVagueProperty;
+    private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
+    private final static int MAX_VAGUES = 4;
+
+    private IntegerProperty numVagueCouranteProperty;
+    private Vague[] vagues;
     private Environnement environnement;
-    private int nbreEnnemiApparu;
-    private ArrayList<Ennemi> ennemisASpawn;
-    private int niveau;
-    private boolean vagueCouranteFini;
 
-    public GestionVague(Environnement environnement,int niveau) {
-        this.numeroVagueProperty = new SimpleIntegerProperty(1);
-        this.environnement = environnement;
-        this.nbreEnnemiApparu = 0;
-        this.ennemisASpawn = new ArrayList<>();
-        this.niveau = niveau;
-    }
+    public GestionVague(int numNiv, Environnement env) {
+        this.numVagueCouranteProperty = new SimpleIntegerProperty(0);
+        this.vagues = new Vague[MAX_VAGUES];
 
-    public final int getNumeroVague() {
-        return this.numeroVagueProperty.getValue();
-    }
-
-    public final void setNumeroVague(int numero) {
-        this.numeroVagueProperty.setValue(numero);
-    }
-
-    public final IntegerProperty numeroVaguePorperty() {
-        return this.numeroVagueProperty;
-    }
-
-    public void t() {
-        switch (this.getNumeroVague()) {
-            case 1:
-                this.vague1();
-                break;
-        }
-        if(this.environnement.getEnnemis().isEmpty() && this.ennemisASpawn.isEmpty()) {
-            this.setNumeroVague(this.getNumeroVague()+1);
-        }
-        if(this.environnement.getNbTours() % TEMPS_ATTENTE == 0) {
-            System.out.println("teee");
-            for(int i = 0;i<this.ennemisASpawn.size();i++) {
-                this.environnement.getEnnemis().add(this.ennemisASpawn.remove(i));
-            }
+        for (int i = 0; i < MAX_VAGUES; i++) {
+            this.vagues[i] = new Vague(i + 1, numNiv, env);
         }
 
+        this.environnement = env;
     }
 
-    public void vague1() {
-        if(this.nbreEnnemiApparu < 3) {
-            Niveau terrain = new Niveau(this.niveau);
-            for (int i = 0; i < terrain.getBases().size(); i++) {
-                System.out.println("te");
-                Point base = terrain.getBases().get(i);
-                Point entree = terrain.getEntrees().get(i);
-                BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), base);
-                ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
+    public Vague[] getVagues() {
+        return this.vagues;
+    }
 
-                for (int j = 0; j < 3; j++) {
-                    this.ennemisASpawn.add(new Bogue(this.environnement, chemin));
-                    this.nbreEnnemiApparu++;
-                }
-            }
+    public int getNbreVagues() {
+        return MAX_VAGUES;
+    }
+
+    public final IntegerProperty numVagueCouranteProperty() {
+        return this.numVagueCouranteProperty;
+    }
+
+    public final int getNumVagueCourante() {
+        return this.numVagueCouranteProperty.getValue();
+    }
+
+    public final void setNumVagueCourante(int val) {
+        this.numVagueCouranteProperty.setValue(val);
+    }
+
+    public ArrayList<Ennemi> listeEnnemisVagueCourante() {
+        return this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague();
+    }
+
+    /**
+     * Met à jour les ennemis de la vague au fur et à mesure.
+     */
+    public void mettreAJour() {
+            if (!this.listeEnnemisVagueCourante().isEmpty())
+                if (this.environnement.getNbTours() % TEMPS_ENNEMIS_VAGUE_FRM == 0) {
+                    this.environnement.ajouterEnnemi(this.listeEnnemisVagueCourante().remove(0));
         }
     }
-    
 
+    public void passerNouvelleVague() {
+        // Ligne obligatoire : sinon, lorsque la derniere vague est finie,
+        // on va à nouveau incrémenter et accéder à un indice qui n'existe pas.
+        if (this.getNumVagueCourante() < this.getNbreVagues() - 1) {
+            this.environnement.ajouterArgent(100 + this.getNumVagueCourante() * 10);
+            this.setNumVagueCourante(this.getNumVagueCourante() + 1);
+        }
+    }
 }
-
- */
