@@ -117,6 +117,15 @@ public abstract class Ennemi extends Entite {
         }
     }
 
+    /**
+     * Regarde si l'ennemi présent est un boss (càd une instance de GrosBogue, ErreurDeLogique, ErreurDeSyntaxe, ou erreurExecution)
+     * @return vrai si c'est une instance d'une de ces 4 classes, faux sinon
+     */
+    public boolean estUnBoss() {
+        return (this instanceof GrosBogue || this instanceof ErreurDeLogique || this
+                instanceof ErreurDeSyntaxe || this instanceof ErreurExecution);
+    }
+
     public ArrayList<Point> getChemin() {
         return this.chemin;
     }

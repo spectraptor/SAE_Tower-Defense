@@ -22,15 +22,20 @@ public class EnnemiVue {
     }
 
     public void creerSpriteEnnemi() {
+        // Variables utilisées pour les boss : en effet, étant donné qu'ils sont plus grands, il faut ajuster leur affichage sur les tuiles.
+        // Pour les ennemis normaux (pas des bosses), la valeur par défaut est de 0.
+        int differenceX = 0;
+        int differenceY = 0;
+
         Image imgBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/bogue.png").toExternalForm());
         Image imgChevalTroie = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/cheval_troie.png").toExternalForm());
         Image imgDrone = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/drone.png").toExternalForm());
         Image imgFreeze = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/flocon_neige.png").toExternalForm());
         Image imgPing = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/ping.png").toExternalForm());
-        Image imgGrosBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/gros_bogue.png").toExternalForm());
-        Image imgErreurExec = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_execution.png").toExternalForm());
-        Image imgErreurLog = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_logique.png").toExternalForm());
-        Image imgErreurSynt = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_syntaxe.png").toExternalForm());
+        Image imgGrosBogue = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/gros_bogue_b.png").toExternalForm());
+        Image imgErreurExec = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_execution_b.png").toExternalForm());
+        Image imgErreurLog = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_logique_b.png").toExternalForm());
+        Image imgErreurSynt = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/ennemis/erreur_syntaxe_b.png").toExternalForm());
 
         Label labelArgent = new Label(Integer.toString(this.ennemi.getArgentDonne()));
 
@@ -55,10 +60,16 @@ public class EnnemiVue {
         else
             ennemiImgView = new ImageView(imgErreurSynt);
 
+        // Vérification si l'ennemi en question est un boss
+        if (this.ennemi.estUnBoss()) {
+            differenceX = 3;
+            differenceY = 15;
+        }
+
         ennemiImgView.setId(ennemi.getId());
 
-        ennemiImgView.translateXProperty().bind(ennemi.xProperty().subtract(Terrain.TAILLE_TUILLE / 2));
-        ennemiImgView.translateYProperty().bind(ennemi.yProperty().subtract(Terrain.TAILLE_TUILLE / 2));
+        ennemiImgView.translateXProperty().bind(ennemi.xProperty().subtract(Terrain.TAILLE_TUILLE / 2).subtract(differenceX));
+        ennemiImgView.translateYProperty().bind(ennemi.yProperty().subtract(Terrain.TAILLE_TUILLE / 2).subtract(differenceY));
 
         labelArgent.translateXProperty().bind(ennemi.xProperty().subtract(7));
         labelArgent.translateYProperty().bind(ennemi.yProperty().subtract(30));
