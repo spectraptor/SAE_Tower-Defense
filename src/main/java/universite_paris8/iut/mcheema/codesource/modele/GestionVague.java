@@ -6,6 +6,12 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.ArrayList;
 
+/**
+ * La classe GestionVague se tâche de mettre en place et d'organiser
+ * les différentes vagues, pour que les ennemis apparaissent et qu'elles se succèdent correctement.
+ * C'est cette classe qui s'occupe d'insérer les ennemis à chaque vague dans l'environnement, avec un certain délai.
+ * Elle définit également le nombre de vagues maximales.
+ */
 public class GestionVague {
     private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
     private final static int MAX_VAGUES = 4;
@@ -50,7 +56,7 @@ public class GestionVague {
     }
 
     /**
-     * Met à jour les ennemis de la vague au fur et à mesure.
+     * Insère les ennemis dans l'environnement (et les retire de la liste d'ennemis dans vague), avec un certain délai.
      */
     public void mettreAJour() {
             if (!this.listeEnnemisVagueCourante().isEmpty())
@@ -59,6 +65,9 @@ public class GestionVague {
         }
     }
 
+    /**
+     * Incrémente le numéro de vague pour passer à la vague suivante.
+     */
     public void passerNouvelleVague() {
         // Ligne obligatoire : sinon, lorsque la derniere vague est finie,
         // on va à nouveau incrémenter et accéder à un indice qui n'existe pas.
