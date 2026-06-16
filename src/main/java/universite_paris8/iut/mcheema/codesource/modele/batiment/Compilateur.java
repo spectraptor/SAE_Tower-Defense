@@ -14,7 +14,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
  */
 public class Compilateur extends BatimentTir {
     public Compilateur(double x, double y, Environnement env) {
-        super("Compilateur",x, y, 100,1, 200,200, env);
+        super("Compilateur",x, y, 100,1, 100,200, env);
     }
 
 

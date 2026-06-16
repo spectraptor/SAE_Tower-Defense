@@ -209,6 +209,5 @@ public class Environnement {
         this.argentProperty.setValue(getArgent() - argent);
     }
 
-
 }
 

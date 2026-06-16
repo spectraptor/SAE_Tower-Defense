@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class GestionVague {
     private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
-    private final static int MAX_VAGUES = 4;
+    private final static int MAX_VAGUES = 8;
 
     private IntegerProperty numVagueCouranteProperty;
     private Vague[] vagues;

@@ -11,7 +11,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 public class Cloud extends BatimentTir {
     public Cloud(double x, double y, Environnement env) {
-        super("Cloud", x, y, 50, 1, 50, 100, env);
+        super("Cloud", x, y, 50, 1, 150, 100, env);
     }
 
 
