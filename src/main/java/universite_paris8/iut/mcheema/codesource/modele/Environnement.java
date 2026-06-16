@@ -73,9 +73,6 @@ public class Environnement {
     public void unTour() {
         if(!this.partieEstFinie()) {
             this.gestionVague.mettreAJour();
-            if(this.vagueEstTerminee()) {
-                this.gestionVague.passerNouvelleVague();
-            }
 
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {

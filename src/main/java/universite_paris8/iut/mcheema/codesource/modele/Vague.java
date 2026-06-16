@@ -84,6 +84,7 @@ public class Vague {
         }
     }
 
+
     public ArrayList<Point> choisiAleatoirementChemin(ArrayList<ArrayList<Point>> chemins) {
         int numeroChemin = (int) (Math.random() * chemins.size());
         return chemins.get(numeroChemin);
