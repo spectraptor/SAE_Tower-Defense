@@ -5,6 +5,12 @@ import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * La classe Vague s'occupe de la gestion individuelle des vagues.
+ * Elle a pour but de de créer des vagues, composées d'ennemis précisément choisis
+ * qui vont être capable de se déplacer vers la base et posséder un chemin.
+ * Le système de vague doit être automatisée et auto-fonctionnel.
+ */
 public class Vague {
     private int numeroVague;
     private ArrayList<Ennemi> listeEnnemisVague;
