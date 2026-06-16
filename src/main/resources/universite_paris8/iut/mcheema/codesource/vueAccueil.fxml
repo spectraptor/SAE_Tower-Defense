@@ -69,12 +69,37 @@
       <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
    </Pane>
    <Pane fx:id="menuCredits" prefHeight="480.0" prefWidth="900.0" visible="false">
-      <Label layoutX="139.0" layoutY="165.0" text="les credits sont en maintenance">
+      <Label layoutX="95.0" layoutY="33.0" prefHeight="80.0" prefWidth="711.0" text="Jeu réalisé dans le cadre d'une SAÉ">
          <font>
             <Font name="Chilanka Regular" size="42.0" />
          </font>
       </Label>
+      <Label layoutX="253.0" layoutY="73.0" prefHeight="80.0" prefWidth="446.0" text="BUT Informatique IUT de Montreuil">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
       <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
+      <Label layoutX="342.0" layoutY="153.0" prefHeight="80.0" prefWidth="446.0" text="Réalisé par : ">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="193.0" prefHeight="80.0" prefWidth="446.0" text="Mohammad Cheema">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="233.0" prefHeight="80.0" prefWidth="446.0" text="Abdel-Malik Pansan">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="273.0" prefHeight="80.0" prefWidth="446.0" text="Valentin Huang">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
    </Pane>
    <Pane fx:id="menuParametres" prefHeight="480.0" prefWidth="900.0" visible="false">
       <children>
