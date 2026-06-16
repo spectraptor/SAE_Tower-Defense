@@ -1,14 +1,8 @@
 package universite_paris8.iut.mcheema.codesource.vue;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 
@@ -27,7 +21,7 @@ public class BatimentVue {
     }
 
     public void creerSpriteBatiment() {
-        Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());;
+        Image imgCompilateur = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/compilateur.png").toExternalForm());
         Image imgCloud = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/cloud.png").toExternalForm());
         Image imgDebugger = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/debugger.png").toExternalForm());
         Image imgBombeLogique = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/batiments/bombeLogique.png").toExternalForm());

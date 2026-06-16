@@ -1,9 +1,12 @@
 package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
+/**
+ * La classe Entite est la classe mère de tous les "espèces" dans le jeu : projectiles, ennemis, et bâtiments.
+ * Elle définit les caractéristiques et méthodes communes à chacunes.
+ */
 public abstract class Entite {
     private String id;
     private DoubleProperty xProperty;

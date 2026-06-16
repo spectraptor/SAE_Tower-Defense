@@ -99,9 +99,7 @@ public class Environnement {
         }
     }
 
-    public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
-        return this.terrainDeJeu.tuileEstAccessibleCoords(nouveauX,nouveauY);
-    }
+
     public boolean tuileTourPosable(int x, int y) {
         return this.getTerrainDeJeu().tuileTourPosable(x , y);
     }

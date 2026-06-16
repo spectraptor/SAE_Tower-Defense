@@ -2,7 +2,6 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiCammoufle;
 
 public abstract class BatimentAvecPortee extends Batiment {
     private int portee;

@@ -1,7 +1,5 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Entite;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Point;
@@ -10,7 +8,9 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import java.util.ArrayList;
 
 /**
- * Ennemi sont les ennemis qui se déplacent vers la base, il connait son chemin, les pv sa vitesse et peut se déplacer ou/et faire une action.
+ * La classe Ennemi définit les ennemis du jeu.
+ * Ils sont capables de se déplacer vers la base et de l'attaquer.
+ * De ce fait, ils ont des pvs, une vitesse, et un chemin vers la base.
  */
 
 public abstract class Ennemi extends Entite {
@@ -22,7 +22,7 @@ public abstract class Ennemi extends Entite {
     private int indiceChemin;
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
-        super("E" + idCpt++, 0, 0, env);
+        super("E" + idCpt++, 0, 0, env); // 0, 0??
         this.pv = pv;
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;

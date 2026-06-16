@@ -63,10 +63,7 @@ public class GestionVague {
         return this.vagues[this.getNumVagueCourante()].getlisteEnnemisVague();
     }
 
-    /**
-     * Méthode principale qui gère le fonctionnement de chaque vague (insertition des ennemis dans l'environnement avec un délai, m
-     * is en place des pauses, ...)
-     */
+    //  Méthode principale qui gère le fonctionnement de chaque vague (insertition des ennemis dans l'environnement avec un délai, pauses...)
     public void mettreAJour() {
         if (!this.listeEnnemisVagueCourante().isEmpty()) {
             if (this.environnement.getNbTours() % TEMPS_SPAWN_ENNEMIS_FRAMES == 0) {
@@ -74,11 +71,11 @@ public class GestionVague {
             }
         }
 
-        if (this.getVagues()[getNumVagueCourante()].vagueEstTerminee()) {
+        if (this.getVagues()[this.getNumVagueCourante()].vagueEstTerminee()) {
             this.pauseEntreVague = true;
         }
 
-        // Regarde si le jeu est en passe
+        // Regarde si la vague est en "pause".
         if (this.pauseEntreVague)
             this.framesPauseVague++;
 

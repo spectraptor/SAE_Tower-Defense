@@ -103,6 +103,7 @@ public abstract class Batiment extends Entite {
         return this.getNiveau() * REDUCTION_NIVEAU;
     }
 
+
     public String avoirDescription() {
         return   this.getNom() +  "      \n\n" + "Niveau actuel : " + this.getNiveau() + "/" + this.getNiveauMax() + "\n";
     }
