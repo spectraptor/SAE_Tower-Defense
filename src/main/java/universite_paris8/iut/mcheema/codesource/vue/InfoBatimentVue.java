@@ -21,10 +21,10 @@ public class InfoBatimentVue {
     private Pane paneJeu;
     private SonVue sonVue;
 
-    public InfoBatimentVue(Batiment batiment, Pane paneJeu) {
+    public InfoBatimentVue(Batiment batiment, Pane paneJeu, SonVue sonVue) {
         this.batiment = batiment;
         this.paneJeu = paneJeu;
-        this.sonVue = new SonVue();
+        this.sonVue = sonVue;
     }
 
     public void afficheInfoBatiment() {

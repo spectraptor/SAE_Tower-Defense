@@ -48,7 +48,7 @@ public class Controleur implements Initializable {
 
     private int numBatimentSelectionne = -1;
 
-    private SonVue sonVue = new SonVue();
+    private SonVue sonVue;
 
     @FXML
     private TilePane tilePane;
@@ -98,9 +98,9 @@ public class Controleur implements Initializable {
         this.labelVague.textProperty().bind(this.environnement.getGestionVague().numVagueCouranteProperty().add(1).asString());
 
         // Listener sur l'Observable Liste d'ennemis
-        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
-        this.environnement.getBatiments().addListener(new ObservateurListeBatiments(this.paneJeu));
-        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
+        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu, this.sonVue));
+        this.environnement.getBatiments().addListener(new ObservateurListeBatiments(this.paneJeu, this.sonVue));
+        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu, this.sonVue));
 
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
@@ -216,4 +216,9 @@ public class Controleur implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public void setSonVue(SonVue sonVue) {
+        this.sonVue = sonVue;
+    }
+
 }

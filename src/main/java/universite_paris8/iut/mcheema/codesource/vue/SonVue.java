@@ -36,24 +36,26 @@ public class SonVue {
         this.boutonCliquer = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/interface/i_boutonCliquer.mp3").toExternalForm());
         this.missileTeleguide = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/batiment/b_tir4.mp3").toExternalForm());
         this.feu = new AudioClip(getClass().getResource("/universite_paris8/iut/mcheema/codesource/sons/batiment/b_tir5.mp3").toExternalForm());
+        this.setVolumeGlobal(0.5);
 
+    }
 
-        this.poser.setVolume(0.5);
-        this.retirer.setVolume(0.5);
-        this.explosion.setVolume(0.5);
-        this.mort.setVolume(0.5);
-        this.apparition.setVolume(0.3);
-        this.missileTete.setVolume(0.3);
-        this.missileZone.setVolume(0.3);
-        this.missileFragmentation.setVolume(0.5);
-        this.clique.setVolume(0.3);
-        this.deplacer.setVolume(0.8);
-        this.ameliorer.setVolume(0.20);
-        this.poserConfirmer.setVolume(0.4);
-        this.boutonCliquer.setVolume(0.5);
-        this.missileTeleguide.setVolume(0.5);
-        this.feu.setVolume(0.5);
-
+    public void setVolumeGlobal(double volume) {
+        this.poser.setVolume(volume);
+        this.retirer.setVolume(volume);
+        this.explosion.setVolume(volume);
+        this.mort.setVolume(volume);
+        this.apparition.setVolume(volume);
+        this.missileTete.setVolume(volume);
+        this.missileZone.setVolume(volume);
+        this.missileFragmentation.setVolume(volume);
+        this.clique.setVolume(volume);
+        this.deplacer.setVolume(volume);
+        this.ameliorer.setVolume(volume);
+        this.poserConfirmer.setVolume(volume);
+        this.boutonCliquer.setVolume(volume);
+        this.missileTeleguide.setVolume(volume);
+        this.feu.setVolume(volume);
     }
 
     public void jouerPoser() {

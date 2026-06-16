@@ -15,9 +15,9 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
     private Pane paneJeu;
     private SonVue sonVue;
 
-    public ObservateurListeEnnemis(Pane paneJeu) {
+    public ObservateurListeEnnemis(Pane paneJeu, SonVue sonVue) {
         this.paneJeu = paneJeu;
-        this.sonVue = new SonVue();
+        this.sonVue = sonVue;
     }
     @Override
     public void onChanged(Change<?extends Ennemi> change) {

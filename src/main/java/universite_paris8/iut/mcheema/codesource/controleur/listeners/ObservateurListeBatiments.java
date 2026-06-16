@@ -10,16 +10,16 @@ public class ObservateurListeBatiments implements ListChangeListener<Batiment> {
     private Pane paneJeu;
     private SonVue sonVue;
 
-    public ObservateurListeBatiments(Pane paneJeu) {
+    public ObservateurListeBatiments(Pane paneJeu, SonVue sonVue) {
         this.paneJeu = paneJeu;
-        this.sonVue = new SonVue();
+        this.sonVue = sonVue;
     }
 
     @Override
     public void onChanged(Change<? extends Batiment> change) {
         while (change.next()) {
             for (Batiment batiment : change.getAddedSubList()) {
-                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
+                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu, this.sonVue);
                 batimentVue.creerSpriteBatiment();
                 this.sonVue.jouerPoser();
             }
