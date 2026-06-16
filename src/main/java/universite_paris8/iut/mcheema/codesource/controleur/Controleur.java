@@ -74,6 +74,12 @@ public class Controleur implements Initializable {
     @FXML
     private BorderPane borderPanePrincipal;
 
+    @FXML
+    private Pane paneFin;
+
+    @FXML
+    private Label labelResultat;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -117,6 +123,18 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.017),
                 ev -> {
                     environnement.unTour();
+                    if (environnement.partieEstFinie()) {
+                        gameLoop.stop();
+                        if (environnement.getBase().getPv() > 0) {
+                            labelResultat.setText("VICTOIRE");
+                            labelResultat.setStyle("-fx-text-fill: lime;");
+                        } else {
+                            labelResultat.setText("DEFAITE");
+                            labelResultat.setStyle("-fx-text-fill: red;");
+                        }
+                        paneFin.setVisible(true);
+                        paneFin.toFront();
+                    }
                 }
         );
         gameLoop.getKeyFrames().add(kf);

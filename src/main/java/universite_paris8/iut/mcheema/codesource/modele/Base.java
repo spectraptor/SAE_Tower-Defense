@@ -9,7 +9,7 @@ public class Base {
     private IntegerProperty pvProperty;
 
     public Base () {
-        this.pvProperty = new SimpleIntegerProperty(100);
+        this.pvProperty = new SimpleIntegerProperty(10);
     }
 
     public final void setPv(int pv) {this.pvProperty.setValue(pv);}
