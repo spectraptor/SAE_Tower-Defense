@@ -73,9 +73,6 @@ public class Environnement {
     public void unTour() {
         if(!this.partieEstFinie()) {
             this.gestionVague.mettreAJour();
-            if(this.vagueEstTerminee()) {
-                this.gestionVague.passerNouvelleVague();
-            }
 
             for (int i = this.getEnnemis().size() -1 ;i>=0;i--) {
                 if (this.getNbTours() % 5 == 0) {
@@ -100,15 +97,6 @@ public class Environnement {
             }
             this.nbTours++;
         }
-    }
-
-    public boolean vagueEstTerminee() {
-        /* Les deux conditions sont obligatoires :
-            Si on regarde uniquement la première, alors une nouvelle vague commencera lorsque tous les ennemis de la précédente vague
-            ont été placées, sans regarder si les ennemis de la vague actuelle sont morts.
-            Si on regarde uniquement la deuxième, alors les vagues commenceront les unes à la suite car la liste d'ennemis sera toujours vide.
-         */
-        return this.gestionVague.listeEnnemisVagueCourante().isEmpty() && this.ennemis.isEmpty();
     }
 
     public boolean tuileEstAccessibleCoords(int nouveauX, int nouveauY) {
