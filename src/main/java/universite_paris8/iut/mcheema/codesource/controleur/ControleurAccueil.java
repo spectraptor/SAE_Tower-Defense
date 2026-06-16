@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
+import javafx.scene.input.DragEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -35,13 +37,23 @@ public class ControleurAccueil implements Initializable {
     private Pane menuNiveau;
 
     @FXML
+    private Pane menuParametres;
+
+    @FXML
     private Pane menuCredits;
+
+    @FXML
+    private Slider sliderSon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         root.lookupAll(".button").forEach(node -> {
             node.setOnMouseEntered(e -> sonVue.jouerClique());
             node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
+        });
+
+        sliderSon.valueProperty().addListener((obs, ancien, nouveau) -> {
+            this.sonVue.setVolumeGlobal(nouveau.doubleValue() / 100.0);
         });
     }
 
@@ -59,9 +71,16 @@ public class ControleurAccueil implements Initializable {
 
     @FXML
     public void retourMenu(ActionEvent actionEvent) {
+        this.menuParametres.setVisible(false);
         this.menuCredits.setVisible(false);
         this.menuNiveau.setVisible(false);
         this.menuPrincipal.setVisible(true);
+    }
+
+    @FXML
+    public void lancerParametres(ActionEvent actionEvent) {
+        this.menuParametres.setVisible(true);
+        this.menuPrincipal.setVisible(false);
     }
 
     @FXML
@@ -79,10 +98,16 @@ public class ControleurAccueil implements Initializable {
         Parent root = fxmlLoader.load();
 
         Controleur controleur = fxmlLoader.getController();
+        controleur.setSonVue(sonVue);
         controleur.chargerNiveau(niveau);
 
         Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    public void jouerSon() {
+        this.sonVue.jouerAmeliorer();
     }
 }
