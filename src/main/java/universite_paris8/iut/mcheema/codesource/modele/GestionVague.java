@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class GestionVague {
     private static final int DELAI_ENTRE_VAGUES_FRAMES = 120;
-    private static final int TEMPS_ENNEMIS_VAGUE_FRAMES = 100;
+    private static final int TEMPS_SPAWN_ENNEMIS_FRAMES = 100;
     private static final int MAX_VAGUES = 4;
 
     private IntegerProperty numVagueCouranteProperty;
@@ -67,7 +67,7 @@ public class GestionVague {
      */
     public void mettreAJour() {
         if (!this.listeEnnemisVagueCourante().isEmpty()) {
-            if (this.environnement.getNbTours() % TEMPS_ENNEMIS_VAGUE_FRAMES == 0) {
+            if (this.environnement.getNbTours() % TEMPS_SPAWN_ENNEMIS_FRAMES == 0) {
                 this.environnement.ajouterEnnemi(this.listeEnnemisVagueCourante().remove(0));
             }
         }

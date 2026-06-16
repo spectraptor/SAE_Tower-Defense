@@ -74,7 +74,8 @@ public class EnnemiVue {
         labelArgent.translateXProperty().bind(ennemi.xProperty().subtract(7));
         labelArgent.translateYProperty().bind(ennemi.yProperty().subtract(30));
 
-        paneJeu.getChildren().add(1, ennemiImgView);
+        // Pas d'index, sinon le boss passe par dessus les bâtiments.
+        paneJeu.getChildren().add(ennemiImgView);
         paneJeu.getChildren().add(1, labelArgent);
 
         labelArgent.setTextFill(Color.DARKGOLDENROD);
