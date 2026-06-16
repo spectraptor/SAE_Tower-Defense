@@ -14,10 +14,10 @@ public class ProjectileVue {
     private Projectile projectile;
     private SonVue sonVue;
 
-    public ProjectileVue(Pane paneJeu,Projectile projectile) {
+    public ProjectileVue(Pane paneJeu,Projectile projectile, SonVue sonVue) {
         this.paneJeu = paneJeu;
         this.projectile = projectile;
-        this.sonVue = new SonVue();
+        this.sonVue = sonVue;
     }
 
     public void creeSpriteProjectile() {

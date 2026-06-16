@@ -18,10 +18,12 @@ import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 public class BatimentVue {
     private Batiment batiment;
     private Pane paneJeu;
+    private SonVue sonVue;
 
-    public BatimentVue(Batiment bat, Pane paneJ) {
+    public BatimentVue(Batiment bat, Pane paneJ, SonVue sonVue) {
         this.batiment = bat;
         this.paneJeu = paneJ;
+        this.sonVue = sonVue;
     }
 
     public void creerSpriteBatiment() {
@@ -59,7 +61,7 @@ public class BatimentVue {
         //INFO SUR LA TOUR
 
         imgVueBatiment.setOnMouseClicked(e -> {
-            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment,this.paneJeu);
+            InfoBatimentVue infoBatimentVue = new InfoBatimentVue(this.batiment, this.paneJeu, this.sonVue);
             infoBatimentVue.afficheInfoBatiment();
         });
 

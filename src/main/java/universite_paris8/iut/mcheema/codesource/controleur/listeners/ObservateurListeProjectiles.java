@@ -15,16 +15,16 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
     private Pane paneJeu;
     private SonVue sonVue;
 
-    public ObservateurListeProjectiles(Pane paneJeu) {
+    public ObservateurListeProjectiles(Pane paneJeu, SonVue sonVue) {
         this.paneJeu = paneJeu;
-        this.sonVue = new SonVue();
+        this.sonVue = sonVue;
     }
 
     @Override
     public void onChanged(Change<? extends Projectile> change) {
         while(change.next()) {
             for (Projectile projectile : change.getAddedSubList()) {
-                ProjectileVue sprite = new ProjectileVue(this.paneJeu,projectile);
+                ProjectileVue sprite = new ProjectileVue(this.paneJeu,projectile,sonVue);
                 sprite.creeSpriteProjectile();
             }
 
