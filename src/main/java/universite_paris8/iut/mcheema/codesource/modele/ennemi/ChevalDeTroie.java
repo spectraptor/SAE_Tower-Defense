@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ChevalDeTroie extends EnnemiCammoufle {
 
-    public ChevalDeTroie(Environnement env, ArrayList<Point> chemin) {super(3, 1, 4, env, chemin);}
+    public ChevalDeTroie(Environnement env, ArrayList<Point> chemin) {super(2, 1, 25, env, chemin);}
 
 
 }

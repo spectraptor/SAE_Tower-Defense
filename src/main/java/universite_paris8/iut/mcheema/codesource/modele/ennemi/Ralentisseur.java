@@ -16,7 +16,7 @@ public class Ralentisseur extends Ennemi {
     private int portee;
     private ArrayList<BatimentTir> batimentRalenti;
     public Ralentisseur(Environnement env, ArrayList<Point> chemin) {
-        super(10, 4, 10, env, chemin);
+        super(50, 1, 250, env, chemin);
         this.ralentissement = 3;
         this.portee = 2 * Terrain.TAILLE_TUILLE;
         this.batimentRalenti = new ArrayList<>();

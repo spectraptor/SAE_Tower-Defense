@@ -13,9 +13,11 @@ import java.util.ArrayList;
  * Elle définit également le nombre de vagues maximales.
  */
 public class GestionVague {
+
     private static final int DELAI_ENTRE_VAGUES_FRAMES = 120;
     private static final int TEMPS_SPAWN_ENNEMIS_FRAMES = 100;
-    private static final int MAX_VAGUES = 4;
+    private static final int MAX_VAGUES = 8;
+
 
     private IntegerProperty numVagueCouranteProperty;
     private Vague[] vagues;

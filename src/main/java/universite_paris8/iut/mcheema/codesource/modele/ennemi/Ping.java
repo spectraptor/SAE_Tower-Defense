@@ -8,5 +8,5 @@ import java.util.ArrayList;
  * Ping qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 public class Ping extends Ennemi {
-    public Ping(Environnement env, ArrayList<Point> chemin) {super(1, 5, 2, env, chemin);}
+    public Ping(Environnement env, ArrayList<Point> chemin) {super(2, 4, 10, env, chemin);}
 }

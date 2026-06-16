@@ -9,5 +9,5 @@ import java.util.ArrayList;
  * ErreurDeSyntaxe qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 public class ErreurDeSyntaxe extends Ennemi {
-    public ErreurDeSyntaxe(Environnement env, ArrayList<Point> chemin) {super(3,1 ,4 , env, chemin);}
+    public ErreurDeSyntaxe(Environnement env, ArrayList<Point> chemin) {super(200,1 ,1000 , env, chemin);}
 }

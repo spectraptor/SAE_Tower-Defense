@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public class ErreurDeLogique extends EnnemiArmure {
-    public ErreurDeLogique(Environnement env, ArrayList<Point> chemin) {super(4, 3, 3, env, chemin,5);}
+    public ErreurDeLogique(Environnement env, ArrayList<Point> chemin) {super(50, 1, 250, env, chemin,3);}
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class GrosBogue extends Ennemi {
   
-    public GrosBogue(Environnement env, ArrayList<Point> chemin) {super(2, 1, 4, env, chemin);}
+    public GrosBogue(Environnement env, ArrayList<Point> chemin) {super(30, 1, 100, env, chemin);}
 
   
 

@@ -7,7 +7,7 @@ public class RAM extends Batiment {
     private int tempsAtt;
 
     public RAM(double x, double y, Environnement env) {
-        super("RAM", x, y, 150, 3, env);
+        super("RAM", x, y, 75, 3, env);
         this.argentDonne = 20;
         this.tempsAtt = 400;
     }

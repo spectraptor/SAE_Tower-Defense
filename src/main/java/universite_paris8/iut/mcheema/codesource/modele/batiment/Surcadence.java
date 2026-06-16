@@ -16,7 +16,7 @@ public class Surcadence extends BatimentAvecPortee{
     private double diviseCadence;
 
     public Surcadence(double x, double y, Environnement env) {
-        super("Surcadence", x, y, Terrain.TAILLE_TUILLE,90, 2, env);
+        super("Surcadence", x, y, Terrain.TAILLE_TUILLE,300, 2, env);
         batiments = new ArrayList<>();
         this.diviseCadence = 1.5;
     }

@@ -9,7 +9,5 @@ import java.util.ArrayList;
  */
 
 public class DroneEspion extends EnnemiVolant {
-    public DroneEspion(Environnement env, ArrayList<Point> chemin) {
-        super(2, 3, 3, env, chemin);
-    }
+    public DroneEspion(Environnement env, ArrayList<Point> chemin) {super(1, 3, 30, env, chemin);}
 }

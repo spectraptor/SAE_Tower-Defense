@@ -49,38 +49,48 @@ public class Vague {
                 }
                 break;
             case 2:
-                // Créer 3 bogues, 2 ralentisseur, 1 ping
-                for (int i = 0; i < 3; i++) {
-                    this.listeEnnemisVague.add(new Bogue(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                // Créer 7
+                for (int i = 0; i < 7; i++) {
+                    this.listeEnnemisVague.add(new Ping(this.environnement, this.choisiAleatoirementChemin(chemins)));
                 }
-
-                this.listeEnnemisVague.add(new Ralentisseur(this.environnement, this.choisiAleatoirementChemin(chemins)));
-                this.listeEnnemisVague.add(new Ralentisseur(this.environnement, this.choisiAleatoirementChemin(chemins)));
-
-                this.listeEnnemisVague.add(new Ping(this.environnement, this.choisiAleatoirementChemin(chemins)));
-
                 break;
 
             case 3:
-                // Créer 5 bogues
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 3; i++) {
+                    this.listeEnnemisVague.add(new Ping(this.environnement, this.choisiAleatoirementChemin(chemins)));
                     this.listeEnnemisVague.add(new Bogue(this.environnement, this.choisiAleatoirementChemin(chemins)));
                 }
                 break;
             case 4:
-                // Créer 3 bogues, 2 ping, 1 ralentisseur, 2 bosses.
                 for (int i = 0; i < 3; i++) {
                     this.listeEnnemisVague.add(new Bogue(this.environnement, this.choisiAleatoirementChemin(chemins)));
                 }
-
-                this.listeEnnemisVague.add(new Ping(this.environnement, this.choisiAleatoirementChemin(chemins)));
-                this.listeEnnemisVague.add(new Ping(this.environnement, this.choisiAleatoirementChemin(chemins)));
-
+                this.listeEnnemisVague.add(new ChevalDeTroie(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                break;
+            case 5:
+                for (int i = 0; i < 3; i++) {
+                    this.listeEnnemisVague.add(new ChevalDeTroie(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                }
+                this.listeEnnemisVague.add(new DroneEspion(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                break;
+            case 6:
+                for (int i = 0; i < 5; i++) {
+                    this.listeEnnemisVague.add(new DroneEspion(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                    this.listeEnnemisVague.add(new ChevalDeTroie(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                }
+                break;
+            case 7:
+                for (int i = 0; i < 3; i++) {
+                    this.listeEnnemisVague.add(new Bogue(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                    this.listeEnnemisVague.add(new GrosBogue(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                }
                 this.listeEnnemisVague.add(new Ralentisseur(this.environnement, this.choisiAleatoirementChemin(chemins)));
-
+                this.listeEnnemisVague.add(new Ralentisseur(this.environnement, this.choisiAleatoirementChemin(chemins)));
+                break;
+            case 8:
                 this.listeEnnemisVague.add(new ErreurDeLogique(this.environnement, this.choisiAleatoirementChemin(chemins)));
                 this.listeEnnemisVague.add(new ErreurDeSyntaxe(this.environnement, this.choisiAleatoirementChemin(chemins)));
-
+                this.listeEnnemisVague.add(new ErreurExecution(this.environnement, this.choisiAleatoirementChemin(chemins)));
         }
     }
 
