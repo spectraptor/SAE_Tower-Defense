@@ -72,7 +72,7 @@ public class GestionVague {
             }
         }
 
-        if (this.environnement.vagueEstTerminee()) {
+        if (this.getVagues()[getNumVagueCourante()].vagueEstTerminee()) {
             this.pauseEntreVague = true;
         }
 
