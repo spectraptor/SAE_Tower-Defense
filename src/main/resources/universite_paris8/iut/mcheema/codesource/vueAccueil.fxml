@@ -84,7 +84,7 @@
                <VBox prefHeight="550.0" prefWidth="300.0">
                   <children>
                      <Label text="Effets sonores" />
-                     <Slider value="50.0" />
+                     <Slider fx:id="sliderSon" onMouseReleased="#jouerSon" value="50.0" />
 
                   </children>
                   <padding>

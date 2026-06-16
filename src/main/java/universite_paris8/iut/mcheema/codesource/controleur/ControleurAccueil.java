@@ -54,7 +54,6 @@ public class ControleurAccueil implements Initializable {
 
         sliderSon.valueProperty().addListener((obs, ancien, nouveau) -> {
             this.sonVue.setVolumeGlobal(nouveau.doubleValue() / 100.0);
-            this.sonVue.jouerAmeliorer();
         });
     }
 
@@ -107,4 +106,8 @@ public class ControleurAccueil implements Initializable {
         stage.show();
     }
 
+    @FXML
+    public void jouerSon() {
+        this.sonVue.jouerAmeliorer();
+    }
 }
