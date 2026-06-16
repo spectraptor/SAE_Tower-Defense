@@ -13,12 +13,15 @@ import java.util.ArrayList;
  * Elle définit également le nombre de vagues maximales.
  */
 public class GestionVague {
-    private final static int TEMPS_ENNEMIS_VAGUE_FRM = 100;
-    private final static int MAX_VAGUES = 4;
+    private static final int DELAI_ENTRE_VAGUES_FRAMES = 120;
+    private static final int TEMPS_SPAWN_ENNEMIS_FRAMES = 100;
+    private static final int MAX_VAGUES = 4;
 
     private IntegerProperty numVagueCouranteProperty;
     private Vague[] vagues;
     private Environnement environnement;
+    private boolean pauseEntreVague;
+    private int framesPauseVague;
 
     public GestionVague(int numNiv, Environnement env) {
         this.numVagueCouranteProperty = new SimpleIntegerProperty(0);
@@ -29,11 +32,14 @@ public class GestionVague {
         }
 
         this.environnement = env;
+        this.pauseEntreVague = false;
+        this.framesPauseVague = 0;
     }
 
     public Vague[] getVagues() {
         return this.vagues;
     }
+
 
     public int getNbreVagues() {
         return MAX_VAGUES;
@@ -56,12 +62,28 @@ public class GestionVague {
     }
 
     /**
-     * Insère les ennemis dans l'environnement (et les retire de la liste d'ennemis dans vague), avec un certain délai.
+     * Méthode principale qui gère le fonctionnement de chaque vague (insertition des ennemis dans l'environnement avec un délai, m
+     * is en place des pauses, ...)
      */
     public void mettreAJour() {
-            if (!this.listeEnnemisVagueCourante().isEmpty())
-                if (this.environnement.getNbTours() % TEMPS_ENNEMIS_VAGUE_FRM == 0) {
-                    this.environnement.ajouterEnnemi(this.listeEnnemisVagueCourante().remove(0));
+        if (!this.listeEnnemisVagueCourante().isEmpty()) {
+            if (this.environnement.getNbTours() % TEMPS_SPAWN_ENNEMIS_FRAMES == 0) {
+                this.environnement.ajouterEnnemi(this.listeEnnemisVagueCourante().remove(0));
+            }
+        }
+
+        if (this.getVagues()[getNumVagueCourante()].vagueEstTerminee()) {
+            this.pauseEntreVague = true;
+        }
+
+        // Regarde si le jeu est en passe
+        if (this.pauseEntreVague)
+            this.framesPauseVague++;
+
+        if (this.framesPauseVague >= DELAI_ENTRE_VAGUES_FRAMES * (this.getNumVagueCourante() + 1)) {
+            this.passerNouvelleVague();
+            this.framesPauseVague = 0;
+            this.pauseEntreVague = false;
         }
     }
 
@@ -75,5 +97,6 @@ public class GestionVague {
             this.environnement.ajouterArgent(100 + this.getNumVagueCourante() * 10);
             this.setNumVagueCourante(this.getNumVagueCourante() + 1);
         }
+
     }
 }
