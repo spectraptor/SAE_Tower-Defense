@@ -208,25 +208,22 @@ public class InfoBatimentVue {
                     }
 
                     //force le positionnement du batiment au centre de la tuile.
-                    int[] lignesColonnesTuile = this.batiment.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile((int)e.getX(), (int)e.getY());
-                    int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-                    int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-                    int distance = (int)(Math.abs(centreTuileX - this.batiment.getX()) + Math.abs(centreTuileY - this.batiment.getY())) / Terrain.TAILLE_TUILLE;
+                    int[] tabLigneColBat = this.batiment.getEnvironnement().mettreCoordsSurCentreTuile((int)e.getX(),  (int)e.getY());
+                    
+                    int distance = (int)(Math.abs(tabLigneColBat[1] - this.batiment.getX()) + Math.abs(tabLigneColBat[0] - this.batiment.getY())) / Terrain.TAILLE_TUILLE;
                     labelCoutDep.setText("  Prix du déplacement : " + Integer.toString(this.batiment.getPrix()/10 * distance));
 
                     //Force l'affichage de l'image au centre de la tuile pour avoir un apercu conforme au placement du batiment
-                    nouvImgVBat.setTranslateX((centreTuileX - Terrain.TAILLE_TUILLE/2));
-                    nouvImgVBat.setTranslateY((centreTuileY - Terrain.TAILLE_TUILLE/2));
+                    nouvImgVBat.setTranslateX((tabLigneColBat[1] - Terrain.TAILLE_TUILLE/2));
+                    nouvImgVBat.setTranslateY((tabLigneColBat[0] - Terrain.TAILLE_TUILLE/2));
 
                     //Le rayon suit la souris
                     if(rayonB != null) {
-                        rayonB.setCenterX(centreTuileX);
-                        rayonB.setCenterY(centreTuileY);
+                        rayonB.setCenterX(tabLigneColBat[1]);
+                        rayonB.setCenterY(tabLigneColBat[0]);
                     }
                 });
             });
-
-
 
 
             //Permet de faire en sorte que le PaneInfo ne sorte pas de la fenetre de jeu, s'adapte à la ou le batiment se situe

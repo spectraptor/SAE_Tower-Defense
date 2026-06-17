@@ -64,15 +64,13 @@ public abstract class Batiment extends Entite {
 
     public void deplacerBatiment(int nouvX,int nouvY) {
         if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
-            int[] lignesColonnesTuile = this.getEnvironnement().getTerrainDeJeu().convertirCoordsTuile(nouvX, nouvY);
-            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            double distanceNbTuile = (Math.abs(this.getX() - centreTuileX) + Math.abs(this.getY() - centreTuileY))/Terrain.TAILLE_TUILLE;
+            int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
+            double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
 
             if(!this.getEnvironnement().partieEstFinie()) {
-                if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(centreTuileX,centreTuileY)) {
-                    this.setX(centreTuileX);
-                    this.setY(centreTuileY);
+                if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(tabLigneColCentreBat[1],tabLigneColCentreBat[0])) {
+                    this.setX(tabLigneColCentreBat[1]);
+                    this.setY(tabLigneColCentreBat[0]);
                     this.getEnvironnement().setArgent((int) (this.getEnvironnement().getArgent() - (this.getPrix() /10) * distanceNbTuile));
                 }
             }

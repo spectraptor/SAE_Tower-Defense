@@ -131,39 +131,49 @@ public class Environnement {
      */
     public void poserBatiment(int x, int y, int numBat) {
         Batiment batimentAPoser = null;
-        int[] ligneColonneTuileTab = this.terrainDeJeu.convertirCoordsTuile(x, y);
+        int[] tabLigneColonneBatCentre = this.mettreCoordsSurCentreTuile(x, y);
 
-        int centreTuileX = ligneColonneTuileTab[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-        int centreTuileY = ligneColonneTuileTab[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-
-        if (!this.partieEstFinie())
-            if (this.tuileTourPosable(x, y) &&
-                    !this.tuileContientUnBatiment(centreTuileX, centreTuileY)) {
-
+        if (!this.partieEstFinie()) {
+            if (this.tuileTourPosable(x, y) && !this.tuileContientUnBatiment(tabLigneColonneBatCentre[1],
+                    tabLigneColonneBatCentre[0])) {
                 switch (numBat) {
                     case 1:
-                        batimentAPoser = new Compilateur(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new Compilateur(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                     case 2:
-                        batimentAPoser = new Cloud(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new Cloud(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                     case 3:
-                        batimentAPoser = new Debugger(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new Debugger(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                     case 4:
-                        batimentAPoser = new BombeLogique(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new BombeLogique(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                     case 5:
-                        batimentAPoser = new Surcadence(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new Surcadence(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                     case 6:
-                        batimentAPoser = new RAM(centreTuileX, centreTuileY, this);
+                        batimentAPoser = new RAM(tabLigneColonneBatCentre[1], tabLigneColonneBatCentre[0], this);
                         break;
                 }
-
                 batimentAPoser.acheterBatiment();
             }
+        }
+    }
 
+    /**
+     * Permet de placer des coordonnées sur le centre d'une tuile.
+     * @param x les coordonnéees x
+     * @param y les coordonnées y
+     * @return un tableau, contenant les coordonnées x et y qui correspondent au centre de la tuile.
+     */
+    public int[] mettreCoordsSurCentreTuile(int x, int y) {
+        int[] tabLignesColonnesConverti = this.terrainDeJeu.convertirCoordsTuile(x, y);
+
+        tabLignesColonnesConverti[0] = tabLignesColonnesConverti[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        tabLignesColonnesConverti[1] = tabLignesColonnesConverti[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
+        return tabLignesColonnesConverti;
     }
 
 
