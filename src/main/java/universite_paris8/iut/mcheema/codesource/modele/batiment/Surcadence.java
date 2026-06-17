@@ -25,7 +25,7 @@ public class Surcadence extends BatimentAvecPortee{
     public void effectueAction() {
         for (Batiment batiment : this.getEnvironnement().getBatiments()) {
             if(batiment instanceof BatimentTir) {
-                if (!batiments.contains(batiment) && ((BatimentTir) batiment).getCadenceTir() != ((BatimentTir) batiment).getCadenceTir() / this.diviseCadence) {
+                if (!batiments.contains(batiment)) {
                     if (this.calculDistance(batiment) <= this.getPortee()) {
                         if(((BatimentTir) batiment).getCadenceTir() > 15) {
                             ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / this.diviseCadence)); // la tour ne doit pas dépasser la cadence de de 6
@@ -35,6 +35,8 @@ public class Surcadence extends BatimentAvecPortee{
                 }
             }
         }
+        // boucle utilisée lorsqu'on retire les ennemis de la portée de la surcadence.
+        // on remet le bâtiment à sa portée de base
         for(int i = this.batiments.size() -1;i>=0;i--) {
             if(this.calculDistance(this.batiments.get(i)) > this.getPortee()) {
                 this.batiments.get(i).setCadenceTir(this.batiments.get(i).getCadenceTirBase());
