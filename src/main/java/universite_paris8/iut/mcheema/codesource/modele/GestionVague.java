@@ -79,7 +79,7 @@ public class GestionVague {
         if (this.pauseEntreVague)
             this.framesPauseVague++;
 
-        if (this.framesPauseVague >= DELAI_ENTRE_VAGUES_FRAMES * (this.getNumVagueCourante() + 1)) {
+        if (this.framesPauseVague >= DELAI_ENTRE_VAGUES_FRAMES) {
             this.passerNouvelleVague();
             this.framesPauseVague = 0;
             this.pauseEntreVague = false;
