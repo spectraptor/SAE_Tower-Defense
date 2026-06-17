@@ -16,7 +16,7 @@ public class Main extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueAccueil.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 900, 480);
-        stage.setTitle("Hello!");
+        stage.setTitle("SAE : Code Defense");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
