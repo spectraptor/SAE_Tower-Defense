@@ -24,7 +24,7 @@ public class Debugger extends BatimentTir {
                 projectile.setVitesse((int) (projectile.getVitesse()*1.4));
                 break;
             case 3:
-                projectile.setVitesse((int) (projectile.getVitesse()*2));
+                projectile.setVitesse((projectile.getVitesse()*2));
                 break;
             case 4:
                 projectile = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());

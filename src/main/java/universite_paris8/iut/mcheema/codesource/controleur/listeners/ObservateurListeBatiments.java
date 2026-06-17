@@ -25,8 +25,6 @@ public class ObservateurListeBatiments implements ListChangeListener<Batiment> {
             }
 
             for (Batiment batiment : change.getRemoved()) {
-                // this.paneJeu.lookup("#" + batiment.getId()).translateXProperty().unbind();
-                // this.paneJeu.lookup("#" + batiment.getId()).translateYProperty().unbind();
                 this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + batiment.getId()));
             }
         }

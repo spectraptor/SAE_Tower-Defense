@@ -82,12 +82,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
-        ImageView imgVLancer = new ImageView(imgLancer);
-        imgVLancer.setFitHeight(50);
-        imgVLancer.setFitWidth(45);
-        this.boutonLancerPause.setGraphic(imgVLancer);
+        this.initialiseBoutonStop();
         borderPanePrincipal.lookupAll(".button").forEach(node -> {
             node.setOnMouseEntered(e -> sonVue.jouerClique());
             node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
@@ -229,6 +224,14 @@ public class Controleur implements Initializable {
         Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void initialiseBoutonStop() {
+        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+        ImageView imgVLancer = new ImageView(imgLancer);
+        imgVLancer.setFitHeight(50);
+        imgVLancer.setFitWidth(45);
+        this.boutonLancerPause.setGraphic(imgVLancer);
     }
 
     public void setSonVue(SonVue sonVue) {
