@@ -34,6 +34,7 @@ public class ObservateurListeEnnemis implements ListChangeListener<Ennemi> {
                 RotateTransition tournerEnnemi = new RotateTransition(Duration.millis(600), this.paneJeu.lookup("#" + ennemi.getId()));
                 FadeTransition disparaitreEnnemi = new FadeTransition(Duration.millis(1000), this.paneJeu.lookup("#" + ennemi.getId()));
                 tournerEnnemi.setByAngle(90);
+                this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+ ennemi.getId() + "VIE"));
                 disparaitreEnnemi.setToValue(0.0);
 
                 disparaitreEnnemi.setOnFinished(e -> this.paneJeu.getChildren().remove(this.paneJeu.lookup("#"+ennemi.getId())));

@@ -1,5 +1,6 @@
 package universite_paris8.iut.mcheema.codesource.vue;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -60,10 +61,26 @@ public class EnnemiVue {
         else
             ennemiImgView = new ImageView(imgErreurSynt);
 
+        //Barre de vie bind sur la tete de l'ennemi
+        ProgressBar barreVie = new ProgressBar();
+        barreVie.setId(this.ennemi.getId() + "VIE");
+        barreVie.setPrefWidth(32);
+        barreVie.setPrefHeight(10);
+        //Mettre la couleur de la barre de vie en vert
+        barreVie.setStyle("-fx-accent: green;");
+        this.paneJeu.getChildren().add(barreVie);
+        // divise par la vie max de l'ennemi car la progressBar est defini entre 0 et 1.
+        // Cast en double pour utiliser la methode divide(double x) et ainsi une barre de vie cohérente
+        barreVie.progressProperty().bind((this.ennemi.pvProperty().divide((double)this.ennemi.getPv())));
+        barreVie.translateXProperty().bind(this.ennemi.xProperty().subtract(16));
+        barreVie.translateYProperty().bind(this.ennemi.yProperty().subtract(45));
+
         // Vérification si l'ennemi en question est un boss
         if (this.ennemi.estUnBoss()) {
             differenceX = 3;
             differenceY = 15;
+            // Couleur de la barre de vie en rouge pour les boss
+            barreVie.setStyle("-fx-accent: red;");
         }
 
         ennemiImgView.setId(ennemi.getId());
