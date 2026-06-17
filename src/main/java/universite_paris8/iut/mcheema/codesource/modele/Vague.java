@@ -18,7 +18,7 @@ public class Vague {
         this.numeroVague = numVague;
         this.listeEnnemisVague = new ArrayList<>();
         this.environnement = env;
-        this.initialiseVague(numNiv);
+        this.debuteVague(numNiv);
     }
 
 
@@ -26,7 +26,11 @@ public class Vague {
         return this.listeEnnemisVague;
     }
 
-    public void initialiseVague(int niveau) {
+    /**
+     * Permet de commencer le système de vagues
+     * @param niveau l'un des différents niveaux sur lesquels on peut jouer, utilisé pour  obtenir le chemins des ennemis.
+     */
+    public void debuteVague(int niveau) {
         Niveau niveauChoisi = new Niveau(niveau);
         ArrayList<ArrayList<Point>> chemins = new ArrayList<>();
 
@@ -94,15 +98,9 @@ public class Vague {
     }
 
     public boolean vagueEstTerminee() {
-        /* Les deux conditions sont obligatoires :
-            Si on regarde uniquement la première, alors une nouvelle vague commencera lorsque tous les ennemis de la précédente vague
-            ont été placées, sans regarder si les ennemis de la vague actuelle sont morts.
-            Si on regarde uniquement la deuxième, alors les vagues commenceront les unes à la suite car la liste d'ennemis sera toujours vide.
-            Il faut donc bien regarder que tous les ennemis de la vague ont bien été placés, et qu'ils sont morts.
-         */
+        // une vague est terminée uniquement quand tous les ennemis prévus sont déployes, et qu'ils sont tous éliminés.
         return this.listeEnnemisVague.isEmpty() && this.environnement.getEnnemis().isEmpty();
     }
-
 
     public ArrayList<Point> choisirAleatoirementChemin(ArrayList<ArrayList<Point>> chemins) {
         int numeroChemin = (int) (Math.random() * chemins.size());

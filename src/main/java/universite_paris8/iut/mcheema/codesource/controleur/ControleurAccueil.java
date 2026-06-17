@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.input.DragEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,10 +18,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Gère tout ce qui se passe dans le menu jusqu'à la sélection d'un niveau
- */
 
+/**
+ * La classe ControleurAccueil représente le contrôleur du menu d'accueil.
+ * Elle gère les interactions de l'utilisateur jusqu'à la sélection d'un niveau.
+ * Elle s'occupe également des paramètres, et des options.
+ */
 public class ControleurAccueil implements Initializable {
 
     private SonVue sonVue = new SonVue();

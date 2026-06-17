@@ -126,7 +126,7 @@ public class Environnement {
      * Permet de poser un batiment au sein du jeu.
      * @param x l'abscisse du batiment
      * @param y l'ordonnée du batiment
-     * @param numBat le type de batiment
+     * @param numBat le type de batiment à poser
      * @return le batiment à poser
      */
     public void poserBatiment(int x, int y, int numBat) {

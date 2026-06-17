@@ -1,13 +1,12 @@
 package universite_paris8.iut.mcheema.codesource.modele.projectile;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Entite;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
-import java.util.Objects;
-
+/**
+ * La classe Entite est la classe mère de tous les projectiles.
+ * Chaque projectile a par défaut, des dégâts, une vitesse et quelque chose qui indique s'il est arrivé.
+ */
 public abstract class Projectile extends Entite {
     private static int idCpt = 0;
     private int degat;

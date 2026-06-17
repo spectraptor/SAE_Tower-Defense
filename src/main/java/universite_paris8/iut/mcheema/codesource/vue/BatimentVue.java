@@ -6,7 +6,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.*;
 
 /**
- * La classe BatimentVue s'occupe de l'affichage des bâtiments, en affichant leurs sprites, leurs projectiles, etc.
+ * La classe BatimentVue s'occupe de la création et l'affichage de sprites liées au bâtiment.
+ * Elle détient un bâtiment, qu'elle va associer à une texture, qui va correspondre au sprite.
  */
 public class BatimentVue {
     private Batiment batiment;

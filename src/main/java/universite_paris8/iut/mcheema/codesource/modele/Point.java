@@ -1,7 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele;
+
 /**
- * La classe Tuile connait sa position en ligne et en colonne.
- * Elle est utilisé pour l'algorithme.
+ * La classe Point représente une tuile du terrain de jeu.
+ * Elle est utilisée pour l'algorithme BFS du chemin.
+ * Elle connait sa ligne et sa colonne.
  */
 public class Point {
     private int ligne;

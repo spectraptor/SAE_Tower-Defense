@@ -13,7 +13,11 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
 import universite_paris8.iut.mcheema.codesource.modele.batiment.BatimentAvecPortee;
 
-
+/**
+ * La classe InfoBatimentVue s'occupe d'afficher les informations liées à une tour déjà posée.
+ * Elle s'occupe d'afficher un encadré lorsqu'on appuie sur la tour posé.
+ * Elle se charge également du déplacement d'un bâtiment déjà acheté, de son amélioration ou encore sa supression.
+ */
 public class InfoBatimentVue {
     private final static int LARGEUR_PANE = 200;
     private final static int HAUTEUR_PANE = 200;

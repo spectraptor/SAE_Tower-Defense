@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * La classe Terrain connait la liste des différents terrains (les tuiles, la longueur, la largueur, la taille d'une tuile)
+ * La classe Terrain détient les différents terrains de jeux, sous forme de tableaux.
+ * Chaque niveau correspond à un terrain différent, et chaque lettre représente une texture à représenter
  */
-
 public class Terrain {
     public final static int TAILLE_TUILLE = 32;
     private int niveauTerrain;

@@ -9,8 +9,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
 
 /**
- * La classe à pour tâche de s'occuper de l'affichage des personnages et de la création de leur sprite.
- * Elle s'occupe d'un ennemi qu'elle reçoit.
+ * La classe BatimentVue à pour tâche la création et l'affichage de sprites liées aux ennemis.
+ * Elle détient un ennemi, qu'elle va associer à une texture, qui va correspondre au sprite.
  */
 public class EnnemiVue {
     private Ennemi ennemi;

@@ -6,15 +6,15 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.*;
 
 /**
- * La classe à pour tâche de s'occuper de l'affichage des projectiles et de la création de leur sprite.
- *
+ * La classe ProjectileVue a pour but la création et l'affichage de sprites liées aux projectiles.
+ * Elle détient un projectile, qu'elle va associer à une image.
  */
 public class ProjectileVue {
     private Pane paneJeu;
     private Projectile projectile;
     private SonVue sonVue;
 
-    public ProjectileVue(Pane paneJeu,Projectile projectile, SonVue sonVue) {
+    public ProjectileVue(Pane paneJeu, Projectile projectile, SonVue sonVue) {
         this.paneJeu = paneJeu;
         this.projectile = projectile;
         this.sonVue = sonVue;
@@ -58,7 +58,7 @@ public class ProjectileVue {
     /**
      * Permet d'attacher un sprite au pane du jeu
      * @param vueProjectile l'imageView correspondant à l'image du projectile
-     * @param decalage le décalage horizontal et vertical à mettre à l'image
+     * @param decalage le décalage horizontal et vertical qu'on va appliquer au projectile pour le cadrer.
      * @param identificateur le suffixe utilisée pour l'id de vueProjectile.
      */
     public void attacheSprite(ImageView vueProjectile, int decalage, String identificateur) {

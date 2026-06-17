@@ -2,8 +2,10 @@ package universite_paris8.iut.mcheema.codesource.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-/*
-La classe Base est utilisé pour déterminer si le joueur peut encore jouer. Il peut perdre des pv.
+
+/**
+ * La classe Base constitue la base du jeu, c'est à dire la chose que doit défendre le joueur.
+ * La base contient des points de vie. Elle peut en perdre si elle se fait attaquer, et mourir si ses points de vie deviennent nuls.
  */
 public class Base {
     private IntegerProperty pvProperty;

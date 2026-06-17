@@ -33,7 +33,8 @@ import java.util.ResourceBundle;
 
 /**
  * Le controleur fait la gestion entre le modèle et la vue.
- * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
+ * Il s'occupe d'effectuer les différents bindings, et d'ajouter les listeners nécessaires, et possède la gameloop.
+ * Il s'occupe également des interactions utilisateurs, tels que l'achat d'un bâtiment lorsqu'on appuie sur un bouton.
  */
 
 public class Controleur implements Initializable {

@@ -2,6 +2,10 @@ package universite_paris8.iut.mcheema.codesource.vue;
 
 import javafx.scene.media.AudioClip;
 
+/**
+ * La classe Sonvue détient tous les sons du jeu.
+ * Elle permet ainsi de jouer certains sons qu'on voudrait utilisées à des moments précis.
+ */
 public class SonVue {
 
     private final AudioClip poser;

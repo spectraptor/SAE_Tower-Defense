@@ -6,8 +6,8 @@ import javafx.scene.layout.TilePane;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 
 /**
- * La classe à pour tâche de s'occuper de l'affichage du terrain et de la création de leur tuiles.
- *
+ * La classe TerrainVue à pour tâche de s'occuper de l'affichage du terrain et de la création de leur tuiles.
+ * Elle va associer chaque numéro de tableau de tuile dans l'Environnement à une image (texture).
  */
 
 public class TerrainVue {

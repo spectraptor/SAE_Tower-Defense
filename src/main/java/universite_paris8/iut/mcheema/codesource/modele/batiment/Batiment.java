@@ -4,8 +4,9 @@ import universite_paris8.iut.mcheema.codesource.modele.Entite;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 /**
- * La classe Batiment s'occupe de la gestion de tours et de leur logique.
- * Elle s'occupe de leurs comportements, de leur déplacements, améliorations...
+ * La classe Batiment est la classe mère des bâtiments. Elle définit les méthodes communes à tous les bâtiments.
+ * Par défaut, chaque bâtiment à un nom, un prix, et un niveau d'amélioration max.
+ * Elle se charge également de la gestion des bâtiments (achat, vente, déplacement).
  */
 
 public abstract class Batiment extends Entite {
@@ -90,14 +91,11 @@ public abstract class Batiment extends Entite {
 
     /**
      * Calcule le coefficient d'amélioration lié au niveau du bâtiment.
-     *
      * Ce coefficient augmente proportionnellement au niveau du bâtiment,
      * en utilisant une base fixe (REDUCTION_NIVEAU).
-     *
      * Il est utilisé pour :
      * - augmenter certaines caractéristiques (ex : production)
      * - réduire d'autres (ex : temps de recharge)
-     *
      * Exemple :
      * Niveau 1 → 10% (0.1)
      * Niveau 2 → 20% (0.2)
