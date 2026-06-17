@@ -27,7 +27,6 @@ public class ProjectileVue {
         Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
         Image imgFragmentation = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/fragmentation.png").toExternalForm());
         Image imgBombe = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/bombeLogique.png").toExternalForm());
-        Image imgFeu = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/feu.png").toExternalForm());
 
         if (this.projectile instanceof  MissileTete) {
             this.sonVue.jouerMissileTete();
@@ -65,25 +64,6 @@ public class ProjectileVue {
             vueFragmentation.translateYProperty().bind(this.projectile.yProperty().subtract(10));
             this.paneJeu.getChildren().add(1, vueFragmentation);
             vueFragmentation.setId(this.projectile.getId() + "F");
-        }
-        else if (this.projectile instanceof MissileTeleguide) {
-            this.sonVue.jouerMissileTeleguide();
-            ImageView vueTeleguide = new ImageView(imgBombe);
-
-            vueTeleguide.translateXProperty().bind(this.projectile.xProperty().subtract(8)); // 16 px img
-            vueTeleguide.translateYProperty().bind(this.projectile.yProperty().subtract(8));
-            this.paneJeu.getChildren().add(1, vueTeleguide);
-            vueTeleguide.setId(this.projectile.getId() + "T");
-        }
-
-        else if (this.projectile instanceof MissileBrulure) {
-            this.sonVue.jouerFeu();
-            ImageView vueFeu = new ImageView(imgFeu);
-
-            vueFeu.translateXProperty().bind(this.projectile.xProperty().subtract(8)); // 16 px img
-            vueFeu.translateYProperty().bind(this.projectile.yProperty().subtract(8));
-            this.paneJeu.getChildren().add(1, vueFeu);
-            vueFeu.setId(this.projectile.getId() + "O");
         }
     }
 }

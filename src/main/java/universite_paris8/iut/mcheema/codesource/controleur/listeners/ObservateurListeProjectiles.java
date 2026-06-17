@@ -48,12 +48,6 @@ public class ObservateurListeProjectiles implements ListChangeListener<Projectil
                 else if (projectile instanceof MissileFragmentation) {
                     this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "F"));
                 }
-                else if (projectile instanceof MissileTeleguide) {
-                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "T"));
-                }
-                else if (projectile instanceof MissileBrulure) {
-                    this.paneJeu.getChildren().remove(this.paneJeu.lookup("#" + projectile.getId() + "O"));
-                }
             }
         }
     }
