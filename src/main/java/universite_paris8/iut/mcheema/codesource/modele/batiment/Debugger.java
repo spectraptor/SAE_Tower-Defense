@@ -28,6 +28,7 @@ public class Debugger extends BatimentTir {
                 break;
             case 4:
                 projectile = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+                projectile.setDegat(this.getDegat() * 4);
                 break;
         }
         return projectile;

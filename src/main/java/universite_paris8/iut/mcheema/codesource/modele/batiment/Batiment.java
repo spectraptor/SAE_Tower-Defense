@@ -95,7 +95,7 @@ public abstract class Batiment extends Entite {
      * en utilisant une base fixe (REDUCTION_NIVEAU).
      *
      * Il est utilisé pour :
-     * - augmenter certaines caractéristiques (ex : production)
+     * - augmenter certaines caractéristiques (ex : portee)
      * - réduire d'autres (ex : temps de recharge)
      *
      * Exemple :
@@ -104,7 +104,7 @@ public abstract class Batiment extends Entite {
      *
      * @return un coefficient d'amélioration dépendant du niveau actuel du bâtiment
      *
-     y*/
+     */
     public double tauxAmeliorationParNiveau() {
         return this.getNiveau() * TAUX_AMELIORATION_PAR_NIVEAU;
     }

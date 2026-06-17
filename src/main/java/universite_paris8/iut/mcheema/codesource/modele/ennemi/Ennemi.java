@@ -1,5 +1,9 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.mcheema.codesource.modele.Entite;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Point;
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 
 public abstract class Ennemi extends Entite {
     private static int idCpt = 0;
-    private int pv;
+    private IntegerProperty pvProperty;
     private int vitesse;
     private int argentDonne;
     private ArrayList<Point> chemin;
@@ -23,7 +27,7 @@ public abstract class Ennemi extends Entite {
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
         super("E" + idCpt++, 0, 0, env); // 0, 0??
-        this.pv = pv;
+        this.pvProperty = new SimpleIntegerProperty(pv);
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.indiceChemin = 0;
@@ -32,15 +36,24 @@ public abstract class Ennemi extends Entite {
 
     public Ennemi(int pv, double x, double y, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
         super("E" + idCpt++, x, y, env);
-        this.pv = pv;
+        this.pvProperty = new SimpleIntegerProperty(pv);
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;
         this.indiceChemin = 0;
         setChemin(chemin);
     }
 
-    public int getPv() {
-        return this.pv;
+
+    public final int getPv() {
+        return this.pvProperty.getValue();
+    }
+
+    public final void setPv(int pv) {
+        this.pvProperty.setValue(pv);
+    }
+
+    public final IntegerProperty pvProperty() {
+        return this.pvProperty;
     }
 
     public int getVitesse() {
@@ -48,27 +61,50 @@ public abstract class Ennemi extends Entite {
     }
 
     public boolean estVivant() {
-        return this.pv>0;
+        return this.getPv()>0;
+    }
+
+    public ArrayList<Point> getChemin() {
+        return this.chemin;
+    }
+
+    public void setChemin(ArrayList<Point> chemin) {
+        this.chemin = chemin;
+        if (chemin != null && !chemin.isEmpty()) {
+            Point depart = chemin.get(0);
+            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
+            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
+        }
+    }
+
+    public int getIndiceChemin() {
+        return this.indiceChemin;
+    }
+
+    public void setIndiceChemin(int indice) {
+        this.indiceChemin = indice;
+    }
+
+    public int getArgentDonne() {
+        return this.argentDonne;
     }
 
     public void meurt() {
         if(this.indiceChemin != this.chemin.size() -1) {
             this.getEnvironnement().ajouterArgent(argentDonne);
         }
-        this.pv = 0;
+        this.setPv(0);
     }
 
 
     public void subirDegats(int degat) {
-        if (this.pv - degat <= 0)
+        System.out.println("PV AVANT = " + this.getPv());
+        if (this.getPv() - degat <= 0)
             this.meurt();
-        else
-            this.pv -= degat;
-    }
-
-    public void setPv(int pv) {
-        this.pv = pv;
-    }
+        else {
+            this.setPv(this.getPv() - degat);
+        }
+   }
   
     public void seDeplace() {
             Point prochaine = this.chemin.get(this.indiceChemin + 1);
@@ -89,14 +125,6 @@ public abstract class Ennemi extends Entite {
             }
     }
 
-    public void setChemin(ArrayList<Point> chemin) {
-        this.chemin = chemin;
-        if (chemin != null && !chemin.isEmpty()) {
-            Point depart = chemin.get(0);
-            this.setX(depart.getColonne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
-            this.setY(depart.getLigne() * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE/2);
-        }
-    }
 
     public boolean aAtteintDestination() {
         return this.chemin == null || this.indiceChemin >= this.chemin.size() - 1;
@@ -126,26 +154,11 @@ public abstract class Ennemi extends Entite {
                 instanceof ErreurDeSyntaxe || this instanceof ErreurExecution);
     }
 
-    public ArrayList<Point> getChemin() {
-        return this.chemin;
-    }
-
-    public int getIndiceChemin() {
-        return this.indiceChemin;
-    }
-
-    public void setIndiceChemin(int indice) {
-        this.indiceChemin = indice;
-    }
-
     public String toString() {
         return "ID de l'ennemi : " + this.getId() +
-                "\nPV de l'ennemi : " + this.pv +
+                "\nPV de l'ennemi : " + this.getPv() +
                 "\nPosition de l'ennemi : " + this.getX() + ";" + this.getY();
     }
 
-    public int getArgentDonne() {
-        return this.argentDonne;
-    }
 
 }

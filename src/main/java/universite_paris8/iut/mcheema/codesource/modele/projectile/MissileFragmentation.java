@@ -17,7 +17,6 @@ public class MissileFragmentation extends MissileTeleguide {
         double distX = X_SUIVRE - this.getX();
         double distY = Y_SUIVRE - this.getY();
         double distance = Math.sqrt(distX * distX + distY * distY);
-        super.deplaceMissile(distX, distY, distance);
         int nombreEnnemi = this.getEnvironnement().getEnnemis().size();
         if (distance <= this.getVitesse()) {
             this.getEnvironnement().getProjectiles().add(new MissileTete(this.getX(), this.getY(), this.getDegat(), this.getCible(), this.getEnvironnement()));
@@ -34,8 +33,9 @@ public class MissileFragmentation extends MissileTeleguide {
                     }
                 }
                 if (cible2 != null) {
+                    this.getEnvironnement().getProjectiles().add(new MissileTete(this.getX() + DISTANCE_MISSILE, this.getY(), this.getDegat(), cible2, this.getEnvironnement()));
                     if (nombreEnnemi == 2) {
-                        this.getEnvironnement().getProjectiles().add(new MissileTete(this.getX() + DISTANCE_MISSILE, this.getY(), this.getDegat(), cible2, this.getEnvironnement()));
+                        this.getEnvironnement().getProjectiles().add(new MissileTete(this.getX() - DISTANCE_MISSILE, this.getY(), this.getDegat(), this.getCible(), this.getEnvironnement()));
                     }
                     if (nombreEnnemi >= 3) {
                         Ennemi cible3 = null;
@@ -51,6 +51,9 @@ public class MissileFragmentation extends MissileTeleguide {
                 }
             }
             this.setEstArrive(true);
+        }
+         else {
+            super.deplaceMissile(distX, distY, distance);
         }
     }
 
