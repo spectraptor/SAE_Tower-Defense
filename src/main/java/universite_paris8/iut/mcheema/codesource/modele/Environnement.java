@@ -187,10 +187,6 @@ public class Environnement {
         return this.nbTours;
     }
 
-    public void setNbTours(int nbTours) {
-        this.nbTours = nbTours;
-    }
-
     public final void setArgent(int argent) {this.argentProperty.setValue(argent);}
 
     public final int getArgent() {return this.argentProperty.getValue();}
