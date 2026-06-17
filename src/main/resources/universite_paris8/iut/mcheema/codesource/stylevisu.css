@@ -78,3 +78,8 @@
 #boutonDeplacer, #boutonVendre, #boutonAmeliorer, #boutonQuitterInfoBat {
     -fx-text-fill: WHITE;
 }
+
+.root {
+    -fx-background-color: #9a9292;
+    -fx-background-image: url("images/fondJeu.png");
+}

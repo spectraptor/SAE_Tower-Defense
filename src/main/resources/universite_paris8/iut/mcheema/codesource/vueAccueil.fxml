@@ -8,13 +8,13 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.ControleurAccueil">
    <Pane fx:id="menuPrincipal" prefHeight="480.0" prefWidth="900.0">
-      <VBox layoutX="200.0" layoutY="40.0" prefHeight="400.0" prefWidth="500.0">
-         <Label prefHeight="63.0" prefWidth="89.0" text="JEU">
+      <VBox layoutX="200.0" layoutY="40.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(255,255,255,0.7);">
+         <Label layoutX="-50.0" prefHeight="63.0" prefWidth="400.0" text="SAE : Code Defense">
             <font>
                <Font name="Chilanka Regular" size="42.0" />
             </font>
             <VBox.margin>
-               <Insets bottom="50.0" left="210.0" />
+               <Insets bottom="20.0" left="50.0" top="30.0" />
             </VBox.margin>
          </Label>
          <Button mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER" textFill="WHITE">
@@ -69,6 +69,7 @@
       <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
    </Pane>
    <Pane fx:id="menuCredits" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <Pane layoutX="72.0" layoutY="40.0" opacity="0.7" prefHeight="400.0" prefWidth="747.0" style="-fx-background-color: white;" />
       <Label layoutX="95.0" layoutY="33.0" prefHeight="80.0" prefWidth="711.0" text="Jeu réalisé dans le cadre d'une SAÉ">
          <font>
             <Font name="Chilanka Regular" size="42.0" />
