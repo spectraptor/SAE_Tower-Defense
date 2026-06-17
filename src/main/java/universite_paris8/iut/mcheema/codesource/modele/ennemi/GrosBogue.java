@@ -12,14 +12,14 @@ import java.util.ArrayList;
  */
 public class GrosBogue extends Ennemi {
   
-    public GrosBogue(Environnement env, ArrayList<Point> chemin) {super(30, 1, 100, env, chemin);}
+    public GrosBogue(Environnement env, ArrayList<Point> chemin) {super(25, 1, 100, env, chemin);}
 
   
 
     @Override
     public void effectueAction() {
         super.effectueAction();
-        if(this.getPv() <= 1 && !this.aAtteintDestination()) {
+        if(this.getPv() <= 5 && !this.aAtteintDestination()) {
             Point basePoint = this.getChemin().get(this.getChemin().size() - 1);
             Point entree = new Point((int)this.getX() / Terrain.TAILLE_TUILLE, (int)this.getY() / Terrain.TAILLE_TUILLE);
             BFS bfs = new BFS(this.getEnvironnement().getTerrainDeJeu(), basePoint);
