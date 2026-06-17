@@ -20,12 +20,12 @@ public class GrosBogue extends Ennemi {
     public void effectueAction() {
         super.effectueAction();
         if(this.getPv() <= 1 && !this.aAtteintDestination()) {
-            Point basePoint2 = new Point(0, 11);
-            Point entree2 = new Point((int)this.getX() / Terrain.TAILLE_TUILLE, (int)this.getY() / Terrain.TAILLE_TUILLE);
-            BFS bfs2 = new BFS(this.getEnvironnement().getTerrainDeJeu(), basePoint2);
-            ArrayList<Point> chemin2 = bfs2.cheminDepuisSource(entree2);
-            this.getEnvironnement().getEnnemis().add(new Bogue(this.getX(),this.getY(),this.getEnvironnement(), chemin2));
-            this.getEnvironnement().getEnnemis().add(new Bogue(this.getX(),this.getY()+5,this.getEnvironnement(), chemin2));
+            Point basePoint = this.getChemin().get(this.getChemin().size() - 1);
+            Point entree = new Point((int)this.getX() / Terrain.TAILLE_TUILLE, (int)this.getY() / Terrain.TAILLE_TUILLE);
+            BFS bfs = new BFS(this.getEnvironnement().getTerrainDeJeu(), basePoint);
+            ArrayList<Point> chemin = bfs.cheminDepuisSource(entree);
+            this.getEnvironnement().getEnnemis().add(new Bogue(this.getEnvironnement(), this.getChemin()));
+            this.getEnvironnement().getEnnemis().add(new Bogue(this.getEnvironnement(), chemin));
             this.meurt();
         }
     }

@@ -7,12 +7,14 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 import java.util.ArrayList;
 
 public abstract class BatimentTir extends BatimentAvecPortee{
+    private final int cadenceTirBase;
     private int cadenceTir;
     private int degat;
 
     public BatimentTir(String nom ,double x, double y, int portee, int degat, int prix, int cTir, Environnement env) {
         super(nom,x, y, portee, prix, 4, env);
         this.cadenceTir = cTir;
+        this.cadenceTirBase = cTir;
         this.degat = degat;
     }
 
@@ -51,6 +53,10 @@ public abstract class BatimentTir extends BatimentAvecPortee{
                 this.cadenceTir = (int)(this.cadenceTir * (1 - this.pourcentageReduction()));
             }
         }
+    }
+
+    public int getCadenceTirBase() {
+        return this.cadenceTirBase;
     }
 
     public abstract boolean peutAttaquer(Ennemi cible);

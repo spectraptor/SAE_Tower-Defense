@@ -27,15 +27,17 @@ public class Surcadence extends BatimentAvecPortee{
             if(batiment instanceof BatimentTir) {
                 if (!batiments.contains(batiment) && ((BatimentTir) batiment).getCadenceTir() != ((BatimentTir) batiment).getCadenceTir() / this.diviseCadence) {
                     if (this.calculDistance(batiment) <= this.getPortee()) {
-                        ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / this.diviseCadence)); // la tour ne doit pas dépasser la cadence de de 6
-                        batiments.add((BatimentTir)batiment);
+                        if(((BatimentTir) batiment).getCadenceTir() > 15) {
+                            ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / this.diviseCadence)); // la tour ne doit pas dépasser la cadence de de 6
+                            batiments.add((BatimentTir)batiment);
+                        }
                     }
                 }
             }
         }
         for(int i = this.batiments.size() -1;i>=0;i--) {
             if(this.calculDistance(this.batiments.get(i)) > this.getPortee()) {
-                this.batiments.get(i).setCadenceTir((int) (this.batiments.get(i).getCadenceTir() * this.diviseCadence));
+                this.batiments.get(i).setCadenceTir(this.batiments.get(i).getCadenceTirBase());
                 this.batiments.remove(i);
             }
         }
@@ -54,6 +56,7 @@ public class Surcadence extends BatimentAvecPortee{
     }
 
     public String avoirDescription() {
+        System.out.println(this.diviseCadence);
         return super.avoirDescription() + "\nDivise cadence par : " + this.diviseCadence;
     }
 }
