@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class GestionVague {
 
-    private static final int DELAI_ENTRE_VAGUES_FRAMES = 120;
+    private static final int DELAI_ENTRE_VAGUES_FRAMES = 300;
     private static final int TEMPS_SPAWN_ENNEMIS_FRAMES = 100;
     private static final int MAX_VAGUES = 8;
 
