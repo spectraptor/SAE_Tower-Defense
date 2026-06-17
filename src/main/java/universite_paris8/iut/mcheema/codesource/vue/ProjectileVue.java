@@ -22,7 +22,7 @@ public class ProjectileVue {
 
     public void creeSpriteProjectile() {
 
-        Image imgProjectile0 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile0.png").toExternalForm());;
+        Image imgProjectile0 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile0.png").toExternalForm());
         Image imgProjectile1 = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/projectile1.png").toExternalForm());
         Image imgExplosion = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/explosion.png").toExternalForm());
         Image imgFragmentation = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/texture/projectiles/fragmentation.png").toExternalForm());
@@ -33,37 +33,38 @@ public class ProjectileVue {
             ImageView vueTete;
             if (Math.random() < 0.5) {
                 vueTete = new ImageView(imgProjectile0);
+                this.attacheSprite(vueTete, 4, "");
             } else {
                 vueTete = new ImageView(imgProjectile1);
+                this.attacheSprite(vueTete, 4, "");
             }
-            vueTete.translateXProperty().bind(this.projectile.xProperty().subtract(4)); // 8 px img
-            vueTete.translateYProperty().bind(this.projectile.yProperty().subtract(4));
-            this.paneJeu.getChildren().add(1, vueTete);
-            vueTete.setId(this.projectile.getId());
         }
         else if (this.projectile instanceof MissileZone) {
             this.sonVue.jouerMissileZone();
             ImageView vueBombe = new ImageView(imgBombe);
             ImageView vueExplosion = new ImageView(imgExplosion);
-            vueBombe.translateXProperty().bind(this.projectile.xProperty().subtract(16)); // 32 px img
-            vueBombe.translateYProperty().bind(this.projectile.yProperty().subtract(16));
 
-
-            vueExplosion.translateXProperty().bind(this.projectile.xProperty().subtract(20)); // 40 px img
-            vueExplosion.translateYProperty().bind(this.projectile.yProperty().subtract(20));
-            this.paneJeu.getChildren().add(1, vueBombe);
-            vueBombe.setId(this.projectile.getId() + "B");
-            this.paneJeu.getChildren().add(1, vueExplosion);
-            vueExplosion.setId(this.projectile.getId() + "E");
+            this.attacheSprite(vueBombe, 16, "B");
+            this.attacheSprite(vueExplosion, 20, "E");
             vueExplosion.setVisible(false);
         }
         else if (this.projectile instanceof MissileFragmentation) {
             this.sonVue.jouerMissileFragmentation();
             ImageView vueFragmentation = new ImageView(imgFragmentation);
-            vueFragmentation.translateXProperty().bind(this.projectile.xProperty().subtract(10)); // 20 px img
-            vueFragmentation.translateYProperty().bind(this.projectile.yProperty().subtract(10));
-            this.paneJeu.getChildren().add(1, vueFragmentation);
-            vueFragmentation.setId(this.projectile.getId() + "F");
+            this.attacheSprite(vueFragmentation, 10, "F");
         }
+    }
+
+    /**
+     * Permet d'attacher un sprite au pane du jeu
+     * @param vueProjectile l'imageView correspondant à l'image du projectile
+     * @param decalage le décalage horizontal et vertical à mettre à l'image
+     * @param identificateur le suffixe utilisée pour l'id de vueProjectile.
+     */
+    public void attacheSprite(ImageView vueProjectile, int decalage, String identificateur) {
+        vueProjectile.translateXProperty().bind(this.projectile.xProperty().subtract(decalage));
+        vueProjectile.translateYProperty().bind(this.projectile.yProperty().subtract(decalage));
+        this.paneJeu.getChildren().add(1, vueProjectile);
+        vueProjectile.setId(this.projectile.getId() + identificateur);
     }
 }
