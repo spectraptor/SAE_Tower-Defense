@@ -86,9 +86,10 @@ public class Vague {
                 this.listeEnnemisVague.add(new Ralentisseur(this.environnement, this.choisirAleatoirementChemin(chemins)));
                 break;
             case 8:
+                this.listeEnnemisVague.add(new ErreurExecution(this.environnement, this.choisirAleatoirementChemin(chemins)));
                 this.listeEnnemisVague.add(new ErreurDeLogique(this.environnement, this.choisirAleatoirementChemin(chemins)));
                 this.listeEnnemisVague.add(new ErreurDeSyntaxe(this.environnement, this.choisirAleatoirementChemin(chemins)));
-                this.listeEnnemisVague.add(new ErreurExecution(this.environnement, this.choisirAleatoirementChemin(chemins)));
+
         }
     }
 
