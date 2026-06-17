@@ -202,26 +202,22 @@ public class Controleur implements Initializable {
 
     @FXML
     public void lancer(ActionEvent actionEvent) {
+        Image imgPause = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/pause.png").toExternalForm());
+        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+        ImageView imgV;
         if (this.etatPause) {
             etatPause = false;
             this.gameLoop.play();
             menuPause.setVisible(false);
-            Image imgPause = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/pause.png").toExternalForm());
-            ImageView imgVPause = new ImageView(imgPause);
-            imgVPause.setFitHeight(50);
-            imgVPause.setFitWidth(45);
-            this.boutonLancerPause.setGraphic(imgVPause);
-            System.out.println("Jeu mis en lancer");
+            imgV = new ImageView(imgPause);
         } else {
-            this.gameLoop.pause();
             this.etatPause = true;
-            Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
-            ImageView imgVLancer = new ImageView(imgLancer);
-            imgVLancer.setFitHeight(50);
-            imgVLancer.setFitWidth(45);
-            this.boutonLancerPause.setGraphic(imgVLancer);
-            System.out.println("Jeu mis en pause");
+            this.gameLoop.pause();
+            imgV = new ImageView(imgLancer);
         }
+        imgV.setFitHeight(50);
+        imgV.setFitWidth(45);
+        this.boutonLancerPause.setGraphic(imgV);
     }
 
     @FXML
