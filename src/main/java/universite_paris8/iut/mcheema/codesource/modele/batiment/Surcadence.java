@@ -3,6 +3,7 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.ArrayList;
 
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 public class Surcadence extends BatimentAvecPortee{
     private ArrayList<BatimentTir> batiments;
     private double diviseCadence;
+    private final static int CADENCE_LIMITE = 15;
 
     public Surcadence(double x, double y, Environnement env) {
         super("Surcadence", x, y, Terrain.TAILLE_TUILLE,300, 2, env);
         batiments = new ArrayList<>();
-        this.diviseCadence = 1.5;
+        this.diviseCadence = 1.25;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Surcadence extends BatimentAvecPortee{
             if(batiment instanceof BatimentTir) {
                 if (!batiments.contains(batiment)) {
                     if (this.calculDistance(batiment) <= this.getPortee()) {
-                        if(((BatimentTir) batiment).getCadenceTir() > 15) {
+                        if(((BatimentTir) batiment).getCadenceTir() > CADENCE_LIMITE) {
                             ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() / this.diviseCadence)); // la tour ne doit pas dépasser la cadence de de 6
                             batiments.add((BatimentTir)batiment);
                         }

@@ -20,16 +20,19 @@ public class Compilateur extends BatimentTir {
 
     @Override
     public Projectile choisirProjectile(Ennemi cible) {
-        Projectile projectile;
-        switch (this.getNiveau()) {
-            case 1,2,3:
-                projectile = new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+        Projectile p =  new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+        switch(this.getNiveau()) {
+            case 2:
+                p.setVitesse((int) (p.getVitesse() * 1.5));
                 break;
-            default:
-                projectile = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+            case 3:
+                p.setVitesse((int) (p.getVitesse() * 1.8));
+                break;
+            case 4 :
+                p.setVitesse((int) (p.getVitesse()*2.5));
                 break;
         }
-        return projectile;
+        return p;
     }
 
     @Override

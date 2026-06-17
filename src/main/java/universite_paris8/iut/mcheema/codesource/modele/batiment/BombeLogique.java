@@ -8,7 +8,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.*;
 
 public class BombeLogique extends BatimentTir {
     public BombeLogique(double x, double y, Environnement env) {
-        super("Bombe Logique", x, y, 100,5, 500,100, env);
+        super("Bombe Logique", x, y, 100,1, 500,550, env);
     }
 
 
@@ -19,17 +19,19 @@ public class BombeLogique extends BatimentTir {
 
     @Override
     public Projectile choisirProjectile(Ennemi cible) {
-        Projectile p;
+        Projectile projectile =  new MissileZone(this.getX(),this.getY(),this.getDegat(),cible.getX(),cible.getY(),this.getEnvironnement());;
         switch(this.getNiveau()) {
-            case 1,2,3:
-                p =  new MissileZone(this.getX(),this.getY(),this.getDegat(),cible.getX(),cible.getY(),this.getEnvironnement());
+            case 2:
+                projectile.setVitesse((int) (projectile.getVitesse() * 1.3));
                 break;
-            default:
-                 p = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
-                 p.setVitesse(p.getVitesse()*2);
+            case 3:
+                projectile.setVitesse((int) (projectile.getVitesse() * 2));
+                break;
+            case 4:
+                projectile.setVitesse(projectile.getVitesse()*3);
                  break;
         }
-        return p;
+        return projectile;
     }
 
 }

@@ -18,12 +18,15 @@ public class Debugger extends BatimentTir {
 
     @Override
     public Projectile choisirProjectile(Ennemi cible) {
-        Projectile projectile;
+        Projectile projectile = new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
         switch (this.getNiveau()) {
-            case 1,2,3:
-                projectile = new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+            case 2:
+                projectile.setVitesse((int) (projectile.getVitesse()*1.4));
                 break;
-            default:
+            case 3:
+                projectile.setVitesse((int) (projectile.getVitesse()*2));
+                break;
+            case 4:
                 projectile = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
                 break;
         }

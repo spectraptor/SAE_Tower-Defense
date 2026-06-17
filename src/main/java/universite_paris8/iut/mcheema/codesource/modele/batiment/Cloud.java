@@ -22,13 +22,15 @@ public class Cloud extends BatimentTir {
 
     @Override
     public Projectile choisirProjectile(Ennemi cible) {
-        Projectile p;
+        Projectile p =  new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
         switch(this.getNiveau()) {
-            case 1,2,3:
-                p =  new MissileTete(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+            case 2:
+                p.setVitesse((int) (p.getVitesse() * 1.2));
                 break;
-            default :
-                p = new MissileFragmentation(this.getX(),this.getY(),this.getDegat(),cible,this.getEnvironnement());
+            case 3:
+                p.setVitesse((int) (p.getVitesse() * 1.5));
+                break;
+            case 4 :
                 p.setVitesse(p.getVitesse()*2);
                 break;
         }
