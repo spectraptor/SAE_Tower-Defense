@@ -50,7 +50,7 @@ public abstract class BatimentTir extends BatimentAvecPortee{
         if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
             if (this.getNiveau() < this.getNiveauMax()) {
                 super.ameliorerBatiment();
-                this.cadenceTir = (int)(this.cadenceTir * (1 - this.pourcentageReduction()));
+                this.cadenceTir = (int)(this.cadenceTir * (1 - this.tauxAmeliorationParNiveau()));
             }
         }
     }

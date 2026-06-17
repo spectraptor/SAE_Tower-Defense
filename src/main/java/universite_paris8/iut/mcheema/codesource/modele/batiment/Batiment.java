@@ -16,7 +16,7 @@ public abstract class Batiment extends Entite {
     private int niveauMax;
 
     // Réduction de 10 %
-    public static final double REDUCTION_NIVEAU = 0.10;
+    public static final double TAUX_AMELIORATION_PAR_NIVEAU = 0.10;
 
     public Batiment(String nom, double x, double y, int prix, int nivMax, Environnement env) {
         super("B" + idCpt++, x, y, env);
@@ -87,18 +87,26 @@ public abstract class Batiment extends Entite {
         return (this.getNiveau()+1) *(this.getPrix() / 4);
     }
 
+
     /**
-     * Permet de calculer le pourcentage d'amelioration, ou de reduction qu'il faut accorder à une caractéristique d'un bâtiment après
-     * son amélioration.
-     *  Elle dépend de REDUCTION_NIVEAU (10%, pour l'instant), qui donne le pourcentage qu'il faut appliquer à chaque niveau.
-     *  Ex :
-     *  Niv 1. 10% -> 0.1
-     *  Niv 2. 20% -> 0.2
+     * Calcule le coefficient d'amélioration lié au niveau du bâtiment.
      *
-     * @return le pourcentage nécessaire au calcul suite à l'amélioration d'un bâtiment.
-     */
-    public double pourcentageReduction() {
-        return this.getNiveau() * REDUCTION_NIVEAU;
+     * Ce coefficient augmente proportionnellement au niveau du bâtiment,
+     * en utilisant une base fixe (REDUCTION_NIVEAU).
+     *
+     * Il est utilisé pour :
+     * - augmenter certaines caractéristiques (ex : production)
+     * - réduire d'autres (ex : temps de recharge)
+     *
+     * Exemple :
+     * Niveau 1 → 10% (0.1)
+     * Niveau 2 → 20% (0.2)
+     *
+     * @return un coefficient d'amélioration dépendant du niveau actuel du bâtiment
+     *
+     y*/
+    public double tauxAmeliorationParNiveau() {
+        return this.getNiveau() * TAUX_AMELIORATION_PAR_NIVEAU;
     }
 
 

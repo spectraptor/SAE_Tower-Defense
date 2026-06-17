@@ -51,7 +51,7 @@ public abstract class BatimentAvecPortee extends Batiment {
     public void ameliorerBatiment() {
         if(this.getEnvironnement().getArgent() >= this.coutProchaineAmelioration()) {
             if (this.getNiveau() < this.getNiveauMax()) {
-                this.portee = (int)(this.portee * (1 + this.pourcentageReduction()));
+                this.portee = (int)(this.portee * (1 + this.tauxAmeliorationParNiveau()));
                 this.getEnvironnement().retirerArgent(this.coutProchaineAmelioration());
                 this.incrementerNiveau();
             }
