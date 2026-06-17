@@ -98,7 +98,6 @@ public abstract class Ennemi extends Entite {
 
 
     public void subirDegats(int degat) {
-        System.out.println("PV AVANT = " + this.getPv());
         if (this.getPv() - degat <= 0)
             this.meurt();
         else {

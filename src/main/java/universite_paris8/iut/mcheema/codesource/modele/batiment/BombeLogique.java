@@ -25,7 +25,7 @@ public class BombeLogique extends BatimentTir {
                 projectile.setVitesse((int) (projectile.getVitesse() * 1.3));
                 break;
             case 3:
-                projectile.setVitesse((int) (projectile.getVitesse() * 2));
+                projectile.setVitesse( (projectile.getVitesse() * 2));
                 break;
             case 4:
                 projectile.setVitesse(projectile.getVitesse()*3);
