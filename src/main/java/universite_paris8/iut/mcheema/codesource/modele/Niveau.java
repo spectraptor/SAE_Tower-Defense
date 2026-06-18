@@ -31,8 +31,7 @@ public class Niveau {
                 this.bases.add(new Point(0, 11));
                 this.entrees.add(new Point(13, 14));
                 break;
-
-            default:
+            case 3:
                 this.bases.add(new Point(9, 7));
                 this.entrees.add(new Point(19, 7));
                 break;
