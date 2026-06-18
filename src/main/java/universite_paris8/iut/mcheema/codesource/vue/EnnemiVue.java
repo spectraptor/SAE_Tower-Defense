@@ -70,7 +70,7 @@ public class EnnemiVue {
         // divise par la vie max de l'ennemi car la progressBar est defini entre 0 et 1.
         // Cast en double pour utiliser la methode divide(double x) et ainsi une barre de vie cohérente
         barreVie.progressProperty().bind((this.ennemi.pvProperty().divide((double)this.ennemi.getPv())));
-        barreVie.translateXProperty().bind(this.ennemi.xProperty().subtract(16));
+        barreVie.translateXProperty().bind(this.ennemi.xProperty().subtract(Terrain.TAILLE_TUILLE /2));
         barreVie.translateYProperty().bind(this.ennemi.yProperty().subtract(45));
 
         // Vérification si l'ennemi en question est un boss
