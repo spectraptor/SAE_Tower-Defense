@@ -63,16 +63,29 @@ public abstract class Batiment extends Entite {
         }
     }
 
-    public void deplacerBatiment(int nouvX,int nouvY) {
-        if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
-            int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
-            double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
 
+    /**
+     * Déplace le bâtiment vers une nouvelle position sur le terrain.
+     * Le déplacement est soumis à plusieurs conditions :
+     * - la tuile cible doit être valide et libre
+     * - le joueur doit disposer de suffisamment d'argent pour payer le coût du déplacement
+     *
+     * Le coût du déplacement est calculé en fonction de la distance (en tuiles) entre
+     * la position actuelle et la nouvelle position, multiplié par 1/10 du prix du batiment.
+     *
+     * @param nouvX la nouvelle coordonnée X du batiment
+     * @param nouvY la nouvelle coordonnée Y du batiment
+     */
+    public void deplacerBatiment(int nouvX,int nouvY) {
+        int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
+        double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
+        int prixDepBatiment = (int) ((this.getPrix() /10) * distanceNbTuile);
+        if(this.getEnvironnement().getArgent() >= prixDepBatiment) {
             if(!this.getEnvironnement().partieEstFinie()) {
                 if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(tabLigneColCentreBat[1],tabLigneColCentreBat[0])) {
                     this.setX(tabLigneColCentreBat[1]);
                     this.setY(tabLigneColCentreBat[0]);
-                    this.getEnvironnement().setArgent((int) (this.getEnvironnement().getArgent() - (this.getPrix() /10) * distanceNbTuile));
+                    this.getEnvironnement().setArgent((this.getEnvironnement().getArgent() - prixDepBatiment));
                 }
             }
         }
