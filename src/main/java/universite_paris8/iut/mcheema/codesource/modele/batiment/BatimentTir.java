@@ -72,7 +72,7 @@ public abstract class BatimentTir extends BatimentAvecPortee{
     public abstract Projectile choisirProjectile(Ennemi cible);
 
     public String avoirDescription() {
-        return  super.avoirDescription() + "\nCadence : " +  this.cadenceTir +
+        return  super.avoirDescription() + "\nCadence (s.) : " +  this.cadenceTir/60 +
                 "\nDegat : " + this.getDegat();
     }
 }
