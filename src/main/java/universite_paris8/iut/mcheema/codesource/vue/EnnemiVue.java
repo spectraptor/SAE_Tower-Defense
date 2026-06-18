@@ -66,8 +66,6 @@ public class EnnemiVue {
         barreVie.setId(this.ennemi.getId() + "VIE");
         barreVie.setPrefWidth(32);
         barreVie.setPrefHeight(10);
-        //Mettre la couleur de la barre de vie en vert
-        barreVie.setStyle("-fx-accent: green;");
         this.paneJeu.getChildren().add(barreVie);
         // divise par la vie max de l'ennemi car la progressBar est defini entre 0 et 1.
         // Cast en double pour utiliser la methode divide(double x) et ainsi une barre de vie cohérente
@@ -81,6 +79,11 @@ public class EnnemiVue {
             differenceY = 15;
             // Couleur de la barre de vie en rouge pour les boss
             barreVie.setStyle("-fx-accent: red;");
+        }
+
+        else {
+            //Mettre la couleur de la barre de vie en vert
+            barreVie.setStyle("-fx-accent: green;");
         }
 
         ennemiImgView.setId(ennemi.getId());
