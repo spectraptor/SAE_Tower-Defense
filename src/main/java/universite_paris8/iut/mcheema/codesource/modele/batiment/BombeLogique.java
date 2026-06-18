@@ -8,7 +8,7 @@ import universite_paris8.iut.mcheema.codesource.modele.projectile.*;
 
 public class BombeLogique extends BatimentTir {
     public BombeLogique(double x, double y, Environnement env) {
-        super("Bombe Logique", x, y, 100,3, 500,550, env);
+        super("Bombe Logique", x, y, 64,3, 500,550, env);
     }
 
 
@@ -29,6 +29,7 @@ public class BombeLogique extends BatimentTir {
                 break;
             case 4:
                 projectile.setVitesse(projectile.getVitesse()*3);
+                projectile.setDegat(projectile.getDegat() * 2);
                  break;
         }
         return projectile;

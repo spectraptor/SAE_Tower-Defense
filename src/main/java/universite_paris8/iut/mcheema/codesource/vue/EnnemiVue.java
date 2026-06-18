@@ -64,7 +64,7 @@ public class EnnemiVue {
         //Barre de vie bind sur la tete de l'ennemi
         ProgressBar barreVie = new ProgressBar();
         barreVie.setId(this.ennemi.getId() + "VIE");
-        barreVie.setPrefWidth(32);
+
         barreVie.setPrefHeight(10);
         this.paneJeu.getChildren().add(barreVie);
         // divise par la vie max de l'ennemi car la progressBar est defini entre 0 et 1.
@@ -79,9 +79,13 @@ public class EnnemiVue {
             differenceY = 15;
             // Couleur de la barre de vie en rouge pour les boss
             barreVie.setStyle("-fx-accent: red;");
+            // La largeur d'un gros boss est de 40 pixel
+            barreVie.setPrefWidth(40);
         }
 
         else {
+            // La largeur d'un ennemi est de 32 pixel
+            barreVie.setPrefWidth(32);
             //Mettre la couleur de la barre de vie en vert
             barreVie.setStyle("-fx-accent: green;");
         }
