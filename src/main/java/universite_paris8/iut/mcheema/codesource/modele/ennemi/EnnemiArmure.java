@@ -5,6 +5,11 @@ import universite_paris8.iut.mcheema.codesource.modele.Point;
 
 import java.util.ArrayList;
 
+/**
+ * La classe EnnemiArmure est un type d'ennemi.
+ * Les bâtiments enlèvent de la vie à l'ennemi armuré seulement si leurs dégâts sont supérieurs à l'armure qu'il détient.
+ * L'armure n'est jamais réduite.
+ */
 public abstract class EnnemiArmure extends Ennemi {
     private int armure;
 

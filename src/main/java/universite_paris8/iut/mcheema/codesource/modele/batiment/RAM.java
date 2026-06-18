@@ -2,6 +2,10 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 
+/**
+ * La classe RAM est un type de bâtiment.
+ * La RAM est capable de générer de l'argent, qu'on pourra utiliser.
+ */
 public class RAM extends Batiment {
     private int argentDonne;
     private int tempsAtt;

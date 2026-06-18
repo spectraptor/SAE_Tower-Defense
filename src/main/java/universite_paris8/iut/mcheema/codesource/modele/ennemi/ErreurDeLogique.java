@@ -5,9 +5,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Point;
 import java.util.ArrayList;
 
 /**
- * ErreurDeLogique qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ * La classe ErreurDeLogique est un type d'ennemi qui représente un des boss du jeux.
  */
-
 public class ErreurDeLogique extends EnnemiArmure {
     public ErreurDeLogique(Environnement env, ArrayList<Point> chemin) {super(50, 1, 250, env, chemin,3);}
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 /**
- * ErreurDeSyntaxe qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ * La classe ErreurDeLogique est un type d'ennemi qui représente un des boss du jeux.
  */
 public class ErreurDeSyntaxe extends Ennemi {
     public ErreurDeSyntaxe(Environnement env, ArrayList<Point> chemin) {super(200,1 ,1000 , env, chemin);}

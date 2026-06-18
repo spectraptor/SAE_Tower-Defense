@@ -4,13 +4,12 @@ import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiCammoufle;
 import universite_paris8.iut.mcheema.codesource.modele.ennemi.EnnemiVolant;
-import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileFragmentation;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.MissileTete;
 import universite_paris8.iut.mcheema.codesource.modele.projectile.Projectile;
 
 /**
  * La classe Compilateur constitue le bâtiment de base du jeu
- * Il n'est pas capable d'attaquer les ennemisc camouflés et volants.
+ * Il n'est pas capable d'attaquer les ennemis camouflés et volants.
  */
 public class Compilateur extends BatimentTir {
     public Compilateur(double x, double y, Environnement env) {

@@ -9,7 +9,9 @@ import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import java.util.ArrayList;
 
 /**
- * Ralentisseur qui étend la classe Ennemi, contient les mêmes attributs que Ennemi. Il ralentit la cadence d'attaque des tours autour de lui.
+ * La classe Ralentisseur est un type d'ennemi du jeu
+ * Il ralentit la cadence d'attaque des tours autour de lui.
+ * Il possède une portée d'attaque.
  */
 public class Ralentisseur extends Ennemi {
     private int ralentissement;

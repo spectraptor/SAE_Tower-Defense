@@ -3,14 +3,13 @@ package universite_paris8.iut.mcheema.codesource.modele.batiment;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 import universite_paris8.iut.mcheema.codesource.modele.Terrain;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
 
 import java.util.ArrayList;
 
 /**
- * La classe Surcadence permet d'augmenter la vitesse d'attaque des tours à proximité
- * Portée : faible
- * Prix : moyen
+ * La classe Surcadence est un type de bâtiment.
+ * Il possède une portée.
+ * Il  permet d'augmenter la vitesse d'attaque des tours à proximité.
  */
 public class Surcadence extends BatimentAvecPortee{
     private ArrayList<BatimentTir> batiments;
@@ -60,7 +59,6 @@ public class Surcadence extends BatimentAvecPortee{
     }
 
     public String avoirDescription() {
-        System.out.println(this.diviseCadence);
         return super.avoirDescription() + "\nDivise cadence par : " + this.diviseCadence;
     }
 }

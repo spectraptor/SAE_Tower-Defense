@@ -8,7 +8,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Terrain;
 import java.util.ArrayList;
 
 /**
- GrosBogue qui étend la classe Ennemi, contient les mêmes attributs que Ennemi. Il crée 2 Bogues à l'emplacement de sa mort
+ * La classe GrosBogue est un type d'ennemi qui représente un des boss du jeux.
+ * Il crée 2 bogues lorsque ses pvs sont faibles (<= 5) : un qui apparaît à l'endroit où il meurt, l'autre au début du chemin du GrosBogue.
  */
 public class GrosBogue extends Ennemi {
   

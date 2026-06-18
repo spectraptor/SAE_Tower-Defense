@@ -5,7 +5,8 @@ import universite_paris8.iut.mcheema.codesource.modele.Point;
 import java.util.ArrayList;
 
 /**
- * Ping qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ * Le Ping est un type d'ennemi du jeu.
+ * C'est l'ennemi le plus rapide du jeu.
  */
 public class Ping extends Ennemi {
     public Ping(Environnement env, ArrayList<Point> chemin) {super(2, 4, 10, env, chemin);}
