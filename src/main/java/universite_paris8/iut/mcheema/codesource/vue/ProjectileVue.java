@@ -34,7 +34,8 @@ public class ProjectileVue {
             if (Math.random() < 0.5) {
                 vueTete = new ImageView(imgProjectile0);
                 this.attacheSprite(vueTete, 4, "");
-            } else {
+            }
+            else {
                 vueTete = new ImageView(imgProjectile1);
                 this.attacheSprite(vueTete, 4, "");
             }

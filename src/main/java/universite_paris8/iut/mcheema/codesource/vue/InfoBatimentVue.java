@@ -168,16 +168,16 @@ public class InfoBatimentVue {
 
         boutonDeplacer.setOnAction(event -> {
             this.sonVue.jouerDeplacer();
-            //Enleve le PaneInfo lorsqu'on clique sur le bouton déplacer
+            // Enleve le PaneInfo lorsqu'on clique sur le bouton déplacer
             this.paneJeu.getChildren().remove(paneInfo);
-            //Crée un Pane temporaire pour le clique du déplacement du batiment ce Pane a exactement les memes dimension que le Pane de Jeu
+            // Crée un Pane temporaire pour le clique du déplacement du batiment ce Pane a exactement les memes dimension que le Pane de Jeu
             Pane paneTemp = new Pane();
             paneTemp.setPrefWidth(this.paneJeu.getPrefWidth());
             paneTemp.setPrefHeight(this.paneJeu.getPrefHeight());
             paneTemp.setId(this.batiment.getId()+"D");
             this.paneJeu.getChildren().add(paneTemp);
 
-            //Label qui affiche le cout du déplacement du batiment le cout est un dixieme du prix du batiment multiplié par le nombre de tuile déplacé
+            // Label qui affiche le cout du déplacement du batiment le cout est un dixieme du prix du batiment multiplié par le nombre de tuile déplacé
             Label labelCoutDep = new Label();
             labelCoutDep.setPrefWidth(220);
             labelCoutDep.setPrefHeight(50);
@@ -187,7 +187,7 @@ public class InfoBatimentVue {
             labelCoutDep.setId("labelCoutDepBat");
             this.paneJeu.getChildren().add(labelCoutDep);
 
-            //Crée une ImageView temporaire pour avoir un apercu du nouvelle emplacement du batiment
+            // Crée une ImageView temporaire pour avoir un apercu du nouvelle emplacement du batiment
             ImageView imgVBat = (ImageView) this.paneJeu.lookup("#" + this.batiment.getId());
             ImageView nouvImgVBat = new ImageView(imgVBat.getImage());
             nouvImgVBat.setDisable(true);
@@ -196,7 +196,7 @@ public class InfoBatimentVue {
             nouvImgVBat.setVisible(false);
             this.paneJeu.getChildren().add(nouvImgVBat);
 
-            //Portee visible lors du déplacement du batiment pour les batiments avec une portée
+            // Portee visible lors du déplacement du batiment pour les batiments avec une portée
             Circle rayonB;
             if(this.batiment instanceof BatimentAvecPortee) {
                 rayonB = new Circle();
@@ -215,11 +215,11 @@ public class InfoBatimentVue {
                 rayonB = null;
             }
 
-            //Désactive la vBox car si il y'a un rayon qui sort du pane et va dans la vBox cela peut faire crash
+            // Désactive la vBox car si il y'a un rayon qui sort du pane et va dans la vBox cela peut faire crash
             VBox vbox = (VBox) paneJeu.getScene().lookup("#vBoxBoutons");
             vbox.setDisable(true);
 
-            //Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
+            // Permet d'avoir des coordonnées sans passer par le pane de jeu sinon le joueur pourra déplacer a l'infini le batiment
             paneTemp.setOnMouseClicked(e -> {
                 this.sonVue.jouerPoserConfirmer();
                 this.batiment.deplacerBatiment((int)e.getX(),(int)e.getY());
@@ -230,9 +230,9 @@ public class InfoBatimentVue {
                 vbox.setDisable(false);
             });
 
-            //Permet d'afficher la nouvelle position semi-transparente du déplacement du batiment et également le cout du déplacement
+            // Permet d'afficher la nouvelle position semi-transparente du déplacement du batiment et également le cout du déplacement
             paneTemp.setOnMouseMoved(e-> {
-                //Enleve l'image si la tuile actuelle n'est pas utilisable par le batiment
+                // Enleve l'image si la tuile actuelle n'est pas utilisable par le batiment
                 if(this.batiment.getEnvironnement().tuileContientUnBatiment((int)e.getX(),(int)e.getY()) || !this.batiment.getEnvironnement().tuileTourPosable((int)e.getX(),(int)e.getY())) {
                     nouvImgVBat.setVisible(false);
                     if(rayonB != null) {
@@ -241,24 +241,24 @@ public class InfoBatimentVue {
                 }
 
                 else {
-                    //Affiche l'image si la tuile est une tuile posable pour le batiment
+                    // Affiche l'image si la tuile est une tuile posable pour le batiment
                     nouvImgVBat.setVisible(true);
                     if(rayonB != null) {
                         rayonB.setVisible(true);
                     }
                 }
 
-                //force le positionnement du batiment au centre de la tuile.
+                // Force le positionnement du batiment au centre de la tuile.
                 int[] tabLigneColBat = this.batiment.getEnvironnement().mettreCoordsSurCentreTuile((int)e.getX(),  (int)e.getY());
 
                 int distance = (int)(Math.abs(tabLigneColBat[1] - this.batiment.getX()) + Math.abs(tabLigneColBat[0] - this.batiment.getY())) / Terrain.TAILLE_TUILLE;
                 labelCoutDep.setText("  Prix du déplacement : " + Integer.toString(this.batiment.getPrix()/10 * distance));
 
-                //Force l'affichage de l'image au centre de la tuile pour avoir un apercu conforme au placement du batiment
+                // Force l'affichage de l'image au centre de la tuile pour avoir un apercu conforme au placement du batiment
                 nouvImgVBat.setTranslateX((tabLigneColBat[1] - Terrain.TAILLE_TUILLE/2));
                 nouvImgVBat.setTranslateY((tabLigneColBat[0] - Terrain.TAILLE_TUILLE/2));
 
-                //Le rayon suit la souris
+                // Le rayon suit la souris
                 if(rayonB != null) {
                     rayonB.setCenterX(tabLigneColBat[1]);
                     rayonB.setCenterY(tabLigneColBat[0]);

@@ -9,22 +9,10 @@ import java.util.Map;
 Le BFS est l'algorithme qui permet de trouver et renvoyer le chemin le plus court.
  */
 public class BFS {
-    /**
-     * Le graphe (ou grille) sur lequel on travaille
-     */
+
     private Terrain terrain;
-    /**
-     * Le sommet source de l'algo
-     */
-  
     private Point source;
-    /**
-     * Liste des sommets de la composante connexe de g obtenue par un parcours en largeur depuis le sommet source
-     */
     private ArrayList<Point> parcours;
-    /**
-     * Chaque sommet (clé) est associé à son prédécesseur (valeur) du parcours en largeur
-     */
     private Map<Point, Point> predecesseurs;
 
     public BFS(Terrain terrain, Point source) {
@@ -80,30 +68,6 @@ public class BFS {
         return chemin;
     }
 
-    /*************************************************
-     **** Pas de modifications à faire ci-dessous ****
-     *************************************************/
-
-    public ArrayList<Point> getParcours() {
-        return parcours;
-    }
-
-    public Map<Point, Point> getPredecesseurs() {
-        return predecesseurs;
-    }
-
-    /**
-     * Mise à jour quand la source est modifiée suite à un clic droit
-     *
-     * @param source
-     *            le nouveau sommet source
-     */
-  
-    public void setSource(Point source) {
-        this.source = source;
-        clear();
-        algoBFS();
-    }
 
     /**
      * Mise à jour suite au changement de graphe

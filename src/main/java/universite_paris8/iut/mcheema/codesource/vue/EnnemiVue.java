@@ -61,7 +61,7 @@ public class EnnemiVue {
         else
             ennemiImgView = new ImageView(imgErreurSynt);
 
-        //Barre de vie bind sur la tete de l'ennemi
+        // Barre de vie bind sur la tete de l'ennemi
         ProgressBar barreVie = new ProgressBar();
         barreVie.setId(this.ennemi.getId() + "VIE");
 
@@ -86,7 +86,7 @@ public class EnnemiVue {
         else {
             // La largeur d'un ennemi est de 32 pixel
             barreVie.setPrefWidth(32);
-            //Mettre la couleur de la barre de vie en vert
+            // Mettre la couleur de la barre de vie en vert
             barreVie.setStyle("-fx-accent: green;");
         }
 

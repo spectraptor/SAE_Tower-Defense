@@ -26,7 +26,7 @@ public abstract class Ennemi extends Entite {
     private int indiceChemin;
 
     public Ennemi(int pv, int vitesse, int argentDonne, Environnement env, ArrayList<Point> chemin) {
-        super("E" + idCpt++, 0, 0, env); // 0, 0??
+        super("E" + idCpt++, 0, 0, env);
         this.pvProperty = new SimpleIntegerProperty(pv);
         this.vitesse = vitesse;
         this.argentDonne = argentDonne;

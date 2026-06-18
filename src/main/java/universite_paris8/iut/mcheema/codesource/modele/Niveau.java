@@ -47,7 +47,4 @@ public class Niveau {
         return entrees;
     }
 
-    public int getNbreEntres() {
-        return this.entrees.size();
-    }
 }

@@ -20,7 +20,6 @@ public class Terrain {
     public void initialiseTerrain() {
         /*
         h = sol
-        t = terre
         e = glitch1 --
         c = glitch2 /-
         d = glitch3 -\
