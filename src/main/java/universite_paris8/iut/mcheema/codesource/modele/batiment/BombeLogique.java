@@ -28,11 +28,17 @@ public class BombeLogique extends BatimentTir {
                 projectile.setVitesse( (projectile.getVitesse() * 2));
                 break;
             case 4:
-                projectile.setVitesse(projectile.getVitesse()*3);
-                projectile.setDegat(projectile.getDegat() * 2);
-                 break;
+                projectile.setVitesse(projectile.getVitesse() * 3);
+                break;
         }
         return projectile;
+    }
+
+    @Override
+    public void ameliorerBatiment() {
+        super.ameliorerBatiment();
+        if(this.getNiveau() == this.getNiveauMax())
+            this.setDegat(this.getDegat() * 2);
     }
 
 }

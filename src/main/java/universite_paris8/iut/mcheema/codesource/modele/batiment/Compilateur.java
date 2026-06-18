@@ -30,7 +30,6 @@ public class Compilateur extends BatimentTir {
                 break;
             case 4 :
                 projectile.setVitesse((int) (projectile.getVitesse()*2.5));
-                projectile.setDegat(projectile.getDegat() * 2);
                 break;
         }
         return projectile;

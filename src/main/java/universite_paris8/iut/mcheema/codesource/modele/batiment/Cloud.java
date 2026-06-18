@@ -32,7 +32,6 @@ public class Cloud extends BatimentTir {
                 break;
             case 4 :
                 projectile.setVitesse(projectile.getVitesse()*2);
-                projectile.setDegat(projectile.getDegat() * 2);
                 break;
         }
         return projectile;

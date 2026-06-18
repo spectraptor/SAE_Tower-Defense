@@ -42,6 +42,10 @@ public abstract class BatimentTir extends BatimentAvecPortee{
         return this.degat;
     }
 
+    public void setDegat(int degat) {
+        this.degat = degat;
+    }
+
     public double getCadenceTir() {
         return this.cadenceTir;
     }
