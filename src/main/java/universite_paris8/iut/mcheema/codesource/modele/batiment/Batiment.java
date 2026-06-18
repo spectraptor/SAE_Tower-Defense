@@ -63,6 +63,19 @@ public abstract class Batiment extends Entite {
         }
     }
 
+
+    /**
+     * Déplace le bâtiment vers une nouvelle position sur le terrain.
+     * Le déplacement est soumis à plusieurs conditions :
+     * - la tuile cible doit être valide et libre
+     * - le joueur doit disposer de suffisamment d'argent pour payer le coût du déplacement
+     *
+     * Le coût du déplacement est calculé en fonction de la distance (en tuiles) entre
+     * la position actuelle et la nouvelle position, multiplié par 1/10 du prix du batiment.
+     *
+     * @param nouvX la nouvelle coordonnée X du batiment
+     * @param nouvY la nouvelle coordonnée Y du batiment
+     */
     public void deplacerBatiment(int nouvX,int nouvY) {
         int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
         double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
