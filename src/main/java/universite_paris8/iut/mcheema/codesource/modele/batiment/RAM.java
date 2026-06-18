@@ -16,6 +16,10 @@ public class RAM extends Batiment {
         this.tempsAtt = 400;
     }
 
+    public int getArgentDonne() {
+        return this.argentDonne;
+    }
+
     @Override
     public void effectueAction() {
         if(this.getEnvironnement().getNbTours() % this.tempsAtt == 0) {

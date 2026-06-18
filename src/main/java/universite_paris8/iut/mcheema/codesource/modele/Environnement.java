@@ -70,6 +70,10 @@ public class Environnement {
         return this.base;
     }
 
+    public void setNbTours(int tour) {
+        this.nbTours = tour;
+    }
+
     public void unTour() {
         if(!this.partieEstFinie()) {
             this.gestionVague.mettreAJour();
