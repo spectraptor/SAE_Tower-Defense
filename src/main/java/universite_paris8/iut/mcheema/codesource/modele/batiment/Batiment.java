@@ -64,15 +64,15 @@ public abstract class Batiment extends Entite {
     }
 
     public void deplacerBatiment(int nouvX,int nouvY) {
-        if(this.getEnvironnement().getArgent() >= this.getPrix() / 2) {
-            int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
-            double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
-
+        int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
+        double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
+        int prixDepBatiment = (int) ((this.getPrix() /10) * distanceNbTuile);
+        if(this.getEnvironnement().getArgent() >= prixDepBatiment) {
             if(!this.getEnvironnement().partieEstFinie()) {
                 if(this.getEnvironnement().tuileTourPosable(nouvX,nouvY) && !this.getEnvironnement().tuileContientUnBatiment(tabLigneColCentreBat[1],tabLigneColCentreBat[0])) {
                     this.setX(tabLigneColCentreBat[1]);
                     this.setY(tabLigneColCentreBat[0]);
-                    this.getEnvironnement().setArgent((int) (this.getEnvironnement().getArgent() - (this.getPrix() /10) * distanceNbTuile));
+                    this.getEnvironnement().setArgent((this.getEnvironnement().getArgent() - prixDepBatiment));
                 }
             }
         }
