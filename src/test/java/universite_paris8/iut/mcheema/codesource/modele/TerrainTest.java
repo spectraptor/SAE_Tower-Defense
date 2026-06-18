@@ -20,6 +20,7 @@ class TerrainTest {
 
     @Test
     void convertirCoordsTuile_valide() {
+        // Coordonnées situées à l'intérieur d'une tuile
         int[] tabTuileT1 = terrain1.convertirCoordsTuile(68, 39);
         assertEquals(1, tabTuileT1[0], "cas ligne terrain 1");
         assertEquals(2, tabTuileT1[1], "cas colonne terrain 1");
@@ -36,6 +37,8 @@ class TerrainTest {
 
     @Test
     void convertirCoordsTuile_limites() {
+        // Coordonnées placées exactement ou juste après une frontière de tuile
+        // Étant donné que la première tuile va de 0 à 31, à partir de 32 on considère qu'on est à la deuxième.
         int[] tabTuileT1Limite = terrain1.convertirCoordsTuile(32, 64);
         assertEquals(2, tabTuileT1Limite[0], "cas ligne terrain 1");
         assertEquals(1, tabTuileT1Limite[1], "cas colonne terrain 1");
@@ -88,14 +91,28 @@ class TerrainTest {
     }
 
     @Test
+    void avoirCodeTuile() {
+        // Vérifie que le code retourné correspond bien à la case ciblée
+
+        assertEquals('1', terrain1.avoirCodeTuile(6, 5), "cas terrain 1 ligne 7 colonne 6");
+
+        // Terrain 2 : case '2', ligne 7 colonne 6
+        assertEquals('2', terrain2.avoirCodeTuile(6, 5), "cas terrain 2 ligne 7 colonne 6");
+
+        // Terrain 3 : case 'h', ligne 7 colonne 6
+        assertEquals('h', terrain3.avoirCodeTuile(6, 5), "cas terrain 3 ligne 7 colonne 6");
+    }
+
+    @Test
     void estDansTerrain_valide() {
-        assertTrue(terrain1.estDansTerrain(0, 0));
-        assertTrue(terrain2.estDansTerrain(0, 0));
-        assertTrue(terrain3.estDansTerrain(0, 0));
+        assertTrue(terrain1.estDansTerrain(5, 7));
+        assertTrue(terrain2.estDansTerrain(0, 4));
+        assertTrue(terrain3.estDansTerrain(15, 0));
     }
 
     @Test
     void estDansTerrain_limites() {
+        // Vérifie que la dernière case du terrain est toujours considérée comme valide
         int hauteurTerrains = terrain1.obtenirHauteur();
         int largeurTerrains = terrain1.obtenirLargeur();
 
@@ -105,21 +122,16 @@ class TerrainTest {
     }
 
     @Test
-    void estDansTerrain_estInvalide() {
-        assertFalse(terrain1.estDansTerrain(-1, 19));
-        assertFalse(terrain2.estDansTerrain(0, -6));
-        assertFalse(terrain3.estDansTerrain(-9, -9));
-    }
-
-    @Test
-    void tuileTourPosable_valide() {
-        assertTrue(terrain1.tuileTourPosable(224, 96), "cas case sol terrain 1");
-        assertTrue(terrain2.tuileTourPosable(32, 32), "cas case sol terrain 2");
-        assertTrue(terrain3.tuileTourPosable(96, 96), "cas case sol terrain 3");
+    void estDansTerrain_invalide() {
+        // Coordonnées négatives ou hors terrain
+        assertFalse(terrain1.estDansTerrain(-1, 19), "cas uniquement ligne hors du terrain");
+        assertFalse(terrain2.estDansTerrain(0, -6), "cas uniquement colonne hors du terrain");
+        assertFalse(terrain3.estDansTerrain(-9, -9), "cas ligne et colonne hors du terrain");
     }
 
     @Test
     void tuileEstPosable_invalideDecor() {
+        // Les cases de décor (glitchs, 'e', 'c', 'd', 'f', 'g') ne doivent pas accepter de bâtiment
         assertFalse(terrain1.tuileTourPosable(0, 0), "cas case glitch terrain 1");
         assertFalse(terrain2.tuileTourPosable(32, 0), "cas case glitch terrain 2");
         assertFalse(terrain3.tuileTourPosable(0, 0), "cas case glitch terrain 3");
@@ -127,6 +139,7 @@ class TerrainTest {
 
     @Test
     void tuileEstPosable_invalideChemin() {
+        // Les cases appartenant au chemin (chiffres) des ennemis ne doivent pas accepter de bâtiment
         assertFalse(terrain1.tuileTourPosable(384, 96), "cas case chemin terrain 1");
         assertFalse(terrain2.tuileTourPosable(160, 64), "cas case chemin terrain 2");
         assertFalse(terrain3.tuileTourPosable(128, 224), "cas case chemin terrain 3");

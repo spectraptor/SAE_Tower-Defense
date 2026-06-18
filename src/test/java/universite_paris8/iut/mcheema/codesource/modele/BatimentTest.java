@@ -17,7 +17,6 @@ public class BatimentTest {
 
     private BombeLogique bombeLogique;
     private Cloud cloud;
-    private Debugger debugger;
     private RAM ram;
 
     private Batiment[] batiments;
@@ -25,8 +24,8 @@ public class BatimentTest {
     private Environnement environnement;
 
     @BeforeEach()
-    void initTruc() {
-
+    void initialiserBatiments() {
+        // Chemin minimal nécessaire à la création des ennemis
         this.chemin = new ArrayList<>();
         this.chemin.add(new Point(1,1));
 
@@ -34,13 +33,19 @@ public class BatimentTest {
 
         this.bombeLogique = new BombeLogique(0, 0, this.environnement);
         this.cloud = new Cloud(0, 0, this.environnement);
-        this.debugger = new Debugger(0, 0, this.environnement);
         this.ram = new RAM(0, 0, this.environnement);
-        this.batiments = new Batiment[]{this.bombeLogique, this.cloud, this.debugger, this.ram};
+        this.batiments = new Batiment[]{
+                this.bombeLogique,
+                this.cloud,
+                new Debugger(0, 0, this.environnement),
+                this.ram
+        };
     }
 
     @Test
     void incrementerNiveau() {
+        // Vérifie que tous les bâtiments gagnent exactement un niveau
+
         for (Batiment b : this.batiments) {
             int ancienNiv = b.getNiveau();
 
@@ -52,21 +57,21 @@ public class BatimentTest {
 
     @Test
     void coutAmelioration() {
+        // Le coût d'amélioration doit augmenter après chaque niveau
 
-        for(Batiment b : batiments){
-
-            int ancien = b.coutProchaineAmelioration();
+        for(Batiment b : batiments) {
+            int ancienPrix = b.coutProchaineAmelioration();
 
             b.incrementerNiveau();
 
-            assertTrue(
-                    b.coutProchaineAmelioration() > ancien
-            );
+            assertTrue(b.coutProchaineAmelioration() > ancienPrix);
         }
     }
 
     @Test
-    void cloudPeutAttaquer() {
+    void peutAttaquer_Cloud() {
+        // Cloud peut détecter les ennemis classiques mais pas les ennemis camouflés (pas ChevalDeTroie)
+
         Ping ping = new Ping(this.environnement, this.chemin);
         ChevalDeTroie chevalDeTroie = new ChevalDeTroie(this.environnement, this.chemin);
 
@@ -76,26 +81,36 @@ public class BatimentTest {
 
 
     @Test
-    void BombeLogiquePeutAttaquer() {
+    void peutAttaquer_BombeLogique() {
+        // BombeLogique attaque uniquement les ennemis terrestres non camouflés (pas ChevalDeTroie ni DroneEspion)
+
         Ping ping = new Ping(this.environnement, this.chemin);
         DroneEspion droneEspion = new DroneEspion(this.environnement, this.chemin);
         ChevalDeTroie chevalDeTroie = new ChevalDeTroie(this.environnement, this.chemin);
 
         assertTrue(this.bombeLogique.peutAttaquer(ping), "cas ennemi non camouflé");
         assertFalse(this.bombeLogique.peutAttaquer(droneEspion), "cas ennemi volant");
-        assertFalse(this.cloud.peutAttaquer(chevalDeTroie), "cas ennemi camouflé");
+        assertFalse(this.bombeLogique.peutAttaquer(chevalDeTroie), "cas ennemi camouflé");
     }
 
 
     @Test
-    void effectueActionCloud_toucheEnnemi() {
-        // Cloud tire tous les tours
+    /*
+     * Les tests suivants sont pour démontrer (ou à l'inverse refuter) le fait qu'un bâtiment (ici Cloud) peut attaquer des ennemis dans sa portée.
+     * Si le bâtiment est capable d'attaquer l'ennemi, alors un projectile est crée. Sinon, aucun n'est produit.
+     */
+    void effectueActionCloud_toucheEnnemiDansPortee() {
+        // Cloud tire à chaque tour pour simplifier le test
+
         this.environnement.setNbTours(0);
         this.cloud.setCadenceTir(1);
 
         int ancienNbreProjectiles = this.environnement.getProjectiles().size();
 
         Ping ping = new Ping(this.environnement, this.chemin);
+
+        // Ennemi placé dans la portée du Cloud
+        // sqrt(21² + 23²) = 31 < 50 (portée du Cloud) -> peut tirer sur l'ennemi
         ping.setX(21);
         ping.setY(23);
 
@@ -109,8 +124,9 @@ public class BatimentTest {
     }
 
     @Test
-    void effectueActionCloud_touchePasEnnemiSpecal() {
-        // Cloud tire tous les tours
+    void effectueActionCloud_touchePasEnnemiSpecalDansPortee() {
+        // Ennemi camouflé : Cloud ne doit pas tirer
+
         this.environnement.setNbTours(0);
         this.cloud.setCadenceTir(1);
 
@@ -131,13 +147,16 @@ public class BatimentTest {
 
     @Test
     void effectueActionCloud_neTouchePasEnnemi() {
-        // Cloud tire tous les tours
+        // Ennemi placé hors de portée
+
         this.environnement.setNbTours(0);
         this.cloud.setCadenceTir(1);
 
         int ancienNbreProjectiles = this.environnement.getProjectiles().size();
 
         Ping ping = new Ping(this.environnement, this.chemin);
+
+        // sqrt(51² + 50²) = 71 > 50 (portée du Cloud) -> hors de portée
         ping.setX(51);
         ping.setY(50);
 
@@ -151,6 +170,8 @@ public class BatimentTest {
 
     @Test
     void effectueActionCloud_unSeulProjectile() {
+        // Deux ennemis dans la portée :
+        // un seul projectile doit être créé (pour un seul ennemi)
 
         cloud.setCadenceTir(1);
         environnement.setNbTours(0);
@@ -175,24 +196,31 @@ public class BatimentTest {
 
     @Test
     void effectueActionCloud_aucunEnnemi() {
+        // Aucun ennemi présent sur le terrain
 
         cloud.setCadenceTir(1);
         environnement.setNbTours(0);
 
-        int avant = environnement.getProjectiles().size();
+        int nbreProjectiles = environnement.getProjectiles().size();
 
         cloud.effectueAction();
 
-        assertEquals(avant,
+        assertEquals(nbreProjectiles,
                 environnement.getProjectiles().size(),
                 "aucun ennemi = aucun tir");
     }
 
     @Test
     void effectueActionRAM() {
+        // La RAM produit de l'argent lorsque son temps d'attente est atteint
+
+        // Met le nombre de tours de l'environnement égal au temps d'attente de la RAM pour qu'il puisse générer de l'argent.
         this.environnement.setNbTours(400);
+
         int ancienArgent = this.environnement.getArgent();
+
         this.ram.effectueAction();
+
         assertEquals(ancienArgent + this.ram.getArgentDonne(), this.environnement.getArgent(), "cas argent génerée par bat ram");
     }
 }
