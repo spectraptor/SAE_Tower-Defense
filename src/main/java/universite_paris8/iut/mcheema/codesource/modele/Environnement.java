@@ -31,7 +31,7 @@ public class Environnement {
         this.gestionVague = new GestionVague(niveau, this);
         this.nbTours = 0;
         this.base = new Base();
-        this.argentProperty = new SimpleIntegerProperty(50000);
+        this.argentProperty = new SimpleIntegerProperty(500);
     }
 
     public Terrain getTerrainDeJeu() {
