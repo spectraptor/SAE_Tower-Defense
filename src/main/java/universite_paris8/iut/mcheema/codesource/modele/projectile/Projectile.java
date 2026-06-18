@@ -35,6 +35,10 @@ public abstract class Projectile extends Entite {
         return this.degat;
     }
 
+    public void setDegat(int degat) {
+        this.degat = degat;
+    }
+
     public boolean getEstArrive() {
         return this.estArrive;
     }
