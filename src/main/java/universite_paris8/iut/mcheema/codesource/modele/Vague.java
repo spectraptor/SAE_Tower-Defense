@@ -102,6 +102,16 @@ public class Vague {
         return this.listeEnnemisVague.isEmpty() && this.environnement.getEnnemis().isEmpty();
     }
 
+
+    /**
+     * Permet de choisir aléatoirement un chemin à suivre.
+     * Par exemple, si une carte possède deux bases et donc
+     * deux chemins différents à suivre, un chemin sera choisi
+     * aléatoirement.
+     *
+     * @param chemins tous les chemins reçus dans une ArrayList
+     * @return un chemin choisi aléatoirement parmi tous les chemins
+     */
     public ArrayList<Point> choisirAleatoirementChemin(ArrayList<ArrayList<Point>> chemins) {
         int numeroChemin = (int) (Math.random() * chemins.size());
         return chemins.get(numeroChemin);
