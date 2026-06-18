@@ -1,49 +1,85 @@
 
-#interfaceGauche {
-    -fx-background-color: #2b2d30;
-}
-
-.label {
-    -fx-font-size: 12pt;
-    -fx-text-fill: #f5f5f5;
-}
-
-#labelArgent, #labelVague {
-    -fx-text-fill: #000000;
-    -fx-font-size: 15pt;
-    fx-font-weight: bold;
-
-}
-
-#labelVieBase {
-    -fx-font-size: 20pt;
-    -fx-text-fill: #ff6b68;
-    -fx-font-weight: bold;
-}
 
 .button {
-
     -fx-background-color: #272727;
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+
     -fx-border-color: #4d4e51;
     -fx-border-width: 2;
     -fx-border-radius: 6;
-    -fx-text-fill: #f5f5f5;
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 11pt;
 }
 
 .button:hover {
-    -fx-background-color: #20252b;
-    -fx-border-color: #5a5b5f;
+    -fx-background-color: #858585;
 }
 
 .button:pressed {
     -fx-background-color: #20252b;
 }
 
-.button:focused {
-    -fx-border-color: #a4c9ff;
-    -fx-border-width: 2;
+
+#boutonAccel {
+    -fx-background-image: url("images/boutons/vitesse.png");
+    -fx-background-size: contain;
+}
+
+#boutonMenu {
+    -fx-background-image: url("images/boutons/param.png");
+    -fx-background-size: contain;
 }
 
 
+#pauseReprendre {
+    -fx-background-image: url("images/boutons/pause.png");
+    -fx-background-size: contain;
+}
+
+#pauseQuitter {
+    -fx-background-image: url("images/boutons/sortie.png");
+    -fx-background-size: contain;
+}
+
+
+#textInfoBatiment, #labelCoutDepBat{
+    -fx-background-color: #272727;
+    -fx-border-color: #4d4e51;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #f5f5f5;
+    -fx-font-size: 11pt;
+    -fx-opacity: 0.8;
+}
+
+#boutonQuitterInfoBat:hover {
+    -fx-background-color: #810000;
+}
+
+#lv1 {
+    -fx-background-image: url("images/screens/map1.png");
+    -fx-background-size: contain;
+    -fx-border-radius: 0;
+}
+
+#lv2 {
+    -fx-background-image: url("images/screens/map2.png");
+    -fx-background-size: contain;
+    -fx-border-radius: 0;
+}
+
+#lv3 {
+    -fx-background-image: url("images/screens/map3.png");
+    -fx-background-size: contain;
+    -fx-border-radius: 0;
+}
+
+
+#boutonDeplacer, #boutonVendre, #boutonAmeliorer, #boutonQuitterInfoBat {
+    -fx-text-fill: WHITE;
+}
+
+.root {
+    -fx-background-color: #9a9292;
+    -fx-background-image: url("images/fondJeu.png");
+}

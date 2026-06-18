@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@stylevisu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.mcheema.codesource.controleur.ControleurAccueil">
+   <Pane fx:id="menuPrincipal" prefHeight="480.0" prefWidth="900.0">
+      <VBox layoutX="200.0" layoutY="40.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(255,255,255,0.7);">
+         <Label layoutX="-50.0" prefHeight="63.0" prefWidth="400.0" text="SAE : Code Defense">
+            <font>
+               <Font name="Chilanka Regular" size="42.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="50.0" top="30.0" />
+            </VBox.margin>
+         </Label>
+         <Button mnemonicParsing="false" onAction="#lancerMenu" prefHeight="50.0" prefWidth="250.0" text="JOUER" textFill="WHITE">
+            <VBox.margin>
+               <Insets left="125.0" top="6.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="135.0" layoutY="35.0" mnemonicParsing="false" onAction="#lancerParametres" prefHeight="50.0" prefWidth="250.0" text="PARAMETRES" textFill="WHITE">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#lancerCredit" prefHeight="50.0" prefWidth="250.0" text="CREDITS" textFill="WHITE">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="250.0" text="QUITTER" textFill="WHITE">
+            <VBox.margin>
+               <Insets left="125.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+      </VBox>
+   </Pane>
+   <Pane fx:id="menuNiveau" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <HBox layoutY="56.0" prefHeight="300.0" prefWidth="900.0">
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+         <Button id="lv1" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="1" textFill="WHITE">
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin>
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+         <Button id="lv2" layoutX="10.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="2" textFill="WHITE">
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin>
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+         <Button id="lv3" layoutX="260.0" layoutY="10.0" minHeight="250.0" minWidth="250.0" mnemonicParsing="false" onAction="#choisirNiveau" text="3" textFill="WHITE">
+            <font>
+               <Font size="42.0" />
+            </font>
+         </Button>
+      </HBox>
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
+   </Pane>
+   <Pane fx:id="menuCredits" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <Pane layoutX="72.0" layoutY="40.0" opacity="0.7" prefHeight="400.0" prefWidth="747.0" style="-fx-background-color: white;" />
+      <Label layoutX="95.0" layoutY="33.0" prefHeight="80.0" prefWidth="711.0" text="Jeu réalisé dans le cadre d'une SAÉ">
+         <font>
+            <Font name="Chilanka Regular" size="42.0" />
+         </font>
+      </Label>
+      <Label layoutX="253.0" layoutY="73.0" prefHeight="80.0" prefWidth="446.0" text="BUT Informatique IUT de Montreuil">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
+      <Label layoutX="342.0" layoutY="153.0" prefHeight="80.0" prefWidth="446.0" text="Réalisé par : ">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="193.0" prefHeight="80.0" prefWidth="446.0" text="Mohammad Cheema">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="233.0" prefHeight="80.0" prefWidth="446.0" text="Abdel-Malik Pansan">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="273.0" prefHeight="80.0" prefWidth="446.0" text="Valentin Huang">
+         <font>
+            <Font name="Chilanka Regular" size="25.0" />
+         </font>
+      </Label>
+   </Pane>
+   <Pane fx:id="menuParametres" prefHeight="480.0" prefWidth="900.0" visible="false">
+      <children>
+         <Button layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#retourMenu" prefHeight="50.0" prefWidth="250.0" text="RETOUR" textFill="WHITE" />
+         <ScrollPane layoutX="275.0" layoutY="40.0" prefHeight="300.0" prefWidth="350.0">
+            <content>
+               <VBox prefHeight="550.0" prefWidth="300.0">
+                  <children>
+                     <Label text="Effets sonores" />
+                     <Slider fx:id="sliderSon" onMouseReleased="#jouerSon" value="50.0" />
+
+                  </children>
+                  <padding>
+                     <Insets left="50.0" top="20.0" />
+                  </padding>
+               </VBox>
+            </content>
+         </ScrollPane>
+      </children>
+   </Pane>
+</AnchorPane>
