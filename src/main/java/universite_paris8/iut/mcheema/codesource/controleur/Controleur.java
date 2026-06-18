@@ -2,29 +2,39 @@ package universite_paris8.iut.mcheema.codesource.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
+import universite_paris8.iut.mcheema.codesource.Main;
+import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeBatiments;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeEnnemis;
 import universite_paris8.iut.mcheema.codesource.controleur.listeners.ObservateurListeProjectiles;
 import universite_paris8.iut.mcheema.codesource.modele.*;
 import javafx.util.Duration;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ErreurExecution;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.ChevalDeTroie;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Bogue;
-import universite_paris8.iut.mcheema.codesource.modele.ennemi.Ennemi;
-import universite_paris8.iut.mcheema.codesource.vue.BatimentVue;
+import universite_paris8.iut.mcheema.codesource.modele.ennemi.*;
+import universite_paris8.iut.mcheema.codesource.vue.SonVue;
 import universite_paris8.iut.mcheema.codesource.vue.TerrainVue;
+
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
  * Le controleur fait la gestion entre le modèle et la vue.
- * Elle contient les listners, la gameloop et agit aussi selon les actions du joueur sur le jeu.
+ * Il s'occupe d'effectuer les différents bindings, et d'ajouter les listeners nécessaires, et possède la gameloop.
+ * Il s'occupe également des interactions utilisateurs, tels que l'achat d'un bâtiment lorsqu'on appuie sur un bouton.
  */
 
 public class Controleur implements Initializable {
@@ -32,6 +42,14 @@ public class Controleur implements Initializable {
     private Timeline gameLoop;
 
     private Environnement environnement;
+
+    private boolean etatRapide = false;
+
+    private boolean etatPause = true;
+
+    private int numBatimentSelectionne = -1;
+
+    private SonVue sonVue;
 
     @FXML
     private TilePane tilePane;
@@ -42,57 +60,54 @@ public class Controleur implements Initializable {
     @FXML
     private Label labelVieBase;
 
+    @FXML
+    private  Label labelArgent;
+
+    @FXML
+    private Label labelVague;
+
+    @FXML
+    private Pane menuPause;
+
+    @FXML
+    private Button boutonLancerPause;
+
+    @FXML
+    private BorderPane borderPanePrincipal;
+
+    @FXML
+    private Pane paneFin;
+
+    @FXML
+    private Label labelResultat;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.initialiseBoutonStop();
+        borderPanePrincipal.lookupAll(".button").forEach(node -> {
+            node.setOnMouseEntered(e -> sonVue.jouerClique());
+            node.setOnMouseClicked(e -> sonVue.jouerBoutonCliquer());
+        });
+        initAnimation();
+    }
 
-        this.environnement = new Environnement(2);
+    public void chargerNiveau(int niveau) {
+
+        this.environnement = new Environnement(niveau);
+
         this.labelVieBase.textProperty().bind(this.environnement.getBase().pvProperty().asString());
+        this.labelArgent.textProperty().bind(this.environnement.argentProperty().asString());
+        this.labelVague.textProperty().bind(this.environnement.getGestionVague().numVagueCouranteProperty().add(1).asString());
 
         // Listener sur l'Observable Liste d'ennemis
-        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu));
-        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu));
+        this.environnement.getEnnemis().addListener(new ObservateurListeEnnemis(this.paneJeu, this.sonVue));
+        this.environnement.getBatiments().addListener(new ObservateurListeBatiments(this.paneJeu, this.sonVue));
+        this.environnement.getProjectiles().addListener(new ObservateurListeProjectiles(this.paneJeu, this.sonVue));
 
         this.tilePane.setPrefSize(this.environnement.getTerrainDeJeu().obtenirLargeur() * Terrain.TAILLE_TUILLE, this.environnement.getTerrainDeJeu().obtenirHauteur() * Terrain.TAILLE_TUILLE);
         TerrainVue terrainVue = new TerrainVue(this.environnement.getTerrainDeJeu(), this.tilePane);
 
-        // Définir l'entrée donc le point de spawn des ennemis et ou se situe la base à atteindre pour les ennemis
-        /*
-        Tuile baseTuile = new Tuile(0, 12);
-        Tuile entree = new Tuile(19, 4);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
-
-         */
-
-        // Carte 2
-        Tuile baseTuile = new Tuile(0, 7);
-        Tuile entree = new Tuile(15, 0);
-        BFS bfs = new BFS(this.environnement.getTerrainDeJeu(), entree);
-        ArrayList<Tuile> chemin = bfs.cheminVersSource(baseTuile);
-
-        Tuile baseTuile2 = new Tuile(0, 11);
-        Tuile entree2 = new Tuile(13, 14);
-        BFS bfs2 = new BFS(this.environnement.getTerrainDeJeu(), entree2);
-        ArrayList<Tuile> chemin2 = bfs2.cheminVersSource(baseTuile2);
-
-
-        Ennemi ennemi;
-        for(int i = 0;i<2;i++) {
-            if(i==0) {
-                ennemi = new Bogue(this.environnement);
-                ennemi.setChemin(chemin);
-            }
-            else {
-                ennemi = new ErreurExecution(this.environnement);
-                ennemi.setChemin(chemin2);
-            }
-
-            this.environnement.ajouterEnnemi(ennemi);
-        }
-
         terrainVue.afficheTerrainJeu();
-        this.initAnimation();
-        this.gameLoop.play();
     }
 
     private void initAnimation() {
@@ -104,6 +119,18 @@ public class Controleur implements Initializable {
                 Duration.seconds(0.017),
                 ev -> {
                     environnement.unTour();
+                    if (environnement.partieEstFinie()) {
+                        gameLoop.stop();
+                        if (environnement.getBase().getPv() > 0) {
+                            labelResultat.setText("VICTOIRE");
+                            labelResultat.setStyle("-fx-text-fill: lime;");
+                        } else {
+                            labelResultat.setText("DEFAITE");
+                            labelResultat.setStyle("-fx-text-fill: red;");
+                        }
+                        paneFin.setVisible(true);
+                        paneFin.toFront();
+                    }
                 }
         );
         gameLoop.getKeyFrames().add(kf);
@@ -111,30 +138,105 @@ public class Controleur implements Initializable {
 
     @FXML
     public void ajouterTour(MouseEvent mouseEvent) {
-        if (!this.environnement.partieEstFinie()) {
-            int coordsSourisX = (int) mouseEvent.getX();
-            int coordsSourisY = (int) mouseEvent.getY();
+        int coordsSourisX = (int) mouseEvent.getX();
+        int coordsSourisY = (int) mouseEvent.getY();
 
-            int[] lignesColonnesTuile = this.environnement.getTerrainDeJeu().convertirCoordsTuile(coordsSourisX, coordsSourisY);
-
-            int centreTuileX = lignesColonnesTuile[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-            int centreTuileY = lignesColonnesTuile[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-
-            if (!this.environnement.tuileEstAccessibleCoords(coordsSourisX, coordsSourisY) &&
-                    !this.environnement.estAdjacentATour(centreTuileX, centreTuileY)) {
-
-                Batiment batiment = new Tour1(centreTuileX, centreTuileY, this.environnement);
-                this.environnement.ajouterBatiment(batiment);
-
-                System.out.println(batiment);
-
-                BatimentVue batimentVue = new BatimentVue(batiment, this.paneJeu);
-                batimentVue.creerSpriteBatiment();
-
-                System.out.println("Pos. souris : " + coordsSourisX + ";" + coordsSourisY);
-
-            }
+        if (this.numBatimentSelectionne != -1) {
+            this.environnement.poserBatiment(coordsSourisX, coordsSourisY, this.numBatimentSelectionne);
+            this.numBatimentSelectionne = -1;
         }
+    }
+
+    @FXML
+    public void choisirBouton(ActionEvent actionEvent) {
+        Button bouton = (Button) actionEvent.getSource();
+
+        switch(bouton.getText()) {
+            case "Compilateur":
+                this.numBatimentSelectionne = 1;
+                break;
+            case "Cloud":
+                this.numBatimentSelectionne = 2;
+                break;
+            case "Debugger":
+                this.numBatimentSelectionne = 3;
+                break;
+            case "Bombe Logique":
+                this.numBatimentSelectionne = 4;
+                break;
+            case "Surcadence":
+                this.numBatimentSelectionne = 5;
+                break;
+            case "RAM":
+                this.numBatimentSelectionne = 6;
+                break;
+        }
+    }
+
+    @FXML
+    public void afficheReglage(ActionEvent actionEvent) {
+        etatPause = true;
+        gameLoop.pause();
+        menuPause.setVisible(true);
+        menuPause.toFront();
+    }
+
+    @FXML
+    public void accelererOuRalentir(ActionEvent actionEvent) {
+        if (etatRapide) {
+            gameLoop.setRate(1);
+            etatRapide = false;
+            System.out.println("Jeu mis en x1");
+
+        }
+        else {
+            gameLoop.setRate(2);
+            etatRapide = true;
+            System.out.println("Jeu mis en x2");
+        }
+    }
+
+    @FXML
+    public void lancer(ActionEvent actionEvent) {
+        Image imgPause = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/pause.png").toExternalForm());
+        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+        ImageView imgV;
+        if (this.etatPause) {
+            etatPause = false;
+            this.gameLoop.play();
+            menuPause.setVisible(false);
+            imgV = new ImageView(imgPause);
+        } else {
+            this.etatPause = true;
+            this.gameLoop.pause();
+            imgV = new ImageView(imgLancer);
+        }
+        imgV.setFitHeight(50);
+        imgV.setFitWidth(45);
+        this.boutonLancerPause.setGraphic(imgV);
+    }
+
+    @FXML
+    public void quitter(ActionEvent actionEvent) throws IOException {
+        this.gameLoop.stop();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueAccueil.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void initialiseBoutonStop() {
+        Image imgLancer = new Image(getClass().getResource("/universite_paris8/iut/mcheema/codesource/images/boutons/lancer.png").toExternalForm());
+        ImageView imgVLancer = new ImageView(imgLancer);
+        imgVLancer.setFitHeight(50);
+        imgVLancer.setFitWidth(45);
+        this.boutonLancerPause.setGraphic(imgVLancer);
+    }
+
+    public void setSonVue(SonVue sonVue) {
+        this.sonVue = sonVue;
     }
 
 }

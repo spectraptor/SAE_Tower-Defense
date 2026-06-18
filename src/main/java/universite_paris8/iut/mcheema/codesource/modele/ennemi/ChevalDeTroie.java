@@ -1,21 +1,17 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
+import java.util.ArrayList;
+
 /**
- * ChevalDeTroie qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ * La classe ChevalDeTroie est un type d'ennemi qui peut attaquer la tour.
+ * C'est un ennemi camouflé qui ne peut pas se faire attaquer par certains bâtiments (bombe logique, compilateur, cloud)
  */
 
-public class ChevalDeTroie extends Ennemi {
+public class ChevalDeTroie extends EnnemiCammoufle {
 
-    public ChevalDeTroie(Environnement env) {
-        super(3, 5, 4, env);
-    }
-    public ChevalDeTroie(int x, int y, Environnement env) {
-        super(x, y, 3, 5, 4, env);
-    }
+    public ChevalDeTroie(Environnement env, ArrayList<Point> chemin) {super(2, 1, 25, env, chemin);}
 
-    @Override
-    public boolean estCamoufle() {
-        return true;
-    }
+
 }

@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import universite_paris8.iut.mcheema.codesource.controleur.Controleur;
 import java.io.IOException;
 
 /**
@@ -14,12 +13,12 @@ import java.io.IOException;
 public class Main extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueAccueil.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 900, 480);
-        stage.setTitle("Hello!");
-        stage.setResizable(false);
+        stage.setTitle("SAE : Code Defense");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

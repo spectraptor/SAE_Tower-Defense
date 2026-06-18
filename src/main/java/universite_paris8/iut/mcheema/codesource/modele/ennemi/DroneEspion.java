@@ -1,15 +1,13 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
+import java.util.ArrayList;
+
 /**
  * DroneEspion qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
 
-public class DroneEspion extends Ennemi {
-    public DroneEspion(Environnement env) {
-        super(2, 3, 3, env);
-    }
-    public DroneEspion(int x, int y, Environnement env) {
-        super(x, y, 2, 3, 3, env);
-    }
+public class DroneEspion extends EnnemiVolant {
+    public DroneEspion(Environnement env, ArrayList<Point> chemin) {super(1, 3, 30, env, chemin);}
 }

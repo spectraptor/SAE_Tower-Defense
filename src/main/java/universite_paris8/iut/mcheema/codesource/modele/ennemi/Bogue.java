@@ -1,14 +1,14 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
+
+import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
+import java.util.ArrayList;
+
 /**
  * Bogue qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
  */
-
-import universite_paris8.iut.mcheema.codesource.modele.Environnement;
-
 public class Bogue extends Ennemi {
-    public Bogue(Environnement env) {super(2, 1, 2, env);}
-
-    public Bogue(int x, int y, Environnement env) {super(x, y, 2, 1, 2, env);}
-
+    public Bogue(Environnement env, ArrayList<Point> chemin) {super(3, 2, 15, env, chemin);}
+    public Bogue(double x, double y, Environnement env, ArrayList<Point> chemin) {super(3, 2, 15, env, chemin);}
 }

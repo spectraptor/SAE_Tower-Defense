@@ -1,30 +1,48 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
-import universite_paris8.iut.mcheema.codesource.modele.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
+import universite_paris8.iut.mcheema.codesource.modele.Terrain;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.Batiment;
+import universite_paris8.iut.mcheema.codesource.modele.batiment.BatimentTir;
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
 
+import java.util.ArrayList;
+
 /**
- * Ralentisseur qui étend la classe Ennemi, contient les mêmes attributs que Ennemi. Il ralentit la cadence d'attaque des tours autour de lui.
+ * La classe Ralentisseur est un type d'ennemi du jeu
+ * Il ralentit la cadence d'attaque des tours autour de lui.
+ * Il possède une portée d'attaque.
  */
 public class Ralentisseur extends Ennemi {
     private int ralentissement;
-
-    public Ralentisseur(Environnement env) {
-        super(10, 4, 10, env);
-        this.ralentissement = 8;
-    }
-
-    public Ralentisseur(int x, int y, Environnement env) {
-        super(x, y, 10, 4, 10, env);
-        this.ralentissement = 8;
+    private int portee;
+    private ArrayList<BatimentTir> batimentRalenti;
+    public Ralentisseur(Environnement env, ArrayList<Point> chemin) {
+        super(50, 1, 250, env, chemin);
+        this.ralentissement = 3;
+        this.portee = 2 * Terrain.TAILLE_TUILLE;
+        this.batimentRalenti = new ArrayList<>();
     }
 
     @Override
     public void effectueAction() {
         super.effectueAction();
         for(Batiment batiment : this.getEnvironnement().getBatiments()) {
-            if (Math.abs(this.getX() - batiment.getX()) <= 10 && Math.abs(this.getY() - batiment.getY()) <= 10) {
-                batiment.setCadenceTir(this.ralentissement);
+            if(batiment instanceof BatimentTir) {
+                if (!batimentRalenti.contains(batiment)) {
+                    if (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY())) <= this.portee) {
+                        ((BatimentTir) batiment).setCadenceTir((int) (((BatimentTir) batiment).getCadenceTir() * this.ralentissement));
+                        this.batimentRalenti.add((BatimentTir) batiment);
+                    }
+                }
+            }
+        }
+
+        for(int i = this.batimentRalenti.size() - 1;i>=0;i--) {
+            BatimentTir batiment = this.batimentRalenti.get(i);
+            if (Math.sqrt((this.getX() - batiment.getX()) * (this.getX() - batiment.getX()) + (this.getY() - batiment.getY()) * (this.getY() - batiment.getY()))>this.portee) {
+                batiment.setCadenceTir((int) (batiment.getCadenceTir() / this.ralentissement));
+                this.batimentRalenti.remove(i);
             }
         }
     }

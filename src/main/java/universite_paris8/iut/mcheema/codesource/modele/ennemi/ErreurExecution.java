@@ -1,12 +1,12 @@
 package universite_paris8.iut.mcheema.codesource.modele.ennemi;
 
 import universite_paris8.iut.mcheema.codesource.modele.Environnement;
+import universite_paris8.iut.mcheema.codesource.modele.Point;
+import java.util.ArrayList;
 
 /**
- * ErreurExecution qui étend la classe Ennemi, contient les mêmes attributs que Ennemi.
+ * La classe ErreurExecution est un type d'ennemi qui représente un des boss du jeux.
  */
 public class ErreurExecution extends Ennemi {
-    public ErreurExecution(Environnement env) {super(7, 2, 5, env);}
-
-    public ErreurExecution(int x, int y, Environnement env) {super(x, y, 7, 2, 5, env);}
+    public ErreurExecution(Environnement env, ArrayList<Point> chemin) {super(100, 2, 1500, env, chemin);}
 }
