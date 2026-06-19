@@ -135,7 +135,7 @@ public class Environnement {
      */
     public void poserBatiment(int x, int y, int numBat) {
         Batiment batimentAPoser = null;
-        int[] tabLigneColonneBatCentre = this.mettreCoordsSurCentreTuile(x, y);
+        int[] tabLigneColonneBatCentre = this.terrainDeJeu.mettreCoordsSurCentreTuile(x, y);
 
         if (!this.partieEstFinie()) {
             if (this.tuileTourPosable(x, y) && !this.tuileContientUnBatiment(tabLigneColonneBatCentre[1],
@@ -163,21 +163,6 @@ public class Environnement {
                 batimentAPoser.acheterBatiment();
             }
         }
-    }
-
-    /**
-     * Permet de placer des coordonnées sur le centre d'une tuile.
-     * @param x les coordonnéees x
-     * @param y les coordonnées y
-     * @return un tableau, contenant les coordonnées x et y qui correspondent au centre de la tuile.
-     */
-    public int[] mettreCoordsSurCentreTuile(int x, int y) {
-        int[] tabLignesColonnesConverti = this.terrainDeJeu.convertirCoordsTuile(x, y);
-
-        tabLignesColonnesConverti[0] = tabLignesColonnesConverti[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-        tabLignesColonnesConverti[1] = tabLignesColonnesConverti[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
-
-        return tabLignesColonnesConverti;
     }
 
 

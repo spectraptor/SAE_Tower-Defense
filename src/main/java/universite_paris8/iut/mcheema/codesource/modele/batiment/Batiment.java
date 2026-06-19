@@ -77,7 +77,7 @@ public abstract class Batiment extends Entite {
      * @param nouvY la nouvelle coordonnée Y du batiment
      */
     public void deplacerBatiment(int nouvX,int nouvY) {
-        int[] tabLigneColCentreBat = this.getEnvironnement().mettreCoordsSurCentreTuile(nouvX, nouvY);
+        int[] tabLigneColCentreBat = this.getEnvironnement().getTerrainDeJeu().mettreCoordsSurCentreTuile(nouvX, nouvY);
         double distanceNbTuile = (Math.abs(this.getX() - tabLigneColCentreBat[1]) + Math.abs(this.getY() - tabLigneColCentreBat[0]))/Terrain.TAILLE_TUILLE;
         int prixDepBatiment = (int) ((this.getPrix() /10) * distanceNbTuile);
         if(this.getEnvironnement().getArgent() >= prixDepBatiment) {
