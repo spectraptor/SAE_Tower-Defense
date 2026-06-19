@@ -249,7 +249,7 @@ public class InfoBatimentVue {
                 }
 
                 // Force le positionnement du batiment au centre de la tuile.
-                int[] tabLigneColBat = this.batiment.getEnvironnement().mettreCoordsSurCentreTuile((int)e.getX(),  (int)e.getY());
+                int[] tabLigneColBat = this.batiment.getEnvironnement().getTerrainDeJeu().mettreCoordsSurCentreTuile((int) e.getX(), (int) e.getY());
 
                 int distance = (int)(Math.abs(tabLigneColBat[1] - this.batiment.getX()) + Math.abs(tabLigneColBat[0] - this.batiment.getY())) / Terrain.TAILLE_TUILLE;
                 labelCoutDep.setText("  Prix du déplacement : " + Integer.toString(this.batiment.getPrix()/10 * distance));

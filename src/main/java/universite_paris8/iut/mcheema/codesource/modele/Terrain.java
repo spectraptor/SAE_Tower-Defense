@@ -153,6 +153,20 @@ public class Terrain {
         return (!tuileEstAccessibleCoords(x,y) && !new ArrayList<>(Arrays.asList('c', 'd', 'e', 'f', 'g')).contains(avoirCodeTuile(ligne, colonne)));
     }
 
+    /**
+     * Permet de placer des coordonnées sur le centre d'une tuile.
+     * @param x les coordonnéees x
+     * @param y les coordonnées y
+     * @return un tableau, contenant les coordonnées x et y qui correspondent au centre de la tuile.
+     */
+    public int[] mettreCoordsSurCentreTuile(int x, int y) {
+        int[] tabLignesColonnesConverti = this.convertirCoordsTuile(x, y);
+
+        tabLignesColonnesConverti[0] = tabLignesColonnesConverti[0] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+        tabLignesColonnesConverti[1] = tabLignesColonnesConverti[1] * Terrain.TAILLE_TUILLE + Terrain.TAILLE_TUILLE / 2;
+
+        return tabLignesColonnesConverti;
+    }
 
     public ArrayList<Point> adjacents(Point t) {
         ArrayList<Point> voisins = new ArrayList<>();
